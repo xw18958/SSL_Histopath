@@ -1,0 +1,44 @@
+# macOS metadata
+.DS_Store
+._*
+
+# Python caches and build artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Local environments
+.venv/
+venv/
+env/
+.envrc
+
+# Training artifacts, checkpoints, and experiment logs
+outputs/
+checkpoints/
+runs/
+logs/
+wandb/
+tensorboard/
+lightning_logs/
+
+# Local datasets and model weights
+data/
+datasets/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Credentials and machine-specific settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.token

@@ -1,0 +1,10 @@
+base_config: /raid1/xwan0900/SSL_proj/configs/b0.yaml
+probe_config: /raid1/xwan0900/SSL_proj/configs/linear_probe.yaml
+output_dir: /raid1/xwan0900/SSL_proj/outputs/tuning/b0
+method: b0
+pretrain_epochs: 2
+probe_epochs: 5
+parameters:
+  train.learning_rate: [0.00005, 0.0001]
+  train.lambda_reg: [0.05, 0.10]
+selection_metric: val_macro_f1

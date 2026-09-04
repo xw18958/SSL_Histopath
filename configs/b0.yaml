@@ -1,0 +1,32 @@
+seed: 20260903
+data_root: /raid1/xwan0900/datasets/PanNuke/data
+plip_config_dir: /raid1/xwan0900/models/plip_model
+endpoints_json: /raid1/xwan0900/SSL_proj/outputs/calibration/degradation_endpoints.json
+output_dir: /raid1/xwan0900/SSL_proj/outputs/b0_final
+model:
+  image_size: 256
+  patch_size: 32
+  hidden_size: 768
+  predictor_dim: 384
+  predictor_depth: 2
+  predictor_heads: 6
+  predictor_mlp_ratio: 4
+  dropout: 0.0
+train:
+  epochs: 10
+  batch_size: 128
+  effective_batch_size: 128
+  num_workers: 8
+  cache_in_ram: true
+  learning_rate: 0.0001
+  minimum_learning_rate: 0.000001
+  weight_decay: 0.05
+  warmup_fraction: 0.10
+  lambda_reg: 0.05
+  covariance_weight: 0.04
+  variance_target: 1.0
+  ema_start: 0.996
+  gradient_clip_norm: 5.0
+  bf16: true
+  compile: false
+  resume: null

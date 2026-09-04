@@ -1,0 +1,11 @@
+numpy>=1.26,<2.0
+pandas>=2.2
+pillow>=10
+pyarrow>=18
+torch>=2.5
+torchvision>=0.20
+transformers>=4.48
+scikit-learn>=1.5
+matplotlib>=3.9
+pyyaml>=6
+piq>=0.8
