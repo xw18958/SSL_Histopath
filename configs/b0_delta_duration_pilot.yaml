@@ -44,3 +44,6 @@ monitor:
   linear_lbfgs_max_iter: 100
   near_constant_std_threshold: 0.05
   minimum_delta_macro_f1: 0.005
+  # Stop after 5 consecutive 10-epoch validation checks without a >=0.005
+  # macro-F1 improvement over the current selected checkpoint.
+  early_stopping_patience_evaluations: 5
