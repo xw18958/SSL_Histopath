@@ -1,8 +1,13 @@
 from __future__ import annotations
 
+import pytest
 import torch
 
-from pannuke_ssl.b0_delta_training import _batch_residual_diagnostics, teacher_delta_target
+from pannuke_ssl.b0_delta_training import (
+    _batch_residual_diagnostics,
+    should_early_stop,
+    teacher_delta_target,
+)
 
 
 def test_teacher_delta_direction_and_detach() -> None:
@@ -32,3 +37,17 @@ def test_identical_teacher_endpoints_have_zero_residual() -> None:
     values = torch.randn(3, 64, 768)
     delta = teacher_delta_target(values, values)
     assert torch.count_nonzero(delta) == 0
+
+
+def test_early_stopping_boundary_is_five_non_improving_evaluations() -> None:
+    assert not should_early_stop(0, 5)
+    assert not should_early_stop(4, 5)
+    assert should_early_stop(5, 5)
+    assert should_early_stop(6, 5)
+
+
+def test_early_stopping_rejects_invalid_counters() -> None:
+    with pytest.raises(ValueError):
+        should_early_stop(-1, 5)
+    with pytest.raises(ValueError):
+        should_early_stop(0, 0)
