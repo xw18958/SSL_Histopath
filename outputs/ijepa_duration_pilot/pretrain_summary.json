@@ -1,0 +1,32 @@
+{
+  "best_epoch": 210,
+  "best_validation_linear_macro_f1": 0.8188010134652602,
+  "epochs": 300,
+  "final_metrics": {
+    "ema_momentum": 1.0,
+    "epoch": 300,
+    "learning_rate": 1e-06,
+    "mean_context_tokens": 17.43602075686622,
+    "mean_tokens_per_target": 11.125174028603974,
+    "peak_gpu_memory_gib": 4.215396881103516,
+    "prediction": 0.1802402709503141,
+    "samples": 7901,
+    "samples_per_second": 3045.487239370598,
+    "seconds": 2.594330357999752,
+    "weight_decay": 0.4
+  },
+  "protected_b0_unchanged": true,
+  "selection": {
+    "checkpoint_sha256": "6f1a9fdac128b09f601fbb9af63d29f428ae7d06f77031979726d51b416bf76f",
+    "horizon_epochs": 300,
+    "minimum_delta_macro_f1": 0.005,
+    "raw_best_monitor_epoch": 270.0,
+    "raw_best_monitor_score": 0.8205292595142747,
+    "selected_epoch": 210,
+    "selection_score": 0.8188010134652602,
+    "test_split_used_for_selection": false,
+    "transductive_ssl": true,
+    "warmup_epochs": 30
+  },
+  "total_seconds": 815.391340142
+}

@@ -1,0 +1,22 @@
+{
+  "batch_size": 256,
+  "cache_in_ram": true,
+  "data_root": "/raid1/xwan0900/datasets/PanNuke/data",
+  "early_stopping_patience": 8,
+  "encoder_checkpoint": "/raid1/xwan0900/SSL_proj/outputs/b1_duration_pilot/checkpoints/best.pt",
+  "learning_rates": [
+    0.001,
+    0.003,
+    0.01
+  ],
+  "maximum_epochs": 50,
+  "metadata_csv": "/raid1/xwan0900/SSL_proj/pannuke19_metadata.csv",
+  "num_workers": 4,
+  "output_dir": "/raid1/xwan0900/SSL_proj/outputs/b1_duration_pilot_final_probe",
+  "plip_config_dir": "/raid1/xwan0900/models/plip_model",
+  "seed": 20260903,
+  "weight_decays": [
+    0.0,
+    0.0001
+  ]
+}

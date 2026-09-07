@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/raid1/xwan0900/SSL_proj/scripts/b0_b1_clean_vs_s1_validation_sanity.py", line 415, in <module>
+    main()
+    ~~~~^^
+  File "/raid1/xwan0900/SSL_proj/scripts/b0_b1_clean_vs_s1_validation_sanity.py", line 411, in main
+    run(load_yaml(args.config))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/raid1/xwan0900/SSL_proj/scripts/b0_b1_clean_vs_s1_validation_sanity.py", line 374, in run
+    output, rows, actions, lock_data = setup(config)
+                                       ~~~~~^^^^^^^^
+  File "/raid1/xwan0900/SSL_proj/scripts/b0_b1_clean_vs_s1_validation_sanity.py", line 207, in setup
+    actions = action_map(rows)
+  File "/raid1/xwan0900/SSL_proj/scripts/b0_b1_clean_vs_s1_validation_sanity.py", line 140, in action_map
+    assert abs(by_split["train", DEFOCUS] - by_split["train", RESOLUTION]) <= 1
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

@@ -1,0 +1,37 @@
+{
+  "data_root": "/raid1/xwan0900/datasets/PanNuke/data",
+  "endpoints_json": "/raid1/xwan0900/SSL_proj/outputs/calibration/degradation_endpoints.json",
+  "model": {
+    "dropout": 0.0,
+    "hidden_size": 768,
+    "image_size": 256,
+    "patch_size": 32,
+    "predictor_depth": 2,
+    "predictor_dim": 384,
+    "predictor_heads": 6,
+    "predictor_mlp_ratio": 4
+  },
+  "output_dir": "/raid1/xwan0900/SSL_proj/outputs/b0_final",
+  "plip_config_dir": "/raid1/xwan0900/models/plip_model",
+  "seed": 20260903,
+  "train": {
+    "batch_size": 128,
+    "bf16": true,
+    "cache_in_ram": true,
+    "checkpoint_every": 1,
+    "compile": false,
+    "covariance_weight": 0.04,
+    "effective_batch_size": 128,
+    "ema_start": 0.996,
+    "epochs": 10,
+    "gradient_clip_norm": 5.0,
+    "lambda_reg": 0.1,
+    "learning_rate": 0.0001,
+    "minimum_learning_rate": "1e-06",
+    "num_workers": 8,
+    "resume": null,
+    "variance_target": 1.0,
+    "warmup_fraction": 0.1,
+    "weight_decay": 0.05
+  }
+}

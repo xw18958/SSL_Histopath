@@ -1,0 +1,24 @@
+{
+  "action_counts_observed": {
+    "defocus": 1150,
+    "resolution": 1149
+  },
+  "all_encoder_gradients_none": true,
+  "all_encoder_parameters_frozen": true,
+  "cache_sha256": "247a2b08525f9ee6f88065f2ac90c389c2717fc7d7f11c72bbd119cf4d71c43a",
+  "decoded_splits": [
+    "train",
+    "val"
+  ],
+  "encoder_forward_precision": "bfloat16 autocast",
+  "encoder_state_after": "fd580f076bb08878930ac6e7c6e012c5d10d6300991183fa24cc4fcd0416a29a",
+  "encoder_state_before": "fd580f076bb08878930ac6e7c6e012c5d10d6300991183fa24cc4fcd0416a29a",
+  "pooling": "tokens.float().mean(dim=1)",
+  "severity": 1.0,
+  "test_images_decoded": false,
+  "test_loader_constructed": false,
+  "token_shape": [
+    64,
+    768
+  ]
+}

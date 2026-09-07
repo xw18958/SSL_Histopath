@@ -1,0 +1,17 @@
+{
+  "evaluation_protocol": "transductive_ssl_linear_probe",
+  "seconds": 25.0768217779696,
+  "selection": {
+    "best_epoch": 5,
+    "learning_rate": 0.003,
+    "validation_macro_f1": 0.08219776703110342,
+    "weight_decay": 0.0001
+  },
+  "test": {
+    "accuracy": 0.11740890688259109,
+    "balanced_accuracy": 0.11740890688259108,
+    "macro_f1": 0.07221203358794687,
+    "weighted_f1": 0.07221203358794685
+  },
+  "test_loss": 2.9074172973632812
+}

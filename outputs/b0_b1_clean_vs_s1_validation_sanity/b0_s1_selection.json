@@ -1,0 +1,22 @@
+{
+  "batch_size": 256,
+  "best_epoch": 19,
+  "cache_sha256": "247a2b08525f9ee6f88065f2ac90c389c2717fc7d7f11c72bbd119cf4d71c43a",
+  "condition": "maximum_degradation_s1_mixed_actions",
+  "encoder": "b0",
+  "encoder_checkpoint_sha256": "0ca82b2a513e739d73c586684b7c1aeb5b52dd4ab9b2f40e3ca8874b7b0be64d",
+  "learning_rate": 0.001,
+  "lr_scheduler": "none",
+  "maximum_epochs": 50,
+  "optimizer": "AdamW",
+  "patience": 8,
+  "probe_checkpoint_sha256": "856c1cc0b552896344d6904cf4a8797d105468bbed5ba40adde43c6796faa302",
+  "selection_split": "val",
+  "standardization_source": "train only",
+  "std_correction": 1,
+  "std_floor": 1e-06,
+  "test_accessed": false,
+  "tie_break": "earliest epoch within trial; first grid candidate across trials",
+  "val_macro_f1": 0.3422273356344839,
+  "weight_decay": 0.0
+}

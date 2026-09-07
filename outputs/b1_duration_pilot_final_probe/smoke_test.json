@@ -1,0 +1,20 @@
+{
+  "cache_sha256": "52b9b2c329cca4edc746556d1a7812b7c886dcf528c35831cbf0bcd971759dbe",
+  "cached_features_unchanged_after_probe": true,
+  "identical_cache_for_all_trials_enforced": true,
+  "metadata_counts": {
+    "test": 247,
+    "train": 2052,
+    "val": 247
+  },
+  "passed": true,
+  "per_class_counts": [
+    108,
+    13,
+    13
+  ],
+  "smoke_epochs": 2,
+  "standardization": "training features only; sample std, floor 1e-6",
+  "standardized_tensor_sha256": "ab6227e644b428f2ba55fd862e3c5cefd46051006eeee06907af7abf7a92c8d2",
+  "test_images_accessed": false
+}

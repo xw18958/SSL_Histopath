@@ -1,0 +1,21 @@
+{
+  "best_epoch": 10,
+  "best_total_loss": 0.07598746542598066,
+  "checkpoint": "/raid1/xwan0900/SSL_proj/outputs/b0_final/checkpoints/best.pt",
+  "epochs": 10,
+  "final_metrics": {
+    "covariance": 4.038178748804442,
+    "ema_momentum": 1.0,
+    "embedding_std": 0.7703085161661622,
+    "epoch": 10,
+    "learning_rate": 1e-06,
+    "peak_gpu_memory_gib": 6.062424182891846,
+    "prediction": 0.03687210686937674,
+    "regularizer": 0.39115358086993857,
+    "samples_per_second": 694.1577181824736,
+    "seconds": 11.382139523979276,
+    "total": 0.07598746542598066,
+    "variance": 0.2296264339075739
+  },
+  "total_seconds": 91.05678699002601
+}

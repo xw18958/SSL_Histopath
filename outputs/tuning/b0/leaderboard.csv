@@ -1,0 +1,5 @@
+trial,train.learning_rate,train.lambda_reg,status,val_macro_f1,pretrain_checkpoint,seconds
+1,5e-05,0.05,complete,0.08219776703110342,/raid1/xwan0900/SSL_proj/outputs/tuning/b0/trial_01/pretrain/checkpoints/final.pt,81.64914112514816
+2,5e-05,0.1,complete,0.10919343814080658,/raid1/xwan0900/SSL_proj/outputs/tuning/b0/trial_02/pretrain/checkpoints/final.pt,105.42303547705524
+3,0.0001,0.05,complete,0.09513709341919512,/raid1/xwan0900/SSL_proj/outputs/tuning/b0/trial_03/pretrain/checkpoints/final.pt,163.9206332550384
+4,0.0001,0.1,complete,0.12328290233707957,/raid1/xwan0900/SSL_proj/outputs/tuning/b0/trial_04/pretrain/checkpoints/final.pt,115.75493812188506

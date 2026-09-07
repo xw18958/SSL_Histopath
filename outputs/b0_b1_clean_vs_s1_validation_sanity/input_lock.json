@@ -1,0 +1,679 @@
+{
+  "encoders": {
+    "b0": {
+      "checkpoint_sha256": "0ca82b2a513e739d73c586684b7c1aeb5b52dd4ab9b2f40e3ca8874b7b0be64d",
+      "clean_feature_cache_sha256": "c82f70625d5e8eaa4492962cd0a20fafc53b466955aa782974182a0f879c44eb",
+      "clean_selected_epoch": 17,
+      "clean_selected_learning_rate": 0.001,
+      "clean_selected_weight_decay": 0.0,
+      "clean_val_macro_f1": 0.34656928518792945,
+      "student_state_sha256": "fd580f076bb08878930ac6e7c6e012c5d10d6300991183fa24cc4fcd0416a29a"
+    },
+    "b1": {
+      "checkpoint_sha256": "ab527478c4134f972a1d47ea0532f975eb396f5f4cda4c267ea544c05eccfb1d",
+      "clean_feature_cache_sha256": "52b9b2c329cca4edc746556d1a7812b7c886dcf528c35831cbf0bcd971759dbe",
+      "clean_selected_epoch": 19,
+      "clean_selected_learning_rate": 0.01,
+      "clean_selected_weight_decay": 0.0,
+      "clean_val_macro_f1": 0.2685041201494595,
+      "student_state_sha256": "b28813383c5658e26c136452d150512f7cff5a30227115f0afa13e65b1ea8b4b"
+    }
+  },
+  "metadata_sha256": "19e7046361df86c85e55fd889a603ad436fb54a461ac2b54572c52c9fc96ea76",
+  "protected_manifest": {
+    "git_head": "bdc4fdc50cb5f48960a417a50f4e1d1c3d4200d1",
+    "git_status_before_b1": "?? configs/b0_duration_final_probe.yaml\n?? configs/ijepa_duration_final_probe.yaml\n?? configs/ijepa_duration_pilot.yaml\n?? scripts/b0_duration_final_probe.py\n?? scripts/extract_b0_duration_probe_features.py\n?? scripts/ijepa_duration_final_probe.py\n?? scripts/report_ijepa_comparison.py\n?? scripts/run_ijepa_duration_pilot.py\n?? scripts/smoke_b0_duration_final_probe.py\n?? scripts/smoke_ijepa.py\n?? scripts/test_b0_duration_final_probe_once.py\n?? scripts/tune_b0_duration_final_probe.py\n?? src/pannuke_ssl/ijepa.py\n?? src/pannuke_ssl/ijepa_training.py\n",
+    "protected_paths": [
+      {
+        "path": "configs/b0.yaml",
+        "sha256": "9cda8a47c711d51d577e36854238886ebc142daa23f1a9ed4c7854294976387e",
+        "size": 786
+      },
+      {
+        "path": "configs/b0_duration_final_probe.yaml",
+        "sha256": "c4bfc848c8517b7d9a919a513e21a44e1a604de586a9e6cfe12a45a8e7d617d2",
+        "size": 505
+      },
+      {
+        "path": "configs/b0_duration_pilot.yaml",
+        "sha256": "1a5db70808e78cde9620752dbe04c4d4ef901b2025a8bc45c9c0187ad22639be",
+        "size": 1215
+      },
+      {
+        "path": "configs/calibration.yaml",
+        "sha256": "d1bba807b533d684bdd2ef680a1f688391198b10d5790c3f24fe76571332aa03",
+        "size": 510
+      },
+      {
+        "path": "configs/ijepa_duration_final_probe.yaml",
+        "sha256": "9820a2a35a161567680a552d6c4d789b2ddda4cfaab892f25690cd32d85a994e",
+        "size": 511
+      },
+      {
+        "path": "configs/ijepa_duration_pilot.yaml",
+        "sha256": "8154a200ad8f209cbb1fb9cc0c5b9057429eeb90f039fcf948e21e7a1c3ffdc8",
+        "size": 1224
+      },
+      {
+        "path": "configs/linear_probe.yaml",
+        "sha256": "c7fdbf0814dbecf7dddc71702a59517df264c1a0dda2ae2d8852ccdcfdb1058e",
+        "size": 488
+      },
+      {
+        "path": "configs/tune_b0.yaml",
+        "sha256": "e0f6a7c7af31cc9b0a49bd739efa80cf17ab49ffffae853c57729a0e2cf31f3d",
+        "size": 337
+      },
+      {
+        "path": "outputs/b0_duration_pilot/checkpoints/best.pt",
+        "sha256": "0ca82b2a513e739d73c586684b7c1aeb5b52dd4ab9b2f40e3ca8874b7b0be64d",
+        "size": 349957169
+      },
+      {
+        "path": "outputs/b0_duration_pilot/duration_selection.json",
+        "sha256": "65f1484de0903a7f1de219551b9e2efa7dc2f4f9566bf3447a3af413c3be510d",
+        "size": 458
+      },
+      {
+        "path": "outputs/b0_duration_pilot/embedding_std.png",
+        "sha256": "ed0308a1b6504ebb696c514e6f816e9ccb70c6e557cd47bd3ef0420a25438c7c",
+        "size": 46453
+      },
+      {
+        "path": "outputs/b0_duration_pilot/monitor_metrics.csv",
+        "sha256": "a782a6f3941e12b8785f367eb0d7b564c83f3367e51c9a1f1b6d0d997e1bcb43",
+        "size": 6610
+      },
+      {
+        "path": "outputs/b0_duration_pilot/pretrain_losses.png",
+        "sha256": "de9725a2fa95b555653c5d5a1ed54a536ef93aa41d799fd152f489e5db25ece1",
+        "size": 55328
+      },
+      {
+        "path": "outputs/b0_duration_pilot/pretrain_metrics.csv",
+        "sha256": "ceeea2c7b54580324b483537c09c257442fba41d8032b21fd7db157204581631",
+        "size": 118576
+      },
+      {
+        "path": "outputs/b0_duration_pilot/pretrain_summary.json",
+        "sha256": "85f962d7628f807c496871ead77b2817da206e3efe804ff55b12feda0a8e70a1",
+        "size": 2040
+      },
+      {
+        "path": "outputs/b0_duration_pilot/representation_health.png",
+        "sha256": "617ce027d93205052567db5d7870aaf5ab2820cb0f2d86f4636d68ebe3f4cb4e",
+        "size": 89649
+      },
+      {
+        "path": "outputs/b0_duration_pilot/representation_validation_curves.png",
+        "sha256": "edbc50ed43d4289c5e219c3305163d4013662089ffb7a312797ebf91f80548f0",
+        "size": 126967
+      },
+      {
+        "path": "outputs/b0_duration_pilot/resolved_config.json",
+        "sha256": "0db724cbb18a43ae1e0817b04769e04b58025d7f11966bc00b091f087dd9d971",
+        "size": 1381
+      },
+      {
+        "path": "outputs/b0_duration_pilot/run.log",
+        "sha256": "2457544833bd4b03111a4bc93b2e4def157c296ecf7c3ab514aa634a4531aaa9",
+        "size": 286027
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/REPORT.md",
+        "sha256": "f68777a2a628ba6ef730fc763d8203bcd4861808649f4d24efc2e44490dbd520",
+        "size": 6090
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/all_trial_metrics.csv",
+        "sha256": "94d352ba387383f59e30284c869ac6ffecefbd93726e0cb2d4ec099e3fb9f098",
+        "size": 13312
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/best_linear_probe.pt",
+        "sha256": "ed2eead89d9bd391669ec0a31ffd8602036030ccd8cfc64c479e55f4bfeb0174",
+        "size": 67777
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/encoder_lock.json",
+        "sha256": "6bc2029f194cfe69af3f44784b4e46bbe47a652e5591c1e466dc5967b196efe7",
+        "size": 2410
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/feature_extraction_audit.json",
+        "sha256": "969fab70cc2331ca5d5835525f35f3f30b4fff0b4ec63dbf4f2c6adac4f41749",
+        "size": 604
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/linear_probe_summary.json",
+        "sha256": "ab3f3884a14b5de7bb8d2239d4561c4418e4dfe0e5936f555183844392f29c76",
+        "size": 1572
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/probe_leaderboard.csv",
+        "sha256": "6c5820d729f93fcff093aea74221d58b9727364e643ce88414490b3e87d31ab1",
+        "size": 1165
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/resolved_config.json",
+        "sha256": "3efe32296d7486a45ecc2a8fe4735f15c5bc080ea7f923d50cbc05ead8b3c3db",
+        "size": 611
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/selected_probe_metrics.csv",
+        "sha256": "a3d2ee0139ee5da3f08d194162d2a5d2eb2d70b1a492152459def8aa118b6ac2",
+        "size": 3050
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/selection.json",
+        "sha256": "8cde388fd7d9fc20d91300ef641b3ad9f9933acdf3120d1e76b4d98360fec1bb",
+        "size": 748
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/smoke_test.json",
+        "sha256": "ae68ee3af9c05b7adc1a6669e5b21add499a538162dc69bb7b3060d5d94e20e0",
+        "size": 564
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/test_confusion_matrix.csv",
+        "sha256": "40f745a6894e5baa93826b573a406b00cb368e9d6827f5183cea28b2b3aef200",
+        "size": 723
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/test_confusion_matrix.png",
+        "sha256": "dc7e562671dea148d43a7eea6a744f53f51128e742fad8ed798fe88661927d80",
+        "size": 197213
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/test_feature_extraction_audit.json",
+        "sha256": "bf008e7e9c235e898eb0da9d95afcb3ce84469d2f42467b7d677ccefc7665da6",
+        "size": 592
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/test_features.npz",
+        "sha256": "d386ca266bd079753b9d462c5a570ef47cf14ae066e9a48e7c5a4015c3f54dd6",
+        "size": 704785
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/test_per_class_metrics.csv",
+        "sha256": "16b33c12ed40e470004b37620ea118f2b6dd42defe876726b5cc8edc784efc8e",
+        "size": 1212
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/test_predictions.npz",
+        "sha256": "d20336dde104731656196dcb1d0963d359aa7af7db79a8a41db80b20b94f7974",
+        "size": 1988
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/test_started.json",
+        "sha256": "d0ee38f3dbae0cdc2aa917c99f18714a8e42535f452a1a308dae4c27634e3950",
+        "size": 116
+      },
+      {
+        "path": "outputs/b0_duration_pilot_final_probe/train_val_features.npz",
+        "sha256": "c82f70625d5e8eaa4492962cd0a20fafc53b466955aa782974182a0f879c44eb",
+        "size": 6552753
+      },
+      {
+        "path": "outputs/b0_duration_pilot_oom_startup/resolved_config.json",
+        "sha256": "0db724cbb18a43ae1e0817b04769e04b58025d7f11966bc00b091f087dd9d971",
+        "size": 1381
+      },
+      {
+        "path": "outputs/b0_duration_pilot_oom_startup/run.log",
+        "sha256": "baca581de26e88f144dc3e4daca864de63455e5718ae890aade2003fe903964f",
+        "size": 5858
+      },
+      {
+        "path": "outputs/b0_duration_pilot_oom_startup/run.pid",
+        "sha256": "c8070af3ad3acbfb4fffddeecdfea84f016b3ebd0af18ac610f6bfa002615f67",
+        "size": 7
+      },
+      {
+        "path": "outputs/b0_final/checkpoints/best.pt",
+        "sha256": "de84f3e6d0b43afe7092c7dd28acb4152e6ac947c79c7ccd3bca05e899c05b39",
+        "size": 349951487
+      },
+      {
+        "path": "outputs/b0_final/embedding_std.png",
+        "sha256": "0ac5a937db189d81d668895e407bb4795b095474cb59373558614c5155a01c5c",
+        "size": 48202
+      },
+      {
+        "path": "outputs/b0_final/linear_probe/best_linear_probe.pt",
+        "sha256": "2c905dca773cfb804c4a74b17f854fa4bedca0c7034274b11d314eb0a3f5016e",
+        "size": 60597
+      },
+      {
+        "path": "outputs/b0_final/linear_probe/frozen_features.npz",
+        "sha256": "711bf664447303694531919d3d43f3a17f630b6c7375d0c9f1f4ad476758123d",
+        "size": 7243692
+      },
+      {
+        "path": "outputs/b0_final/linear_probe/linear_probe_summary.json",
+        "sha256": "5b75ec4a61f57204aa52f19f69e02e25e1d9eae6fc4705175be34798440903fb",
+        "size": 445
+      },
+      {
+        "path": "outputs/b0_final/linear_probe/probe_leaderboard.csv",
+        "sha256": "032b23d0e847f016d8de95d7e2643e81e3984410f956f778712a224525893d2a",
+        "size": 258
+      },
+      {
+        "path": "outputs/b0_final/linear_probe/probe_losses.png",
+        "sha256": "a993db035a78e5b00c95bed4e238979ca4003b00ce697c23bfea20ce4409f77c",
+        "size": 56236
+      },
+      {
+        "path": "outputs/b0_final/linear_probe/probe_metrics.csv",
+        "sha256": "c3e19c15cba1ec19e08267ed91de69a44c1f3baa648cc864f3f548cfc320c45b",
+        "size": 1372
+      },
+      {
+        "path": "outputs/b0_final/linear_probe/probe_metrics.png",
+        "sha256": "1e5d3f4a860f2a415504d14ab3183d26a01cf0404d36c11462a6996d812526c7",
+        "size": 88733
+      },
+      {
+        "path": "outputs/b0_final/linear_probe/resolved_config.json",
+        "sha256": "5f436256cba6625b91949bb8e4a899881cf8ebcb556ef035283e706816e433ee",
+        "size": 594
+      },
+      {
+        "path": "outputs/b0_final/linear_probe/test_confusion_matrix.csv",
+        "sha256": "4ca3c1bc2db66321d0ced49ffe2cb6d1370d39e40f7c51ce5ebd8b7cbd74f366",
+        "size": 722
+      },
+      {
+        "path": "outputs/b0_final/linear_probe/test_confusion_matrix.png",
+        "sha256": "4556f619bc72e9a54c5f149e1f1a44666aa0b0171c8b70a537bae9f825f91c35",
+        "size": 43758
+      },
+      {
+        "path": "outputs/b0_final/linear_probe/test_per_class_metrics.csv",
+        "sha256": "1f5f52464dd33e96396547f6af3027ee2a01753606118b9c86bf5b0df7e2e79d",
+        "size": 1087
+      },
+      {
+        "path": "outputs/b0_final/pretrain_losses.png",
+        "sha256": "013cbfe219c595db683f0df410aec28586480375998bbf903766662f9b8fd360",
+        "size": 72322
+      },
+      {
+        "path": "outputs/b0_final/pretrain_metrics.csv",
+        "sha256": "e1476459d170b82aabc28fff897f4c4fe9b7997c89f752988cdf509505abb231",
+        "size": 2250
+      },
+      {
+        "path": "outputs/b0_final/pretrain_summary.json",
+        "sha256": "0cf58d48b5260013df612e147fa49c3a52f3ec0118f136de177fb9084950e990",
+        "size": 648
+      },
+      {
+        "path": "outputs/b0_final/resolved_config.json",
+        "sha256": "bf2010bec532995e3e614e7a0ee0141be4d28d6addc27bf0295fe1226900ba9c",
+        "size": 991
+      },
+      {
+        "path": "outputs/ijepa_b0_comparison/REPORT.md",
+        "sha256": "befc8d5f340c59500f097b7819fde7c07ad1b6b0b203d617048fee30fe082536",
+        "size": 8079
+      },
+      {
+        "path": "outputs/ijepa_b0_comparison/b0_test_confusion_matrix.csv",
+        "sha256": "40f745a6894e5baa93826b573a406b00cb368e9d6827f5183cea28b2b3aef200",
+        "size": 723
+      },
+      {
+        "path": "outputs/ijepa_b0_comparison/b0_test_confusion_matrix.png",
+        "sha256": "dc7e562671dea148d43a7eea6a744f53f51128e742fad8ed798fe88661927d80",
+        "size": 197213
+      },
+      {
+        "path": "outputs/ijepa_b0_comparison/comparison_metrics.csv",
+        "sha256": "b9ca73326801908e8a493243226bd034d1ef204222c03d8d7bd2e4fc1af8684b",
+        "size": 336
+      },
+      {
+        "path": "outputs/ijepa_b0_comparison/comparison_summary.json",
+        "sha256": "27a4d253a0a2adbab6ea73b0bc03bcf7a4e1410049dd4a9d0dfb586e1fcf5e9b",
+        "size": 4449
+      },
+      {
+        "path": "outputs/ijepa_b0_comparison/ijepa_test_confusion_matrix.csv",
+        "sha256": "d3deb6dfc84b604d00cd716f28947bc9cc651e9abf586bb3e01fc5fc20d8463c",
+        "size": 733
+      },
+      {
+        "path": "outputs/ijepa_b0_comparison/ijepa_test_confusion_matrix.png",
+        "sha256": "76e4a286ff451c7082f9c075db77f59ed9d00b993c872ffbaa23082acb8f582d",
+        "size": 196358
+      },
+      {
+        "path": "outputs/ijepa_b0_comparison/per_class_comparison.csv",
+        "sha256": "043c7f9862f1308179daecfd89089a637ebc5486ee8d9e07ffa1af1dcfb64463",
+        "size": 2493
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/checkpoints/best.pt",
+        "sha256": "6f1a9fdac128b09f601fbb9af63d29f428ae7d06f77031979726d51b416bf76f",
+        "size": 349982833
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/duration_selection.json",
+        "sha256": "312f391a4901434ca7629a3521996f047537660092758de4df1d5e11dff73f0f",
+        "size": 396
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/monitor_metrics.csv",
+        "sha256": "1d2ad644bcb9692586f2be0cfa5dc108588175af4681a809da490616aaaaaf17",
+        "size": 6516
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/pretrain_losses.png",
+        "sha256": "bbe5f78b10fa4a3636aa369c0c9440a589b5aaa43d3dbe82dda11a464986cc86",
+        "size": 47064
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/pretrain_metrics.csv",
+        "sha256": "f92c167fe9e6d4631b41fd392ff35c626e79e32e83db541d3ca45f6ba1add5a2",
+        "size": 54490
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/pretrain_summary.json",
+        "sha256": "6b882b969ab5016517f14893f7d104e15a373a478a0b8171dd683847a0685d0a",
+        "size": 1001
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/protected_manifest.json",
+        "sha256": "73c461a7f1a8985101839b796439fe16fa3163f35eebba6a7185293f5c8f272c",
+        "size": 28640
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/representation_health.png",
+        "sha256": "a140c074311b723e3703985648f3c2864225216f062d64959c4074dbd3d6cc91",
+        "size": 88813
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/representation_validation_curves.png",
+        "sha256": "1b4fab4085c297fc9faada2c18e489dce48b95c1df0a01f100e98344a50a124e",
+        "size": 69434
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/resolved_config.json",
+        "sha256": "0d580dc321f9063248fb440850bb2c7fc8b8758df1df96b03703a50fe1135f0e",
+        "size": 1555
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/smoke_test.json",
+        "sha256": "3b96853194054dfa8ea79848eebf849e46987c5499468454254d9b7350a4bcd0",
+        "size": 863
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot/train.log",
+        "sha256": "7e8138079fb75f79b06233a5c592fa4a036d902ba88d67f8a658a82818efc11e",
+        "size": 133228
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/all_trial_metrics.csv",
+        "sha256": "f70863fa8483e2dad33e25003b12089cf287169aad567a512393860ed380e34e",
+        "size": 14713
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/best_linear_probe.pt",
+        "sha256": "767f15dea36ad538b0afb3448009e4c0991f5086a33a23b9600506c02c3a7315",
+        "size": 67777
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/encoder_lock.json",
+        "sha256": "6cb5ebd72be96c385b31f754b67742768b1f1eff9c41be765cb9f5dfadd06b25",
+        "size": 30790
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/feature_extraction_audit.json",
+        "sha256": "6a6d34b4643a39cc7a9622ba82f8994b87a78f1ff7a5a5029e6d22ba77507ba9",
+        "size": 604
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/linear_probe_summary.json",
+        "sha256": "bffc3b42a5a430c1d6f83115242c1ce35d06f13973ba258e3f805a5610d9094d",
+        "size": 1849
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/probe_leaderboard.csv",
+        "sha256": "2d036a2eaac042c9248bf03535d98f802071e72f6a0f053a49c1f709f0ad3a8a",
+        "size": 1161
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/resolved_config.json",
+        "sha256": "719dd362f0b0a3bcccbf6830486356ae40e8b4755790ca2ea93cf30cb9c4422c",
+        "size": 617
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/selected_probe_metrics.csv",
+        "sha256": "123b4c224eb052ff79d308ae3ef38af65e089aa883bda4f77b4df4895d29af25",
+        "size": 1715
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/selection.json",
+        "sha256": "b78c15e81654af22f7a99f812ccaff85c08d62bcc10b4eb6346b1bb6290e60ab",
+        "size": 745
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/smoke_test.json",
+        "sha256": "58ac0cf72ffa63f28768bc6feeb895b950d2c94560fbd7c55ed812d2e4097872",
+        "size": 564
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/test_confusion_matrix.csv",
+        "sha256": "d3deb6dfc84b604d00cd716f28947bc9cc651e9abf586bb3e01fc5fc20d8463c",
+        "size": 733
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/test_confusion_matrix.png",
+        "sha256": "76e4a286ff451c7082f9c075db77f59ed9d00b993c872ffbaa23082acb8f582d",
+        "size": 196358
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/test_feature_extraction_audit.json",
+        "sha256": "7c07e44fc4fa3683944725bee2ef98c908b486aadc9891685acdb835ceacaee9",
+        "size": 592
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/test_features.npz",
+        "sha256": "9e2f74d95e5ce7a1ab041996e4a5bd7e6b8db611d582a9085b82308c28aed67c",
+        "size": 704055
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/test_per_class_metrics.csv",
+        "sha256": "a5f763760cdbaca87920d74baef7a937ea835cf7ecb215afc2bd25b4379ba0f9",
+        "size": 1293
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/test_predictions.npz",
+        "sha256": "16158f8f533603d72ed4693958ab85aa65651e7352136f21bb0fc569428a4f2a",
+        "size": 2002
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/test_started.json",
+        "sha256": "527287636312f775141fb25c7546d9bfef5dc607b5f49f4b60a1274dd8e5a87b",
+        "size": 308
+      },
+      {
+        "path": "outputs/ijepa_duration_pilot_final_probe/train_val_features.npz",
+        "sha256": "f5ef7ff3886634a3450f0a9e5042f39053fb297ffb021ad1818749af5360a6fd",
+        "size": 6547156
+      },
+      {
+        "path": "pannuke19_metadata.csv",
+        "sha256": "19e7046361df86c85e55fd889a603ad436fb54a461ac2b54572c52c9fc96ea76",
+        "size": 61106
+      },
+      {
+        "path": "scripts/b0_duration_final_probe.py",
+        "sha256": "f4081b29fc61162222dc3f1fd1efaf2bba420da1dacd1cca7c798df781827095",
+        "size": 16137
+      },
+      {
+        "path": "scripts/calibrate_degradation.py",
+        "sha256": "63a1097e03f6d76325ade3d8936d7c9bd5ac73e6d23d770f5c0edbad3049dae9",
+        "size": 527
+      },
+      {
+        "path": "scripts/evaluate.py",
+        "sha256": "3dd271307ba8756d6d6ce9fb4a67a1b3cfe05b71d27dd3c3821a96601d34198e",
+        "size": 510
+      },
+      {
+        "path": "scripts/extract_b0_duration_probe_features.py",
+        "sha256": "7f220095d434ced09bd970fd91d0c15f299055ddde36214ad5162b184921ebcd",
+        "size": 88
+      },
+      {
+        "path": "scripts/ijepa_duration_final_probe.py",
+        "sha256": "71ed87f02a31a66bac4d95aebb230969439cda8b9f7432fa3b651c4d3c1f68ab",
+        "size": 16881
+      },
+      {
+        "path": "scripts/linear_probe.py",
+        "sha256": "4d588ad640499f05c3597cced1f8ed4a3edd0b92a2a6e3f34773ee1425a82aa0",
+        "size": 510
+      },
+      {
+        "path": "scripts/pretrain_b0.py",
+        "sha256": "88226c62611e8fb26e8a34d4c4bb582a5564403db675eb660886fa0e0c6bc93a",
+        "size": 642
+      },
+      {
+        "path": "scripts/report_ijepa_comparison.py",
+        "sha256": "33daaa339c66978490079451b8a5f6cca589b9f6bef58e2d465bd0bf2b98211a",
+        "size": 12271
+      },
+      {
+        "path": "scripts/run_b0_duration_pilot.py",
+        "sha256": "8968947f6add137fb44e75af9647c203b6822b0ba908974cdb23abeb1081c643",
+        "size": 784
+      },
+      {
+        "path": "scripts/run_ijepa_duration_pilot.py",
+        "sha256": "753c45575dd0f023d0980109a76f417713ac81b8d516d9a66275be91e36cc377",
+        "size": 362
+      },
+      {
+        "path": "scripts/smoke_b0_duration_final_probe.py",
+        "sha256": "938c6062c0244a5c4ed0d03482a2ebbb5459e600ac85dc11ebb8768be044955d",
+        "size": 86
+      },
+      {
+        "path": "scripts/smoke_ijepa.py",
+        "sha256": "b0d9a98e21c712b05a0b801078c72682f3297bb39bfa4c1b07c6f716bab01d8d",
+        "size": 6343
+      },
+      {
+        "path": "scripts/smoke_test_b0.py",
+        "sha256": "b13f496d162bb63e17505684eaf6d0b76055e3c7b56ebc2fd046b430351468a4",
+        "size": 4596
+      },
+      {
+        "path": "scripts/test_b0_duration_final_probe_once.py",
+        "sha256": "63678a80c1b6f2186d7916bbebd519aa13a18f4dc483ea00e0e48e64ba06a54d",
+        "size": 85
+      },
+      {
+        "path": "scripts/tune.py",
+        "sha256": "2c306aac746b66d45d60de169225975fe519e634d3a6ee72ba3604520bb7aeb3",
+        "size": 495
+      },
+      {
+        "path": "scripts/tune_b0_duration_final_probe.py",
+        "sha256": "9691234ea5fbb67f570a3380283cc44e6b892bc642b229df1b68ec6ce75ab95c",
+        "size": 85
+      },
+      {
+        "path": "src/pannuke_ssl/__init__.py",
+        "sha256": "fa8e61e8a61b0810db8725c8cf6d29f2121d8562820aaa7b94dc75b1df309894",
+        "size": 161
+      },
+      {
+        "path": "src/pannuke_ssl/calibration.py",
+        "sha256": "ed43d15f552763b9e5abce0a1ec003daec9f2d6b6b5060f3b681cd2207249185",
+        "size": 8132
+      },
+      {
+        "path": "src/pannuke_ssl/config.py",
+        "sha256": "8ce2b8a617aac10286eece368362dce8751272ed0c3b2e9a0b12385ec5cb5b05",
+        "size": 1002
+      },
+      {
+        "path": "src/pannuke_ssl/data.py",
+        "sha256": "2f1acc7725996a95462edb110018097f72036c40bbfb0a6eca87787b3a2aa757",
+        "size": 5263
+      },
+      {
+        "path": "src/pannuke_ssl/degradations.py",
+        "sha256": "f73ec1386f0790e8125b4357bec74e255637c0bd0287dc4524f6a35c15a57653",
+        "size": 3474
+      },
+      {
+        "path": "src/pannuke_ssl/ijepa.py",
+        "sha256": "953b1bf91a75f57af6c7adc123343778602ac551c0b1639aae210490c8535975",
+        "size": 5865
+      },
+      {
+        "path": "src/pannuke_ssl/ijepa_training.py",
+        "sha256": "5770b7bd3e90d3d144f3dcd9d30b399aac6441947c1b7252652b34f6157210d7",
+        "size": 9577
+      },
+      {
+        "path": "src/pannuke_ssl/losses.py",
+        "sha256": "05ab7c39b35abc734b27df46634f08fc1bc86663ae0749fab5b1629193d8c29f",
+        "size": 1883
+      },
+      {
+        "path": "src/pannuke_ssl/models.py",
+        "sha256": "b7dc1886447e83c72b0b4b668c2b92e0a71967abb303092957d593aa336e9ccb",
+        "size": 4743
+      },
+      {
+        "path": "src/pannuke_ssl/monitor.py",
+        "sha256": "bf0083e68dbef95b9d3e6cec46af2ba42a9f23193faf795733fe217066afb267",
+        "size": 9048
+      },
+      {
+        "path": "src/pannuke_ssl/parquet.py",
+        "sha256": "5fc85b3a7ddcf1dcf70efe9cebb7060232434f6d89702142cca39138554f0a00",
+        "size": 6868
+      },
+      {
+        "path": "src/pannuke_ssl/probe.py",
+        "sha256": "f67b9bb59ad517c4da12880b8b6fd9b66bf30d7e5a880ea972fe2c8e81920937",
+        "size": 10471
+      },
+      {
+        "path": "src/pannuke_ssl/training.py",
+        "sha256": "5683b35ac2240c050e13f90723df6bb22bacd50a9ce4dfd645226f7eb25e7ca3",
+        "size": 19566
+      },
+      {
+        "path": "src/pannuke_ssl/tuning.py",
+        "sha256": "4a117be76861502ce73b89fead69ec3cb90e8ace390da923d141f99d74b2306d",
+        "size": 3997
+      },
+      {
+        "path": "src/pannuke_ssl/utils.py",
+        "sha256": "d1e374798b27123aae27c7cdda2a3474cbd06909379347634e2b6a3711683350",
+        "size": 2407
+      },
+      {
+        "path": "tests/test_b0_core.py",
+        "sha256": "6c14aaee0ebc6606e1b08ae0822dfcd113e24b0dd09a221029d9d6c8a7607737",
+        "size": 5867
+      }
+    ],
+    "purpose": "B1 pre-implementation protected manifest for immutable B0/I-JEPA references",
+    "python": "3.13.1",
+    "schema_version": 1
+  },
+  "test_images_decoded": false,
+  "test_loader_constructed": false
+}

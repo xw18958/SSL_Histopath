@@ -1,0 +1,19 @@
+{
+  "checkpoint": "/raid1/xwan0900/SSL_proj/outputs/tuning/b0/trial_04/pretrain/checkpoints/final.pt",
+  "epochs": 2,
+  "final_metrics": {
+    "covariance": 1.7996446433934572,
+    "ema_momentum": 1.0,
+    "embedding_std": 0.2810387659594916,
+    "epoch": 2,
+    "learning_rate": 1e-06,
+    "peak_gpu_memory_gib": 10.174038410186768,
+    "prediction": 0.05389614364396559,
+    "regularizer": 0.7907641084944654,
+    "samples_per_second": 1812.9297054613219,
+    "seconds": 4.35813919105567,
+    "total": 0.13297255594297958,
+    "variance": 0.7187783274148449
+  },
+  "total_seconds": 33.201510971877724
+}

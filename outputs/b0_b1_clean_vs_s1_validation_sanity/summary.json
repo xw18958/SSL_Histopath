@@ -1,0 +1,28 @@
+{
+  "conclusion": "The condition effect is not consistently large for both encoders; this diagnostic alone does not establish clean-domain mismatch as the main explanation.",
+  "encoder_inputs_unchanged": true,
+  "protected_artifacts_unchanged": true,
+  "protected_manifest_entries": 129,
+  "rows": [
+    {
+      "clean_val_macro_f1": 0.34656928518792945,
+      "degraded_minus_clean_macro_f1_pp": -0.4341949553445579,
+      "encoder": "b0",
+      "s1_best_epoch": 19,
+      "s1_learning_rate": 0.001,
+      "s1_val_macro_f1": 0.3422273356344839,
+      "s1_weight_decay": 0.0
+    },
+    {
+      "clean_val_macro_f1": 0.2685041201494595,
+      "degraded_minus_clean_macro_f1_pp": 6.690802868231965,
+      "encoder": "b1",
+      "s1_best_epoch": 39,
+      "s1_learning_rate": 0.01,
+      "s1_val_macro_f1": 0.33541214883177917,
+      "s1_weight_decay": 0.0
+    }
+  ],
+  "test_images_decoded": false,
+  "test_loader_constructed": false
+}

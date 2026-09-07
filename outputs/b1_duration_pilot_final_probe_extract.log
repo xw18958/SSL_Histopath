@@ -1,0 +1,2 @@
+{"extracted": "train", "shape": [2052, 768]}
+{"extracted": "val", "shape": [247, 768]}

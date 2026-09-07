@@ -1,0 +1,51 @@
+{
+  "encoders": {
+    "b0": {
+      "action_counts_observed": {
+        "defocus": 123,
+        "resolution": 133
+      },
+      "all_encoder_gradients_none": true,
+      "all_encoder_parameters_frozen": true,
+      "decoded_splits": [
+        "train"
+      ],
+      "encoder_forward_precision": "bfloat16 autocast",
+      "encoder_state_after": "fd580f076bb08878930ac6e7c6e012c5d10d6300991183fa24cc4fcd0416a29a",
+      "encoder_state_before": "fd580f076bb08878930ac6e7c6e012c5d10d6300991183fa24cc4fcd0416a29a",
+      "pooling": "tokens.float().mean(dim=1)",
+      "severity": 1.0,
+      "test_images_decoded": false,
+      "test_loader_constructed": false,
+      "token_shape": [
+        64,
+        768
+      ]
+    },
+    "b1": {
+      "action_counts_observed": {
+        "defocus": 123,
+        "resolution": 133
+      },
+      "all_encoder_gradients_none": true,
+      "all_encoder_parameters_frozen": true,
+      "decoded_splits": [
+        "train"
+      ],
+      "encoder_forward_precision": "bfloat16 autocast",
+      "encoder_state_after": "b28813383c5658e26c136452d150512f7cff5a30227115f0afa13e65b1ea8b4b",
+      "encoder_state_before": "b28813383c5658e26c136452d150512f7cff5a30227115f0afa13e65b1ea8b4b",
+      "pooling": "tokens.float().mean(dim=1)",
+      "severity": 1.0,
+      "test_images_decoded": false,
+      "test_loader_constructed": false,
+      "token_shape": [
+        64,
+        768
+      ]
+    }
+  },
+  "passed": true,
+  "test_images_decoded": false,
+  "test_loader_constructed": false
+}

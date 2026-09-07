@@ -1,0 +1,39 @@
+{
+  "full_encoding_matches_original_encoder": true,
+  "gpu_losses": [
+    0.5333910584449768,
+    0.4545806646347046,
+    0.4243202209472656
+  ],
+  "gpu_steps": 3,
+  "mask_examples_checked": 1600,
+  "masked_before_attention": true,
+  "metadata_perclass_counts": [
+    108,
+    13,
+    13
+  ],
+  "metadata_split_counts": [
+    2052,
+    247,
+    247
+  ],
+  "minimum_context_tokens": 10,
+  "passed": true,
+  "predictor_block_order_verified": true,
+  "pretrained_weight_loading_forbidden": true,
+  "protected_b0_unchanged": true,
+  "realized_target_tokens": [
+    8,
+    9,
+    12
+  ],
+  "seconds": 2.6257744829999865,
+  "smoke_decoded_splits": [
+    "train"
+  ],
+  "student_teacher_initially_identical": true,
+  "target_pixel_changes_leave_context_exactly_unchanged": true,
+  "teacher_stopgradient_and_ema_verified": true,
+  "test_images_decoded_by_smoke": false
+}

@@ -1,0 +1,40 @@
+{
+  "action_assignment": "class_stratified_alternating_by_fold_sample_index",
+  "batch_size": 256,
+  "data_root": "/raid1/xwan0900/datasets/PanNuke/data",
+  "early_stopping_patience": 8,
+  "encoders": {
+    "b0": {
+      "checkpoint": "/raid1/xwan0900/SSL_proj/outputs/b0_duration_pilot/checkpoints/best.pt",
+      "clean_feature_audit": "/raid1/xwan0900/SSL_proj/outputs/b0_duration_pilot_final_probe/feature_extraction_audit.json",
+      "clean_feature_cache": "/raid1/xwan0900/SSL_proj/outputs/b0_duration_pilot_final_probe/train_val_features.npz",
+      "clean_selection": "/raid1/xwan0900/SSL_proj/outputs/b0_duration_pilot_final_probe/selection.json",
+      "encoder_lock": "/raid1/xwan0900/SSL_proj/outputs/b0_duration_pilot_final_probe/encoder_lock.json"
+    },
+    "b1": {
+      "checkpoint": "/raid1/xwan0900/SSL_proj/outputs/b1_duration_pilot/checkpoints/best.pt",
+      "clean_feature_audit": "/raid1/xwan0900/SSL_proj/outputs/b1_duration_pilot_final_probe/feature_extraction_audit.json",
+      "clean_feature_cache": "/raid1/xwan0900/SSL_proj/outputs/b1_duration_pilot_final_probe/train_val_features.npz",
+      "clean_selection": "/raid1/xwan0900/SSL_proj/outputs/b1_duration_pilot_final_probe/selection.json",
+      "encoder_lock": "/raid1/xwan0900/SSL_proj/outputs/b1_duration_pilot_final_probe/encoder_lock.json"
+    }
+  },
+  "endpoints_json": "/raid1/xwan0900/SSL_proj/outputs/calibration/degradation_endpoints.json",
+  "learning_rates": [
+    0.001,
+    0.003,
+    0.01
+  ],
+  "maximum_epochs": 50,
+  "metadata_csv": "/raid1/xwan0900/SSL_proj/pannuke19_metadata.csv",
+  "num_workers": 4,
+  "output_dir": "/raid1/xwan0900/SSL_proj/outputs/b0_b1_clean_vs_s1_validation_sanity",
+  "plip_config_dir": "/raid1/xwan0900/models/plip_model",
+  "protected_manifest_dir": "/raid1/xwan0900/SSL_proj/outputs/b1_duration_pilot",
+  "seed": 20260903,
+  "severity": 1.0,
+  "weight_decays": [
+    0.0,
+    0.0001
+  ]
+}

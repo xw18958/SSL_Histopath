@@ -1,0 +1,111 @@
+{
+  "b0": {
+    "correct_test_predictions": 70,
+    "encoder_checkpoint_sha256": "0ca82b2a513e739d73c586684b7c1aeb5b52dd4ab9b2f40e3ca8874b7b0be64d",
+    "encoder_description": "epoch 10 of the 300-epoch schedule with 30-epoch warmup",
+    "evaluation_protocol": "single-seed, transductive B0 linear-probe result",
+    "limitation": "Does not establish a universal optimal epoch; reproducibility requires fixed warmup steps and multiple SSL seeds.",
+    "selection": {
+      "batch_size": 256,
+      "best_epoch": 17,
+      "cache_sha256": "c82f70625d5e8eaa4492962cd0a20fafc53b466955aa782974182a0f879c44eb",
+      "encoder_checkpoint_sha256": "0ca82b2a513e739d73c586684b7c1aeb5b52dd4ab9b2f40e3ca8874b7b0be64d",
+      "learning_rate": 0.001,
+      "lr_scheduler": "none",
+      "maximum_epochs": 50,
+      "optimizer": "AdamW",
+      "patience": 8,
+      "probe_checkpoint_sha256": "ed2eead89d9bd391669ec0a31ffd8602036030ccd8cfc64c479e55f4bfeb0174",
+      "seed": 20260903,
+      "selection_split": "val",
+      "standardization_source": "train only",
+      "std_correction": 1,
+      "std_floor": 1e-06,
+      "test_accessed": false,
+      "tie_break": "earliest epoch within trial; first grid candidate across trials",
+      "val_macro_f1": 0.34656928518792945,
+      "weight_decay": 0.0
+    },
+    "ssl_includes_downstream_validation_test": true,
+    "ssl_unlabeled_images": 7901,
+    "test": {
+      "accuracy": 0.2834008097165992,
+      "balanced_accuracy": 0.2834008097165992,
+      "macro_f1": 0.2665137806408322,
+      "weighted_f1": 0.2665137806408322
+    },
+    "test_evaluations": 1,
+    "test_loss": 2.3417110443115234,
+    "test_samples": 247
+  },
+  "comparison": [
+    {
+      "b0_percent": 28.34008097165992,
+      "ijepa_minus_b0_percentage_points": 44.12955465587044,
+      "ijepa_percent": 72.46963562753037,
+      "metric": "Accuracy"
+    },
+    {
+      "b0_percent": 28.34008097165992,
+      "ijepa_minus_b0_percentage_points": 44.12955465587045,
+      "ijepa_percent": 72.46963562753037,
+      "metric": "Balanced accuracy"
+    },
+    {
+      "b0_percent": 26.651378064083218,
+      "ijepa_minus_b0_percentage_points": 45.91758253025871,
+      "ijepa_percent": 72.56896059434193,
+      "metric": "Macro-F1"
+    },
+    {
+      "b0_percent": 26.651378064083218,
+      "ijepa_minus_b0_percentage_points": 45.91758253025873,
+      "ijepa_percent": 72.56896059434195,
+      "metric": "Weighted-F1"
+    }
+  ],
+  "exclusive_test_marker_rejects_repeat": true,
+  "ijepa": {
+    "correct_test_predictions": 179,
+    "encoder_checkpoint_sha256": "6f1a9fdac128b09f601fbb9af63d29f428ae7d06f77031979726d51b416bf76f",
+    "encoder_description": "epoch 210 of the 300-epoch schedule with 30-epoch warmup",
+    "evaluation_protocol": "single-seed, transductive I-JEPA linear-probe result",
+    "limitation": "Does not establish a universal optimal epoch; reproducibility requires fixed warmup steps and multiple SSL seeds.",
+    "predictions_sha256": "16158f8f533603d72ed4693958ab85aa65651e7352136f21bb0fc569428a4f2a",
+    "selection": {
+      "batch_size": 256,
+      "best_epoch": 6,
+      "cache_sha256": "f5ef7ff3886634a3450f0a9e5042f39053fb297ffb021ad1818749af5360a6fd",
+      "encoder_checkpoint_sha256": "6f1a9fdac128b09f601fbb9af63d29f428ae7d06f77031979726d51b416bf76f",
+      "learning_rate": 0.01,
+      "lr_scheduler": "none",
+      "maximum_epochs": 50,
+      "optimizer": "AdamW",
+      "patience": 8,
+      "probe_checkpoint_sha256": "767f15dea36ad538b0afb3448009e4c0991f5086a33a23b9600506c02c3a7315",
+      "seed": 20260903,
+      "selection_split": "val",
+      "standardization_source": "train only",
+      "std_correction": 1,
+      "std_floor": 1e-06,
+      "test_accessed": false,
+      "tie_break": "earliest epoch within trial; first grid candidate across trials",
+      "val_macro_f1": 0.8159023096151243,
+      "weight_decay": 0.0
+    },
+    "selection_sha256": "b78c15e81654af22f7a99f812ccaff85c08d62bcc10b4eb6346b1bb6290e60ab",
+    "ssl_includes_downstream_validation_test": true,
+    "ssl_unlabeled_images": 7901,
+    "test": {
+      "accuracy": 0.7246963562753036,
+      "balanced_accuracy": 0.7246963562753037,
+      "macro_f1": 0.7256896059434194,
+      "weighted_f1": 0.7256896059434195
+    },
+    "test_evaluations": 1,
+    "test_loss": 1.1805990934371948,
+    "test_marker_sha256": "527287636312f775141fb25c7546d9bfef5dc607b5f49f4b60a1274dd8e5a87b",
+    "test_samples": 247
+  },
+  "protected_b0_unchanged": true
+}

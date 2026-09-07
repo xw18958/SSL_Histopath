@@ -1,0 +1,12 @@
+{
+  "best_earlier_epoch": "30.0",
+  "best_earlier_score": 0.3481603187503583,
+  "decision": "proceed_to_final_probe",
+  "epoch_300_score": 0.2885571558348536,
+  "horizon_epochs": 300,
+  "minimum_delta_macro_f1": 0.005,
+  "requires_extension": false,
+  "selection_split": "validation",
+  "test_split_used_for_selection": false,
+  "warmup_epochs": 30
+}

@@ -1,0 +1,13 @@
+{
+  "extension_rule": "extend only when the final monitored score exceeds every earlier score by minimum_delta",
+  "horizon_epochs": 300,
+  "minimum_delta_macro_f1": 0.005,
+  "raw_best_monitor_epoch": 10,
+  "raw_best_monitor_score": 0.3302503885148712,
+  "requires_extension": false,
+  "selected_epoch": 10,
+  "selection_metric": "validation_linear_macro_f1",
+  "selection_score": 0.3302503885148712,
+  "test_split_used": false,
+  "transductive_ssl": true
+}

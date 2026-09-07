@@ -1,0 +1,13 @@
+{
+  "checkpoint_sha256": "ab527478c4134f972a1d47ea0532f975eb396f5f4cda4c267ea544c05eccfb1d",
+  "horizon_epochs": 300,
+  "minimum_delta_macro_f1": 0.005,
+  "raw_best_monitor_epoch": 30.0,
+  "raw_best_monitor_score": 0.3481603187503583,
+  "selected_epoch": 30,
+  "selection_score": 0.3481603187503583,
+  "selection_split": "validation",
+  "test_split_used_for_selection": false,
+  "transductive_ssl": true,
+  "warmup_epochs": 30
+}

@@ -19,7 +19,6 @@ env/
 .envrc
 
 # Training artifacts, checkpoints, and experiment logs
-outputs/
 checkpoints/
 runs/
 logs/
