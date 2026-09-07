@@ -3,8 +3,9 @@
 B0-Delta is a controlled diagnostic of the completed B0 degradation-conditioned
 SSL baseline. It keeps the B0 data, degradation sampler, fresh PLIP ViT-B/32
 student, EMA teacher, B0 predictor, VICReg control, optimizer/schedules,
-300-epoch validation-duration protocol, checkpoint rule, and final linear-probe
-pipeline fixed.
+validation checkpoint rule, and final linear-probe pipeline fixed. The configured
+maximum training horizon remains 300 epochs, but B0-Delta now uses validation-
+based early stopping to avoid continuing a clearly stagnant run.
 
 The only SSL target change is:
 
@@ -32,7 +33,8 @@ This is a diagnostic experiment, not the final proposed method.
 
 ## Locked B0-matched protocol
 
-The config intentionally matches the completed B0 duration experiment:
+The config intentionally matches the completed B0 duration experiment except
+for the explicitly requested early-stopping rule:
 
 - seed: 20260903
 - 7,901 unlabeled PanNuke images
@@ -49,7 +51,16 @@ The config intentionally matches the completed B0 duration experiment:
 - VICReg control: lambda=0.10, covariance weight=0.04, variance target=1.0
 - validation representation monitor every 10 epochs
 - selected SSL checkpoint: strict >=0.005 improvement in validation linear
-  macro-F1, exactly as B0
+  macro-F1, same checkpoint criterion as B0
+- maximum SSL horizon: 300 epochs
+- early stopping: stop after 5 consecutive monitor evaluations without a
+  checkpoint-qualifying improvement = 50 epochs of patience
+
+The early-stopping counter resets to zero whenever a new checkpoint is selected.
+The earliest possible stop is epoch 50. For example, if epoch 40 is the last
+selected checkpoint, non-improvements at epochs 50, 60, 70, 80 and 90 stop the
+run at epoch 90 while retaining the epoch-40 checkpoint. Test data are never
+used for this decision.
 
 The trainer refuses configs that drift from these values.
 
@@ -68,7 +79,8 @@ pytest -q tests/test_b0_delta_core.py
 python scripts/smoke_b0_delta.py \
   --config configs/b0_delta_duration_pilot.yaml
 
-# 3. Full validation-selected SSL duration run (NO test evaluation)
+# 3. Validation-selected SSL run, maximum 300 epochs with 50-epoch patience
+#    (NO test evaluation)
 python scripts/run_b0_delta_duration_pilot.py \
   --config configs/b0_delta_duration_pilot.yaml
 
@@ -110,6 +122,10 @@ outputs/b0_delta_duration_pilot/
   representation_validation_curves.png
   representation_health.png
 ```
+
+`duration_selection.json` and `pretrain_summary.json` record `epochs_run`,
+`stopped_early`, `early_stop_epoch`, the five-evaluation patience, and the
+selected validation checkpoint.
 
 Final probe:
 
@@ -154,4 +170,6 @@ For the first diagnostic, compare B0-Delta against the already completed B0
 using validation representation curves and the same frozen clean-image linear
 probe. Do not retune the B0-Delta SSL hyperparameters before seeing this
 controlled result. In particular, `lambda_reg=0.10` is intentionally retained
-for the first run so the experiment changes only the prediction target.
+for the first run. The only training-control difference from the completed B0
+run is the requested validation-based early stopping; the maximum schedule and
+all optimization hyperparameters remain fixed.
