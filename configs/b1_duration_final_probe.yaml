@@ -1,0 +1,14 @@
+# This guarded workflow is intentionally separate from SSL duration selection.
+seed: 20260903
+data_root: /raid1/xwan0900/datasets/PanNuke/data
+metadata_csv: /raid1/xwan0900/SSL_proj/pannuke19_metadata.csv
+plip_config_dir: /raid1/xwan0900/models/plip_model
+encoder_checkpoint: /raid1/xwan0900/SSL_proj/outputs/b1_duration_pilot/checkpoints/best.pt
+output_dir: /raid1/xwan0900/SSL_proj/outputs/b1_duration_pilot_final_probe
+batch_size: 256
+num_workers: 4
+cache_in_ram: true
+maximum_epochs: 50
+early_stopping_patience: 8
+learning_rates: [0.001, 0.003, 0.01]
+weight_decays: [0.0, 0.0001]
