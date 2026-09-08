@@ -1,0 +1,51 @@
+seed: 20260903
+data_root: /raid1/xwan0900/datasets/PanNuke/data
+plip_config_dir: /raid1/xwan0900/models/plip_model
+endpoints_json: /raid1/xwan0900/SSL_proj/outputs/calibration/degradation_endpoints.json
+output_dir: /raid1/xwan0900/SSL_proj/outputs/change_jepa_duration_pilot
+model:
+  image_size: 256
+  patch_size: 32
+  hidden_size: 768
+  predictor_dim: 384
+  predictor_depth: 2
+  predictor_heads: 6
+  predictor_mlp_ratio: 4
+  dropout: 0.0
+objective:
+  transition_sampling: b0_adjacent_more_to_less_degraded
+  change_target: mapped_signed_pixel_difference
+  change_mapping: "((target-source)+1)/2"
+  teacher_target_layer_norm: true
+  loss: smooth_l1
+  vicreg: false
+  query_conditioning: position+action+source_state+delta
+train:
+  epochs: 300
+  batch_size: 128
+  effective_batch_size: 128
+  num_workers: 8
+  cache_in_ram: true
+  learning_rate: 0.0001
+  minimum_learning_rate: 0.000001
+  weight_decay: 0.04
+  final_weight_decay: 0.40
+  warmup_fraction: 0.10
+  ema_start: 0.996
+  gradient_clip_norm: 5.0
+  bf16: true
+  compile: false
+  resume: null
+monitor:
+  enabled: true
+  metadata_csv: /raid1/xwan0900/SSL_proj/pannuke19_metadata.csv
+  batch_size: 256
+  num_workers: 8
+  cache_in_ram: true
+  evaluation_interval_epochs: 10
+  knn_k: 20
+  knn_temperature: 0.07
+  linear_lbfgs_max_iter: 100
+  near_constant_std_threshold: 0.05
+  minimum_delta_macro_f1: 0.005
+  early_stopping_patience_evaluations: 3
