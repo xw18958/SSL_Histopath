@@ -1,0 +1,19 @@
+{
+  "early_stop_epoch": 30,
+  "early_stopping_patience_epochs": 30,
+  "early_stopping_patience_evaluations": 3,
+  "early_stopping_rule": "stop after three consecutive 10-epoch validation monitors without >0.005 macro-F1 improvement over the selected checkpoint",
+  "epochs_run": 30,
+  "horizon_epochs": 300,
+  "minimum_delta_macro_f1": 0.005,
+  "objective": "EMA representation of mapped signed pixel-change image",
+  "raw_best_monitor_epoch": 0,
+  "raw_best_monitor_score": 0.26749819617885584,
+  "selected_epoch": 0,
+  "selection_metric": "validation_linear_macro_f1",
+  "selection_score": 0.26749819617885584,
+  "stopped_early": true,
+  "test_split_used": false,
+  "transductive_ssl": true,
+  "transition_sampling": "B0 adjacent more-degraded to less-degraded"
+}

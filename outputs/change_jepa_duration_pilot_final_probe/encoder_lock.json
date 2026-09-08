@@ -1,0 +1,7 @@
+{
+  "clean_images": true,
+  "encoder_checkpoint_sha256": "90097e20a81b3a2eba38a9944b7ed59a096efd9468cc6257df7a569385978f85",
+  "encoder_epoch": 0,
+  "pooling": "mean of 64 patch tokens",
+  "test_accessed": false
+}

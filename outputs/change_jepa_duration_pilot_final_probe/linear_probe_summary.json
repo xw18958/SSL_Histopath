@@ -1,0 +1,24 @@
+{
+  "correct_test_predictions": 41,
+  "evaluation_protocol": "B0-matched frozen clean-image linear probe",
+  "selection": {
+    "best_epoch": 21,
+    "encoder_checkpoint_sha256": "90097e20a81b3a2eba38a9944b7ed59a096efd9468cc6257df7a569385978f85",
+    "learning_rate": 0.01,
+    "probe_checkpoint_sha256": "54f8d37b96490e407f99bd1b034631ed77fe14860346406a71efb10a91aeea04",
+    "selection_split": "val",
+    "standardization_source": "train only",
+    "test_accessed": false,
+    "val_macro_f1": 0.19160770258293475,
+    "weight_decay": 0.0
+  },
+  "test": {
+    "accuracy": 0.1659919028340081,
+    "balanced_accuracy": 0.16599190283400808,
+    "macro_f1": 0.12974907210215086,
+    "weighted_f1": 0.12974907210215086
+  },
+  "test_evaluations": 1,
+  "test_loss": 3.4854369163513184,
+  "test_samples": 247
+}
