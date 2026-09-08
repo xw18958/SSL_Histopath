@@ -21,6 +21,7 @@ transition experiment.
 from __future__ import annotations
 
 import json
+import os
 import time
 from pathlib import Path
 from typing import Any
@@ -89,6 +90,48 @@ EXPECTED_MONITOR = {
     "minimum_delta_macro_f1": 0.005,
     "early_stopping_patience_evaluations": 3,
 }
+
+
+def _init_wandb(config: dict[str, Any]):
+    """Create the W&B run without ever storing credentials in the repository."""
+    try:
+        import wandb
+    except ImportError as error:
+        raise RuntimeError(
+            "Change-JEPA requires wandb. Install repository requirements before training."
+        ) from error
+
+    api_key = os.environ.get("WANDB_API_KEY")
+    if not api_key:
+        raise RuntimeError(
+            "WANDB_API_KEY is not set. Export it in the shell before starting Change-JEPA."
+        )
+    wandb.login(key=api_key, relogin=True)
+
+    init_kwargs: dict[str, Any] = {
+        "project": os.environ.get("WANDB_PROJECT", "SSL_Histopath"),
+        "name": os.environ.get(
+            "WANDB_RUN_NAME",
+            f"change-jepa-seed-{int(config['seed'])}",
+        ),
+        "config": config,
+        "tags": ["Change-JEPA", "PanNuke", "SSL", "degradation-dynamics"],
+    }
+    entity = os.environ.get("WANDB_ENTITY")
+    if entity:
+        init_kwargs["entity"] = entity
+    run = wandb.init(**init_kwargs)
+    if run is None:
+        raise RuntimeError("wandb.init returned no active run")
+    return run
+
+
+def _wandb_monitor_values(row: dict[str, float]) -> dict[str, float]:
+    return {
+        f"monitor/{key}": float(value)
+        for key, value in row.items()
+        if key != "epoch"
+    }
 
 
 def validate_config(config: dict[str, Any]) -> None:
@@ -160,6 +203,8 @@ def run_change_jepa_pretraining(config: dict[str, Any]) -> dict[str, Any]:
         raise FileExistsError(f"Refusing to overwrite existing Change-JEPA run: {output_dir}")
     atomic_json_dump(config, output_dir / "resolved_config.json")
 
+    wandb_run = _init_wandb(config)
+
     endpoints = _endpoints(config["endpoints_json"])
     loader, _ = build_ssl_loader(
         config["data_root"],
@@ -217,6 +262,14 @@ def run_change_jepa_pretraining(config: dict[str, Any]) -> dict[str, Any]:
             "transductive_ssl": True,
         },
     )
+    baseline_log = {
+        "epoch": 0,
+        **_wandb_monitor_values(baseline),
+        "selection/best_val_macro_f1": best_monitor_score,
+        "selection/best_epoch": 0,
+        "selection/non_improving_monitors": 0,
+    }
+    wandb_run.log(baseline_log, step=0)
     print(
         json.dumps(
             {
@@ -244,6 +297,7 @@ def run_change_jepa_pretraining(config: dict[str, Any]) -> dict[str, Any]:
         signed_change_abs_sum = 0.0
         change_elements = 0
         embedding_std_sum = 0.0
+        gradient_norm_sum = 0.0
         seen = 0
         transition_totals = {
             f"prediction_{family}_{source:03d}_to_{target:03d}": [0.0, 0]
@@ -329,6 +383,7 @@ def run_change_jepa_pretraining(config: dict[str, Any]) -> dict[str, Any]:
             signed_change_abs_sum += float(diagnostics["signed_change_abs_sum"])
             change_elements += int(diagnostics["change_elements"])
             embedding_std_sum += float(diagnostics["embedding_std"]) * count
+            gradient_norm_sum += float(gradient_norm.detach()) * count
 
             with torch.no_grad():
                 per_example_prediction = F.smooth_l1_loss(
@@ -364,9 +419,11 @@ def run_change_jepa_pretraining(config: dict[str, Any]) -> dict[str, Any]:
             "target_rms": (target_squared_sum / max(1, target_elements)) ** 0.5,
             "signed_change_abs_mean": signed_change_abs_sum / max(1, change_elements),
             "embedding_std": embedding_std_sum / seen,
+            "gradient_norm": gradient_norm_sum / seen,
             "learning_rate": float(optimizer.param_groups[0]["lr"]),
             "weight_decay": float(optimizer.param_groups[0]["weight_decay"]),
             "ema_momentum": float(momentum),
+            "optimizer_global_step": float(global_step),
             "seconds": seconds,
             "samples_per_second": seen / seconds,
             "peak_gpu_memory_gib": torch.cuda.max_memory_allocated() / 2**30,
@@ -376,6 +433,15 @@ def run_change_jepa_pretraining(config: dict[str, Any]) -> dict[str, Any]:
         history.append(row)
         write_csv(history, output_dir / "pretrain_metrics.csv")
         print(json.dumps(row, sort_keys=True), flush=True)
+
+        wandb_payload: dict[str, float | int] = {
+            "epoch": epoch,
+            **{f"train/{key}": float(value) for key, value in row.items() if key != "epoch"},
+            "selection/best_val_macro_f1": best_monitor_score,
+            "selection/best_epoch": best_epoch,
+            "selection/non_improving_monitors": non_improving_evaluations,
+        }
+        stop_now = False
 
         if epoch % evaluation_interval == 0:
             monitor_row = monitor.evaluate(student, epoch=epoch)
@@ -402,6 +468,18 @@ def run_change_jepa_pretraining(config: dict[str, Any]) -> dict[str, Any]:
             else:
                 non_improving_evaluations += 1
 
+            stop_now = should_early_stop(non_improving_evaluations, patience_evaluations)
+            wandb_payload.update(_wandb_monitor_values(monitor_row))
+            wandb_payload.update(
+                {
+                    "selection/best_val_macro_f1": best_monitor_score,
+                    "selection/best_epoch": best_epoch,
+                    "selection/checkpoint_qualifying_improvement": int(improved),
+                    "selection/non_improving_monitors": non_improving_evaluations,
+                    "selection/early_stop_triggered": int(stop_now),
+                }
+            )
+
             print(
                 json.dumps(
                     {
@@ -417,10 +495,12 @@ def run_change_jepa_pretraining(config: dict[str, Any]) -> dict[str, Any]:
                 flush=True,
             )
 
-            if should_early_stop(non_improving_evaluations, patience_evaluations):
-                stopped_early = True
-                early_stop_epoch = epoch
-                break
+        wandb_run.log(wandb_payload, step=epoch)
+
+        if stop_now:
+            stopped_early = True
+            early_stop_epoch = epoch
+            break
 
     plot_history(
         monitor.history,
@@ -452,9 +532,9 @@ def run_change_jepa_pretraining(config: dict[str, Any]) -> dict[str, Any]:
     )
     plot_history(
         history,
-        ["embedding_std"],
+        ["embedding_std", "gradient_norm"],
         output_dir / "embedding_std.png",
-        "Change-JEPA student embedding standard deviation",
+        "Change-JEPA representation/gradient diagnostics",
     )
 
     final_path = output_dir / "checkpoints" / "best.pt"
@@ -501,4 +581,11 @@ def run_change_jepa_pretraining(config: dict[str, Any]) -> dict[str, Any]:
         "duration_selection": duration_selection,
     }
     atomic_json_dump(result, output_dir / "pretrain_summary.json")
+
+    wandb_run.summary["best_epoch"] = int(best_epoch)
+    wandb_run.summary["best_validation_linear_macro_f1"] = best_monitor_score
+    wandb_run.summary["epochs_run"] = epochs_run
+    wandb_run.summary["stopped_early"] = stopped_early
+    wandb_run.summary["early_stop_epoch"] = early_stop_epoch
+    wandb_run.finish()
     return result
