@@ -1,0 +1,40 @@
+{
+  "correct_test_predictions": 41,
+  "encoder_checkpoint_sha256": "7781265fd9e95233d4d0a632823b8492267720729458696e760534871485942f",
+  "encoder_description": "epoch 0 of the 300-epoch schedule with 30-epoch warmup",
+  "evaluation_protocol": "single-seed, transductive B0-Delta linear-probe result",
+  "limitation": "Does not establish a universal optimal epoch; reproducibility requires fixed warmup steps and multiple SSL seeds.",
+  "objective": "EMA_teacher(less-degraded) - EMA_teacher(more-degraded)",
+  "selection": {
+    "batch_size": 256,
+    "best_epoch": 21,
+    "cache_sha256": "77199339baafc4a9a333954c40c98cb0ace02367303c4ee09764e5245a78c972",
+    "encoder_checkpoint_sha256": "7781265fd9e95233d4d0a632823b8492267720729458696e760534871485942f",
+    "learning_rate": 0.01,
+    "lr_scheduler": "none",
+    "maximum_epochs": 50,
+    "optimizer": "AdamW",
+    "patience": 8,
+    "probe_checkpoint_sha256": "9d169d5e89d7eb86bd61febbb380bdb0ac573865b62cf490e45c64cce22d1e8c",
+    "seed": 20260903,
+    "selection_split": "val",
+    "standardization_source": "train only",
+    "std_correction": 1,
+    "std_floor": 1e-06,
+    "test_accessed": false,
+    "tie_break": "earliest epoch within trial; first grid candidate across trials",
+    "val_macro_f1": 0.19160770258293475,
+    "weight_decay": 0.0
+  },
+  "ssl_includes_downstream_validation_test": true,
+  "ssl_unlabeled_images": 7901,
+  "test": {
+    "accuracy": 0.1659919028340081,
+    "balanced_accuracy": 0.16599190283400808,
+    "macro_f1": 0.12974907210215086,
+    "weighted_f1": 0.12974907210215086
+  },
+  "test_evaluations": 1,
+  "test_loss": 3.4854369163513184,
+  "test_samples": 247
+}

@@ -1,0 +1,20 @@
+{
+  "early_stop_epoch": 50,
+  "early_stopping_patience_epochs": 50,
+  "early_stopping_patience_evaluations": 5,
+  "early_stopping_rule": "stop after five consecutive 10-epoch validation evaluations without >=0.005 macro-F1 improvement",
+  "epochs_run": 50,
+  "extension_rule": "extend only when the configured 300-epoch maximum is reached without early stopping and the final monitored score exceeds every earlier score by minimum_delta",
+  "horizon_epochs": 300,
+  "minimum_delta_macro_f1": 0.005,
+  "objective": "teacher_target_minus_teacher_source",
+  "raw_best_monitor_epoch": 0,
+  "raw_best_monitor_score": 0.26338302158313204,
+  "requires_extension": false,
+  "selected_epoch": 0,
+  "selection_metric": "validation_linear_macro_f1",
+  "selection_score": 0.26338302158313204,
+  "stopped_early": true,
+  "test_split_used": false,
+  "transductive_ssl": true
+}

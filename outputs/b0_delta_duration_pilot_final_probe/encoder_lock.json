@@ -1,0 +1,107 @@
+{
+  "checkpoint_path": "/raid1/xwan0900/SSL_proj/outputs/b0_delta_duration_pilot/checkpoints/best.pt",
+  "checkpoint_sha256": "7781265fd9e95233d4d0a632823b8492267720729458696e760534871485942f",
+  "cuda_version": "12.8",
+  "duration_selection": {
+    "early_stop_epoch": 50,
+    "early_stopping_patience_epochs": 50,
+    "early_stopping_patience_evaluations": 5,
+    "early_stopping_rule": "stop after five consecutive 10-epoch validation evaluations without >=0.005 macro-F1 improvement",
+    "epochs_run": 50,
+    "extension_rule": "extend only when the configured 300-epoch maximum is reached without early stopping and the final monitored score exceeds every earlier score by minimum_delta",
+    "horizon_epochs": 300,
+    "minimum_delta_macro_f1": 0.005,
+    "objective": "teacher_target_minus_teacher_source",
+    "raw_best_monitor_epoch": 0,
+    "raw_best_monitor_score": 0.26338302158313204,
+    "requires_extension": false,
+    "selected_epoch": 0,
+    "selection_metric": "validation_linear_macro_f1",
+    "selection_score": 0.26338302158313204,
+    "stopped_early": true,
+    "test_split_used": false,
+    "transductive_ssl": true
+  },
+  "duration_selection_path": "/raid1/xwan0900/SSL_proj/outputs/b0_delta_duration_pilot/duration_selection.json",
+  "duration_selection_sha256": "70489ed638a4ddf9be32120f8b90240b7c0614e918f9f4ba27b2a6b2d72a3094",
+  "epoch": 0,
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+  "metadata_sha256": "19e7046361df86c85e55fd889a603ad436fb54a461ac2b54572c52c9fc96ea76",
+  "objective": "EMA_teacher(less-degraded) - EMA_teacher(more-degraded)",
+  "old_b0_final_manifest": {
+    "outputs/b0_final/checkpoints/best.pt": [
+      349951487,
+      1788509363758596433
+    ],
+    "outputs/b0_final/embedding_std.png": [
+      48202,
+      1788774628578499599
+    ],
+    "outputs/b0_final/linear_probe/best_linear_probe.pt": [
+      60597,
+      1788509215530287006
+    ],
+    "outputs/b0_final/linear_probe/frozen_features.npz": [
+      7243692,
+      1788774628581101582
+    ],
+    "outputs/b0_final/linear_probe/linear_probe_summary.json": [
+      445,
+      1788774628581101582
+    ],
+    "outputs/b0_final/linear_probe/probe_leaderboard.csv": [
+      258,
+      1788774628581101582
+    ],
+    "outputs/b0_final/linear_probe/probe_losses.png": [
+      56236,
+      1788774628581101582
+    ],
+    "outputs/b0_final/linear_probe/probe_metrics.csv": [
+      1372,
+      1788774628581101582
+    ],
+    "outputs/b0_final/linear_probe/probe_metrics.png": [
+      88733,
+      1788774628582101600
+    ],
+    "outputs/b0_final/linear_probe/resolved_config.json": [
+      594,
+      1788774628582101600
+    ],
+    "outputs/b0_final/linear_probe/test_confusion_matrix.csv": [
+      722,
+      1788774628582101600
+    ],
+    "outputs/b0_final/linear_probe/test_confusion_matrix.png": [
+      43758,
+      1788774628582101600
+    ],
+    "outputs/b0_final/linear_probe/test_per_class_metrics.csv": [
+      1087,
+      1788774628582101600
+    ],
+    "outputs/b0_final/pretrain_losses.png": [
+      72322,
+      1788774628582101600
+    ],
+    "outputs/b0_final/pretrain_metrics.csv": [
+      2250,
+      1788774628582101600
+    ],
+    "outputs/b0_final/pretrain_summary.json": [
+      648,
+      1788774628582101600
+    ],
+    "outputs/b0_final/resolved_config.json": [
+      991,
+      1788774628582101600
+    ]
+  },
+  "schedule_epochs": 300,
+  "ssl_seed": 20260903,
+  "student_state_sha256": "e247bf0ba5d861f0f70a61f6e80905a1e9ae292b4881bbdaf9106e4e6e63d786",
+  "torch_version": "2.11.0+cu128",
+  "warmup_epochs": 30,
+  "wording": "epoch 0 of the 300-epoch schedule with 30-epoch warmup"
+}

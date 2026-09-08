@@ -1,0 +1,18 @@
+{
+  "all_encoder_gradients_none": true,
+  "all_encoder_parameters_frozen": true,
+  "cache_sha256": "59cb10f68a82ef333190da305e43df47e8a3c0e085277c4f16a5e654135942d9",
+  "clean_images": true,
+  "decoded_splits": [
+    "test"
+  ],
+  "encoder_forward_precision": "bfloat16 autocast",
+  "encoder_state_after": "e247bf0ba5d861f0f70a61f6e80905a1e9ae292b4881bbdaf9106e4e6e63d786",
+  "encoder_state_before": "e247bf0ba5d861f0f70a61f6e80905a1e9ae292b4881bbdaf9106e4e6e63d786",
+  "pooling": "tokens.float().mean(dim=1)",
+  "repeated_batch_exactly_equal": null,
+  "token_shape": [
+    64,
+    768
+  ]
+}
