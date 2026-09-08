@@ -43,6 +43,24 @@ The run keeps B0's seed, 7,901 unlabeled PanNuke images, PLIP ViT-B/32 student, 
 
 The monitor runs every 10 epochs. A checkpoint is replaced only when validation linear macro-F1 improves by more than 0.005. Training stops after **3 consecutive monitor evaluations** without such an improvement, i.e. **30 epochs of patience**. The counter resets whenever a new checkpoint is selected. The test split is not used for SSL checkpoint selection.
 
+## Weights & Biases
+
+Change-JEPA requires W&B logging during SSL training. The API key is intentionally **not stored in GitHub**. Set it in the training shell:
+
+```bash
+export WANDB_API_KEY='<your W&B API key>'
+```
+
+Optional naming controls:
+
+```bash
+export WANDB_PROJECT='SSL_Histopath'
+export WANDB_RUN_NAME='change-jepa-pilot'
+# export WANDB_ENTITY='<your W&B team/entity>'   # only if needed
+```
+
+Each SSL epoch is logged as one W&B step. Logged training values include Smooth-L1 prediction loss, prediction cosine, target RMS, mean signed-change magnitude, student embedding std, gradient norm, learning rate, weight decay, EMA momentum, optimizer step, throughput, peak GPU memory, and all defocus/resolution transition-specific losses. On monitor epochs, W&B also receives k-NN and linear-probe validation metrics, representation-health diagnostics, selected best validation macro-F1/epoch, patience count, and the early-stop decision.
+
 ## Run commands
 
 From `/raid1/xwan0900/SSL_proj`:
@@ -50,6 +68,9 @@ From `/raid1/xwan0900/SSL_proj`:
 ```bash
 source /raid1/xwan0900/venvs/ftkp_cu128/bin/activate
 python -m pip install -e .
+
+# Set W&B authentication in this shell before training.
+export WANDB_API_KEY='<your W&B API key>'
 
 # 1. CPU core tests
 pytest -q tests/test_change_jepa_core.py
