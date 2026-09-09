@@ -48,7 +48,6 @@ def _validate_config(config: dict) -> None:
         "student_rep_layer": 2,
         "teacher_rep_layer": 6,
         "mask_ratio": 0.25,
-        "representation_weight": 0.5,
         "pixel_normalization": "minus_one_to_one",
         "timestep_distribution": "uniform",
         "class_conditioning": False,
@@ -61,7 +60,6 @@ def _validate_config(config: dict) -> None:
         "epochs": 300,
         "batch_size": 128,
         "effective_batch_size": 128,
-        "learning_rate": 1e-4,
         "minimum_learning_rate": 1e-6,
         "weight_decay": 0.04,
         "final_weight_decay": 0.40,
@@ -73,6 +71,10 @@ def _validate_config(config: dict) -> None:
     for key, expected in fixed_train.items():
         if train.get(key) != expected:
             raise ValueError(f"Self-Flow benchmark fixes train.{key}={expected!r}; got {train.get(key)!r}")
+    if float(train.get("learning_rate", 0.0)) not in (5e-5, 1e-4):
+        raise ValueError("Self-Flow tuning fixes train.learning_rate to 5e-5 or 1e-4")
+    if float(model.get("representation_weight", -1.0)) not in (0.25, 0.5):
+        raise ValueError("Self-Flow tuning fixes model.representation_weight to 0.25 or 0.5")
     if train.get("resume") not in (None, ""):
         raise ValueError("Duration-selection Self-Flow run is intentionally non-resumable")
     monitor = config.get("monitor", {})

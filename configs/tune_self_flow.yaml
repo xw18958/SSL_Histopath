@@ -1,0 +1,11 @@
+base_config: /raid1/xwan0900/SSL_proj/configs/self_flow_pixel_b32_duration_pilot.yaml
+probe_config: /raid1/xwan0900/SSL_proj/configs/self_flow_pixel_b32_duration_final_probe.yaml
+output_dir: /raid1/xwan0900/SSL_proj/outputs/tuning/self_flow
+method: self_flow_pixel_b32
+pretrain_epochs: 2
+probe_epochs: 5
+parameters:
+  learning_rate: [0.00005, 0.0001]
+  gamma: [0.25, 0.5]
+selection_metric: val_macro_f1
+duration_config_path: /raid1/xwan0900/SSL_proj/configs/self_flow_pixel_b32_duration_pilot.yaml

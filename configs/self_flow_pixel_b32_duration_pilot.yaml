@@ -17,7 +17,7 @@ model:
   student_rep_layer: 2
   teacher_rep_layer: 6
   mask_ratio: 0.25
-  representation_weight: 0.5
+  representation_weight: 0.25
   pixel_normalization: minus_one_to_one
   timestep_distribution: uniform
   class_conditioning: false
