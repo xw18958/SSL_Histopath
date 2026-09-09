@@ -1,0 +1,5 @@
+trial,learning_rate,gamma,seed,status,val_macro_f1,probe_learning_rate,probe_weight_decay,probe_best_epoch,pretrain_checkpoint,seconds
+1,5e-05,0.25,20260904,complete,0.07726250628998588,0.001,0.0,5,/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_01/pretrain/checkpoints/best.pt,54.75570798100671
+2,5e-05,0.5,20260905,complete,0.06439260897818155,0.003,0.0001,3,/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_02/pretrain/checkpoints/best.pt,46.293740753957536
+3,0.0001,0.25,20260906,complete,0.10464079963683966,0.001,0.0001,4,/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_03/pretrain/checkpoints/best.pt,42.72527913399972
+4,0.0001,0.5,20260907,complete,0.10264237026273965,0.001,0.0,5,/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_04/pretrain/checkpoints/best.pt,35.0669913450256

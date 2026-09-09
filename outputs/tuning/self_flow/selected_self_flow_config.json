@@ -1,0 +1,51 @@
+{
+  "data_root": "/raid1/xwan0900/datasets/PanNuke/data",
+  "model": {
+    "class_conditioning": false,
+    "depth": 8,
+    "hidden_size": 768,
+    "image_size": 256,
+    "mask_ratio": 0.25,
+    "mlp_ratio": 4.0,
+    "num_heads": 12,
+    "patch_size": 32,
+    "pixel_normalization": "minus_one_to_one",
+    "position_embedding": "fixed_2d_sincos",
+    "representation_weight": 0.25,
+    "student_rep_layer": 2,
+    "teacher_rep_layer": 6,
+    "timestep_distribution": "uniform"
+  },
+  "monitor": {
+    "batch_size": 256,
+    "cache_in_ram": true,
+    "enabled": true,
+    "evaluation_interval_epochs": 10,
+    "knn_k": 20,
+    "knn_temperature": 0.07,
+    "linear_lbfgs_max_iter": 100,
+    "metadata_csv": "/raid1/xwan0900/SSL_proj/pannuke19_metadata.csv",
+    "minimum_delta_macro_f1": 0.005,
+    "near_constant_std_threshold": 0.05,
+    "num_workers": 8
+  },
+  "output_dir": "/raid1/xwan0900/SSL_proj/outputs/self_flow_pixel_b32_duration_pilot",
+  "plip_config_dir": "/raid1/xwan0900/models/plip_model",
+  "seed": 20260903,
+  "train": {
+    "batch_size": 128,
+    "bf16": true,
+    "cache_in_ram": true,
+    "effective_batch_size": 128,
+    "ema_start": 0.996,
+    "epochs": 300,
+    "final_weight_decay": 0.4,
+    "gradient_clip_norm": 1.0,
+    "learning_rate": 0.0001,
+    "minimum_learning_rate": 1e-06,
+    "num_workers": 8,
+    "resume": null,
+    "warmup_fraction": 0.1,
+    "weight_decay": 0.04
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "capacity": {
+    "b0_student_plus_predictor": 91906176,
+    "fresh_vit_encoder": 87467520,
+    "ijepa_student_plus_predictor": 91608576,
+    "self_flow_over_b0": 1.0236526433218156,
+    "self_flow_over_ijepa": 1.0269780855451787,
+    "self_flow_student": 94080000
+  },
+  "class_conditioning": false,
+  "clean_feature_shape": [
+    2,
+    64,
+    768
+  ],
+  "flow_head_gradient_norm": 0.10201697051525116,
+  "flow_loss": 1.3358535766601562,
+  "gradient_norm_before_clip": 0.201247900724411,
+  "loss": 1.5844203233718872,
+  "mask_ratio": 0.25,
+  "mask_tokens_per_image": 16,
+  "method": "Self-Flow-Pixel-B32",
+  "no_labels": true,
+  "no_pretrained_vae": true,
+  "passed": true,
+  "projector_gradient_norm": 0.12521104514598846,
+  "representation_loss": 0.9942671060562134,
+  "teacher_never_noisier": true
+}

@@ -1,0 +1,6 @@
+{
+  "actual_last_completed_epoch": 295,
+  "early_stopped": true,
+  "last_completed_monitor_epoch": 290,
+  "reason": "authorized_manual_plateau_stop_after_epoch_290_monitor"
+}
