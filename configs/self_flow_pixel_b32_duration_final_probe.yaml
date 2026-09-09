@@ -1,0 +1,13 @@
+seed: 20260903
+data_root: /raid1/xwan0900/datasets/PanNuke/data
+metadata_csv: /raid1/xwan0900/SSL_proj/pannuke19_metadata.csv
+encoder_checkpoint: /raid1/xwan0900/SSL_proj/outputs/self_flow_pixel_b32_duration_pilot/checkpoints/best.pt
+output_dir: /raid1/xwan0900/SSL_proj/outputs/self_flow_pixel_b32_duration_final_probe
+batch_size: 256
+num_workers: 8
+cache_in_ram: true
+feature_layer: final
+learning_rates: [0.001, 0.003, 0.01]
+weight_decays: [0.0, 0.0001]
+maximum_epochs: 50
+early_stopping_patience: 8

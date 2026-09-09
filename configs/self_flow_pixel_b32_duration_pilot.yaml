@@ -1,0 +1,54 @@
+seed: 20260903
+data_root: /raid1/xwan0900/datasets/PanNuke/data
+# Used only by the smoke test to count the existing fresh ViT-B/32 baseline capacity.
+plip_config_dir: /raid1/xwan0900/models/plip_model
+output_dir: /raid1/xwan0900/SSL_proj/outputs/self_flow_pixel_b32_duration_pilot
+
+model:
+  image_size: 256
+  patch_size: 32
+  hidden_size: 768
+  # Eight Self-Flow DiT blocks are capacity-matched to B0/I-JEPA student+predictor.
+  # The smoke test computes the exact parameter ratios from the local baseline code.
+  depth: 8
+  num_heads: 12
+  mlp_ratio: 4.0
+  # Proportional mapping of published Self-Flow layer 8 -> 20 in a 28-layer model.
+  student_rep_layer: 2
+  teacher_rep_layer: 6
+  mask_ratio: 0.25
+  representation_weight: 0.5
+  pixel_normalization: minus_one_to_one
+  timestep_distribution: uniform
+  class_conditioning: false
+  position_embedding: fixed_2d_sincos
+
+train:
+  epochs: 300
+  batch_size: 128
+  effective_batch_size: 128
+  num_workers: 8
+  cache_in_ram: true
+  learning_rate: 0.0001
+  minimum_learning_rate: 0.000001
+  weight_decay: 0.04
+  final_weight_decay: 0.40
+  warmup_fraction: 0.10
+  ema_start: 0.996
+  # Explicitly released Self-Flow optimizer detail.
+  gradient_clip_norm: 1.0
+  bf16: true
+  resume: null
+
+monitor:
+  enabled: true
+  metadata_csv: /raid1/xwan0900/SSL_proj/pannuke19_metadata.csv
+  batch_size: 256
+  num_workers: 8
+  cache_in_ram: true
+  evaluation_interval_epochs: 10
+  knn_k: 20
+  knn_temperature: 0.07
+  linear_lbfgs_max_iter: 100
+  near_constant_std_threshold: 0.05
+  minimum_delta_macro_f1: 0.005
