@@ -20,6 +20,14 @@ def test_source_learning_rates_must_be_in_tuning_grid():
         load_standard_config(name); spec=load_tuning_spec(name); p=spec["parameters"]["learning_rate"]; assert float(p["source_value"])==source and source in [float(x) for x in p["candidates"]]
 
 
+def test_ijepa_source_eval_and_ema_metadata():
+    c=load_standard_config("ijepa"); meta=c["method"]["source_metadata"]
+    assert meta["evaluation_encoder"]=="target_encoder_ema"
+    assert meta["evaluation_pooling"]=="average_patch_tokens"
+    assert meta["source_ema"]==[.996,1.0]
+    assert meta["source_ema_schedule"]=="linear"
+
+
 def test_common_protocol_matches_across_methods():
     a,b=load_standard_config("ijepa"),load_standard_config("lejepa")
     paths=[("seed",),("data","expected_ssl_images"),("training","max_epochs"),("training","batch_size"),("validation","selection_metric"),("validation","interval_epochs"),("early_stopping","min_epochs"),("early_stopping","patience_monitors"),("downstream","train_count"),("downstream","validation_count"),("downstream","test_count")]
