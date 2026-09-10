@@ -1,0 +1,14 @@
+{
+  "checkpoint_sha256_after": "89b162f899e1e90dd7d02b205de66218db17258fa2c4a288836268cebba63e02",
+  "checkpoint_sha256_before": "89b162f899e1e90dd7d02b205de66218db17258fa2c4a288836268cebba63e02",
+  "ema_updated": false,
+  "optimizer_constructed": false,
+  "optimizer_updated": false,
+  "protected_manifest_entries_after": 205,
+  "protected_manifest_entries_before": 205,
+  "protected_references_unchanged": true,
+  "saved_student_hash": "9bc18dbe18b9a49f671843b33165648dc6c1b20dd3239f072e8193fc94616525",
+  "test_loader_constructed": false,
+  "test_marker_touched": false,
+  "test_predictions_touched": false
+}

@@ -1,0 +1,67 @@
+{
+  "implementation_only_change": "stateless FP32 I-JEPA-style LayerNorm on the stop-gradient EMA teacher target",
+  "protected_paths": [
+    {
+      "path": "src/pannuke_ssl/b0_ln_training.py",
+      "sha256": "4dc5a51152ea4af55be4aab6655a19a2ca69f28a5459a4635aef9ea6bc807515",
+      "size": 21281
+    },
+    {
+      "path": "configs/b0_ln_duration_pilot.yaml",
+      "sha256": "ef8e9ff0cc1801d3ef9cea8f40dfaa6012b6ecc37816919f0b81e5008b4ce096",
+      "size": 1436
+    },
+    {
+      "path": "configs/b0_ln_duration_final_probe.yaml",
+      "sha256": "5230de180c9322d8f95a2952afc8335c0c345e6aa01177fbd47bb03ea9daec0e",
+      "size": 583
+    },
+    {
+      "path": "scripts/run_b0_ln_duration_pilot.py",
+      "sha256": "34e8c8218c4b565a3a64d9ca57502487cb52043f0acde1dfe102065edba78d35",
+      "size": 631
+    },
+    {
+      "path": "scripts/smoke_b0_ln.py",
+      "sha256": "40da4307e2003a080d0b2ff91985c4da6154db4d9083ed071e0ccf53914fb8e9",
+      "size": 10460
+    },
+    {
+      "path": "scripts/b0_ln_duration_final_probe.py",
+      "sha256": "bc722a661b57ed53a7feb60df01f9c8ee5236839b2c57e083812a713b79d897b",
+      "size": 21633
+    },
+    {
+      "path": "scripts/extract_b0_ln_duration_probe_features.py",
+      "sha256": "070705b86f617f887445828d97a85e4fe2762ca71d9665292eb0d4c67762ddd1",
+      "size": 92
+    },
+    {
+      "path": "scripts/smoke_b0_ln_duration_final_probe.py",
+      "sha256": "443ecca1d20d2be12afd1e811911c8402fa904451bfa5a9c75c3c16120537731",
+      "size": 90
+    },
+    {
+      "path": "scripts/tune_b0_ln_duration_final_probe.py",
+      "sha256": "bec14d94f790dc4c0d48f72e768eb383da3a9d4df4d6ad17fd005f231b3da283",
+      "size": 89
+    },
+    {
+      "path": "scripts/test_b0_ln_duration_final_probe_once.py",
+      "sha256": "c67a78e8ddc6c0f02a37e8cac00501e742c13f034787ba6b2bfe3cd9e298245c",
+      "size": 89
+    },
+    {
+      "path": "scripts/report_b0_ln_ablation.py",
+      "sha256": "7fb8a6e5583f683235a3d13e111ef573bdb3b6203df8152b33581ae86b1f09c9",
+      "size": 9116
+    },
+    {
+      "path": "tests/test_b0_ln.py",
+      "sha256": "0bc750b5e32f21861f5da381b99b9024d4fd027ed84bbff9f39f287024cc370c",
+      "size": 3322
+    }
+  ],
+  "purpose": "frozen B0-LN implementation manifest",
+  "schema_version": 1
+}

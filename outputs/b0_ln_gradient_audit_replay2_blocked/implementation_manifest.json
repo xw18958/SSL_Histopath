@@ -1,0 +1,21 @@
+{
+  "files": [
+    {
+      "path": "/raid1/xwan0900/SSL_proj/scripts/b0_ln_gradient_audit.py",
+      "sha256": "5f0acf99c8b523eced826e59856bd0b3727585dec609bf1d6545b15d455ab0e0",
+      "size": 32387
+    },
+    {
+      "path": "/raid1/xwan0900/SSL_proj/configs/b0_ln_duration_pilot.yaml",
+      "sha256": "ef8e9ff0cc1801d3ef9cea8f40dfaa6012b6ecc37816919f0b81e5008b4ce096",
+      "size": 1436
+    },
+    {
+      "path": "/raid1/xwan0900/SSL_proj/configs/b0_ln_gradient_audit.yaml",
+      "sha256": "f4fb30029431a79aa8a076e69e4b38c7f2c5903b96528efbe32bf580c3ffbb02",
+      "size": 374
+    }
+  ],
+  "purpose": "isolated B0-LN diagnostic audit implementation",
+  "schema_version": 1
+}

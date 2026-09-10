@@ -1,0 +1,10 @@
+{
+  "b0_ln_checkpoint_sha256_after": "89b162f899e1e90dd7d02b205de66218db17258fa2c4a288836268cebba63e02",
+  "b0_ln_checkpoint_sha256_before": "89b162f899e1e90dd7d02b205de66218db17258fa2c4a288836268cebba63e02",
+  "protected_manifest_entries_after": 205,
+  "protected_manifest_entries_before": 205,
+  "protected_references_unchanged": true,
+  "test_loader_constructed": false,
+  "test_marker_touched": false,
+  "test_predictions_touched": false
+}

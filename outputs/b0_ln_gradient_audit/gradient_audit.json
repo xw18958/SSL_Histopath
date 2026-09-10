@@ -1,0 +1,167 @@
+{
+  "audit_epochs_measured": [
+    20
+  ],
+  "audit_epochs_requested": [
+    1,
+    5,
+    10,
+    20,
+    50
+  ],
+  "audit_epochs_unavailable": [
+    1,
+    5,
+    10,
+    50
+  ],
+  "balanced_downstream_loader_constructed": false,
+  "checkpoint_sha256_after": "89b162f899e1e90dd7d02b205de66218db17258fa2c4a288836268cebba63e02",
+  "diagnostic_batch": [
+    {
+      "action": 0,
+      "action_name": "defocus",
+      "batch_index": 0,
+      "delta": -0.25,
+      "fold": 1,
+      "sample_index": 0,
+      "source_severity": 0.5,
+      "target_severity": 0.25
+    },
+    {
+      "action": 0,
+      "action_name": "defocus",
+      "batch_index": 1,
+      "delta": -0.25,
+      "fold": 1,
+      "sample_index": 1,
+      "source_severity": 0.25,
+      "target_severity": 0.0
+    },
+    {
+      "action": 0,
+      "action_name": "defocus",
+      "batch_index": 2,
+      "delta": -0.25,
+      "fold": 1,
+      "sample_index": 2,
+      "source_severity": 0.75,
+      "target_severity": 0.5
+    },
+    {
+      "action": 0,
+      "action_name": "defocus",
+      "batch_index": 3,
+      "delta": -0.25,
+      "fold": 1,
+      "sample_index": 3,
+      "source_severity": 0.25,
+      "target_severity": 0.0
+    },
+    {
+      "action": 1,
+      "action_name": "resolution",
+      "batch_index": 4,
+      "delta": -0.25,
+      "fold": 1,
+      "sample_index": 4,
+      "source_severity": 0.5,
+      "target_severity": 0.25
+    },
+    {
+      "action": 0,
+      "action_name": "defocus",
+      "batch_index": 5,
+      "delta": -0.25,
+      "fold": 1,
+      "sample_index": 5,
+      "source_severity": 0.75,
+      "target_severity": 0.5
+    },
+    {
+      "action": 1,
+      "action_name": "resolution",
+      "batch_index": 6,
+      "delta": -0.25,
+      "fold": 1,
+      "sample_index": 6,
+      "source_severity": 0.5,
+      "target_severity": 0.25
+    },
+    {
+      "action": 0,
+      "action_name": "defocus",
+      "batch_index": 7,
+      "delta": -0.25,
+      "fold": 1,
+      "sample_index": 7,
+      "source_severity": 1.0,
+      "target_severity": 0.75
+    }
+  ],
+  "diagnostic_batch_size": 8,
+  "diagnostic_transition_seed": 20268204,
+  "ema_updated": false,
+  "epoch20_saved_checkpoint_epoch": 20,
+  "epoch20_state_match": {
+    "exact": false,
+    "reason": "historical_teacher_and_predictor_states_unavailable; isolated_replay_student_hash_mismatch",
+    "replay_max_abs_difference": 0.021803483366966248,
+    "replay_student_hash": "f3b9f77bedaa32638f4088e7486c9bd7f8a8c9d71be9494dfc3658b5b8e6f626",
+    "saved_student_hash": "9bc18dbe18b9a49f671843b33165648dc6c1b20dd3239f072e8193fc94616525"
+  },
+  "fresh_predictor_state_hash": "d4adcee413eaafd805b9f56470ad263dcad899cad5dc7be4f118a89b45f72cb1",
+  "gradient_row": {
+    "analysis_dtype": "torch.float32",
+    "epoch": 20,
+    "g_pred_norm": 0.8896219730377197,
+    "g_reg_norm": 2.3282361030578613,
+    "gradient_cosine": -0.17232762277126312,
+    "lambda_reg": 0.1,
+    "prediction_loss": 0.4065955579280853,
+    "reg_pred_grad_ratio": 2.6171071529388428,
+    "regularizer_loss": 1.5644936561584473,
+    "student_tokens_dtype": "torch.float32",
+    "teacher_target_dtype": "torch.float32",
+    "teacher_target_mean_abs_max": 2.60770320892334e-08,
+    "teacher_target_population_variance_mean": 0.9999899864196777,
+    "total_loss": 0.5630449056625366,
+    "weighted_regularizer_loss": 0.1564493626356125
+  },
+  "gradient_rows": [
+    {
+      "analysis_dtype": "torch.float32",
+      "epoch": 20,
+      "g_pred_norm": 0.8896219730377197,
+      "g_reg_norm": 2.3282361030578613,
+      "gradient_cosine": -0.17232762277126312,
+      "lambda_reg": 0.1,
+      "prediction_loss": 0.4065955579280853,
+      "reg_pred_grad_ratio": 2.6171071529388428,
+      "regularizer_loss": 1.5644936561584473,
+      "student_tokens_dtype": "torch.float32",
+      "teacher_target_dtype": "torch.float32",
+      "teacher_target_mean_abs_max": 2.60770320892334e-08,
+      "teacher_target_population_variance_mean": 0.9999899864196777,
+      "total_loss": 0.5630449056625366,
+      "weighted_regularizer_loss": 0.1564493626356125
+    }
+  ],
+  "historical_training_state_blocker": "Original B0-LN artifact retains student only; EMA teacher and predictor states are unavailable, and fresh replay did not reproduce the saved student exactly.",
+  "historical_training_state_verified": false,
+  "measurement_scope": "exact_saved_student_with_fresh_predictor_and_student_initialized_teacher_surrogate",
+  "optimizer_constructed": false,
+  "optimizer_updated": false,
+  "protected_manifest_entries_after": 205,
+  "protected_manifest_entries_before": 205,
+  "protected_references_unchanged": true,
+  "saved_checkpoint_sha256": "89b162f899e1e90dd7d02b205de66218db17258fa2c4a288836268cebba63e02",
+  "saved_student_state_hash": "9bc18dbe18b9a49f671843b33165648dc6c1b20dd3239f072e8193fc94616525",
+  "ssl_source_count": 7901,
+  "status": "partial_saved_epoch20_only",
+  "student_state_unchanged_during_measurement": true,
+  "teacher_surrogate_state_hash": "9bc18dbe18b9a49f671843b33165648dc6c1b20dd3239f072e8193fc94616525",
+  "test_loader_constructed": false,
+  "test_marker_touched": false,
+  "test_predictions_touched": false
+}

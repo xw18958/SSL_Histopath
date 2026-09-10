@@ -1,0 +1,2 @@
+epoch,prediction_loss,regularizer_loss,weighted_regularizer_loss,total_loss,lambda_reg,g_pred_norm,g_reg_norm,reg_pred_grad_ratio,gradient_cosine,teacher_target_dtype,teacher_target_mean_abs_max,teacher_target_population_variance_mean,student_tokens_dtype,analysis_dtype
+20,0.4065955579280853,1.5644936561584473,0.1564493626356125,0.5630449056625366,0.1,0.8896219730377197,2.3282361030578613,2.6171071529388428,-0.17232762277126312,torch.float32,2.60770320892334e-08,0.9999899864196777,torch.float32,torch.float32

@@ -1,0 +1,37 @@
+{
+  "b0_ln": {
+    "encoder": "B0-LN",
+    "final_probe_validation_macro_f1": 0.34887676774493553,
+    "selected_ssl_epoch": 20,
+    "test_accuracy": 0.32388663967611336,
+    "test_correct": 80,
+    "test_macro_f1": 0.30660450476187884,
+    "test_samples": 247,
+    "validation_monitor_macro_f1": 0.3246965590704247
+  },
+  "b0_original": {
+    "encoder": "B0-original",
+    "final_probe_validation_macro_f1": 0.34656928518792945,
+    "selected_ssl_epoch": 10,
+    "test_accuracy": 0.2834008097165992,
+    "test_correct": 70,
+    "test_macro_f1": 0.2665137806408322,
+    "test_samples": 247,
+    "validation_monitor_macro_f1": 0.3302503885148712
+  },
+  "classification": "negligible improvement",
+  "final_probe_validation_delta_pp": 0.23074825570060797,
+  "ijepa": {
+    "encoder": "I-JEPA",
+    "final_probe_validation_macro_f1": 0.8159023096151243,
+    "selected_ssl_epoch": 210,
+    "test_accuracy": 0.7246963562753036,
+    "test_correct": 179,
+    "test_macro_f1": 0.7256896059434194,
+    "test_samples": 247,
+    "validation_monitor_macro_f1": 0.8188010134652602
+  },
+  "report_is_artifact_only": true,
+  "test_entrypoint_invoked_by_report": false,
+  "validation_monitor_delta_pp": -0.555382944444649
+}

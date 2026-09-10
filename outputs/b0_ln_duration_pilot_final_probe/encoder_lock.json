@@ -1,0 +1,17 @@
+{
+  "checkpoint_path": "/raid1/xwan0900/SSL_proj/outputs/b0_ln_duration_pilot/checkpoints/best.pt",
+  "checkpoint_sha256": "89b162f899e1e90dd7d02b205de66218db17258fa2c4a288836268cebba63e02",
+  "configured_schedule_epochs": 300,
+  "cuda_version": "12.8",
+  "duration_selection_sha256": "35328a6ca47527c33c75bc0777f5b3b21f37226b1ac7f643a62bcd9ec5b9f53c",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+  "implementation_manifest_sha256": "be2eeb8964a0780e3bc028ea549eb95bc7276aff784c8c1b7324799d87885394",
+  "metadata_sha256": "19e7046361df86c85e55fd889a603ad436fb54a461ac2b54572c52c9fc96ea76",
+  "protected_manifest_sha256": "1c40634c5f56c87b0f8b9b24d45ae49566f5a1ebd81dd14b81835f3f49e4f8cb",
+  "selected_epoch": 20,
+  "ssl_seed": 20260903,
+  "student_state_sha256": "fe053bb98e4940e499531c2f00aac8e87ae1172fe40e5ad245ce657e8958e9f4",
+  "torch_version": "2.11.0+cu128",
+  "warmup_epochs": 30,
+  "wording": "epoch 20 of the 300-epoch schedule with 30-epoch warmup; validation-only adaptive stop enabled"
+}

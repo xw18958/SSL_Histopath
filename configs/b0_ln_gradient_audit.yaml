@@ -1,0 +1,7 @@
+# Isolated diagnostic-only B0-LN gradient audit.  This file never changes the
+# B0-LN training config or any existing B0-family output.
+reference_config: /raid1/xwan0900/SSL_proj/configs/b0_ln_duration_pilot.yaml
+output_dir: /raid1/xwan0900/SSL_proj/outputs/b0_ln_gradient_audit
+audit_epochs: [1, 5, 10, 20, 50]
+diagnostic_batch_size: 8
+diagnostic_transition_seed: 20268204

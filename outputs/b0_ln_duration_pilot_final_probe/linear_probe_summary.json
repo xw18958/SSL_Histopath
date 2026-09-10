@@ -1,0 +1,39 @@
+{
+  "correct_test_predictions": 80,
+  "encoder_checkpoint_sha256": "89b162f899e1e90dd7d02b205de66218db17258fa2c4a288836268cebba63e02",
+  "encoder_description": "epoch 20 of the 300-epoch schedule with 30-epoch warmup; validation-only adaptive stop enabled",
+  "evaluation_protocol": "single-seed, transductive B0-LN linear-probe result",
+  "limitation": "Single-seed transductive result; test metrics are descriptive and do not establish significance or inductive generalization.",
+  "selection": {
+    "batch_size": 256,
+    "best_epoch": 17,
+    "cache_sha256": "badc7033774ec4a699b80b5eaf45bf2038b558f62055bc23da1e7818344e4b77",
+    "encoder_checkpoint_sha256": "89b162f899e1e90dd7d02b205de66218db17258fa2c4a288836268cebba63e02",
+    "learning_rate": 0.001,
+    "lr_scheduler": "none",
+    "maximum_epochs": 50,
+    "optimizer": "AdamW",
+    "patience": 8,
+    "probe_checkpoint_sha256": "c29123086d3c0ec946b31030795521e1c68fc575fdd9587c9a8851d46e6ebd86",
+    "seed": 20260903,
+    "selection_split": "val",
+    "standardization_source": "train only",
+    "std_correction": 1,
+    "std_floor": 1e-06,
+    "test_accessed": false,
+    "tie_break": "earliest epoch within trial; first grid candidate across trials",
+    "val_macro_f1": 0.34887676774493553,
+    "weight_decay": 0.0
+  },
+  "ssl_includes_downstream_validation_test": true,
+  "ssl_unlabeled_images": 7901,
+  "test": {
+    "accuracy": 0.32388663967611336,
+    "balanced_accuracy": 0.3238866396761133,
+    "macro_f1": 0.30660450476187884,
+    "weighted_f1": 0.30660450476187884
+  },
+  "test_evaluations": 1,
+  "test_loss": 2.3136041164398193,
+  "test_samples": 247
+}

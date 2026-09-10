@@ -1,0 +1,29 @@
+# B0-LN teacher-target LayerNorm ablation
+
+## Exact change
+
+B0-LN is identical to B0-original except that its stop-gradient EMA teacher target is normalized as `F.layer_norm(raw_teacher_tokens.float(), (raw_teacher_tokens.shape[-1],))` inside `torch.no_grad()`. Student tokens are passed to the unchanged B0 predictor without LayerNorm. Optimizer, schedule horizon, EMA, BF16, predictor, VICReg, degradation, anchors, adjacent transitions, monitor, pooling, and probe grid are locked by config and implementation manifests.
+
+## Results
+
+| Metric | B0-original | B0-LN | Difference (B0-LN − B0) |
+|---|---:|---:|---:|
+| Selected SSL epoch | 10 | 20 | 10 |
+| Validation monitor macro-F1 | 33.03% | 32.47% | -0.56 pp |
+| Final-probe validation macro-F1 | 34.66% | 34.89% | +0.23 pp |
+| Test accuracy | 28.34% | 32.39% | +4.05 pp |
+| Test macro-F1 | 26.65% | 30.66% | +4.01 pp |
+
+B0-LN is classified as **negligible improvement** under the prespecified requirement that both validation measures improve by at least 5 pp for a material effect.
+
+## Duration and dynamics
+
+B0-LN completed 150 epochs of the fixed 300-epoch/30-warmup schedule; `early_stopped=True`. The validation-only stopping record is in `duration_selection.json`; `b0_ln_dynamics.csv` gives B0-LN-only dynamics and `b0_b0_ln_dynamics_comparison.csv` compares total/prediction/regularizer loss, embedding std, effective rank, cosine, and validation linear/kNN macro-F1 at matched monitor epochs. B0-LN loss/representation plots are in the pilot output.
+
+## I-JEPA context
+
+Saved matched I-JEPA final-probe validation macro-F1 is 81.59% and test macro-F1 is 72.57%. B0-LN remains 46.70 pp below I-JEPA on probe validation and 41.91 pp below on test macro-F1. The result is single-seed and transductive; test deltas are descriptive, not significance claims.
+
+## Integrity
+
+The report reads saved JSON/CSV artifacts only: it does not instantiate an encoder, decode images, or call any test entrypoint. Protected B0/B1/I-JEPA references and the frozen B0-LN implementation manifest were verified before and after B0-LN execution.
