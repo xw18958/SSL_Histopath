@@ -1,7 +1,7 @@
 import json
 
 from pannuke_ssl.config import load_yaml
-from pannuke_ssl.ijepa_lejepa_fairness_source import smoke
+from pannuke_ssl.ijepa_lejepa_fairness_source_fixed import smoke
 
 
 if __name__ == "__main__":
