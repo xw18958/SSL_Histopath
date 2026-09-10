@@ -1,0 +1,52 @@
+seed: 20260903
+data:
+  root: /raid1/xwan0900/datasets/PanNuke/data
+  metadata_csv: /raid1/xwan0900/SSL_proj/pannuke19_metadata.csv
+  expected_ssl_images: 7901
+  use_all_unlabeled: true
+  cache_in_ram: true
+backbone:
+  type: fresh_plip
+  config_dir: /raid1/xwan0900/models/plip_model
+  image_size: 256
+  patch_size: 32
+  hidden_size: 768
+training:
+  max_epochs: 300
+  batch_size: 128
+  num_workers: 8
+  bf16: true
+  tf32: true
+representation:
+  source: final_patch_tokens
+  pooling: mean_patch_tokens
+validation:
+  interval_epochs: 10
+  selection_metric: linear_val_macro_f1
+  minimum_delta: 0.005
+  batch_size: 256
+  num_workers: 8
+  knn_k: 20
+  knn_temperature: 0.07
+  linear_lbfgs_max_iter: 100
+  near_constant_std_threshold: 0.05
+early_stopping:
+  enabled: true
+  min_epochs: 60
+  patience_monitors: 5
+  minimum_delta: 0.005
+  restore_best: true
+downstream:
+  train_count: 2052
+  validation_count: 247
+  test_count: 247
+  batch_size: 256
+  num_workers: 8
+  test_once: true
+  probe:
+    learning_rates: [0.001, 0.003, 0.01]
+    weight_decays: [0.0, 0.0001]
+    maximum_epochs: 50
+    early_stopping_patience: 8
+output:
+  root: /raid1/xwan0900/SSL_proj/outputs/ssl_standard
