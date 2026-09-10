@@ -19,7 +19,7 @@ class StandardIJEPA(torch.nn.Module):
         if (self.student.num_patches,self.student.hidden_size,self.student.patch_size,heads)!=(64,768,32,12): raise RuntimeError("Unexpected shared encoder")
         self.teacher=make_teacher(self.student); self.predictor=IJEPAFairPredictor(num_heads=12).to(device); self.masker=IJEPAOfficialMaskSampler(self.compat,int(c["seed"]))
     @property
-    def encoder(self): return self.student
+    def encoder(self): return self.teacher
     def wrap_dataset(self,base:Dataset): return FairnessDataset(base,"ijepa_4layer",self.compat)
     def train_mode(self): self.student.train(); self.predictor.train(); self.teacher.eval()
     def optimizer_parameters(self): return [p for x in (self.student,self.predictor) for p in x.parameters() if p.requires_grad]
