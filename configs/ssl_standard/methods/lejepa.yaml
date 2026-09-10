@@ -1,0 +1,44 @@
+method:
+  name: lejepa
+  views:
+    global_count: 2
+    local_count: 6
+    global_size: 256
+    local_size: 96
+    global_scale: [0.3, 1.0]
+    local_scale: [0.05, 0.3]
+  augmentations:
+    horizontal_flip_p: 0.5
+    color_jitter_p: 0.8
+    grayscale_p: 0.2
+    gaussian_blur_p: 0.5
+    solarize_p: 0.2
+  projector: {dim: 512, hidden_dim: 2048}
+  objective:
+    sigreg_lambda: 0.02
+    sigreg_slices: 1024
+    sigreg_points: 17
+    sigreg_t_max: 3.0
+  optimizer:
+    name: AdamW
+    peak_lr: 0.0005
+    final_lr_ratio: 0.001
+    warmup_fraction: 0.10
+    weight_decay: 0.05
+  gradient_clip_norm: null
+  source_metadata:
+    implementation: galilai-group/lejepa and released stable-pretraining recipe
+    reference: README GOTO hyperparameters
+    source_peak_lr: 0.0005
+    source_weight_decay_vit: 0.05
+    source_precision: bf16
+    source_schedule: linear warmup plus cosine annealing; final LR = initial LR / 1000
+    source_views: 2_global_plus_6_local
+    source_global_scale: [0.3, 1.0]
+    source_local_scale: [0.05, 0.3]
+    source_sigreg_lambda_released: 0.02
+    deliberate_adaptations:
+      - global resolution 256 instead of 224 for the shared backbone
+      - local resolution 96 instead of README 98 for an exact 3x3 patch-32 grid
+      - mean final patch tokens for the shared encoder readout
+      - warmup fraction 0.10 because README gives warmup form but no universal length
