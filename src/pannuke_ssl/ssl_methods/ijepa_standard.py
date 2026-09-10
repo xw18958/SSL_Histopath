@@ -39,4 +39,4 @@ class StandardIJEPA(torch.nn.Module):
         o=self.config["method"]["optimizer"]; p=min(max(step/max(1,total-1),0.),1.); warm=float(o["warmup_fraction"]); peak=float(o["peak_lr"]); start=peak*float(o["start_lr_ratio"]); final=peak*float(o["final_lr_ratio"])
         lr=start+(peak-start)*(p/warm) if p<warm else final+.5*(peak-final)*(1+math.cos(math.pi*(p-warm)/(1-warm))); wd0,wd1=float(o["weight_decay"]),float(o["final_weight_decay"]); wd=wd1-.5*(wd1-wd0)*(1+math.cos(math.pi*p)); return {"lr":lr,"weight_decay":wd}
     def after_optimizer_step(self,step,total):
-        e=self.config["method"]["ema"]; p=min(max(step/max(1,total-1),0.),1.); start,end=float(e["start"]),float(e["end"]); m=end-.5*(end-start)*(1+math.cos(math.pi*p)); update_ema(self.student,self.teacher,m); return {"ema_momentum":m}
+        e=self.config["method"]["ema"]; p=min(max(step/max(1,total-1),0.),1.); start,end=float(e["start"]),float(e["end"]); m=start+(end-start)*p; update_ema(self.student,self.teacher,m); return {"ema_momentum":m}
