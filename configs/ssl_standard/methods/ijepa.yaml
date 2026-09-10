@@ -32,6 +32,8 @@ method:
   source_metadata:
     implementation: facebookresearch/ijepa
     reference_config: configs/in1k_vith14_ep300.yaml
+    evaluation_encoder: target_encoder_ema
+    evaluation_pooling: average_patch_tokens
     source_peak_lr: 0.001
     source_start_lr: 0.0002
     source_final_lr: 0.000001
