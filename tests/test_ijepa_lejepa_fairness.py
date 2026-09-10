@@ -1,14 +1,15 @@
 import torch
 
-from pannuke_ssl.ijepa_lejepa_fairness import (
+from pannuke_ssl.ijepa_lejepa_fairness_source import (
     IJEPAFairPredictor,
     SlicedEppsPulley,
 )
 
 
-def test_fair_ijepa_predictor_depth_and_shape():
-    predictor = IJEPAFairPredictor().eval()
+def test_fair_ijepa_predictor_depth_heads_and_shape():
+    predictor = IJEPAFairPredictor(num_heads=12).eval()
     assert len(predictor.transformer.layers) == 4
+    assert predictor.transformer.layers[0].self_attn.num_heads == 12
     tokens = torch.randn(2, 16, 768)
     context = torch.arange(16).repeat(2, 1)
     targets = torch.tensor(
@@ -23,9 +24,9 @@ def test_fair_ijepa_predictor_depth_and_shape():
     assert torch.isfinite(output).all()
 
 
-def test_sigreg_is_finite_and_has_gradients():
+def test_released_sigreg_is_finite_and_has_gradients():
     sigreg = SlicedEppsPulley(num_slices=32, t_max=3.0, n_points=17)
-    x = torch.randn(6, 8, 32, requires_grad=True)
+    x = torch.randn(48, 32, requires_grad=True)
     loss = sigreg(x)
     assert torch.isfinite(loss)
     loss.backward()
