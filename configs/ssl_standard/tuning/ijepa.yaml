@@ -1,0 +1,8 @@
+method: ijepa
+budget: {epochs: 20, validation_interval_epochs: 5, plateau_early_stopping: false, hard_nonfinite_stop: true}
+parameters:
+  learning_rate:
+    candidates: [0.0001, 0.0003, 0.001]
+    source_value: 0.001
+    source_reference: facebookresearch/ijepa configs/in1k_vith14_ep300.yaml
+selection: {metric: linear_val_macro_f1, test_used: false, tie_break: prefer_source_value_then_first_candidate}
