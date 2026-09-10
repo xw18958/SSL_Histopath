@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 from pannuke_ssl.config import load_yaml
-from pannuke_ssl.ijepa_lejepa_fairness_source import (
+from pannuke_ssl.ijepa_lejepa_fairness_source_fixed import (
     SETTINGS,
     comparison,
     require_smoke,
