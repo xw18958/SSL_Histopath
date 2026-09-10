@@ -1,0 +1,26 @@
+{"learning_rate": 0.001, "weight_decay": 0.0, "best_epoch": 12, "val_macro_f1": 0.2120556450984381}
+{"learning_rate": 0.001, "weight_decay": 0.0001, "best_epoch": 15, "val_macro_f1": 0.20983308694520256}
+{"learning_rate": 0.003, "weight_decay": 0.0, "best_epoch": 31, "val_macro_f1": 0.1980064014093052}
+{"learning_rate": 0.003, "weight_decay": 0.0001, "best_epoch": 17, "val_macro_f1": 0.21260138329422792}
+{"learning_rate": 0.01, "weight_decay": 0.0, "best_epoch": 10, "val_macro_f1": 0.11837535375421393}
+{"learning_rate": 0.01, "weight_decay": 0.0001, "best_epoch": 23, "val_macro_f1": 0.15934013332937452}
+{
+  "method": "Self-Flow-Pixel-B32",
+  "feature_representation": "clean_t0_final_layer_mean_pool",
+  "selection": {
+    "learning_rate": 0.003,
+    "weight_decay": 0.0001,
+    "best_epoch": 17,
+    "validation_macro_f1": 0.21260138329422792
+  },
+  "test_loss": 2.707545757293701,
+  "test": {
+    "accuracy": 0.22267206477732793,
+    "balanced_accuracy": 0.22267206477732793,
+    "macro_f1": 0.16498373103735067,
+    "weighted_f1": 0.1649837310373507
+  },
+  "seconds": 10.343345745000988,
+  "evaluation_protocol": "transductive_ssl_linear_probe",
+  "test_used_for_selection": false
+}

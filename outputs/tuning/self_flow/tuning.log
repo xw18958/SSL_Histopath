@@ -1,0 +1,130 @@
+{"gamma": 0.25, "learning_rate": 5e-05, "pretrain_checkpoint": "/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_01/pretrain/checkpoints/best.pt", "probe_best_epoch": 5, "probe_learning_rate": 0.001, "probe_weight_decay": 0.0, "seconds": 54.75570798100671, "seed": 20260904, "status": "complete", "trial": 1, "val_macro_f1": 0.07726250628998588}
+{"gamma": 0.5, "learning_rate": 5e-05, "pretrain_checkpoint": "/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_02/pretrain/checkpoints/best.pt", "probe_best_epoch": 3, "probe_learning_rate": 0.003, "probe_weight_decay": 0.0001, "seconds": 46.293740753957536, "seed": 20260905, "status": "complete", "trial": 2, "val_macro_f1": 0.06439260897818155}
+{"gamma": 0.25, "learning_rate": 0.0001, "pretrain_checkpoint": "/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_03/pretrain/checkpoints/best.pt", "probe_best_epoch": 4, "probe_learning_rate": 0.001, "probe_weight_decay": 0.0001, "seconds": 42.72527913399972, "seed": 20260906, "status": "complete", "trial": 3, "val_macro_f1": 0.10464079963683966}
+{"gamma": 0.5, "learning_rate": 0.0001, "pretrain_checkpoint": "/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_04/pretrain/checkpoints/best.pt", "probe_best_epoch": 5, "probe_learning_rate": 0.001, "probe_weight_decay": 0.0, "seconds": 35.0669913450256, "seed": 20260907, "status": "complete", "trial": 4, "val_macro_f1": 0.10264237026273965}
+{
+  "method": "self_flow_pixel_b32",
+  "selection_metric": "val_macro_f1",
+  "best_trial": {
+    "trial": 3,
+    "learning_rate": 0.0001,
+    "gamma": 0.25,
+    "seed": 20260906,
+    "status": "complete",
+    "val_macro_f1": 0.10464079963683966,
+    "probe_learning_rate": 0.001,
+    "probe_weight_decay": 0.0001,
+    "probe_best_epoch": 4,
+    "pretrain_checkpoint": "/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_03/pretrain/checkpoints/best.pt",
+    "seconds": 42.72527913399972
+  },
+  "trials": [
+    {
+      "trial": 1,
+      "learning_rate": 5e-05,
+      "gamma": 0.25,
+      "seed": 20260904,
+      "status": "complete",
+      "val_macro_f1": 0.07726250628998588,
+      "probe_learning_rate": 0.001,
+      "probe_weight_decay": 0.0,
+      "probe_best_epoch": 5,
+      "pretrain_checkpoint": "/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_01/pretrain/checkpoints/best.pt",
+      "seconds": 54.75570798100671
+    },
+    {
+      "trial": 2,
+      "learning_rate": 5e-05,
+      "gamma": 0.5,
+      "seed": 20260905,
+      "status": "complete",
+      "val_macro_f1": 0.06439260897818155,
+      "probe_learning_rate": 0.003,
+      "probe_weight_decay": 0.0001,
+      "probe_best_epoch": 3,
+      "pretrain_checkpoint": "/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_02/pretrain/checkpoints/best.pt",
+      "seconds": 46.293740753957536
+    },
+    {
+      "trial": 3,
+      "learning_rate": 0.0001,
+      "gamma": 0.25,
+      "seed": 20260906,
+      "status": "complete",
+      "val_macro_f1": 0.10464079963683966,
+      "probe_learning_rate": 0.001,
+      "probe_weight_decay": 0.0001,
+      "probe_best_epoch": 4,
+      "pretrain_checkpoint": "/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_03/pretrain/checkpoints/best.pt",
+      "seconds": 42.72527913399972
+    },
+    {
+      "trial": 4,
+      "learning_rate": 0.0001,
+      "gamma": 0.5,
+      "seed": 20260907,
+      "status": "complete",
+      "val_macro_f1": 0.10264237026273965,
+      "probe_learning_rate": 0.001,
+      "probe_weight_decay": 0.0,
+      "probe_best_epoch": 5,
+      "pretrain_checkpoint": "/raid1/xwan0900/SSL_proj/outputs/tuning/self_flow/trial_04/pretrain/checkpoints/best.pt",
+      "seconds": 35.0669913450256
+    }
+  ],
+  "selected_learning_rate": 0.0001,
+  "selected_gamma": 0.25,
+  "duration_config_path": "/raid1/xwan0900/SSL_proj/configs/self_flow_pixel_b32_duration_pilot.yaml",
+  "final_config": {
+    "seed": 20260903,
+    "data_root": "/raid1/xwan0900/datasets/PanNuke/data",
+    "plip_config_dir": "/raid1/xwan0900/models/plip_model",
+    "output_dir": "/raid1/xwan0900/SSL_proj/outputs/self_flow_pixel_b32_duration_pilot",
+    "model": {
+      "image_size": 256,
+      "patch_size": 32,
+      "hidden_size": 768,
+      "depth": 8,
+      "num_heads": 12,
+      "mlp_ratio": 4.0,
+      "student_rep_layer": 2,
+      "teacher_rep_layer": 6,
+      "mask_ratio": 0.25,
+      "representation_weight": 0.25,
+      "pixel_normalization": "minus_one_to_one",
+      "timestep_distribution": "uniform",
+      "class_conditioning": false,
+      "position_embedding": "fixed_2d_sincos"
+    },
+    "train": {
+      "epochs": 300,
+      "batch_size": 128,
+      "effective_batch_size": 128,
+      "num_workers": 8,
+      "cache_in_ram": true,
+      "learning_rate": 0.0001,
+      "minimum_learning_rate": 1e-06,
+      "weight_decay": 0.04,
+      "final_weight_decay": 0.4,
+      "warmup_fraction": 0.1,
+      "ema_start": 0.996,
+      "gradient_clip_norm": 1.0,
+      "bf16": true,
+      "resume": null
+    },
+    "monitor": {
+      "enabled": true,
+      "metadata_csv": "/raid1/xwan0900/SSL_proj/pannuke19_metadata.csv",
+      "batch_size": 256,
+      "num_workers": 8,
+      "cache_in_ram": true,
+      "evaluation_interval_epochs": 10,
+      "knn_k": 20,
+      "knn_temperature": 0.07,
+      "linear_lbfgs_max_iter": 100,
+      "near_constant_std_threshold": 0.05,
+      "minimum_delta_macro_f1": 0.005
+    }
+  },
+  "seconds": 179.025014342973
+}
