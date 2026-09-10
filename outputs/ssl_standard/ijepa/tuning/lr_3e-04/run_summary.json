@@ -1,0 +1,38 @@
+{
+  "best_epoch": 15,
+  "best_validation_linear_macro_f1": 0.47103369598924066,
+  "epochs_completed": 20,
+  "epochs_planned": 20,
+  "initial_encoder_sha256": "ed6219f02e986dcf2a0de1c3a0cfcbb942489701ce3a9de839ad714d413581ac",
+  "labels_loaded_for_ssl": false,
+  "method": "ijepa",
+  "seconds": 279.9731966649997,
+  "source_metadata": {
+    "deliberate_adaptations": [
+      "256 crop instead of 224 for the shared backbone",
+      "patch-32 gives an 8x8 token grid",
+      "predictor depth 4 instead of ViT-H source depth 12",
+      "target block minimum 4 for the coarse 8x8 grid",
+      "predictor heads 12 inherited from the shared encoder"
+    ],
+    "evaluation_encoder": "target_encoder_ema",
+    "evaluation_pooling": "average_patch_tokens",
+    "implementation": "facebookresearch/ijepa",
+    "reference_config": "configs/in1k_vith14_ep300.yaml",
+    "source_ema": [
+      0.996,
+      1.0
+    ],
+    "source_ema_schedule": "linear",
+    "source_final_lr": 1e-06,
+    "source_final_weight_decay": 0.4,
+    "source_peak_lr": 0.001,
+    "source_pred_dim": 384,
+    "source_start_lr": 0.0002,
+    "source_warmup_epochs_of_300": 40,
+    "source_weight_decay": 0.04
+  },
+  "ssl_images_per_epoch": 7901,
+  "stop_reason": "max_epochs",
+  "test_used_for_ssl_selection": false
+}

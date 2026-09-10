@@ -1,0 +1,37 @@
+{
+  "best_epoch": 20,
+  "best_validation_linear_macro_f1": 0.530532081420198,
+  "epochs_completed": 20,
+  "epochs_planned": 20,
+  "initial_encoder_sha256": "ed6219f02e986dcf2a0de1c3a0cfcbb942489701ce3a9de839ad714d413581ac",
+  "labels_loaded_for_ssl": false,
+  "method": "lejepa",
+  "seconds": 1667.79914999404,
+  "source_metadata": {
+    "deliberate_adaptations": [
+      "global resolution 256 instead of 224 for the shared backbone",
+      "local resolution 96 instead of README 98 for an exact 3x3 patch-32 grid",
+      "mean final patch tokens for the shared encoder readout",
+      "warmup fraction 0.10 because README gives warmup form but no universal length"
+    ],
+    "implementation": "galilai-group/lejepa and released stable-pretraining recipe",
+    "reference": "README GOTO hyperparameters",
+    "source_global_scale": [
+      0.3,
+      1.0
+    ],
+    "source_local_scale": [
+      0.05,
+      0.3
+    ],
+    "source_peak_lr": 0.0005,
+    "source_precision": "bf16",
+    "source_schedule": "linear warmup plus cosine annealing; final LR = initial LR / 1000",
+    "source_sigreg_lambda_released": 0.02,
+    "source_views": "2_global_plus_6_local",
+    "source_weight_decay_vit": 0.05
+  },
+  "ssl_images_per_epoch": 7901,
+  "stop_reason": "max_epochs",
+  "test_used_for_ssl_selection": false
+}

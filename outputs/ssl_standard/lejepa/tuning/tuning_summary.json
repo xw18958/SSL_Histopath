@@ -1,0 +1,41 @@
+{
+  "budget": {
+    "epochs": 20,
+    "hard_nonfinite_stop": true,
+    "plateau_early_stopping": false,
+    "validation_interval_epochs": 5
+  },
+  "method": "lejepa",
+  "rows": [
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.530532081420198,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.0001,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.5175227049542778,
+      "error": null,
+      "is_source_value": true,
+      "learning_rate": 0.0005,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 10,
+      "best_validation_linear_macro_f1": 0.36973781429544256,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.001,
+      "status": "completed"
+    }
+  ],
+  "selected_validation_linear_macro_f1": 0.530532081420198,
+  "selected_value": 0.0001,
+  "source_reference": "galilai-group/lejepa README GOTO hyperparameters",
+  "source_value": 0.0005,
+  "source_value_included": true,
+  "test_used": false
+}

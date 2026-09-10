@@ -1,0 +1,14 @@
+{
+  "method": "lejepa",
+  "encoder_epoch": 230,
+  "probe_validation_macro_f1": 0.915543389191302,
+  "test_loss": 0.4828890860080719,
+  "test": {
+    "accuracy": 0.8663967611336032,
+    "balanced_accuracy": 0.8663967611336033,
+    "macro_f1": 0.8663241811641635,
+    "weighted_f1": 0.8663241811641635
+  },
+  "test_images": 247,
+  "test_evaluated_once": true
+}

@@ -1,0 +1,14 @@
+{
+  "method": "ijepa",
+  "encoder_epoch": 30,
+  "probe_validation_macro_f1": 0.4322835146155318,
+  "test_loss": 2.126695156097412,
+  "test": {
+    "accuracy": 0.38461538461538464,
+    "balanced_accuracy": 0.3846153846153846,
+    "macro_f1": 0.3781389950857156,
+    "weighted_f1": 0.37813899508571563
+  },
+  "test_images": 247,
+  "test_evaluated_once": true
+}

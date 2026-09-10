@@ -1,0 +1,2 @@
+epoch,knn_val_accuracy,knn_val_balanced_accuracy,knn_val_macro_f1,linear_val_accuracy,linear_val_balanced_accuracy,linear_val_macro_f1,feature_embedding_std,feature_effective_rank,feature_effective_rank_fraction,feature_mean_pairwise_cosine,feature_near_constant_fraction
+0.0,0.3157894736842105,0.31578947368421056,0.31294360163950097,0.27530364372469635,0.2753036437246964,0.26984518607305685,0.3735974431037903,2.614030122756958,0.0034036850556731224,0.7450330257415771,0.0

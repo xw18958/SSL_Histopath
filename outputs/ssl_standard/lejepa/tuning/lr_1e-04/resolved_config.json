@@ -1,0 +1,136 @@
+{
+  "backbone": {
+    "config_dir": "/raid1/xwan0900/models/plip_model",
+    "hidden_size": 768,
+    "image_size": 256,
+    "patch_size": 32,
+    "type": "fresh_plip"
+  },
+  "data": {
+    "cache_in_ram": true,
+    "expected_ssl_images": 7901,
+    "metadata_csv": "/raid1/xwan0900/SSL_proj/pannuke19_metadata.csv",
+    "root": "/raid1/xwan0900/datasets/PanNuke/data",
+    "use_all_unlabeled": true
+  },
+  "downstream": {
+    "batch_size": 256,
+    "num_workers": 8,
+    "probe": {
+      "early_stopping_patience": 8,
+      "learning_rates": [
+        0.001,
+        0.003,
+        0.01
+      ],
+      "maximum_epochs": 50,
+      "weight_decays": [
+        0.0,
+        0.0001
+      ]
+    },
+    "test_count": 247,
+    "test_once": true,
+    "train_count": 2052,
+    "validation_count": 247
+  },
+  "early_stopping": {
+    "enabled": true,
+    "min_epochs": 60,
+    "minimum_delta": 0.005,
+    "patience_monitors": 5,
+    "restore_best": true
+  },
+  "method": {
+    "augmentations": {
+      "color_jitter_p": 0.8,
+      "gaussian_blur_p": 0.5,
+      "grayscale_p": 0.2,
+      "horizontal_flip_p": 0.5,
+      "solarize_p": 0.2
+    },
+    "gradient_clip_norm": null,
+    "name": "lejepa",
+    "objective": {
+      "sigreg_lambda": 0.02,
+      "sigreg_points": 17,
+      "sigreg_slices": 1024,
+      "sigreg_t_max": 3.0
+    },
+    "optimizer": {
+      "final_lr_ratio": 0.001,
+      "name": "AdamW",
+      "peak_lr": 0.0001,
+      "warmup_fraction": 0.1,
+      "weight_decay": 0.05
+    },
+    "projector": {
+      "dim": 512,
+      "hidden_dim": 2048
+    },
+    "source_metadata": {
+      "deliberate_adaptations": [
+        "global resolution 256 instead of 224 for the shared backbone",
+        "local resolution 96 instead of README 98 for an exact 3x3 patch-32 grid",
+        "mean final patch tokens for the shared encoder readout",
+        "warmup fraction 0.10 because README gives warmup form but no universal length"
+      ],
+      "implementation": "galilai-group/lejepa and released stable-pretraining recipe",
+      "reference": "README GOTO hyperparameters",
+      "source_global_scale": [
+        0.3,
+        1.0
+      ],
+      "source_local_scale": [
+        0.05,
+        0.3
+      ],
+      "source_peak_lr": 0.0005,
+      "source_precision": "bf16",
+      "source_schedule": "linear warmup plus cosine annealing; final LR = initial LR / 1000",
+      "source_sigreg_lambda_released": 0.02,
+      "source_views": "2_global_plus_6_local",
+      "source_weight_decay_vit": 0.05
+    },
+    "views": {
+      "global_count": 2,
+      "global_scale": [
+        0.3,
+        1.0
+      ],
+      "global_size": 256,
+      "local_count": 6,
+      "local_scale": [
+        0.05,
+        0.3
+      ],
+      "local_size": 96
+    }
+  },
+  "output": {
+    "root": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard"
+  },
+  "representation": {
+    "pooling": "mean_patch_tokens",
+    "source": "final_patch_tokens"
+  },
+  "seed": 20260903,
+  "training": {
+    "batch_size": 128,
+    "bf16": true,
+    "max_epochs": 300,
+    "num_workers": 8,
+    "tf32": true
+  },
+  "validation": {
+    "batch_size": 256,
+    "interval_epochs": 10,
+    "knn_k": 20,
+    "knn_temperature": 0.07,
+    "linear_lbfgs_max_iter": 100,
+    "minimum_delta": 0.005,
+    "near_constant_std_threshold": 0.05,
+    "num_workers": 8,
+    "selection_metric": "linear_val_macro_f1"
+  }
+}

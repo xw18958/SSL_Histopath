@@ -1,0 +1,11 @@
+method: ijepa
+selected:
+  learning_rate: 0.0003
+selection:
+  metric: linear_val_macro_f1
+  value: 0.47103369598924066
+  test_used: false
+source_reference:
+  learning_rate: 0.001
+  included_in_candidates: true
+  citation: facebookresearch/ijepa configs/in1k_vith14_ep300.yaml

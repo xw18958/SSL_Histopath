@@ -1,0 +1,41 @@
+{
+  "budget": {
+    "epochs": 20,
+    "hard_nonfinite_stop": true,
+    "plateau_early_stopping": false,
+    "validation_interval_epochs": 5
+  },
+  "method": "ijepa",
+  "rows": [
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.43078618191298695,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.0001,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.47103369598924066,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.0003,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.3341832015319744,
+      "error": null,
+      "is_source_value": true,
+      "learning_rate": 0.001,
+      "status": "completed"
+    }
+  ],
+  "selected_validation_linear_macro_f1": 0.47103369598924066,
+  "selected_value": 0.0003,
+  "source_reference": "facebookresearch/ijepa configs/in1k_vith14_ep300.yaml",
+  "source_value": 0.001,
+  "source_value_included": true,
+  "test_used": false
+}

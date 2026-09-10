@@ -1,0 +1,146 @@
+{
+  "backbone": {
+    "config_dir": "/raid1/xwan0900/models/plip_model",
+    "hidden_size": 768,
+    "image_size": 256,
+    "patch_size": 32,
+    "type": "fresh_plip"
+  },
+  "data": {
+    "cache_in_ram": true,
+    "expected_ssl_images": 7901,
+    "metadata_csv": "/raid1/xwan0900/SSL_proj/pannuke19_metadata.csv",
+    "root": "/raid1/xwan0900/datasets/PanNuke/data",
+    "use_all_unlabeled": true
+  },
+  "downstream": {
+    "batch_size": 256,
+    "num_workers": 8,
+    "probe": {
+      "early_stopping_patience": 8,
+      "learning_rates": [
+        0.001,
+        0.003,
+        0.01
+      ],
+      "maximum_epochs": 50,
+      "weight_decays": [
+        0.0,
+        0.0001
+      ]
+    },
+    "test_count": 247,
+    "test_once": true,
+    "train_count": 2052,
+    "validation_count": 247
+  },
+  "early_stopping": {
+    "enabled": true,
+    "min_epochs": 60,
+    "minimum_delta": 0.005,
+    "patience_monitors": 5,
+    "restore_best": true
+  },
+  "method": {
+    "ema": {
+      "end": 1.0,
+      "start": 0.996
+    },
+    "gradient_clip_norm": null,
+    "mask": {
+      "context_count": 1,
+      "context_scale": [
+        0.85,
+        1.0
+      ],
+      "context_target_overlap": false,
+      "minimum_block_tokens": 4,
+      "minimum_context_tokens": 10,
+      "retry_relaxation": "official_20_attempt_fallback",
+      "target_aspect": [
+        0.75,
+        1.5
+      ],
+      "target_count": 4,
+      "target_scale": [
+        0.15,
+        0.2
+      ],
+      "target_target_overlap": true
+    },
+    "name": "ijepa",
+    "optimizer": {
+      "final_lr_ratio": 0.001,
+      "final_weight_decay": 0.4,
+      "name": "AdamW",
+      "peak_lr": 0.0001,
+      "start_lr_ratio": 0.2,
+      "warmup_fraction": 0.13333333333333333,
+      "weight_decay": 0.04
+    },
+    "predictor": {
+      "depth": 4,
+      "dim": 384,
+      "heads": 12,
+      "mlp_ratio": 4
+    },
+    "source_metadata": {
+      "deliberate_adaptations": [
+        "256 crop instead of 224 for the shared backbone",
+        "patch-32 gives an 8x8 token grid",
+        "predictor depth 4 instead of ViT-H source depth 12",
+        "target block minimum 4 for the coarse 8x8 grid",
+        "predictor heads 12 inherited from the shared encoder"
+      ],
+      "evaluation_encoder": "target_encoder_ema",
+      "evaluation_pooling": "average_patch_tokens",
+      "implementation": "facebookresearch/ijepa",
+      "reference_config": "configs/in1k_vith14_ep300.yaml",
+      "source_ema": [
+        0.996,
+        1.0
+      ],
+      "source_ema_schedule": "linear",
+      "source_final_lr": 1e-06,
+      "source_final_weight_decay": 0.4,
+      "source_peak_lr": 0.001,
+      "source_pred_dim": 384,
+      "source_start_lr": 0.0002,
+      "source_warmup_epochs_of_300": 40,
+      "source_weight_decay": 0.04
+    },
+    "views": {
+      "crop_scale": [
+        0.3,
+        1.0
+      ],
+      "crop_size": 256
+    }
+  },
+  "output": {
+    "root": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard"
+  },
+  "representation": {
+    "pooling": "mean_patch_tokens",
+    "source": "final_patch_tokens"
+  },
+  "seed": 20260903,
+  "training": {
+    "batch_size": 128,
+    "bf16": true,
+    "max_epochs": 300,
+    "num_workers": 8,
+    "tf32": true
+  },
+  "validation": {
+    "batch_size": 256,
+    "interval_epochs": 10,
+    "knn_k": 20,
+    "knn_temperature": 0.07,
+    "linear_lbfgs_max_iter": 100,
+    "minimum_delta": 0.005,
+    "near_constant_std_threshold": 0.05,
+    "num_workers": 8,
+    "selection_metric": "linear_val_macro_f1"
+  }
+}
