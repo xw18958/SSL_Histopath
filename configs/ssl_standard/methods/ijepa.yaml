@@ -41,6 +41,7 @@ method:
     source_final_weight_decay: 0.40
     source_warmup_epochs_of_300: 40
     source_ema: [0.996, 1.0]
+    source_ema_schedule: linear
     source_pred_dim: 384
     deliberate_adaptations:
       - 256 crop instead of 224 for the shared backbone
