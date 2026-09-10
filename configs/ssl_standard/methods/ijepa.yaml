@@ -1,0 +1,48 @@
+method:
+  name: ijepa
+  views:
+    crop_size: 256
+    crop_scale: [0.3, 1.0]
+  mask:
+    context_count: 1
+    target_count: 4
+    context_scale: [0.85, 1.0]
+    target_scale: [0.15, 0.20]
+    target_aspect: [0.75, 1.5]
+    minimum_context_tokens: 10
+    minimum_block_tokens: 4
+    target_target_overlap: true
+    context_target_overlap: false
+    retry_relaxation: official_20_attempt_fallback
+  predictor:
+    dim: 384
+    depth: 4
+    heads: 12
+    mlp_ratio: 4
+  optimizer:
+    name: AdamW
+    peak_lr: 0.001
+    start_lr_ratio: 0.2
+    final_lr_ratio: 0.001
+    warmup_fraction: 0.13333333333333333
+    weight_decay: 0.04
+    final_weight_decay: 0.40
+  ema: {start: 0.996, end: 1.0}
+  gradient_clip_norm: null
+  source_metadata:
+    implementation: facebookresearch/ijepa
+    reference_config: configs/in1k_vith14_ep300.yaml
+    source_peak_lr: 0.001
+    source_start_lr: 0.0002
+    source_final_lr: 0.000001
+    source_weight_decay: 0.04
+    source_final_weight_decay: 0.40
+    source_warmup_epochs_of_300: 40
+    source_ema: [0.996, 1.0]
+    source_pred_dim: 384
+    deliberate_adaptations:
+      - 256 crop instead of 224 for the shared backbone
+      - patch-32 gives an 8x8 token grid
+      - predictor depth 4 instead of ViT-H source depth 12
+      - target block minimum 4 for the coarse 8x8 grid
+      - predictor heads 12 inherited from the shared encoder
