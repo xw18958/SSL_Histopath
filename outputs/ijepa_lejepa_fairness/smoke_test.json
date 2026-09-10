@@ -1,0 +1,38 @@
+{
+  "dataset_unique_source_images": 7901,
+  "downstream_validation_or_test_run": false,
+  "global_patch_tokens": 64,
+  "global_shape": [
+    2,
+    3,
+    256,
+    256
+  ],
+  "global_wrapper_exactly_matches_existing_encoder": true,
+  "ijepa_context_target_overlap": false,
+  "ijepa_predictor_depth": 4,
+  "ijepa_predictor_heads_match_encoder": 12,
+  "ijepa_random_resized_crop_scale": [
+    0.3,
+    1.0
+  ],
+  "ijepa_source": "facebookresearch/ijepa",
+  "ijepa_target_blocks": 4,
+  "ijepa_target_target_overlap_allowed": true,
+  "labels_loaded": false,
+  "lejepa_2g4l_total_views": 6,
+  "lejepa_2g6l_total_views": 8,
+  "lejepa_lambda": 0.02,
+  "lejepa_loss_form": "inv_loss + lambda * sigreg_loss",
+  "lejepa_source": "galilai-group/stable-pretraining released LeJEPA",
+  "local_patch_tokens": 9,
+  "local_shape": [
+    2,
+    3,
+    96,
+    96
+  ],
+  "passed": true,
+  "protected_existing_pipeline_unchanged": true,
+  "shared_initial_encoder_sha256": "ed6219f02e986dcf2a0de1c3a0cfcbb942489701ce3a9de839ad714d413581ac"
+}

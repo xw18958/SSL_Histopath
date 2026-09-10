@@ -1,0 +1,78 @@
+{
+  "benchmark": {
+    "batch_size": 128,
+    "bf16": true,
+    "cache_in_ram": true,
+    "measured_steps": 100,
+    "num_workers": 8,
+    "tf32": true,
+    "warmup_steps": 20
+  },
+  "data_root": "/raid1/xwan0900/datasets/PanNuke/data",
+  "ijepa": {
+    "context_scale": [
+      0.85,
+      1.0
+    ],
+    "context_target_overlap": false,
+    "crop_scale": [
+      0.3,
+      1.0
+    ],
+    "ema_momentum": 0.996,
+    "hidden_size": 768,
+    "image_size": 256,
+    "learning_rate": 0.001,
+    "minimum_block_tokens": 4,
+    "minimum_context_tokens": 10,
+    "patch_size": 32,
+    "predictor_depth": 4,
+    "predictor_dim": 384,
+    "predictor_heads": 12,
+    "predictor_mlp_ratio": 4,
+    "target_aspect": [
+      0.75,
+      1.5
+    ],
+    "target_count": 4,
+    "target_scale": [
+      0.15,
+      0.2
+    ],
+    "target_target_overlap": true,
+    "weight_decay": 0.04
+  },
+  "lejepa": {
+    "color_jitter_p": 0.8,
+    "gaussian_blur_p": 0.5,
+    "global_scale": [
+      0.3,
+      1.0
+    ],
+    "global_size": 256,
+    "global_views": 2,
+    "grayscale_p": 0.2,
+    "horizontal_flip_p": 0.5,
+    "lambda": 0.02,
+    "learning_rate": 0.0004,
+    "local_scale": [
+      0.05,
+      0.3
+    ],
+    "local_size": 96,
+    "local_views": [
+      4,
+      6
+    ],
+    "projector_dim": 512,
+    "projector_hidden_dim": 2048,
+    "sigreg_points": 17,
+    "sigreg_slices": 1024,
+    "sigreg_t_max": 3.0,
+    "solarize_p": 0.2,
+    "weight_decay": 0.05
+  },
+  "output_dir": "/raid1/xwan0900/SSL_proj/outputs/ijepa_lejepa_fairness",
+  "plip_config_dir": "/raid1/xwan0900/models/plip_model",
+  "seed": 20260903
+}
