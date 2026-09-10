@@ -11,21 +11,27 @@ benchmark:
   measured_steps: 100
   bf16: true
   tf32: true
-  learning_rate: 0.0001
-  weight_decay: 0.04
 
 ijepa:
   image_size: 256
   patch_size: 32
   hidden_size: 768
+  crop_scale: [0.3, 1.0]
   predictor_dim: 384
   predictor_depth: 4
-  predictor_heads: 6
+  predictor_heads: 12
   predictor_mlp_ratio: 4
-  dropout: 0.0
   target_count: 4
+  context_scale: [0.85, 1.0]
+  target_scale: [0.15, 0.20]
+  target_aspect: [0.75, 1.5]
+  minimum_context_tokens: 10
+  minimum_block_tokens: 4
+  target_target_overlap: true
+  context_target_overlap: false
   ema_momentum: 0.996
-  gradient_clip_norm: 5.0
+  learning_rate: 0.001
+  weight_decay: 0.04
 
 lejepa:
   global_views: 2
@@ -34,7 +40,9 @@ lejepa:
   local_size: 96
   global_scale: [0.3, 1.0]
   local_scale: [0.05, 0.3]
-  lambda: 0.05
+  lambda: 0.02
+  learning_rate: 0.0004
+  weight_decay: 0.05
   projector_dim: 512
   projector_hidden_dim: 2048
   sigreg_slices: 1024
