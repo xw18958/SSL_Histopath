@@ -1,0 +1,78 @@
+method:
+  name: dinov3
+  views:
+    global_count: 2
+    local_count: 8
+    global_size: 256
+    local_size: 96
+    global_scale: [0.32, 1.0]
+    local_scale: [0.05, 0.32]
+  augmentations:
+    horizontal_flip_p: 0.5
+    color_jitter_p: 0.8
+    grayscale_p: 0.2
+    global1_blur_p: 1.0
+    global2_blur_p: 0.1
+    global2_solarize_p: 0.2
+    local_blur_p: 0.5
+  objective:
+    dino_loss_weight: 1.0
+    ibot_loss_weight: 1.0
+    koleo_loss_weight: 0.1
+    dino_prototypes: 65536
+    ibot_prototypes: 65536
+    head_layers: 3
+    head_hidden_dim: 2048
+    head_bottleneck_dim: 256
+    student_temperature: 0.1
+    mask_sample_probability: 0.5
+    mask_ratio: [0.1, 0.5]
+  teacher:
+    momentum_start: 0.992
+    momentum_end: 1.0
+    temperature_start: 0.04
+    temperature_end: 0.07
+    temperature_warmup_fraction: 0.30
+  optimizer:
+    name: AdamW
+    peak_lr: 0.001
+    min_lr: 0.000001
+    warmup_fraction: 0.10
+    weight_decay: 0.04
+    final_weight_decay: 0.4
+    freeze_last_layer_epochs: 1
+  gradient_clip_norm: 3.0
+  source_metadata:
+    implementation: facebookresearch/dinov3 official SSL recipe
+    reference: dinov3/configs/ssl_default_config.yaml and dinov3/train/ssl_meta_arch.py
+    source_objective: DINO self-distillation + iBOT masked-patch prediction + KoLeo regularization
+    gram_anchoring: false
+    source_views: 2_global_plus_8_local
+    source_global_scale: [0.32, 1.0]
+    source_local_scale: [0.05, 0.32]
+    source_global_size: 224
+    source_local_size: 96
+    source_dino_prototypes: 65536
+    source_ibot_prototypes: 65536
+    source_koleo_weight: 0.1
+    source_mask_probability: 0.5
+    source_mask_ratio: [0.1, 0.5]
+    source_teacher_momentum: [0.992, 1.0]
+    source_teacher_temperature: [0.04, 0.07]
+    source_peak_lr_raw_default: 0.001
+    source_lr_scaling_rule: sqrt_wrt_1024
+    source_patch_embed_lr_multiplier: 0.2
+    source_layerwise_decay: 0.9
+    source_weight_decay: [0.04, 0.4]
+    source_precision: bf16
+    evaluation_encoder: ema_teacher
+    evaluation_pooling: mean_patch_tokens
+    deliberate_adaptations:
+      - use the same fresh PLIP/CLIP ViT-B/32 backbone as the other standardized SSL methods
+      - global resolution 256 instead of the generic DINOv3 default 224 to match the shared backbone and benchmark
+      - keep local resolution 96, using CLIP's built-in bicubic positional interpolation for the 3x3 patch grid
+      - retain CLIP/PLIP input normalization inside the shared backbone instead of DINOv3 ImageNet normalization
+      - use the shared benchmark mean final patch-token downstream readout
+      - omit Gram anchoring because this experiment evaluates the DINOv3 base pretraining objective, before the separate Gram-anchoring stage
+      - tune the actual single-GPU peak LR directly under the benchmark instead of applying DINOv3's distributed sqrt_wrt_1024 LR scaling rule
+      - use a single-GPU AdamW parameter grouping without DINOv3's native layerwise LR decay or patch-embedding LR multiplier because those controls are tied to the native DINOv3 ViT optimization recipe
