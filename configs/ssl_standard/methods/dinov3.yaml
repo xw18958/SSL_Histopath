@@ -75,4 +75,5 @@ method:
       - use the shared benchmark mean final patch-token downstream readout
       - omit Gram anchoring because this experiment evaluates the DINOv3 base pretraining objective, before the separate Gram-anchoring stage
       - tune the actual single-GPU peak LR directly under the benchmark instead of applying DINOv3's distributed sqrt_wrt_1024 LR scaling rule
+      - express the source 10/100 LR warmup and 30/100 teacher-temperature warmup as 0.10 and 0.30 fractions so the same schedules scale consistently in 20-epoch tuning and 300-epoch training
       - use a single-GPU AdamW parameter grouping without DINOv3's native layerwise LR decay or patch-embedding LR multiplier because those controls are tied to the native DINOv3 ViT optimization recipe
