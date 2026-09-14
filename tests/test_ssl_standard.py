@@ -15,7 +15,7 @@ def test_delta_improvement_resets_patience():
 
 
 def test_source_learning_rates_must_be_in_tuning_grid():
-    expected={"ijepa":.001,"lejepa":.0005}
+    expected={"ijepa":.001,"lejepa":.0005,"dinov3":.001}
     for name,source in expected.items():
         load_standard_config(name); spec=load_tuning_spec(name); p=spec["parameters"]["learning_rate"]; assert float(p["source_value"])==source and source in [float(x) for x in p["candidates"]]
 
@@ -28,10 +28,23 @@ def test_ijepa_source_eval_and_ema_metadata():
     assert meta["source_ema_schedule"]=="linear"
 
 
+def test_dinov3_source_eval_and_base_objective_metadata():
+    c=load_standard_config("dinov3"); m=c["method"]; meta=m["source_metadata"]
+    assert meta["evaluation_encoder"]=="ema_teacher"
+    assert meta["evaluation_pooling"]=="mean_patch_tokens"
+    assert meta["gram_anchoring"] is False
+    assert m["views"]["global_count"]==2 and m["views"]["local_count"]==8
+    assert m["objective"]["mask_sample_probability"]==pytest.approx(.5)
+    assert m["objective"]["mask_ratio"]==[.1,.5]
+
+
 def test_common_protocol_matches_across_methods():
-    a,b=load_standard_config("ijepa"),load_standard_config("lejepa")
+    configs=[load_standard_config(name) for name in ("ijepa","lejepa","dinov3")]
     paths=[("seed",),("data","expected_ssl_images"),("training","max_epochs"),("training","batch_size"),("validation","selection_metric"),("validation","interval_epochs"),("early_stopping","min_epochs"),("early_stopping","patience_monitors"),("downstream","train_count"),("downstream","validation_count"),("downstream","test_count")]
     for path in paths:
-        x,y=a,b
-        for k in path: x,y=x[k],y[k]
-        assert x==y
+        values=[]
+        for config in configs:
+            value=config
+            for key in path: value=value[key]
+            values.append(value)
+        assert values[1:]==values[:-1]

@@ -6,7 +6,7 @@ from pannuke_ssl.ssl_framework import apply_lr, load_standard_config, run_downst
 
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument("action",choices=("tune","pretrain","downstream","pipeline","report")); p.add_argument("--method",required=True,choices=("ijepa","lejepa")); p.add_argument("--learning-rate",type=float,default=None); p.add_argument("--ignore-tuned",action="store_true"); a=p.parse_args()
+    p=argparse.ArgumentParser(); p.add_argument("action",choices=("tune","pretrain","downstream","pipeline","report")); p.add_argument("--method",required=True,choices=("ijepa","lejepa","dinov3")); p.add_argument("--learning-rate",type=float,default=None); p.add_argument("--ignore-tuned",action="store_true"); a=p.parse_args()
     c=load_standard_config(a.method); root=Path(c["output"]["root"])/a.method
     if a.action=="tune": result=run_tuning(c)
     elif a.action=="pretrain":
