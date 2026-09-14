@@ -72,7 +72,7 @@ class StandardDINOv3(nn.Module):
     @property
     def encoder(self) -> nn.Module:
         # DINOv3 evaluates the EMA teacher; downstream still mean-pools final patch tokens.
-        return self.teacher.base
+        return self.teacher
 
     def wrap_dataset(self, base: Dataset) -> Dataset:
         return DINOv3Views(base, self.config)

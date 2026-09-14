@@ -120,7 +120,7 @@ class SharedPLIPDINOBackbone(nn.Module):
 
     def forward(self, images: torch.Tensor) -> torch.Tensor:
         # The standard downstream protocol always evaluates 256x256 images.
-        return self.base(images)
+        return self.features(images)[1]
 
     def features(
         self,
@@ -130,7 +130,7 @@ class SharedPLIPDINOBackbone(nn.Module):
         h, w = images.shape[-2:]
         if h % self.base.patch_size or w % self.base.patch_size:
             raise ValueError("DINOv3 crop dimensions must be divisible by the shared patch size")
-        vision = self.base.model.vision_model
+        vision = self.base.model
         interpolate = h != self.base.image_size or w != self.base.image_size
         embedded = vision.embeddings(
             normalize_clip(images),
@@ -196,4 +196,3 @@ def cross_view_dino_loss(
     if terms == 0:
         raise RuntimeError("DINO crop loss has no valid cross-view terms")
     return total / terms
-
