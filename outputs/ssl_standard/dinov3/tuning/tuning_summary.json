@@ -1,0 +1,41 @@
+{
+  "budget": {
+    "epochs": 20,
+    "hard_nonfinite_stop": true,
+    "plateau_early_stopping": false,
+    "validation_interval_epochs": 5
+  },
+  "method": "dinov3",
+  "rows": [
+    {
+      "best_epoch": 10,
+      "best_validation_linear_macro_f1": 0.2853638710728587,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.0001,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 5,
+      "best_validation_linear_macro_f1": 0.24705434162893888,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.0005,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 5,
+      "best_validation_linear_macro_f1": 0.19963613384666018,
+      "error": null,
+      "is_source_value": true,
+      "learning_rate": 0.001,
+      "status": "completed"
+    }
+  ],
+  "selected_validation_linear_macro_f1": 0.2853638710728587,
+  "selected_value": 0.0001,
+  "source_reference": "facebookresearch/dinov3 ssl_default_config.yaml raw AdamW LR before native batch-size scaling",
+  "source_value": 0.001,
+  "source_value_included": true,
+  "test_used": false
+}

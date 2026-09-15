@@ -1,0 +1,4 @@
+learning_rate,is_source_value,status,best_epoch,best_validation_linear_macro_f1,error
+0.0001,False,completed,10,0.2853638710728587,
+0.0005,False,completed,5,0.24705434162893888,
+0.001,True,completed,5,0.19963613384666018,

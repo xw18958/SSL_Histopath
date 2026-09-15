@@ -1,0 +1,14 @@
+{
+  "encoder_epoch": 220,
+  "method": "dinov3",
+  "probe_validation_macro_f1": 0.5568688950358641,
+  "test": {
+    "accuracy": 0.4898785425101215,
+    "balanced_accuracy": 0.4898785425101215,
+    "macro_f1": 0.48828989615165336,
+    "weighted_f1": 0.48828989615165336
+  },
+  "test_evaluated_once": true,
+  "test_images": 247,
+  "test_loss": 1.7458635568618774
+}

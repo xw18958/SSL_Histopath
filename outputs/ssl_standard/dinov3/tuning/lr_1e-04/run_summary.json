@@ -1,0 +1,68 @@
+{
+  "best_epoch": 10,
+  "best_validation_linear_macro_f1": 0.2853638710728587,
+  "epochs_completed": 20,
+  "epochs_planned": 20,
+  "initial_encoder_sha256": "d785361f660fa118ca272a4e4c7a3c7e1d7f26e69ad51a4e1e32b60d806497de",
+  "labels_loaded_for_ssl": false,
+  "method": "dinov3",
+  "seconds": 847.1549293530406,
+  "source_metadata": {
+    "deliberate_adaptations": [
+      "use the same fresh PLIP/CLIP ViT-B/32 backbone as the other standardized SSL methods",
+      "global resolution 256 instead of the generic DINOv3 default 224 to match the shared backbone and benchmark",
+      "keep local resolution 96, using CLIP's built-in bicubic positional interpolation for the 3x3 patch grid",
+      "retain CLIP/PLIP input normalization inside the shared backbone instead of DINOv3 ImageNet normalization",
+      "use the shared benchmark mean final patch-token downstream readout",
+      "omit Gram anchoring because this experiment evaluates the DINOv3 base pretraining objective, before the separate Gram-anchoring stage",
+      "tune the actual single-GPU peak LR directly under the benchmark instead of applying DINOv3's distributed sqrt_wrt_1024 LR scaling rule",
+      "express the source 10/100 LR warmup and 30/100 teacher-temperature warmup as 0.10 and 0.30 fractions so the same schedules scale consistently in 20-epoch tuning and 300-epoch training",
+      "use a single-GPU AdamW parameter grouping without DINOv3's native layerwise LR decay or patch-embedding LR multiplier because those controls are tied to the native DINOv3 ViT optimization recipe"
+    ],
+    "evaluation_encoder": "ema_teacher",
+    "evaluation_pooling": "mean_patch_tokens",
+    "gram_anchoring": false,
+    "implementation": "facebookresearch/dinov3 official SSL recipe",
+    "reference": "dinov3/configs/ssl_default_config.yaml and dinov3/train/ssl_meta_arch.py",
+    "source_dino_prototypes": 65536,
+    "source_global_scale": [
+      0.32,
+      1.0
+    ],
+    "source_global_size": 224,
+    "source_ibot_prototypes": 65536,
+    "source_koleo_weight": 0.1,
+    "source_layerwise_decay": 0.9,
+    "source_local_scale": [
+      0.05,
+      0.32
+    ],
+    "source_local_size": 96,
+    "source_lr_scaling_rule": "sqrt_wrt_1024",
+    "source_mask_probability": 0.5,
+    "source_mask_ratio": [
+      0.1,
+      0.5
+    ],
+    "source_objective": "DINO self-distillation + iBOT masked-patch prediction + KoLeo regularization",
+    "source_patch_embed_lr_multiplier": 0.2,
+    "source_peak_lr_raw_default": 0.001,
+    "source_precision": "bf16",
+    "source_teacher_momentum": [
+      0.992,
+      1.0
+    ],
+    "source_teacher_temperature": [
+      0.04,
+      0.07
+    ],
+    "source_views": "2_global_plus_8_local",
+    "source_weight_decay": [
+      0.04,
+      0.4
+    ]
+  },
+  "ssl_images_per_epoch": 7901,
+  "stop_reason": "max_epochs",
+  "test_used_for_ssl_selection": false
+}
