@@ -15,7 +15,7 @@ def test_delta_improvement_resets_patience():
 
 
 def test_source_learning_rates_must_be_in_tuning_grid():
-    expected={"ijepa":.001,"lejepa":.0005,"dinov3":.001}
+    expected={"ijepa":.001,"lejepa":.0005,"simplex_sigreg_lejepa":.0005,"dinov3":.001}
     for name,source in expected.items():
         load_standard_config(name); spec=load_tuning_spec(name); p=spec["parameters"]["learning_rate"]; assert float(p["source_value"])==source and source in [float(x) for x in p["candidates"]]
 
@@ -39,7 +39,7 @@ def test_dinov3_source_eval_and_base_objective_metadata():
 
 
 def test_common_protocol_matches_across_methods():
-    configs=[load_standard_config(name) for name in ("ijepa","lejepa","dinov3")]
+    configs=[load_standard_config(name) for name in ("ijepa","lejepa","simplex_sigreg_lejepa","dinov3")]
     paths=[("seed",),("data","expected_ssl_images"),("training","max_epochs"),("training","batch_size"),("validation","selection_metric"),("validation","interval_epochs"),("early_stopping","min_epochs"),("early_stopping","patience_monitors"),("downstream","train_count"),("downstream","validation_count"),("downstream","test_count")]
     for path in paths:
         values=[]
