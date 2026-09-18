@@ -9,10 +9,10 @@ from pannuke_ssl.ssl_methods.simplex_sigreg_lejepa_standard import (
 
 
 def test_regular_simplex_geometry_matches_automatic_spacing_rule():
-    k, d, sigma = 8, 32, 1.0
-    centers = regular_simplex_centers(k, d, sigma)
-    assert centers.shape == (k, d)
-    assert torch.allclose(centers.mean(0), torch.zeros(d), atol=1e-7, rtol=0)
+    k, feature_dim, sigma = 8, 32, 1.0
+    centers = regular_simplex_centers(k, feature_dim, sigma)
+    assert centers.shape == (k, feature_dim)
+    assert torch.allclose(centers.mean(0), torch.zeros(feature_dim), atol=1e-7, rtol=0)
     distances = torch.cdist(centers, centers)
     off_diagonal = ~torch.eye(k, dtype=torch.bool)
     assert torch.allclose(distances[off_diagonal], torch.full((k * (k - 1),), 2.0 * sigma), atol=1e-6, rtol=0)
@@ -33,6 +33,17 @@ def test_k1_sigma1_is_original_sigreg_target():
         n_points=17,
     )
     assert torch.allclose(original(x), simplex(x), atol=1e-6, rtol=1e-6)
+
+
+def test_simplex_method_keeps_lejepa_non_target_settings_identical():
+    baseline = load_standard_config("lejepa")
+    simplex = load_standard_config("simplex_sigreg_lejepa")
+    for key in ("views", "augmentations", "projector", "optimizer", "gradient_clip_norm"):
+        assert simplex["method"][key] == baseline["method"][key]
+    for key in ("sigreg_lambda", "sigreg_slices", "sigreg_points", "sigreg_t_max"):
+        assert simplex["method"]["objective"][key] == baseline["method"]["objective"][key]
+    for key in ("seed", "data", "backbone", "training", "representation", "validation", "early_stopping", "downstream"):
+        assert simplex[key] == baseline[key]
 
 
 def test_simplex_sigreg_tuning_grid_and_application():
