@@ -19,6 +19,10 @@ def load_tuning_spec(method: str) -> dict[str, Any]:
     if s["method"]!=method or int(s["budget"]["epochs"])!=20 or int(s["budget"]["validation_interval_epochs"])!=5: raise ValueError("Unexpected tuning protocol")
     p=s["parameters"]["learning_rate"]; candidates=[float(x) for x in p["candidates"]]; source=float(p["source_value"])
     if source not in candidates: raise ValueError(f"Source/recommended LR {source:g} must be included in tuning grid")
+    if "simplex_components" in s["parameters"]:
+        if method!="simplex_sigreg_lejepa": raise ValueError("simplex_components tuning is reserved for simplex_sigreg_lejepa")
+        ks=[int(x) for x in s["parameters"]["simplex_components"]["candidates"]]
+        if not ks or any(k<2 for k in ks) or len(set(ks))!=len(ks): raise ValueError("Invalid simplex_components tuning grid")
     return s
 
 def validate_standard_config(c: dict[str, Any]) -> None:
@@ -33,3 +37,19 @@ def validate_standard_config(c: dict[str, Any]) -> None:
 
 def apply_lr(c: dict[str, Any], lr: float) -> dict[str, Any]:
     out=copy.deepcopy(c); out["method"]["optimizer"]["peak_lr"]=float(lr); return out
+
+def apply_tuned_hyperparameters(c: dict[str, Any], selected: dict[str, Any]) -> dict[str, Any]:
+    """Apply saved tuning results while preserving the existing LR-only behavior."""
+    out=copy.deepcopy(c)
+    allowed={"learning_rate","simplex_components","simplex_sigma"}
+    unknown=set(selected)-allowed
+    if unknown: raise ValueError(f"Unknown tuned hyperparameters: {sorted(unknown)}")
+    if "learning_rate" in selected:
+        out["method"]["optimizer"]["peak_lr"]=float(selected["learning_rate"])
+    if "simplex_components" in selected:
+        if out["method"]["name"]!="simplex_sigreg_lejepa": raise ValueError("simplex_components only applies to simplex_sigreg_lejepa")
+        out["method"]["objective"]["simplex_components"]=int(selected["simplex_components"])
+    if "simplex_sigma" in selected:
+        if out["method"]["name"]!="simplex_sigreg_lejepa": raise ValueError("simplex_sigma only applies to simplex_sigreg_lejepa")
+        out["method"]["objective"]["simplex_sigma"]=float(selected["simplex_sigma"])
+    return out
