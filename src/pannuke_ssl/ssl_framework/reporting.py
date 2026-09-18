@@ -15,7 +15,9 @@ def write_final_report(config: dict[str, Any]) -> Path:
     down=_read(root/"downstream/test_metrics.json")
     lines=[f"# Standard SSL Report — {config['method']['name']}","",f"- SSL images: **{config['data']['expected_ssl_images']}**, unlabeled",f"- Representation: **{config['representation']['pooling']}**",f"- Validation selection: **{config['validation']['selection_metric']}**",f"- Test protocol: **one evaluation after encoder/probe selection**",""]
     if tune:
-        lines += ["## Tuning", "", f"- Selected learning rate: **{tune['selected_value']}**", f"- Source/recommended LR included: **{tune['source_value_included']}** (`{tune['source_value']}`)", f"- Best tuning validation macro-F1: **{tune['selected_validation_linear_macro_f1']:.6f}**", ""]
+        lines += ["## Tuning", "", f"- Selected learning rate: **{tune['selected_value']}**"]
+        if tune.get('selected_simplex_components') is not None: lines += [f"- Selected simplex components K: **{tune['selected_simplex_components']}**"]
+        lines += [f"- Source/recommended LR included: **{tune['source_value_included']}** (`{tune['source_value']}`)", f"- Best tuning validation macro-F1: **{tune['selected_validation_linear_macro_f1']:.6f}**", ""]
     if pre:
         lines += ["## SSL pretraining", "", f"- Epochs completed: **{pre['epochs_completed']} / {pre['epochs_planned']}**", f"- Stop reason: **{pre['stop_reason']}**", f"- Selected epoch: **{pre['best_epoch']}**", f"- Best validation linear macro-F1: **{pre['best_validation_linear_macro_f1']}**", ""]
     if down:
