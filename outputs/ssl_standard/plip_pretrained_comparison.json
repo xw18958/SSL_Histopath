@@ -1,0 +1,25 @@
+{
+  "outputs": {
+    "cls": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard/plip_pretrained_cls/downstream",
+    "patch_mean": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard/plip_pretrained_patch_mean/downstream"
+  },
+  "primary_comparison": {
+    "plip_minus_simplex_macro_f1": -0.10750520668298624,
+    "plip_pretrained_patch_mean_macro_f1": 0.8157734884595139,
+    "protocol": "256px final-patch-token mean pooling with the same fixed downstream protocol",
+    "simplex_sigreg_lejepa_epoch_260_macro_f1": 0.9232786951425002
+  },
+  "simplex_comparator": {
+    "checkpoint": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard/simplex_sigreg_lejepa/pretrain/checkpoints/best.pt",
+    "checkpoint_epoch": 260,
+    "method": "simplex_sigreg_lejepa",
+    "readout": "mean_final_patch_tokens",
+    "test_macro_f1": 0.9232786951425002,
+    "test_metrics_path": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard/simplex_sigreg_lejepa/downstream/test_metrics.json"
+  },
+  "supplementary_plip_native_cls": {
+    "plip_cls_minus_simplex_macro_f1": -0.06709297558662353,
+    "plip_pretrained_cls_macro_f1": 0.8561857195558766,
+    "protocol": "same 256px downstream protocol; PLIP native post-layernorm CLS readout"
+  }
+}

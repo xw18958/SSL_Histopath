@@ -1,0 +1,132 @@
+{
+  "backbone": {
+    "config_dir": "/raid1/xwan0900/models/plip_model",
+    "hidden_size": 768,
+    "image_size": 256,
+    "patch_size": 32,
+    "type": "fresh_plip"
+  },
+  "data": {
+    "cache_in_ram": true,
+    "expected_ssl_images": 7901,
+    "metadata_csv": "/raid1/xwan0900/SSL_proj/pannuke19_metadata.csv",
+    "root": "/raid1/xwan0900/datasets/PanNuke/data",
+    "use_all_unlabeled": true
+  },
+  "downstream": {
+    "batch_size": 256,
+    "num_workers": 8,
+    "probe": {
+      "early_stopping_patience": 8,
+      "learning_rates": [
+        0.001,
+        0.003,
+        0.01
+      ],
+      "maximum_epochs": 50,
+      "weight_decays": [
+        0.0,
+        0.0001
+      ]
+    },
+    "test_count": 247,
+    "test_once": true,
+    "train_count": 2052,
+    "validation_count": 247
+  },
+  "early_stopping": {
+    "enabled": true,
+    "min_epochs": 60,
+    "minimum_delta": 0.005,
+    "patience_monitors": 5,
+    "restore_best": true
+  },
+  "method": {
+    "augmentations": {
+      "color_jitter_p": 0.8,
+      "gaussian_blur_p": 0.5,
+      "grayscale_p": 0.2,
+      "horizontal_flip_p": 0.5,
+      "solarize_p": 0.2
+    },
+    "gradient_clip_norm": null,
+    "name": "plip_pretrained_patch_mean",
+    "objective": {
+      "sigreg_lambda": 0.02,
+      "sigreg_points": 17,
+      "sigreg_slices": 1024,
+      "sigreg_t_max": 3.0,
+      "simplex_components": 2,
+      "simplex_sigma": 1.0
+    },
+    "optimizer": {
+      "final_lr_ratio": 0.001,
+      "name": "AdamW",
+      "peak_lr": 0.0005,
+      "warmup_fraction": 0.1,
+      "weight_decay": 0.05
+    },
+    "projector": {
+      "dim": 512,
+      "hidden_dim": 2048
+    },
+    "source_metadata": {
+      "encoder_frozen": true,
+      "evaluation_image_size": 256,
+      "fairness_protocol": "same PanNuke metadata split, train-only normalization, linear 768-to-19 probe grid, validation-only selection, and single test decode as simplex_sigreg_lejepa",
+      "implementation": "frozen pretrained PLIP CLIPVisionModel baseline",
+      "position_interpolation": "CLIPVisionModel.interpolate_pos_encoding=True (7x7 to 8x8 patch grid)",
+      "readout": "mean_final_patch_tokens",
+      "simplex_comparator": {
+        "checkpoint": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard/simplex_sigreg_lejepa/pretrain/checkpoints/best.pt",
+        "checkpoint_epoch": 260,
+        "method": "simplex_sigreg_lejepa",
+        "readout": "mean_final_patch_tokens",
+        "test_macro_f1": 0.9232786951425002,
+        "test_metrics_path": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard/simplex_sigreg_lejepa/downstream/test_metrics.json"
+      },
+      "source_image_size": 224,
+      "weights": "/raid1/xwan0900/models/plip_model"
+    },
+    "views": {
+      "global_count": 2,
+      "global_scale": [
+        0.3,
+        1.0
+      ],
+      "global_size": 256,
+      "local_count": 6,
+      "local_scale": [
+        0.05,
+        0.3
+      ],
+      "local_size": 96
+    }
+  },
+  "output": {
+    "root": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard"
+  },
+  "representation": {
+    "pooling": "mean_final_patch_tokens",
+    "source": "pretrained_plip_final_vision_representation"
+  },
+  "seed": 20260903,
+  "training": {
+    "batch_size": 128,
+    "bf16": true,
+    "max_epochs": 300,
+    "num_workers": 8,
+    "tf32": true
+  },
+  "validation": {
+    "batch_size": 256,
+    "interval_epochs": 10,
+    "knn_k": 20,
+    "knn_temperature": 0.07,
+    "linear_lbfgs_max_iter": 100,
+    "minimum_delta": 0.005,
+    "near_constant_std_threshold": 0.05,
+    "num_workers": 8,
+    "selection_metric": "linear_val_macro_f1"
+  }
+}

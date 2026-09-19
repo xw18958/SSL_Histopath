@@ -1,0 +1,57 @@
+{
+  "encoder_epoch": "pretrained",
+  "encoder_metadata": {
+    "config_file": "/raid1/xwan0900/models/plip_model/config.json",
+    "config_sha256": "b7fd95e67e44fdb1d12974c352ee57bbaeab089ebed9f2168c17aeed0eb65d61",
+    "encoder_eval_mode": true,
+    "encoder_frozen": true,
+    "evaluation_image_size": 256,
+    "hidden_size": 768,
+    "model_class": "transformers.CLIPVisionModel",
+    "normalization": {
+      "mean": [
+        0.48145466,
+        0.4578275,
+        0.40821073
+      ],
+      "std": [
+        0.26862954,
+        0.26130258,
+        0.27577711
+      ]
+    },
+    "parameters_requires_grad": 0,
+    "parameters_total": 87456000,
+    "patch_grid": [
+      8,
+      8
+    ],
+    "patch_size": 32,
+    "position_interpolation": "CLIPVisionModel.interpolate_pos_encoding=True from 224px (7x7) to 256px (8x8)",
+    "readout": "mean_final_patch_tokens",
+    "simplex_comparator": {
+      "checkpoint": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard/simplex_sigreg_lejepa/pretrain/checkpoints/best.pt",
+      "checkpoint_epoch": 260,
+      "method": "simplex_sigreg_lejepa",
+      "readout": "mean_final_patch_tokens",
+      "test_macro_f1": 0.9232786951425002,
+      "test_metrics_path": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard/simplex_sigreg_lejepa/downstream/test_metrics.json"
+    },
+    "source_image_size": 224,
+    "weights_bytes": 605156676,
+    "weights_directory": "/raid1/xwan0900/models/plip_model",
+    "weights_file": "/raid1/xwan0900/models/plip_model/model.safetensors",
+    "weights_sha256": "23e8aac7c222f8fb30f7ecc678df24c6921ef3b5c2540770aa6d91a30b67082d"
+  },
+  "method": "plip_pretrained_patch_mean",
+  "probe_validation_macro_f1": 0.8412586875381795,
+  "test": {
+    "accuracy": 0.8137651821862348,
+    "balanced_accuracy": 0.8137651821862348,
+    "macro_f1": 0.8157734884595139,
+    "weighted_f1": 0.8157734884595138
+  },
+  "test_evaluated_once": true,
+  "test_images": 247,
+  "test_loss": 0.6118907928466797
+}

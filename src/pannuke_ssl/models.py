@@ -61,6 +61,103 @@ class FreshPLIPVisionEncoder(nn.Module):
         return patches
 
 
+class PretrainedPLIPVisionEncoder(nn.Module):
+    """Frozen PLIP vision encoder with an explicit 256px evaluation readout.
+
+    PLIP was pretrained at 224px.  This adapter deliberately retains those
+    weights and uses CLIP's built-in bicubic positional interpolation when
+    evaluating the shared 256px PanNuke protocol.  ``patch_mean`` is the
+    fairness-critical final-patch-token readout; ``cls`` retains PLIP's native
+    post-layernorm CLS representation as a supplementary baseline.
+    """
+
+    READOUTS = frozenset(("patch_mean", "cls"))
+
+    def __init__(
+        self,
+        model_dir: str | Path,
+        *,
+        image_size: int = 256,
+        readout: str = "patch_mean",
+    ) -> None:
+        super().__init__()
+        if readout not in self.READOUTS:
+            raise ValueError(f"Unsupported PLIP readout {readout!r}; expected one of {sorted(self.READOUTS)}")
+        self.model = CLIPVisionModel.from_pretrained(str(model_dir), local_files_only=True)
+        self.source_image_size = int(self.model.config.image_size)
+        self.image_size = int(image_size)
+        self.patch_size = int(self.model.config.patch_size)
+        self.hidden_size = int(self.model.config.hidden_size)
+        self.readout = readout
+        if self.image_size % self.patch_size:
+            raise ValueError("image_size must be divisible by the pretrained CLIP patch size")
+        self.num_patches = (self.image_size // self.patch_size) ** 2
+        if (self.source_image_size, self.patch_size, self.hidden_size) != (224, 32, 768):
+            raise RuntimeError(
+                "Unexpected PLIP vision configuration; expected pretrained 224px / patch-32 / 768-dimensional vision encoder"
+            )
+        self.model.requires_grad_(False)
+        self.model.eval()
+
+    @property
+    def vision_backbone(self) -> nn.Module:
+        nested_vision = getattr(self.model, "vision_model", None)
+        vision = nested_vision if nested_vision is not None else self.model
+        required_components = ("embeddings", "pre_layrnorm", "encoder", "post_layernorm")
+        missing = [name for name in required_components if not hasattr(vision, name)]
+        if missing:
+            raise RuntimeError(
+                "CLIP vision backbone is missing required components "
+                f"{missing}; expected a CLIPVisionModel or its vision_model submodule."
+            )
+        return vision
+
+    def train(self, mode: bool = True) -> "PretrainedPLIPVisionEncoder":
+        """Keep the baseline in evaluation mode even if a caller invokes train()."""
+        super().train(False)
+        return self
+
+    @torch.inference_mode()
+    def _sequence(self, images: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        if images.ndim != 4 or images.shape[1] != 3:
+            raise ValueError(f"Expected [B,3,H,W] image batch, got {tuple(images.shape)}")
+        h, w = images.shape[-2:]
+        if (h, w) != (self.image_size, self.image_size):
+            raise ValueError(f"Expected fixed {self.image_size}px evaluation images, got {h}x{w}")
+        output = self.model(
+            pixel_values=normalize_clip(images),
+            interpolate_pos_encoding=(h, w) != (self.source_image_size, self.source_image_size),
+            return_dict=True,
+        )
+        sequence = output.last_hidden_state
+        expected = (images.shape[0], self.num_patches + 1, self.hidden_size)
+        if sequence.shape != expected:
+            raise RuntimeError(f"Unexpected PLIP sequence shape {tuple(sequence.shape)} != {expected}")
+        return sequence, self.vision_backbone.post_layernorm(sequence[:, 0, :])
+
+    @torch.inference_mode()
+    def patch_tokens(self, images: torch.Tensor) -> torch.Tensor:
+        """Return post-layernorm final patch tokens, [B,64,768] at 256px."""
+        sequence, _ = self._sequence(images)
+        patches = self.vision_backbone.post_layernorm(sequence[:, 1:, :])
+        expected = (images.shape[0], self.num_patches, self.hidden_size)
+        if patches.shape != expected:
+            raise RuntimeError(f"Unexpected PLIP patch shape {tuple(patches.shape)} != {expected}")
+        return patches
+
+    @torch.inference_mode()
+    def cls_features(self, images: torch.Tensor) -> torch.Tensor:
+        """Return PLIP's native post-layernorm CLS representation, [B,768]."""
+        _, cls = self._sequence(images)
+        return cls
+
+    @torch.inference_mode()
+    def forward(self, images: torch.Tensor) -> torch.Tensor:
+        if self.readout == "patch_mean":
+            return self.patch_tokens(images).mean(dim=1)
+        return self.cls_features(images)
+
+
 class ScalarConditioner(nn.Module):
     def __init__(self, width: int) -> None:
         super().__init__()
