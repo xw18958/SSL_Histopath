@@ -1,0 +1,7 @@
+{
+  "best_epoch": 33,
+  "learning_rate": 0.01,
+  "test_used": false,
+  "validation_macro_f1": 0.9717376775271512,
+  "weight_decay": 0.0
+}

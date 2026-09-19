@@ -17,6 +17,8 @@ from pannuke_ssl.degradations import (
 )
 from pannuke_ssl.losses import b0_loss
 from pannuke_ssl.monitor import feature_diagnostics, improves_macro_f1, weighted_knn_predictions
+from pannuke_ssl.ijepa import encode_context
+from pannuke_ssl.ijepa_lejepa_fairness import FlexiblePLIPVisionEncoder
 from pannuke_ssl.models import B0Predictor, FreshPLIPVisionEncoder, make_teacher, update_ema
 from pannuke_ssl.training import _weight_decay
 
@@ -110,6 +112,33 @@ def test_cosine_weight_decay_schedule() -> None:
     assert _weight_decay(config, 100, 101) == pytest.approx(0.40)
 
 
+@pytest.mark.parametrize("nested_layout", [False, True])
+def test_vision_backbone_accessor_supports_transformers_layouts(nested_layout: bool) -> None:
+    vision = torch.nn.Module()
+    for name in ("embeddings", "pre_layrnorm", "encoder", "post_layernorm"):
+        setattr(vision, name, torch.nn.Identity())
+    model = torch.nn.Module()
+    if nested_layout:
+        model.vision_model = vision
+    else:
+        model = vision
+
+    encoder = object.__new__(FreshPLIPVisionEncoder)
+    torch.nn.Module.__init__(encoder)
+    encoder.model = model
+
+    assert encoder.vision_backbone is vision
+
+
+def test_vision_backbone_accessor_rejects_incompatible_model() -> None:
+    encoder = object.__new__(FreshPLIPVisionEncoder)
+    torch.nn.Module.__init__(encoder)
+    encoder.model = torch.nn.Module()
+
+    with pytest.raises(RuntimeError, match="missing required components"):
+        _ = encoder.vision_backbone
+
+
 @pytest.mark.skipif(not PLIP_CONFIG.exists(), reason="remote PLIP config is unavailable")
 def test_fresh_plip_architecture_and_patch_shape() -> None:
     torch.manual_seed(1)
@@ -119,8 +148,13 @@ def test_fresh_plip_architecture_and_patch_shape() -> None:
     assert first.hidden_size == 768 and first.num_patches == 64
     assert not torch.equal(next(first.parameters()), next(second.parameters()))
     with torch.inference_mode():
-        output = first(torch.rand(1, 3, 256, 256))
+        images = torch.rand(1, 3, 256, 256)
+        output = first(images)
+        context = encode_context(first, images, torch.arange(8).unsqueeze(0))
+        local = FlexiblePLIPVisionEncoder(first)(torch.rand(1, 3, 224, 224))
     assert output.shape == (1, 64, 768)
+    assert context.shape == (1, 8, 768)
+    assert local.shape == (1, 49, 768)
 
 
 @pytest.mark.skipif(not DATA_ROOT.exists() or not METADATA.exists(), reason="remote PanNuke data is unavailable")

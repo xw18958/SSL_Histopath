@@ -65,7 +65,7 @@ def gather_tokens(tokens, indices):
 
 
 def encode_context(encoder: FreshPLIPVisionEncoder, images, indices):
-    vision = encoder.model.vision_model
+    vision = encoder.vision_backbone
     embedded = vision.embeddings(normalize_clip(images))
     # CLS has no image content before attention, so keeping it leaks no target pixels.
     visible = torch.cat((embedded[:, :1], gather_tokens(embedded[:, 1:], indices)), dim=1)

@@ -328,7 +328,7 @@ class FlexiblePLIPVisionEncoder(nn.Module):
         if h % self.patch_size or w % self.patch_size:
             raise ValueError("Local view dimensions must be divisible by the fixed patch size.")
 
-        vision = self.base.model.vision_model
+        vision = self.base.vision_backbone
         # Transformers >=4.48 (the repo minimum) provides CLIP's official bicubic
         # interpolation path for learned patch positional embeddings.
         embedded = vision.embeddings(

@@ -1,0 +1,184 @@
+{
+  "budget": {
+    "epochs": 20,
+    "hard_nonfinite_stop": true,
+    "plateau_early_stopping": false,
+    "validation_interval_epochs": 5
+  },
+  "method": "simplex_sigreg_lejepa",
+  "rows": [
+    {
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.49710536433648567,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.0001,
+      "simplex_components": 2,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.4998903550485655,
+      "error": null,
+      "is_source_value": true,
+      "learning_rate": 0.0005,
+      "simplex_components": 2,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.37693976504045157,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.001,
+      "simplex_components": 2,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.47506963695711424,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.0001,
+      "simplex_components": 4,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.5080264929605299,
+      "error": null,
+      "is_source_value": true,
+      "learning_rate": 0.0005,
+      "simplex_components": 4,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.4511669726276096,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.001,
+      "simplex_components": 4,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.48363623117430427,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.0001,
+      "simplex_components": 8,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.5257072775715931,
+      "error": null,
+      "is_source_value": true,
+      "learning_rate": 0.0005,
+      "simplex_components": 8,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 5,
+      "best_validation_linear_macro_f1": 0.3930762377310156,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.001,
+      "simplex_components": 8,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.4943401220290131,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.0001,
+      "simplex_components": 16,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.49931664060093656,
+      "error": null,
+      "is_source_value": true,
+      "learning_rate": 0.0005,
+      "simplex_components": 16,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.39471799762155435,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.001,
+      "simplex_components": 16,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.5020320274924552,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.0001,
+      "simplex_components": 32,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.5148488805177525,
+      "error": null,
+      "is_source_value": true,
+      "learning_rate": 0.0005,
+      "simplex_components": 32,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.3765738167186333,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.001,
+      "simplex_components": 32,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.45303652296158586,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.0001,
+      "simplex_components": 64,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.49426179362094674,
+      "error": null,
+      "is_source_value": true,
+      "learning_rate": 0.0005,
+      "simplex_components": 64,
+      "status": "completed"
+    },
+    {
+      "best_epoch": 5,
+      "best_validation_linear_macro_f1": 0.389039826644666,
+      "error": null,
+      "is_source_value": false,
+      "learning_rate": 0.001,
+      "simplex_components": 64,
+      "status": "completed"
+    }
+  ],
+  "selected_parameters": {
+    "learning_rate": 0.0005,
+    "simplex_components": 8
+  },
+  "selected_simplex_components": 8,
+  "selected_validation_linear_macro_f1": 0.5257072775715931,
+  "selected_value": 0.0005,
+  "source_reference": "galilai-group/lejepa README GOTO hyperparameters",
+  "source_value": 0.0005,
+  "source_value_included": true,
+  "test_used": false
+}

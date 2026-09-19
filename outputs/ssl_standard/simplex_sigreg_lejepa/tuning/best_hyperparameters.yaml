@@ -1,0 +1,12 @@
+method: simplex_sigreg_lejepa
+selected:
+  learning_rate: 0.0005
+  simplex_components: 8
+selection:
+  metric: linear_val_macro_f1
+  value: 0.5257072775715931
+  test_used: false
+source_reference:
+  learning_rate: 0.0005
+  included_in_candidates: true
+  citation: galilai-group/lejepa README GOTO hyperparameters

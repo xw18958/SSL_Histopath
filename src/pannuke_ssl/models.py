@@ -37,11 +37,25 @@ class FreshPLIPVisionEncoder(nn.Module):
             raise ValueError("image_size must be divisible by patch_size")
         self.num_patches = (self.image_size // self.patch_size) ** 2
 
+    @property
+    def vision_backbone(self) -> nn.Module:
+        """Return CLIP's vision transformer across supported Transformers layouts."""
+        nested_vision = getattr(self.model, "vision_model", None)
+        vision = nested_vision if nested_vision is not None else self.model
+        required_components = ("embeddings", "pre_layrnorm", "encoder", "post_layernorm")
+        missing = [name for name in required_components if not hasattr(vision, name)]
+        if missing:
+            raise RuntimeError(
+                "CLIP vision backbone is missing required components "
+                f"{missing}; expected a CLIPVisionModel or its vision_model submodule."
+            )
+        return vision
+
     def forward(self, images: torch.Tensor) -> torch.Tensor:
         output = self.model(pixel_values=normalize_clip(images), return_dict=True)
         patches = output.last_hidden_state[:, 1:, :]
         # CLIP post-normalizes only CLS; use the same learned LN for patch targets/features.
-        patches = self.model.vision_model.post_layernorm(patches)
+        patches = self.vision_backbone.post_layernorm(patches)
         if patches.shape[1:] != (self.num_patches, self.hidden_size):
             raise RuntimeError(f"Unexpected patch tensor shape: {tuple(patches.shape)}")
         return patches
