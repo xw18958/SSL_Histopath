@@ -12,6 +12,7 @@ import torch
 from pannuke_ssl.models import FrozenCONCHVisionEncoder
 from pannuke_ssl.ssl_framework import load_standard_config
 from pannuke_ssl.ssl_framework.downstream import run_frozen_downstream
+from pannuke_ssl.ssl_framework.external_datasets import EXTERNAL_DATASETS, PANNUKE_DATASET
 from pannuke_ssl.utils import atomic_json_dump
 
 
@@ -25,6 +26,11 @@ HF_REPOSITORY = "MahmoodLab/CONCH"
 HF_REVISION = "f9ca9f877171a28ade80228fb195ac5d79003357"
 CHECKPOINT_SHA256 = "40a9644b9ba0e83a74576e0a5e5f7313599fa9c9cdaf3c20f8a3e271b0e9ae7c"
 META_SHA256 = "152edc9b784bf2eeef01c7c2991904c2d67b20c4d734e628c54206fbd37bc32f"
+
+
+def _validate_dataset_mode(dataset: str, *, preflight_only: bool) -> None:
+    if preflight_only and dataset != PANNUKE_DATASET:
+        raise ValueError("--preflight-only is fixed to the default PanNuke gate; optional datasets are downstream-only")
 
 
 def _sha256(path: Path) -> str:
@@ -53,7 +59,7 @@ def _local_artifact_metadata() -> dict[str, Any]:
     }
 
 
-def _baseline_config() -> dict[str, Any]:
+def _baseline_config(dataset: str) -> dict[str, Any]:
     config = copy.deepcopy(load_standard_config("simplex_sigreg_lejepa"))
     config["method"]["name"] = OUTPUT_NAME
     config["method"]["source_metadata"] = {
@@ -67,7 +73,8 @@ def _baseline_config() -> dict[str, Any]:
         "readout": "official_attention_pool_before_contrast_projection_and_l2_normalization",
         "official_linear_probe_call": "model.encode_image(images, proj_contrast=False, normalize=False)",
         "encoder_frozen": True,
-        "fairness_protocol": "same PanNuke split, raw 256px images, train-only feature normalization, linear probe grid, validation-only selection, and one test decode as ssl_standard simplex_sigreg_lejepa",
+        "evaluation_dataset": dataset,
+        "fairness_protocol": "shared frozen-encoder linear probe: raw 256px images, train-only feature normalization, validation-only selection, and one test decode",
     }
     config["representation"] = {
         "source": "official_conch_v1_attention_pool",
@@ -128,29 +135,36 @@ def _preflight(root: Path) -> tuple[FrozenCONCHVisionEncoder, dict[str, Any]]:
     return encoder, provenance
 
 
-def _run(config: dict[str, Any], encoder: FrozenCONCHVisionEncoder, provenance: dict[str, Any], root: Path) -> dict[str, Any]:
-    downstream = root / "downstream"
+def _run(config: dict[str, Any], encoder: FrozenCONCHVisionEncoder, provenance: dict[str, Any], root: Path, dataset: str) -> dict[str, Any]:
+    downstream = root / "downstream" if dataset == PANNUKE_DATASET else root / "downstream_datasets" / dataset
+    run_root = root if dataset == PANNUKE_DATASET else downstream.parent
     marker = downstream / "test_started.json"
     metrics = downstream / "test_metrics.json"
     if marker.exists():
         if not metrics.exists():
             raise RuntimeError(f"{marker} exists without completed metrics; refusing to decode the test split again")
         return json.loads(metrics.read_text())
-    atomic_json_dump(config, root / "resolved_config.json")
-    return run_frozen_downstream(config, encoder, downstream, encoder_metadata=provenance)
+    run_root.mkdir(parents=True, exist_ok=True)
+    atomic_json_dump(config, run_root / "resolved_config.json")
+    atomic_json_dump(provenance, run_root / "encoder_provenance.json")
+    return run_frozen_downstream(config, encoder, downstream, encoder_metadata=provenance, dataset=dataset)
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Run the fixed frozen CONCH v1 PanNuke linear-probe baseline")
+    parser = argparse.ArgumentParser(description="Run the fixed frozen CONCH v1 linear-probe baseline")
     parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
+    parser.add_argument("--dataset", choices=(PANNUKE_DATASET, *EXTERNAL_DATASETS), default=PANNUKE_DATASET)
     parser.add_argument("--preflight-only", action="store_true")
     args = parser.parse_args()
     root = args.output_root / OUTPUT_NAME
-    encoder, provenance = _preflight(root)
+    try: _validate_dataset_mode(args.dataset,preflight_only=args.preflight_only)
+    except ValueError as error: parser.error(str(error))
+    artifact_root = root if args.dataset == PANNUKE_DATASET else root / "downstream_datasets" / args.dataset
+    encoder, provenance = _preflight(artifact_root)
     if args.preflight_only:
         print(json.dumps({"preflight": json.loads((root / "preflight.json").read_text())}, indent=2), flush=True)
         return
-    result = _run(_baseline_config(), encoder, provenance, root)
+    result = _run(_baseline_config(args.dataset), encoder, provenance, root, args.dataset)
     print(json.dumps({"result": result}, indent=2), flush=True)
 
 

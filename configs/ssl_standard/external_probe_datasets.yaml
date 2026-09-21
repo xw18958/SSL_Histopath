@@ -1,0 +1,11 @@
+datasets:
+  crc_val_he_7k:
+    root: /raid1/xwan0900/datasets/CRC-VAL-HE-7K
+    class_names: [ADI, BACK, DEB, LYM, MUC, MUS, NORM, STR, TUM]
+    expected_images: 7180
+    split_policy: deterministic_equal_class_339_then_stratified_271_34_34
+  breakhis_8subtype:
+    root: /raid1/xwan0900/datasets/BreakHis/BreaKHis_v1/histology_slides/breast
+    class_names: [adenosis, ductal_carcinoma, fibroadenoma, lobular_carcinoma, mucinous_carcinoma, papillary_carcinoma, phyllodes_tumor, tubular_adenoma]
+    expected_images: 7909
+    split_policy: deterministic_equal_subtype_sample_444_then_image_stratified_356_44_44

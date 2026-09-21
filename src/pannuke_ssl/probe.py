@@ -77,6 +77,13 @@ def _evaluate(classifier: nn.Module, features: torch.Tensor, labels: torch.Tenso
     return loss, _metrics(labels.numpy(), predictions), predictions
 
 
+def build_probe_classifier(feature_dim: int, num_classes: int = 19) -> nn.Linear:
+    """Construct the only trainable module in a frozen linear probe."""
+    if int(feature_dim) < 1 or int(num_classes) < 2:
+        raise ValueError(f"Invalid linear-probe dimensions: feature_dim={feature_dim}, num_classes={num_classes}")
+    return nn.Linear(int(feature_dim), int(num_classes))
+
+
 def _fit_probe(
     features: dict[str, tuple[torch.Tensor, torch.Tensor]],
     *,
@@ -85,6 +92,7 @@ def _fit_probe(
     maximum_epochs: int,
     patience: int,
     seed: int,
+    num_classes: int = 19,
 ) -> dict[str, Any]:
     seed_everything(seed)
     device = torch.device("cuda")
@@ -95,7 +103,7 @@ def _fit_probe(
             "Linear-probe train/validation features must be rank-2 with a shared feature width; "
             f"got train={tuple(train_features.shape)}, val={tuple(val_features.shape)}"
         )
-    classifier = nn.Linear(int(train_features.shape[1]), 19).to(device)
+    classifier = build_probe_classifier(int(train_features.shape[1]), num_classes).to(device)
     optimizer = torch.optim.AdamW(classifier.parameters(), lr=learning_rate, weight_decay=weight_decay)
     generator = torch.Generator().manual_seed(seed)
     loader = DataLoader(TensorDataset(train_features, train_labels), batch_size=256, shuffle=True, generator=generator)

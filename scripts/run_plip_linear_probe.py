@@ -12,6 +12,7 @@ import torch
 from pannuke_ssl.models import PretrainedPLIPVisionEncoder
 from pannuke_ssl.ssl_framework import load_standard_config
 from pannuke_ssl.ssl_framework.downstream import run_frozen_downstream
+from pannuke_ssl.ssl_framework.external_datasets import EXTERNAL_DATASETS, PANNUKE_DATASET
 from pannuke_ssl.utils import atomic_json_dump
 
 
@@ -23,6 +24,11 @@ READOUTS = {
     "patch_mean": "plip_pretrained_patch_mean",
     "cls": "plip_pretrained_cls",
 }
+
+
+def _validate_dataset_mode(dataset: str, *, smoke_only: bool) -> None:
+    if smoke_only and dataset != PANNUKE_DATASET:
+        raise ValueError("--smoke-only is fixed to the default PanNuke gate; optional datasets are downstream-only")
 
 
 def _sha256(path: Path) -> str:
@@ -56,10 +62,10 @@ def _comparison_metadata() -> dict[str, Any]:
     }
 
 
-def _baseline_config(method_name: str, readout: str) -> dict[str, Any]:
+def _baseline_config(method_name: str, readout: str, dataset: str) -> dict[str, Any]:
     config = copy.deepcopy(load_standard_config("simplex_sigreg_lejepa"))
     config["method"]["name"] = method_name
-    config["method"]["source_metadata"] = {
+    source_metadata = {
         "implementation": "frozen pretrained PLIP CLIPVisionModel baseline",
         "weights": str(PLIP_MODEL_DIR),
         "source_image_size": 224,
@@ -67,9 +73,13 @@ def _baseline_config(method_name: str, readout: str) -> dict[str, Any]:
         "position_interpolation": "CLIPVisionModel.interpolate_pos_encoding=True (7x7 to 8x8 patch grid)",
         "readout": "mean_final_patch_tokens" if readout == "patch_mean" else "native_post_layernorm_cls",
         "encoder_frozen": True,
-        "fairness_protocol": "same PanNuke metadata split, train-only normalization, linear 768-to-19 probe grid, validation-only selection, and single test decode as simplex_sigreg_lejepa",
-        "simplex_comparator": _comparison_metadata(),
+        "evaluation_dataset": dataset,
+        "fairness_protocol": "shared frozen-encoder linear probe: train-only normalization, validation-only selection, and one test decode",
     }
+    if dataset == PANNUKE_DATASET:
+        source_metadata["fairness_protocol"] = "same PanNuke metadata split, train-only normalization, linear 768-to-19 probe grid, validation-only selection, and single test decode as simplex_sigreg_lejepa"
+        source_metadata["simplex_comparator"] = _comparison_metadata()
+    config["method"]["source_metadata"] = source_metadata
     config["representation"] = {
         "source": "pretrained_plip_final_vision_representation",
         "pooling": "mean_final_patch_tokens" if readout == "patch_mean" else "native_post_layernorm_cls",
@@ -141,24 +151,26 @@ def _run_smoke(readout: str, output_root: Path) -> dict[str, Any]:
     return result
 
 
-def _run_baseline(readout: str, output_root: Path) -> dict[str, Any]:
+def _run_baseline(readout: str, output_root: Path, dataset: str) -> dict[str, Any]:
     method_name = READOUTS[readout]
     root = output_root / method_name
-    downstream = root / "downstream"
+    downstream = root / "downstream" if dataset == PANNUKE_DATASET else root / "downstream_datasets" / dataset
+    run_root = root if dataset == PANNUKE_DATASET else downstream.parent
     existing_metrics = downstream / "test_metrics.json"
     marker = downstream / "test_started.json"
     if marker.exists():
         if not existing_metrics.exists():
             raise RuntimeError(f"{marker} exists but no completed metrics exist; refusing a second test decode")
         return _read_json(existing_metrics)
-    root.mkdir(parents=True, exist_ok=True)
-    config = _baseline_config(method_name, readout)
-    atomic_json_dump(config, root / "resolved_config.json")
+    run_root.mkdir(parents=True, exist_ok=True)
+    config = _baseline_config(method_name, readout, dataset)
+    atomic_json_dump(config, run_root / "resolved_config.json")
     encoder = PretrainedPLIPVisionEncoder(PLIP_MODEL_DIR, image_size=256, readout=readout).eval()
     provenance = _encoder_metadata(encoder, readout)
-    provenance["simplex_comparator"] = _comparison_metadata()
-    atomic_json_dump(provenance, root / "encoder_provenance.json")
-    return run_frozen_downstream(config, encoder, downstream, encoder_metadata=provenance)
+    if dataset == PANNUKE_DATASET:
+        provenance["simplex_comparator"] = _comparison_metadata()
+    atomic_json_dump(provenance, run_root / "encoder_provenance.json")
+    return run_frozen_downstream(config, encoder, downstream, encoder_metadata=provenance, dataset=dataset)
 
 
 def _write_comparison(output_root: Path) -> dict[str, Any]:
@@ -201,19 +213,22 @@ def _write_comparison(output_root: Path) -> dict[str, Any]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Run fair frozen-pretrained PLIP PanNuke linear probes")
+    parser = argparse.ArgumentParser(description="Run frozen-pretrained PLIP linear probes")
     parser.add_argument("--readout", choices=("all", *READOUTS), default="all")
+    parser.add_argument("--dataset", choices=(PANNUKE_DATASET, *EXTERNAL_DATASETS), default=PANNUKE_DATASET)
     parser.add_argument("--output-root", type=Path, default=OUTPUT_ROOT)
     parser.add_argument("--smoke-only", action="store_true")
     args = parser.parse_args()
+    try: _validate_dataset_mode(args.dataset,smoke_only=args.smoke_only)
+    except ValueError as error: parser.error(str(error))
     selected = tuple(READOUTS) if args.readout == "all" else (args.readout,)
     smokes = {readout: _run_smoke(readout, args.output_root) for readout in selected}
     if args.smoke_only:
         print(json.dumps({"smoke": smokes}, indent=2), flush=True)
         return
-    results = {readout: _run_baseline(readout, args.output_root) for readout in selected}
+    results = {readout: _run_baseline(readout, args.output_root, args.dataset) for readout in selected}
     payload: dict[str, Any] = {"smoke": smokes, "baselines": results}
-    if args.readout == "all":
+    if args.readout == "all" and args.dataset == PANNUKE_DATASET:
         payload["comparison"] = _write_comparison(args.output_root)
     print(json.dumps(payload, indent=2), flush=True)
 
