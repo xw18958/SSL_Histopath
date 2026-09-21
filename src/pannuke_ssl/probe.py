@@ -88,9 +88,15 @@ def _fit_probe(
 ) -> dict[str, Any]:
     seed_everything(seed)
     device = torch.device("cuda")
-    classifier = nn.Linear(768, 19).to(device)
-    optimizer = torch.optim.AdamW(classifier.parameters(), lr=learning_rate, weight_decay=weight_decay)
     train_features, train_labels = features["train"]
+    val_features, _ = features["val"]
+    if train_features.ndim != 2 or val_features.ndim != 2 or train_features.shape[1] != val_features.shape[1]:
+        raise ValueError(
+            "Linear-probe train/validation features must be rank-2 with a shared feature width; "
+            f"got train={tuple(train_features.shape)}, val={tuple(val_features.shape)}"
+        )
+    classifier = nn.Linear(int(train_features.shape[1]), 19).to(device)
+    optimizer = torch.optim.AdamW(classifier.parameters(), lr=learning_rate, weight_decay=weight_decay)
     generator = torch.Generator().manual_seed(seed)
     loader = DataLoader(TensorDataset(train_features, train_labels), batch_size=256, shuffle=True, generator=generator)
     best_score = -1.0

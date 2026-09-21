@@ -20,8 +20,9 @@ def _extract(encoder,rows,c,device):
         # Standard SSL encoders expose final patch tokens [B,T,D].  Frozen
         # external adapters may expose their pre-registered [B,D] readout.
         if features.ndim==3: features=features.mean(1)
-        if features.ndim!=2 or features.shape[1]!=768:
-            raise RuntimeError(f'Expected 768-dimensional probe features, got {tuple(features.shape)}')
+        expected_dim=c['downstream'].get('feature_dim')
+        if features.ndim!=2 or (expected_dim is not None and features.shape[1]!=int(expected_dim)):
+            raise RuntimeError(f'Unexpected probe feature shape {tuple(features.shape)}; expected feature_dim={expected_dim}')
         xs.append(features.float().cpu()); ys.append(y.long().cpu()); keys.extend(zip(fold.tolist(),idx.tolist()))
     return torch.cat(xs),torch.cat(ys),np.asarray(keys,dtype=np.int64)
 
@@ -52,7 +53,7 @@ def _run_downstream(c:dict[str,Any],encoder,out:Path,*,encoder_epoch:int|str,enc
     with (out/'test_started.json').open('x') as f: json.dump(marker,f)
     x,y,keys=_extract(enc,by['test'],c,device); state=torch.load(out/'best_linear_probe.pt',map_location='cpu',weights_only=False); clf=torch.nn.Linear(tx.shape[1],19).to(device).eval(); clf.load_state_dict(state['classifier']); loss,metrics,preds=_evaluate(clf,(x-state['feature_mean'])/state['feature_std'],y,device); np.savez_compressed(out/'test_predictions.npz',labels=y.numpy(),predictions=preds,keys=keys)
     report=classification_report(y.numpy(),preds,output_dict=True,zero_division=0); write_csv([{'class_id':i,**report[str(i)]} for i in range(19)],out/'test_per_class_metrics.csv'); np.savetxt(out/'test_confusion_matrix.csv',confusion_matrix(y.numpy(),preds,labels=list(range(19))),delimiter=',',fmt='%d')
-    result={'method':c['method']['name'],'encoder_epoch':encoder_epoch,'probe_validation_macro_f1':float(best['val_macro_f1']),'test_loss':float(loss),'test':metrics,'test_images':int(y.numel()),'test_evaluated_once':True}
+    result={'method':c['method']['name'],'encoder_epoch':encoder_epoch,'feature_dim':int(tx.shape[1]),'probe_validation_macro_f1':float(best['val_macro_f1']),'test_loss':float(loss),'test':metrics,'test_images':int(y.numel()),'test_evaluated_once':True}
     if encoder_metadata is not None: result['encoder_metadata']=dict(encoder_metadata)
     atomic_json_dump(result,out/'test_metrics.json'); return result
 

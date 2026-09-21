@@ -1,0 +1,97 @@
+{
+  "report_type": "saved-artifact comparison; no model execution or test-data decoding",
+  "protocol": {
+    "dataset": "PanNuke",
+    "image_size": 256,
+    "fixed_split": {
+      "train": 2052,
+      "validation": 247,
+      "test": 247
+    },
+    "probe": "train-only feature normalization; shared linear-probe grid; validation-only selection; one saved test evaluation per baseline"
+  },
+  "results": [
+    {
+      "method": "simplex_sigreg_lejepa",
+      "role": "primary matched trained comparator",
+      "encoder": "trained Simplex-SIGReg-LeJEPA epoch-260 checkpoint",
+      "readout": "mean final patch tokens (64x768 to 768)",
+      "feature_dim": 768,
+      "test": {
+        "macro_f1": 0.9232786951425002,
+        "accuracy": 0.9230769230769231
+      },
+      "output_paths": {
+        "metrics": "outputs/ssl_standard/simplex_sigreg_lejepa/downstream/test_metrics.json"
+      }
+    },
+    {
+      "method": "plip_pretrained_patch_mean",
+      "role": "matched pretrained patch-mean comparator",
+      "encoder": "frozen pretrained PLIP",
+      "readout": "mean final patch tokens (64x768 to 768)",
+      "feature_dim": 768,
+      "test": {
+        "macro_f1": 0.8157734884595139,
+        "accuracy": 0.8137651821862348
+      },
+      "delta_vs_simplex": {
+        "macro_f1": -0.10750520668298624,
+        "accuracy": -0.10931174089068829
+      },
+      "output_paths": {
+        "metrics": "outputs/ssl_standard/plip_pretrained_patch_mean/downstream/test_metrics.json",
+        "provenance": "outputs/ssl_standard/plip_pretrained_patch_mean/encoder_provenance.json"
+      }
+    },
+    {
+      "method": "plip_pretrained_cls",
+      "role": "supplementary different-readout PLIP result",
+      "encoder": "frozen pretrained PLIP",
+      "readout": "native post-layernorm CLS",
+      "feature_dim": 768,
+      "test": {
+        "macro_f1": 0.8561857195558766,
+        "accuracy": 0.854251012145749
+      },
+      "delta_vs_simplex": {
+        "macro_f1": -0.06709297558662353,
+        "accuracy": -0.06882591093117418
+      },
+      "output_paths": {
+        "metrics": "outputs/ssl_standard/plip_pretrained_cls/downstream/test_metrics.json",
+        "provenance": "outputs/ssl_standard/plip_pretrained_cls/encoder_provenance.json"
+      }
+    },
+    {
+      "method": "conch_v1_pretrained_attn_pool",
+      "role": "frozen official CONCH v1 baseline",
+      "encoder": "MahmoodLab/CONCH revision f9ca9f877171a28ade80228fb195ac5d79003357",
+      "readout": "official 512-D attention pooling before contrast projection and L2 normalization",
+      "feature_dim": 512,
+      "test": {
+        "macro_f1": 0.7406672570556418,
+        "accuracy": 0.7489878542510121
+      },
+      "delta_vs_simplex": {
+        "macro_f1": -0.1826114380868583,
+        "accuracy": -0.17408906882591102
+      },
+      "delta_vs_plip_patch_mean": {
+        "macro_f1": -0.07510623140387207,
+        "accuracy": -0.06477732793522273
+      },
+      "output_paths": {
+        "metrics": "outputs/ssl_standard/conch_v1_pretrained_attn_pool/downstream/test_metrics.json",
+        "provenance": "outputs/ssl_standard/conch_v1_pretrained_attn_pool/encoder_provenance.json",
+        "preflight": "outputs/ssl_standard/conch_v1_pretrained_attn_pool/preflight.json"
+      }
+    }
+  ],
+  "readout_caveats": [
+    "Simplex and PLIP patch mean use the matched mean-final-patch-token 768-D readout.",
+    "PLIP CLS is supplementary and is explicitly not a matched patch-mean comparison.",
+    "CONCH uses its official 512-D attention-pooled linear-probe feature rather than a CLS or patch-mean readout; its native checkpoint is 448px and the registered 256px protocol uses CONCH's official positional-resize path."
+  ],
+  "test_data_access": "This report was generated only from existing saved test metrics and provenance; no test marker, prediction file, model, or test image was touched."
+}

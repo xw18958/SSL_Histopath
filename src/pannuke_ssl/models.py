@@ -158,6 +158,78 @@ class PretrainedPLIPVisionEncoder(nn.Module):
         return self.cls_features(images)
 
 
+class FrozenCONCHVisionEncoder(nn.Module):
+    """Official frozen CONCH v1 encoder with its linear-probe image readout.
+
+    CONCH documents ``encode_image(..., proj_contrast=False, normalize=False)``
+    for linear probes.  That path is the 512-D attentional-pooling representation
+    before the contrast projection and L2 normalization.  The official loader is
+    fixed to the shared 256px protocol, which invokes CONCH's own positional
+    embedding resize path while loading the released 448px checkpoint.
+    """
+
+    MODEL_CONFIG = "conch_ViT-B-16"
+    NATIVE_IMAGE_SIZE = 448
+    IMAGE_SIZE = 256
+    FEATURE_DIM = 512
+
+    def __init__(self, checkpoint_path: str | Path, *, image_size: int = IMAGE_SIZE) -> None:
+        super().__init__()
+        if int(image_size) != self.IMAGE_SIZE:
+            raise ValueError(f"The registered CONCH baseline is fixed at {self.IMAGE_SIZE}px")
+        checkpoint = Path(checkpoint_path)
+        if not checkpoint.is_file():
+            raise FileNotFoundError(f"Missing CONCH checkpoint: {checkpoint}")
+        try:
+            from conch.open_clip_custom import create_model_from_pretrained
+        except ImportError as error:
+            raise RuntimeError("Official CONCH package is required for the CONCH baseline") from error
+
+        self.model = create_model_from_pretrained(
+            self.MODEL_CONFIG,
+            checkpoint_path=str(checkpoint),
+            device="cpu",
+            force_image_size=self.IMAGE_SIZE,
+            return_transform=False,
+        )
+        self.image_size = self.IMAGE_SIZE
+        self.feature_dim = self.FEATURE_DIM
+        visual = self.model.visual
+        if int(getattr(self.model, "embed_dim", -1)) != self.FEATURE_DIM:
+            raise RuntimeError(f"Unexpected CONCH embedding dimension: {getattr(self.model, 'embed_dim', None)}")
+        if not bool(getattr(visual, "use_attentional_pool_contrast", False)):
+            raise RuntimeError("CONCH visual encoder is missing the required attention-pooling readout")
+        visual_size = tuple(int(value) for value in visual.image_size)
+        if visual_size != (self.IMAGE_SIZE, self.IMAGE_SIZE):
+            raise RuntimeError(f"Official CONCH loader did not set the requested 256px image size: {visual_size}")
+        mean = torch.tensor(visual.image_mean, dtype=torch.float32).view(1, 3, 1, 1)
+        std = torch.tensor(visual.image_std, dtype=torch.float32).view(1, 3, 1, 1)
+        self.register_buffer("image_mean", mean, persistent=False)
+        self.register_buffer("image_std", std, persistent=False)
+        self.model.requires_grad_(False)
+        self.model.eval()
+
+    def train(self, mode: bool = True) -> "FrozenCONCHVisionEncoder":
+        """Keep the registered pretrained baseline in evaluation mode."""
+        super().train(False)
+        return self
+
+    @torch.inference_mode()
+    def forward(self, images: torch.Tensor) -> torch.Tensor:
+        if images.ndim != 4 or images.shape[1] != 3:
+            raise ValueError(f"Expected [B,3,H,W] image batch, got {tuple(images.shape)}")
+        if tuple(images.shape[-2:]) != (self.image_size, self.image_size):
+            raise ValueError(f"Expected fixed {self.image_size}px CONCH inputs, got {tuple(images.shape[-2:])}")
+        # These tensors are already raw 256px RGB values in [0,1]; at this size
+        # CONCH's documented resize/center-crop preprocessing is geometry-neutral.
+        normalized = (images - self.image_mean.to(dtype=images.dtype)) / self.image_std.to(dtype=images.dtype)
+        features = self.model.encode_image(normalized, proj_contrast=False, normalize=False)
+        expected = (images.shape[0], self.feature_dim)
+        if features.shape != expected:
+            raise RuntimeError(f"Unexpected CONCH attention-pooled feature shape {tuple(features.shape)} != {expected}")
+        return features
+
+
 class ScalarConditioner(nn.Module):
     def __init__(self, width: int) -> None:
         super().__init__()
