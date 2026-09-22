@@ -143,6 +143,14 @@ def _run(config: dict[str, Any], encoder: FrozenCONCHVisionEncoder, provenance: 
     if marker.exists():
         if not metrics.exists():
             raise RuntimeError(f"{marker} exists without completed metrics; refusing to decode the test split again")
+        if dataset == PANNUKE_DATASET:
+            resolved_path = run_root / "resolved_config.json"
+            if not resolved_path.exists():
+                raise RuntimeError("Existing CONCH PanNuke result has no resolved config; refusing to reuse it")
+            saved = json.loads(resolved_path.read_text())
+            for key in ("train_count", "validation_count", "test_count"):
+                if int(saved["downstream"][key]) != int(config["downstream"][key]):
+                    raise RuntimeError("Existing CONCH result uses an obsolete PanNuke split; archive/remove it before rerunning")
         return json.loads(metrics.read_text())
     run_root.mkdir(parents=True, exist_ok=True)
     atomic_json_dump(config, run_root / "resolved_config.json")

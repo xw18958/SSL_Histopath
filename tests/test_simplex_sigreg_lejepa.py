@@ -46,15 +46,33 @@ def test_simplex_method_keeps_lejepa_non_target_settings_identical():
         assert simplex[key] == baseline[key]
 
 
-def test_simplex_sigreg_tuning_grid_and_application():
+def test_simplex_sigreg_uses_sequential_k_then_lr_search_with_fixed_sigma():
     c = load_standard_config("simplex_sigreg_lejepa")
     spec = load_tuning_spec("simplex_sigreg_lejepa")
     assert c["method"]["objective"]["simplex_sigma"] == 1.0
     assert spec["parameters"]["simplex_components"]["candidates"] == [2, 4, 8, 16, 32, 64]
-    tuned = apply_tuned_hyperparameters(c, {"learning_rate": 0.001, "simplex_components": 16})
+    assert spec["search"]["strategy"] == "sequential_greedy"
+    assert spec["search"]["order"] == ["simplex_components", "learning_rate"]
+    assert spec["search"]["fixed_simplex_sigma"] == 1.0
+    assert spec["search"]["k_stage_learning_rate"] == spec["parameters"]["learning_rate"]["source_value"]
+    tuned = apply_tuned_hyperparameters(
+        c,
+        {"learning_rate": 0.001, "simplex_components": 16, "simplex_sigma": 1.0},
+    )
     assert tuned["method"]["optimizer"]["peak_lr"] == 0.001
     assert tuned["method"]["objective"]["simplex_components"] == 16
+    assert tuned["method"]["objective"]["simplex_sigma"] == 1.0
     assert c["method"]["objective"]["simplex_components"] == 2
+
+
+def test_simplex_sigma_cannot_be_tuned_away_from_one():
+    c = load_standard_config("simplex_sigreg_lejepa")
+    try:
+        apply_tuned_hyperparameters(c, {"simplex_sigma": 0.5})
+    except ValueError as exc:
+        assert "fixed to 1.0" in str(exc)
+    else:
+        raise AssertionError("Expected non-unit simplex sigma to be rejected")
 
 
 def test_simplex_requires_enough_projector_dimensions():
@@ -64,3 +82,40 @@ def test_simplex_requires_enough_projector_dimensions():
         assert "requires feature_dim" in str(exc)
     else:
         raise AssertionError("Expected K-1 > D to be rejected")
+
+
+def test_simplex_tuning_executes_six_k_trials_then_three_lr_trials(monkeypatch, tmp_path):
+    import pannuke_ssl.ssl_framework.tuning as tuning_module
+
+    c = load_standard_config("simplex_sigreg_lejepa")
+    c["output"]["root"] = str(tmp_path)
+    calls = []
+
+    def fake_train(config, out, *, epochs, interval, early_stop):
+        k = int(config["method"]["objective"]["simplex_components"])
+        lr = float(config["method"]["optimizer"]["peak_lr"])
+        sigma = float(config["method"]["objective"]["simplex_sigma"])
+        calls.append((str(out), k, lr, sigma, epochs, interval, early_stop))
+        if "stage_1_K" in str(out):
+            score = {2: 0.60, 4: 0.65, 8: 0.80, 16: 0.75, 32: 0.70, 64: 0.68}[k]
+        else:
+            score = {0.0001: 0.81, 0.0005: 0.82, 0.001: 0.85}[lr]
+        return {"best_epoch": 20, "best_validation_linear_macro_f1": score}
+
+    monkeypatch.setattr(tuning_module, "train_ssl", fake_train)
+    result = tuning_module.run_tuning(c)
+
+    assert len(calls) == 9
+    first_stage = calls[:6]
+    second_stage = calls[6:]
+    assert [call[1] for call in first_stage] == [2, 4, 8, 16, 32, 64]
+    assert all(call[2] == 0.0005 and call[3] == 1.0 for call in first_stage)
+    assert all(call[1] == 8 and call[3] == 1.0 for call in second_stage)
+    assert [call[2] for call in second_stage] == [0.0001, 0.0005, 0.001]
+    assert all(call[4:] == (20, 5, False) for call in calls)
+    assert result["search_strategy"] == "sequential_greedy"
+    assert result["selected_parameters"] == {
+        "learning_rate": 0.001,
+        "simplex_components": 8,
+        "simplex_sigma": 1.0,
+    }

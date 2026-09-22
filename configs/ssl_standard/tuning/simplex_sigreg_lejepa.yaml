@@ -8,4 +8,14 @@ parameters:
   simplex_components:
     candidates: [2, 4, 8, 16, 32, 64]
     selection_role: method_hyperparameter
-selection: {metric: linear_val_macro_f1, test_used: false, tie_break: prefer_source_lr_then_smaller_K_then_first_candidate}
+search:
+  strategy: sequential_greedy
+  order: [simplex_components, learning_rate]
+  fixed_simplex_sigma: 1.0
+  k_stage_learning_rate: 0.0005
+selection:
+  metric: linear_val_macro_f1
+  test_used: false
+  tie_break:
+    simplex_components: smaller_K
+    learning_rate: prefer_source_value_then_first_candidate

@@ -6,7 +6,8 @@ import numpy as np,torch
 from sklearn.metrics import classification_report,confusion_matrix
 from torch.utils.data import DataLoader
 from pannuke_ssl.data import PanNukeImageDataset,loader_kwargs
-from pannuke_ssl.parquet import build_source_index,preload_images,read_metadata,verify_records
+from pannuke_ssl.parquet import build_source_index,preload_images,verify_records
+from .data_validation import validated_pannuke_split
 from pannuke_ssl.probe import _evaluate,_fit_probe
 from pannuke_ssl.utils import atomic_json_dump,seed_everything,write_csv
 from .external_datasets import (
@@ -50,12 +51,8 @@ def _split_rows(c:dict[str,Any],external_dataset:ExternalProbeDataset|None=None)
         if set(by)!={'train','val','test'} or any(not rows for rows in by.values()):
             raise AssertionError(f'External manifest has invalid split coverage: {external_dataset.split_counts}')
         return by
-    rows=read_metadata(Path(c['data']['metadata_csv'])); by={s:[r for r in rows if r['split']==s] for s in ('train','val','test')}
-    expected={'train':int(c['downstream']['train_count']),'val':int(c['downstream']['validation_count']),'test':int(c['downstream']['test_count'])}
-    observed={split:len(split_rows) for split,split_rows in by.items()}
-    if observed!=expected:
-        raise AssertionError(f'Fixed downstream split mismatch: observed={observed}, expected={expected}')
-    return by
+    rows,_=validated_pannuke_split(c)
+    return {s:[r for r in rows if r['split']==s] for s in ('train','val','test')}
 
 def _run_downstream(c:dict[str,Any],encoder,out:Path,*,encoder_epoch:int|str,encoder_metadata:Mapping[str,Any]|None=None,external_dataset:ExternalProbeDataset|None=None):
     if not torch.cuda.is_available(): raise RuntimeError('CUDA required')
