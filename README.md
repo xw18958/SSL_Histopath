@@ -2,7 +2,7 @@
 
 Self-supervised learning experiments for histopathology using the **PanNuke** dataset.
 
-This repository contains code for preparing a balanced PanNuke classification dataset and experimenting with several SSL objectives built on a fresh PLIP/CLIP ViT-B/32 vision encoder.
+This repository contains code for preparing a fixed PanNuke classification split with balanced validation/test sets and experimenting with several SSL objectives built on a fresh PLIP/CLIP ViT-B/32 vision encoder.
 
 ## Methods
 
@@ -30,7 +30,7 @@ scripts/                 Training, evaluation, probing, and calibration scripts
 src/pannuke_ssl/         Core SSL implementation
 prepare_pannuke19.py     PanNuke dataset preparation
 pannuke19_dataset.py     PanNuke dataset loader
-pannuke19_metadata.csv   Balanced 19-class dataset metadata
+pannuke19_metadata.csv   Generated PanNuke train/validation/test metadata
 tests/                   Unit tests
 README_B0.md             Detailed B0 experiment instructions
 ```
@@ -46,6 +46,8 @@ For the B0 training pipeline and example commands, see [`README_B0.md`](README_B
 ## Dataset
 
 Experiments are based on **PanNuke**, a multi-organ histopathology dataset. The repository stores metadata and dataset-loading code rather than duplicating the source images.
+
+The current standard protocol uses all 7,901 images: 6,305 train, 798 validation, and 798 test. Validation and test contain exactly 42 images from each of the 19 tissue classes; all remaining images form the training split. Regenerate `pannuke19_metadata.csv` before new runs with `prepare_pannuke19.py`; the SSL framework rejects metadata that does not match this protocol.
 
 ## Status
 
