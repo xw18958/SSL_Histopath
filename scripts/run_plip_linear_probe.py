@@ -212,7 +212,7 @@ def _write_comparison(output_root: Path) -> dict[str, Any]:
     lines = [
         "# Frozen pretrained PLIP linear-probe comparison",
         "",
-        "| Result | Test macro-F1 | Delta vs Simplex epoch-260 |",
+        "| Result | Test macro-F1 | Delta vs current Simplex |",
         "| --- | ---: | ---: |",
         f"| Simplex-SIGReg-LeJEPA (current best checkpoint, matched patch mean) | {simplex_f1:.5f} | 0.00000 |",
         f"| PLIP pretrained (matched patch mean, primary) | {float(patch['test']['macro_f1']):.5f} | {report['primary_comparison']['plip_minus_simplex_macro_f1']:+.5f} |",
