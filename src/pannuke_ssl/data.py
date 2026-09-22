@@ -108,6 +108,29 @@ def build_ssl_loader(
     return DataLoader(dataset, **loader_kwargs(batch_size, workers, shuffle=shuffle)), source_index
 
 
+def _split_rows_with_balanced_holdouts(
+    rows: Sequence[Mapping[str, object]],
+    *,
+    num_classes: int = 19,
+) -> dict[str, list[Mapping[str, object]]]:
+    """Validate train/val/test coverage while requiring balanced val and test only."""
+    allowed = ("train", "val", "test")
+    observed_splits = {str(row["split"]) for row in rows}
+    if observed_splits != set(allowed):
+        raise ValueError(f"Metadata must contain exactly train/val/test splits, found {sorted(observed_splits)}")
+
+    split_rows = {split: [row for row in rows if str(row["split"]) == split] for split in allowed}
+    if any(not part for part in split_rows.values()):
+        raise ValueError("Train, validation, and test splits must all be non-empty")
+
+    for split in ("val", "test"):
+        counts = [sum(int(row["class_id"]) == class_id for row in split_rows[split]) for class_id in range(num_classes)]
+        if any(count <= 0 for count in counts) or len(set(counts)) != 1:
+            raise ValueError(f"{split} split must be balanced across all {num_classes} classes; counts={counts}")
+
+    return split_rows
+
+
 def build_balanced_loaders(
     data_root: str | Path,
     metadata_csv: str | Path,
@@ -117,21 +140,11 @@ def build_balanced_loaders(
     include_key: bool = False,
     cache_in_ram: bool = True,
 ) -> tuple[dict[str, DataLoader], dict[tuple[int, int], SourceRecord]]:
+    """Build classification loaders; train may be imbalanced, val/test must be class-balanced."""
     source_index = build_source_index(Path(data_root))
     rows = read_metadata(Path(metadata_csv))
     verify_records(rows, source_index)
-    expected = {"train": 2052, "val": 247, "test": 247}
-    split_rows = {name: [row for row in rows if row["split"] == name] for name in expected}
-    actual = {name: len(values) for name, values in split_rows.items()}
-    if actual != expected:
-        raise ValueError(f"Unexpected balanced split sizes: {actual}")
-    counts: dict[tuple[str, int], int] = {}
-    for row in rows:
-        key = (str(row["split"]), int(row["class_id"]))
-        counts[key] = counts.get(key, 0) + 1
-    for class_id in range(19):
-        if [counts.get((s, class_id), 0) for s in expected] != [108, 13, 13]:
-            raise ValueError(f"Class {class_id} does not have the required 108/13/13 split")
+    split_rows = _split_rows_with_balanced_holdouts(rows)
     cache = preload_images(rows, source_index) if cache_in_ram else None
     workers = min(8, os.cpu_count() or 1) if num_workers is None else num_workers
     loaders = {
