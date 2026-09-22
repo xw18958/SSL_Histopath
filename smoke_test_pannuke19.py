@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""End-to-end validation for balanced PanNuke classification metadata and loaders."""
+"""End-to-end validation for the fixed PanNuke train/validation/test metadata and loaders."""
 
 from __future__ import annotations
 
@@ -21,9 +21,13 @@ def main() -> None:
     rows = read_metadata(args.metadata)
     index = build_source_index(args.data_root)
     verify_records(rows, index)
-    assert len(rows) == 2546
-    assert Counter(row["class_id"] for row in rows) == Counter({class_id: 134 for class_id in range(19)})
-    assert Counter(row["split"] for row in rows) == Counter({"train": 2052, "val": 247, "test": 247})
+    assert len(rows) == 7901
+    assert {(row["fold"], row["sample_index"]) for row in rows} == set(index)
+    assert Counter(row["split"] for row in rows) == Counter({"train": 6305, "val": 798, "test": 798})
+    for split in ("val", "test"):
+        assert Counter(row["class_id"] for row in rows if row["split"] == split) == Counter(
+            {class_id: 42 for class_id in range(19)}
+        )
 
     cached = build_dataloaders(args.metadata, args.data_root, batch_size=8, num_workers=0, cache_in_ram=True)
     uncached = build_dataloaders(args.metadata, args.data_root, batch_size=8, num_workers=0, cache_in_ram=False)
@@ -33,7 +37,7 @@ def main() -> None:
         assert images.dtype == torch.uint8
         assert int(labels.min()) >= 0 and int(labels.max()) <= 18
         assert cached[split].dataset[0][1] == uncached[split].dataset[0][1]
-    print("Smoke test passed: metadata, cached loader, and uncached loader are valid.")
+    print("Smoke test passed: 6305/798/798 split, balanced held-outs, cached and uncached loaders are valid.")
 
 
 if __name__ == "__main__":
