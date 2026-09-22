@@ -1,1 +1,1 @@
-{"encoder_epoch": 260, "probe_selected": true, "dataset": "breakhis_8subtype", "num_classes": 8}
+{"encoder_epoch": 270, "probe_selected": true, "dataset": "breakhis_8subtype", "num_classes": 8}

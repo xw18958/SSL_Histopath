@@ -1,12 +1,12 @@
 {
-  "best_epoch": 260,
-  "best_validation_linear_macro_f1": 0.9346443403193975,
+  "best_epoch": 270,
+  "best_validation_linear_macro_f1": 0.8284941543295563,
   "epochs_completed": 300,
   "epochs_planned": 300,
   "initial_encoder_sha256": "eccdcfba016917e36667d3cf4288f41869b1a3593345729e3115b638d4a8d372",
   "labels_loaded_for_ssl": false,
   "method": "simplex_sigreg_lejepa",
-  "seconds": 7573.053590495838,
+  "seconds": 6490.444108042866,
   "source_metadata": {
     "baseline_implementation": "galilai-group/lejepa and released stable-pretraining recipe",
     "baseline_method": "lejepa",
@@ -40,7 +40,7 @@
     "source_views": "2_global_plus_6_local",
     "source_weight_decay_vit": 0.05
   },
-  "ssl_images_per_epoch": 7901,
+  "ssl_images_per_epoch": 6305,
   "stop_reason": "max_epochs",
   "test_used_for_ssl_selection": false
 }

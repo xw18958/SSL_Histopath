@@ -84,7 +84,7 @@ def test_simplex_requires_enough_projector_dimensions():
         raise AssertionError("Expected K-1 > D to be rejected")
 
 
-def test_simplex_tuning_executes_six_k_trials_then_three_lr_trials(monkeypatch, tmp_path):
+def test_simplex_tuning_executes_six_k_trials_then_reuses_source_lr(monkeypatch, tmp_path):
     import pannuke_ssl.ssl_framework.tuning as tuning_module
 
     c = load_standard_config("simplex_sigreg_lejepa")
@@ -105,15 +105,22 @@ def test_simplex_tuning_executes_six_k_trials_then_three_lr_trials(monkeypatch, 
     monkeypatch.setattr(tuning_module, "train_ssl", fake_train)
     result = tuning_module.run_tuning(c)
 
-    assert len(calls) == 9
+    assert len(calls) == 8
     first_stage = calls[:6]
     second_stage = calls[6:]
     assert [call[1] for call in first_stage] == [2, 4, 8, 16, 32, 64]
     assert all(call[2] == 0.0005 and call[3] == 1.0 for call in first_stage)
     assert all(call[1] == 8 and call[3] == 1.0 for call in second_stage)
-    assert [call[2] for call in second_stage] == [0.0001, 0.0005, 0.001]
+    assert [call[2] for call in second_stage] == [0.0001, 0.001]
     assert all(call[4:] == (20, 5, False) for call in calls)
     assert result["search_strategy"] == "sequential_greedy"
+    assert result["executed_trial_count"] == 8
+    assert len(result["rows"]) == 9
+    reused = [row for row in result["rows"] if row.get("reused_from_stage") == "simplex_components"]
+    assert len(reused) == 1
+    assert reused[0]["stage"] == "learning_rate"
+    assert reused[0]["candidate_value"] == 0.0005
+    assert reused[0]["status"] == "completed"
     assert result["selected_parameters"] == {
         "learning_rate": 0.001,
         "simplex_components": 8,

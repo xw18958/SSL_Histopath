@@ -5,180 +5,147 @@
     "plateau_early_stopping": false,
     "validation_interval_epochs": 5
   },
+  "executed_trial_count": 8,
   "method": "simplex_sigreg_lejepa",
   "rows": [
     {
-      "best_epoch": 15,
-      "best_validation_linear_macro_f1": 0.49710536433648567,
+      "best_epoch": 10,
+      "best_validation_linear_macro_f1": 0.40971390256054635,
+      "candidate_parameter": "simplex_components",
+      "candidate_value": 2,
       "error": null,
-      "is_source_value": false,
-      "learning_rate": 0.0001,
-      "simplex_components": 2,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 20,
-      "best_validation_linear_macro_f1": 0.4998903550485655,
-      "error": null,
-      "is_source_value": true,
       "learning_rate": 0.0005,
       "simplex_components": 2,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 15,
-      "best_validation_linear_macro_f1": 0.37693976504045157,
-      "error": null,
-      "is_source_value": false,
-      "learning_rate": 0.001,
-      "simplex_components": 2,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 15,
-      "best_validation_linear_macro_f1": 0.47506963695711424,
-      "error": null,
-      "is_source_value": false,
-      "learning_rate": 0.0001,
-      "simplex_components": 4,
+      "simplex_sigma": 1.0,
+      "stage": "simplex_components",
       "status": "completed"
     },
     {
       "best_epoch": 20,
-      "best_validation_linear_macro_f1": 0.5080264929605299,
+      "best_validation_linear_macro_f1": 0.4452854079424705,
+      "candidate_parameter": "simplex_components",
+      "candidate_value": 4,
       "error": null,
-      "is_source_value": true,
       "learning_rate": 0.0005,
       "simplex_components": 4,
+      "simplex_sigma": 1.0,
+      "stage": "simplex_components",
       "status": "completed"
     },
     {
       "best_epoch": 15,
-      "best_validation_linear_macro_f1": 0.4511669726276096,
+      "best_validation_linear_macro_f1": 0.4372886059704085,
+      "candidate_parameter": "simplex_components",
+      "candidate_value": 8,
       "error": null,
-      "is_source_value": false,
-      "learning_rate": 0.001,
-      "simplex_components": 4,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 15,
-      "best_validation_linear_macro_f1": 0.48363623117430427,
-      "error": null,
-      "is_source_value": false,
-      "learning_rate": 0.0001,
-      "simplex_components": 8,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 20,
-      "best_validation_linear_macro_f1": 0.5257072775715931,
-      "error": null,
-      "is_source_value": true,
       "learning_rate": 0.0005,
       "simplex_components": 8,
+      "simplex_sigma": 1.0,
+      "stage": "simplex_components",
       "status": "completed"
     },
     {
-      "best_epoch": 5,
-      "best_validation_linear_macro_f1": 0.3930762377310156,
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.4584513740957489,
+      "candidate_parameter": "simplex_components",
+      "candidate_value": 16,
       "error": null,
-      "is_source_value": false,
-      "learning_rate": 0.001,
-      "simplex_components": 8,
+      "learning_rate": 0.0005,
+      "simplex_components": 16,
+      "simplex_sigma": 1.0,
+      "stage": "simplex_components",
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.440481561876296,
+      "candidate_parameter": "simplex_components",
+      "candidate_value": 32,
+      "error": null,
+      "learning_rate": 0.0005,
+      "simplex_components": 32,
+      "simplex_sigma": 1.0,
+      "stage": "simplex_components",
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.465286505173546,
+      "candidate_parameter": "simplex_components",
+      "candidate_value": 64,
+      "error": null,
+      "learning_rate": 0.0005,
+      "simplex_components": 64,
+      "simplex_sigma": 1.0,
+      "stage": "simplex_components",
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.42898394834069703,
+      "candidate_parameter": "learning_rate",
+      "candidate_value": 0.0001,
+      "error": null,
+      "learning_rate": 0.0001,
+      "simplex_components": 64,
+      "simplex_sigma": 1.0,
+      "stage": "learning_rate",
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.465286505173546,
+      "candidate_parameter": "learning_rate",
+      "candidate_value": 0.0005,
+      "error": null,
+      "learning_rate": 0.0005,
+      "reused_from_stage": "simplex_components",
+      "simplex_components": 64,
+      "simplex_sigma": 1.0,
+      "stage": "learning_rate",
       "status": "completed"
     },
     {
       "best_epoch": 15,
-      "best_validation_linear_macro_f1": 0.4943401220290131,
+      "best_validation_linear_macro_f1": 0.3764883929232161,
+      "candidate_parameter": "learning_rate",
+      "candidate_value": 0.001,
       "error": null,
-      "is_source_value": false,
-      "learning_rate": 0.0001,
-      "simplex_components": 16,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 20,
-      "best_validation_linear_macro_f1": 0.49931664060093656,
-      "error": null,
-      "is_source_value": true,
-      "learning_rate": 0.0005,
-      "simplex_components": 16,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 20,
-      "best_validation_linear_macro_f1": 0.39471799762155435,
-      "error": null,
-      "is_source_value": false,
-      "learning_rate": 0.001,
-      "simplex_components": 16,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 20,
-      "best_validation_linear_macro_f1": 0.5020320274924552,
-      "error": null,
-      "is_source_value": false,
-      "learning_rate": 0.0001,
-      "simplex_components": 32,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 15,
-      "best_validation_linear_macro_f1": 0.5148488805177525,
-      "error": null,
-      "is_source_value": true,
-      "learning_rate": 0.0005,
-      "simplex_components": 32,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 15,
-      "best_validation_linear_macro_f1": 0.3765738167186333,
-      "error": null,
-      "is_source_value": false,
-      "learning_rate": 0.001,
-      "simplex_components": 32,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 20,
-      "best_validation_linear_macro_f1": 0.45303652296158586,
-      "error": null,
-      "is_source_value": false,
-      "learning_rate": 0.0001,
-      "simplex_components": 64,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 20,
-      "best_validation_linear_macro_f1": 0.49426179362094674,
-      "error": null,
-      "is_source_value": true,
-      "learning_rate": 0.0005,
-      "simplex_components": 64,
-      "status": "completed"
-    },
-    {
-      "best_epoch": 5,
-      "best_validation_linear_macro_f1": 0.389039826644666,
-      "error": null,
-      "is_source_value": false,
       "learning_rate": 0.001,
       "simplex_components": 64,
+      "simplex_sigma": 1.0,
+      "stage": "learning_rate",
       "status": "completed"
     }
   ],
+  "search_strategy": "sequential_greedy",
   "selected_parameters": {
     "learning_rate": 0.0005,
-    "simplex_components": 8
+    "simplex_components": 64,
+    "simplex_sigma": 1.0
   },
-  "selected_simplex_components": 8,
-  "selected_validation_linear_macro_f1": 0.5257072775715931,
+  "selected_simplex_components": 64,
+  "selected_simplex_sigma": 1.0,
+  "selected_validation_linear_macro_f1": 0.465286505173546,
   "selected_value": 0.0005,
   "source_reference": "galilai-group/lejepa README GOTO hyperparameters",
   "source_value": 0.0005,
   "source_value_included": true,
+  "stages": [
+    {
+      "fixed_learning_rate": 0.0005,
+      "fixed_simplex_sigma": 1.0,
+      "name": "simplex_components",
+      "selected_simplex_components": 64,
+      "selected_validation_linear_macro_f1": 0.465286505173546
+    },
+    {
+      "fixed_simplex_components": 64,
+      "fixed_simplex_sigma": 1.0,
+      "name": "learning_rate",
+      "selected_learning_rate": 0.0005,
+      "selected_validation_linear_macro_f1": 0.465286505173546
+    }
+  ],
   "test_used": false
 }

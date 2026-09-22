@@ -1,14 +1,38 @@
 {
-  "encoder_epoch": 260,
+  "class_names": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18"
+  ],
+  "dataset": "pannuke19",
+  "encoder_epoch": 270,
+  "feature_dim": 768,
   "method": "simplex_sigreg_lejepa",
-  "probe_validation_macro_f1": 0.9717376775271512,
+  "num_classes": 19,
+  "probe_validation_macro_f1": 0.8696593729478338,
   "test": {
-    "accuracy": 0.9230769230769231,
-    "balanced_accuracy": 0.9230769230769231,
-    "macro_f1": 0.9232786951425002,
-    "weighted_f1": 0.9232786951425
+    "accuracy": 0.8696741854636592,
+    "balanced_accuracy": 0.869674185463659,
+    "macro_f1": 0.8695437896971365,
+    "weighted_f1": 0.8695437896971364
   },
   "test_evaluated_once": true,
-  "test_images": 247,
-  "test_loss": 0.3461008667945862
+  "test_images": 798,
+  "test_loss": 0.5124117732048035
 }

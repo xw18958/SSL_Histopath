@@ -1,31 +1,34 @@
 # Standard SSL Report — simplex_sigreg_lejepa
 
-- SSL images: **7901**, unlabeled
+- SSL images: **6305**, unlabeled, from split **train**
+- PanNuke split: **6305 / 798 / 798** train/val/test
 - Representation: **mean_patch_tokens**
 - Validation selection: **linear_val_macro_f1**
 - Test protocol: **one evaluation after encoder/probe selection**
 
 ## Tuning
 
+- Search strategy: **sequential_greedy**
 - Selected learning rate: **0.0005**
-- Selected simplex components K: **8**
+- Selected simplex components K: **64**
+- Fixed simplex sigma: **1.0**
 - Source/recommended LR included: **True** (`0.0005`)
-- Best tuning validation macro-F1: **0.525707**
+- Best tuning validation macro-F1: **0.465287**
 
 ## SSL pretraining
 
 - Epochs completed: **300 / 300**
 - Stop reason: **max_epochs**
-- Selected epoch: **260**
-- Best validation linear macro-F1: **0.9346443403193975**
+- Selected epoch: **270**
+- Best validation linear macro-F1: **0.8284941543295563**
 
 ## Downstream test
 
-- Accuracy: **0.923077**
-- Balanced accuracy: **0.923077**
-- Macro-F1: **0.923279**
-- Weighted F1: **0.923279**
-- Test images: **247**
+- Accuracy: **0.869674**
+- Balanced accuracy: **0.869674**
+- Macro-F1: **0.869544**
+- Weighted F1: **0.869544**
+- Test images: **798**
 
 ## Method source metadata
 

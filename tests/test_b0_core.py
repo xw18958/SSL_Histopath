@@ -167,6 +167,7 @@ def test_remote_source_and_balanced_metadata() -> None:
     rows = read_metadata(METADATA)
     verify_records(rows, source)
     assert len(source) == 7901
-    assert len(rows) == 2546
-    assert Counter(int(row["class_id"]) for row in rows) == Counter({index: 134 for index in range(19)})
-    assert Counter(str(row["split"]) for row in rows) == {"train": 2052, "val": 247, "test": 247}
+    assert len(rows) == 7901
+    assert Counter(str(row["split"]) for row in rows) == {"train": 6305, "val": 798, "test": 798}
+    for split in ("val", "test"):
+        assert Counter(int(row["class_id"]) for row in rows if row["split"] == split) == Counter({index: 42 for index in range(19)})

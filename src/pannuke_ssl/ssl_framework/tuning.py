@@ -148,6 +148,23 @@ def _simplex_sequential_tuning(c: dict[str, Any], spec: dict[str, Any], root: Pa
     lr_rows = []
     lr_dir = root / "stage_2_learning_rate"
     for lr in lrs:
+        if math.isclose(lr, k_stage_lr, rel_tol=0.0, abs_tol=1e-15):
+            # The selected-K trial has already evaluated the source learning
+            # rate at the selected K. Reuse its validation result so the
+            # sequential search executes eight, rather than nine, trials.
+            lr_rows.append(
+                {
+                    **chosen_k_row,
+                    "stage": "learning_rate",
+                    "candidate_parameter": "learning_rate",
+                    "candidate_value": lr,
+                    "learning_rate": lr,
+                    "simplex_components": chosen_k,
+                    "simplex_sigma": sigma,
+                    "reused_from_stage": "simplex_components",
+                }
+            )
+            continue
         lr_rows.append(
             _run_trial(
                 c,
@@ -192,6 +209,7 @@ def _simplex_sequential_tuning(c: dict[str, Any], spec: dict[str, Any], root: Pa
             },
         ],
         "search_strategy": "sequential_greedy",
+        "executed_trial_count": len(k_rows) + len(lrs) - 1,
     }
 
 
@@ -223,6 +241,7 @@ def run_tuning(c: dict[str, Any]):
         "budget": spec["budget"],
         "stages": search["stages"],
         "rows": search["rows"],
+        "executed_trial_count": search.get("executed_trial_count", len(search["rows"])),
         "test_used": False,
     }
     if "simplex_components" in selected_parameters:

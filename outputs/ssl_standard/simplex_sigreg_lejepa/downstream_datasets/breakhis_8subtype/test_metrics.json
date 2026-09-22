@@ -113,18 +113,18 @@
     },
     "split_policy": "deterministic_equal_subtype_sample_444_then_image_stratified_356_44_44"
   },
-  "encoder_epoch": 260,
+  "encoder_epoch": 270,
   "feature_dim": 768,
   "method": "simplex_sigreg_lejepa",
   "num_classes": 8,
-  "probe_validation_macro_f1": 0.7550886338712802,
+  "probe_validation_macro_f1": 0.763358929077518,
   "test": {
-    "accuracy": 0.7556818181818182,
-    "balanced_accuracy": 0.7556818181818182,
-    "macro_f1": 0.7511828929661213,
-    "weighted_f1": 0.7511828929661213
+    "accuracy": 0.7130681818181818,
+    "balanced_accuracy": 0.7130681818181819,
+    "macro_f1": 0.7131948095731145,
+    "weighted_f1": 0.7131948095731145
   },
   "test_evaluated_once": true,
   "test_images": 352,
-  "test_loss": 0.7194971442222595
+  "test_loss": 0.7710644006729126
 }

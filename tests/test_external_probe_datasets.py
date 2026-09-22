@@ -128,5 +128,7 @@ def test_all_standard_methods_keep_pannuke_default_and_resolve_optional_outputs(
             standard._validate_action_dataset("downstream", slug)
             assert standard._downstream_output_path(root, slug) == root / "downstream_datasets" / slug
         # The default config is intentionally still PanNuke's fast gate.
-        assert config["data"]["expected_ssl_images"] == 7901
-        assert config["downstream"]["train_count"] == 2052
+        assert config["data"]["expected_ssl_images"] == 6305
+        assert config["downstream"]["train_count"] == 6305
+        assert config["downstream"]["validation_count"] == 798
+        assert config["downstream"]["test_count"] == 798

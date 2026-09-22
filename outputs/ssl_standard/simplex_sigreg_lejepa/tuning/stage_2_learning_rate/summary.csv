@@ -1,0 +1,4 @@
+stage,candidate_parameter,candidate_value,learning_rate,simplex_components,simplex_sigma,status,best_epoch,best_validation_linear_macro_f1,error,reused_from_stage
+learning_rate,learning_rate,0.0001,0.0001,64,1.0,completed,20,0.42898394834069703,,
+learning_rate,learning_rate,0.0005,0.0005,64,1.0,completed,20,0.465286505173546,,simplex_components
+learning_rate,learning_rate,0.001,0.001,64,1.0,completed,15,0.3764883929232161,,

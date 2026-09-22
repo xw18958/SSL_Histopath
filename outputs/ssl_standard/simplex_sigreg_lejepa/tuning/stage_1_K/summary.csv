@@ -1,0 +1,7 @@
+stage,candidate_parameter,candidate_value,learning_rate,simplex_components,simplex_sigma,status,best_epoch,best_validation_linear_macro_f1,error
+simplex_components,simplex_components,2,0.0005,2,1.0,completed,10,0.40971390256054635,
+simplex_components,simplex_components,4,0.0005,4,1.0,completed,20,0.4452854079424705,
+simplex_components,simplex_components,8,0.0005,8,1.0,completed,15,0.4372886059704085,
+simplex_components,simplex_components,16,0.0005,16,1.0,completed,20,0.4584513740957489,
+simplex_components,simplex_components,32,0.0005,32,1.0,completed,20,0.440481561876296,
+simplex_components,simplex_components,64,0.0005,64,1.0,completed,20,0.465286505173546,
