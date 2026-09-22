@@ -1,4 +1,4 @@
-"""Efficient PyTorch access to the balanced PanNuke Parquet classification set."""
+"""Efficient PyTorch access to the fixed PanNuke Parquet classification split."""
 
 from __future__ import annotations
 
@@ -243,7 +243,7 @@ def build_dataloaders(
     index = build_source_index(data_root)
     verify_records(rows, index)
     split_rows = {split: [row for row in rows if row["split"] == split] for split in ("train", "val", "test")}
-    if {split: len(part) for split, part in split_rows.items()} != {"train": 2052, "val": 247, "test": 247}:
+    if {split: len(part) for split, part in split_rows.items()} != {"train": 6305, "val": 798, "test": 798}:
         raise ValueError("Metadata does not have the required fixed split sizes")
 
     image_cache = preload_selected_images(rows, index) if cache_in_ram else None
