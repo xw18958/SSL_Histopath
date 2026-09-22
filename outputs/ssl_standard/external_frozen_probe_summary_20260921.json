@@ -1,0 +1,153 @@
+{
+  "manifests": {
+    "breakhis_8subtype": "2b1acc57865dff726c89894ee7309a041327c67cd6272ab8fa9eac833840817d",
+    "crc_val_he_7k": "073c0f77f8d6c3581bd1cf72a11432147f66e5c55f290d6b7ed22037cbb80170"
+  },
+  "probe_grid": {
+    "early_stopping_patience": 8,
+    "learning_rates": [
+      0.001,
+      0.003,
+      0.01
+    ],
+    "maximum_epochs": 50,
+    "weight_decays": [
+      0.0,
+      0.0001
+    ]
+  },
+  "protocol": "fixed frozen-feature linear probe; train-only standardization; validation macro-F1 selection; one test decode",
+  "results": [
+    {
+      "dataset": "crc_val_he_7k",
+      "feature_dim": 768,
+      "method": "LeJEPA",
+      "method_directory": "lejepa",
+      "probe_validation_macro_f1": 0.9868227093405548,
+      "role": "primary",
+      "test_accuracy": 0.9869281045751634,
+      "test_balanced_accuracy": 0.9869281045751634,
+      "test_macro_f1": 0.9869252769966592,
+      "test_metrics_path": "outputs/ssl_standard/lejepa/downstream_datasets/crc_val_he_7k/test_metrics.json",
+      "test_weighted_f1": 0.9869252769966593
+    },
+    {
+      "dataset": "crc_val_he_7k",
+      "feature_dim": 768,
+      "method": "Simplex-SIGReg-LeJEPA",
+      "method_directory": "simplex_sigreg_lejepa",
+      "probe_validation_macro_f1": 0.9868227093405548,
+      "role": "primary",
+      "test_accuracy": 0.9869281045751634,
+      "test_balanced_accuracy": 0.9869281045751634,
+      "test_macro_f1": 0.9869082784402087,
+      "test_metrics_path": "outputs/ssl_standard/simplex_sigreg_lejepa/downstream_datasets/crc_val_he_7k/test_metrics.json",
+      "test_weighted_f1": 0.9869082784402086
+    },
+    {
+      "dataset": "crc_val_he_7k",
+      "feature_dim": 768,
+      "method": "PLIP patch-mean",
+      "method_directory": "plip_pretrained_patch_mean",
+      "probe_validation_macro_f1": 0.9967313192491649,
+      "role": "primary",
+      "test_accuracy": 0.9901960784313726,
+      "test_balanced_accuracy": 0.9901960784313726,
+      "test_macro_f1": 0.9901897127075583,
+      "test_metrics_path": "outputs/ssl_standard/plip_pretrained_patch_mean/downstream_datasets/crc_val_he_7k/test_metrics.json",
+      "test_weighted_f1": 0.9901897127075583
+    },
+    {
+      "dataset": "crc_val_he_7k",
+      "feature_dim": 512,
+      "method": "CONCH v1",
+      "method_directory": "conch_v1_pretrained_attn_pool",
+      "probe_validation_macro_f1": 0.9901444108605233,
+      "role": "primary",
+      "test_accuracy": 1.0,
+      "test_balanced_accuracy": 1.0,
+      "test_macro_f1": 1.0,
+      "test_metrics_path": "outputs/ssl_standard/conch_v1_pretrained_attn_pool/downstream_datasets/crc_val_he_7k/test_metrics.json",
+      "test_weighted_f1": 1.0
+    },
+    {
+      "dataset": "breakhis_8subtype",
+      "feature_dim": 768,
+      "method": "LeJEPA",
+      "method_directory": "lejepa",
+      "probe_validation_macro_f1": 0.7806768986690324,
+      "role": "primary",
+      "test_accuracy": 0.7897727272727273,
+      "test_balanced_accuracy": 0.7897727272727273,
+      "test_macro_f1": 0.7861511582897527,
+      "test_metrics_path": "outputs/ssl_standard/lejepa/downstream_datasets/breakhis_8subtype/test_metrics.json",
+      "test_weighted_f1": 0.7861511582897527
+    },
+    {
+      "dataset": "breakhis_8subtype",
+      "feature_dim": 768,
+      "method": "Simplex-SIGReg-LeJEPA",
+      "method_directory": "simplex_sigreg_lejepa",
+      "probe_validation_macro_f1": 0.7550886338712802,
+      "role": "primary",
+      "test_accuracy": 0.7556818181818182,
+      "test_balanced_accuracy": 0.7556818181818182,
+      "test_macro_f1": 0.7511828929661213,
+      "test_metrics_path": "outputs/ssl_standard/simplex_sigreg_lejepa/downstream_datasets/breakhis_8subtype/test_metrics.json",
+      "test_weighted_f1": 0.7511828929661213
+    },
+    {
+      "dataset": "breakhis_8subtype",
+      "feature_dim": 768,
+      "method": "PLIP patch-mean",
+      "method_directory": "plip_pretrained_patch_mean",
+      "probe_validation_macro_f1": 0.8543108653247105,
+      "role": "primary",
+      "test_accuracy": 0.84375,
+      "test_balanced_accuracy": 0.84375,
+      "test_macro_f1": 0.8427446175850164,
+      "test_metrics_path": "outputs/ssl_standard/plip_pretrained_patch_mean/downstream_datasets/breakhis_8subtype/test_metrics.json",
+      "test_weighted_f1": 0.8427446175850165
+    },
+    {
+      "dataset": "breakhis_8subtype",
+      "feature_dim": 512,
+      "method": "CONCH v1",
+      "method_directory": "conch_v1_pretrained_attn_pool",
+      "probe_validation_macro_f1": 0.7859723220233972,
+      "role": "primary",
+      "test_accuracy": 0.7301136363636364,
+      "test_balanced_accuracy": 0.7301136363636364,
+      "test_macro_f1": 0.7293181193787135,
+      "test_metrics_path": "outputs/ssl_standard/conch_v1_pretrained_attn_pool/downstream_datasets/breakhis_8subtype/test_metrics.json",
+      "test_weighted_f1": 0.7293181193787134
+    },
+    {
+      "dataset": "crc_val_he_7k",
+      "feature_dim": 768,
+      "method": "PLIP native CLS",
+      "method_directory": "plip_pretrained_cls",
+      "probe_validation_macro_f1": 1.0,
+      "role": "supplementary",
+      "test_accuracy": 0.9934640522875817,
+      "test_balanced_accuracy": 0.9934640522875817,
+      "test_macro_f1": 0.9934626384983297,
+      "test_metrics_path": "outputs/ssl_standard/plip_pretrained_cls/downstream_datasets/crc_val_he_7k/test_metrics.json",
+      "test_weighted_f1": 0.9934626384983297
+    },
+    {
+      "dataset": "breakhis_8subtype",
+      "feature_dim": 768,
+      "method": "PLIP native CLS",
+      "method_directory": "plip_pretrained_cls",
+      "probe_validation_macro_f1": 0.8655871946356446,
+      "role": "supplementary",
+      "test_accuracy": 0.8664772727272727,
+      "test_balanced_accuracy": 0.8664772727272727,
+      "test_macro_f1": 0.8651988556244762,
+      "test_metrics_path": "outputs/ssl_standard/plip_pretrained_cls/downstream_datasets/breakhis_8subtype/test_metrics.json",
+      "test_weighted_f1": 0.8651988556244761
+    }
+  ],
+  "test_selection_statement": "No test-set information was used for checkpoint, representation, or probe-hyperparameter selection."
+}

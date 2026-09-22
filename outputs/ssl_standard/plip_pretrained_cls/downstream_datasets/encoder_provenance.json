@@ -1,0 +1,35 @@
+{
+  "config_file": "/raid1/xwan0900/models/plip_model/config.json",
+  "config_sha256": "b7fd95e67e44fdb1d12974c352ee57bbaeab089ebed9f2168c17aeed0eb65d61",
+  "encoder_eval_mode": true,
+  "encoder_frozen": true,
+  "evaluation_image_size": 256,
+  "hidden_size": 768,
+  "model_class": "transformers.CLIPVisionModel",
+  "normalization": {
+    "mean": [
+      0.48145466,
+      0.4578275,
+      0.40821073
+    ],
+    "std": [
+      0.26862954,
+      0.26130258,
+      0.27577711
+    ]
+  },
+  "parameters_requires_grad": 0,
+  "parameters_total": 87456000,
+  "patch_grid": [
+    8,
+    8
+  ],
+  "patch_size": 32,
+  "position_interpolation": "CLIPVisionModel.interpolate_pos_encoding=True from 224px (7x7) to 256px (8x8)",
+  "readout": "native_post_layernorm_cls",
+  "source_image_size": 224,
+  "weights_bytes": 605156676,
+  "weights_directory": "/raid1/xwan0900/models/plip_model",
+  "weights_file": "/raid1/xwan0900/models/plip_model/model.safetensors",
+  "weights_sha256": "23e8aac7c222f8fb30f7ecc678df24c6921ef3b5c2540770aa6d91a30b67082d"
+}

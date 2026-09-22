@@ -1,0 +1,130 @@
+{
+  "class_names": [
+    "adenosis",
+    "ductal_carcinoma",
+    "fibroadenoma",
+    "lobular_carcinoma",
+    "mucinous_carcinoma",
+    "papillary_carcinoma",
+    "phyllodes_tumor",
+    "tubular_adenoma"
+  ],
+  "dataset": "breakhis_8subtype",
+  "dataset_metadata": {
+    "balancing": {
+      "patient_isolation_enforced": false,
+      "per_class_quota": 444,
+      "per_class_split_counts": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "policy": "deterministic_equal_subtype_image_sample_before_split",
+      "seed": 20260903,
+      "split_unit": "image"
+    },
+    "class_names": [
+      "adenosis",
+      "ductal_carcinoma",
+      "fibroadenoma",
+      "lobular_carcinoma",
+      "mucinous_carcinoma",
+      "papillary_carcinoma",
+      "phyllodes_tumor",
+      "tubular_adenoma"
+    ],
+    "dataset": "breakhis_8subtype",
+    "manifest_file": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard/dataset_manifests/breakhis_8subtype.json",
+    "manifest_sha256": "2b1acc57865dff726c89894ee7309a041327c67cd6272ab8fa9eac833840817d",
+    "num_classes": 8,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "adenosis": 444,
+      "ductal_carcinoma": 444,
+      "fibroadenoma": 444,
+      "lobular_carcinoma": 444,
+      "mucinous_carcinoma": 444,
+      "papillary_carcinoma": 444,
+      "phyllodes_tumor": 444,
+      "tubular_adenoma": 444
+    },
+    "selected_class_split_counts": {
+      "adenosis": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "ductal_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "fibroadenoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "lobular_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "mucinous_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "papillary_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "phyllodes_tumor": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "tubular_adenoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      }
+    },
+    "source_class_counts": {
+      "adenosis": 444,
+      "ductal_carcinoma": 3451,
+      "fibroadenoma": 1014,
+      "lobular_carcinoma": 626,
+      "mucinous_carcinoma": 792,
+      "papillary_carcinoma": 560,
+      "phyllodes_tumor": 453,
+      "tubular_adenoma": 569
+    },
+    "source_image_count": 7909,
+    "split_counts": {
+      "test": 352,
+      "train": 2848,
+      "val": 352
+    },
+    "split_policy": "deterministic_equal_subtype_sample_444_then_image_stratified_356_44_44"
+  },
+  "encoder_epoch": 260,
+  "feature_dim": 768,
+  "method": "simplex_sigreg_lejepa",
+  "num_classes": 8,
+  "probe_validation_macro_f1": 0.7550886338712802,
+  "test": {
+    "accuracy": 0.7556818181818182,
+    "balanced_accuracy": 0.7556818181818182,
+    "macro_f1": 0.7511828929661213,
+    "weighted_f1": 0.7511828929661213
+  },
+  "test_evaluated_once": true,
+  "test_images": 352,
+  "test_loss": 0.7194971442222595
+}

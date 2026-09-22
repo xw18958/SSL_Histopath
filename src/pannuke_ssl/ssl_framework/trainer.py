@@ -14,7 +14,23 @@ def save_checkpoint(path:Path,method,c:dict[str,Any],epoch:int,selection:dict[st
 def load_checkpoint(method,path:Path,device):
     x=torch.load(path,map_location=device,weights_only=False)
     if x.get('framework')!='ssl_standard_v1': raise ValueError('Not a standard SSL checkpoint')
-    method.load_state_dict(x['method_state'],strict=True); return x
+    state=x['method_state']
+    try:
+        method.load_state_dict(state,strict=True)
+    except RuntimeError as original_error:
+        # Older Transformers serialized CLIPVisionModel parameters below a
+        # nested ``vision_model`` module. The current local Transformers
+        # layout exposes that module directly. This is a one-to-one key-only
+        # compatibility migration; strict loading still validates every tensor.
+        legacy_segment='.model.vision_model.'
+        if not any(legacy_segment in key for key in state): raise
+        migrated={key.replace(legacy_segment,'.model.'):value for key,value in state.items()}
+        try:
+            method.load_state_dict(migrated,strict=True)
+        except RuntimeError:
+            raise original_error
+        x['checkpoint_key_compatibility']='legacy_clipvision_model_vision_model_to_model'
+    return x
 
 def _set_schedule(method,optimizer,step,total):
     vals=method.schedule(step,max(1,total))

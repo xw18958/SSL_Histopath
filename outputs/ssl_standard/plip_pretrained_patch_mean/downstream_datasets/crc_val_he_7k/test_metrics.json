@@ -1,0 +1,172 @@
+{
+  "class_names": [
+    "ADI",
+    "BACK",
+    "DEB",
+    "LYM",
+    "MUC",
+    "MUS",
+    "NORM",
+    "STR",
+    "TUM"
+  ],
+  "dataset": "crc_val_he_7k",
+  "dataset_metadata": {
+    "balancing": {
+      "per_class_quota": 339,
+      "per_class_split_counts": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "policy": "deterministic_equal_class_sample_before_split",
+      "seed": 20260903
+    },
+    "class_names": [
+      "ADI",
+      "BACK",
+      "DEB",
+      "LYM",
+      "MUC",
+      "MUS",
+      "NORM",
+      "STR",
+      "TUM"
+    ],
+    "dataset": "crc_val_he_7k",
+    "manifest_file": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard/dataset_manifests/crc_val_he_7k.json",
+    "manifest_sha256": "073c0f77f8d6c3581bd1cf72a11432147f66e5c55f290d6b7ed22037cbb80170",
+    "num_classes": 9,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "ADI": 339,
+      "BACK": 339,
+      "DEB": 339,
+      "LYM": 339,
+      "MUC": 339,
+      "MUS": 339,
+      "NORM": 339,
+      "STR": 339,
+      "TUM": 339
+    },
+    "selected_class_split_counts": {
+      "ADI": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "BACK": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "DEB": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "LYM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "MUC": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "MUS": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "NORM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "STR": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "TUM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      }
+    },
+    "source_class_counts": {
+      "ADI": 1338,
+      "BACK": 847,
+      "DEB": 339,
+      "LYM": 634,
+      "MUC": 1035,
+      "MUS": 592,
+      "NORM": 741,
+      "STR": 421,
+      "TUM": 1233
+    },
+    "source_image_count": 7180,
+    "split_counts": {
+      "test": 306,
+      "train": 2439,
+      "val": 306
+    },
+    "split_policy": "deterministic_equal_class_339_then_stratified_271_34_34"
+  },
+  "encoder_epoch": "pretrained",
+  "encoder_metadata": {
+    "config_file": "/raid1/xwan0900/models/plip_model/config.json",
+    "config_sha256": "b7fd95e67e44fdb1d12974c352ee57bbaeab089ebed9f2168c17aeed0eb65d61",
+    "encoder_eval_mode": true,
+    "encoder_frozen": true,
+    "evaluation_image_size": 256,
+    "hidden_size": 768,
+    "model_class": "transformers.CLIPVisionModel",
+    "normalization": {
+      "mean": [
+        0.48145466,
+        0.4578275,
+        0.40821073
+      ],
+      "std": [
+        0.26862954,
+        0.26130258,
+        0.27577711
+      ]
+    },
+    "parameters_requires_grad": 0,
+    "parameters_total": 87456000,
+    "patch_grid": [
+      8,
+      8
+    ],
+    "patch_size": 32,
+    "position_interpolation": "CLIPVisionModel.interpolate_pos_encoding=True from 224px (7x7) to 256px (8x8)",
+    "readout": "mean_final_patch_tokens",
+    "source_image_size": 224,
+    "weights_bytes": 605156676,
+    "weights_directory": "/raid1/xwan0900/models/plip_model",
+    "weights_file": "/raid1/xwan0900/models/plip_model/model.safetensors",
+    "weights_sha256": "23e8aac7c222f8fb30f7ecc678df24c6921ef3b5c2540770aa6d91a30b67082d"
+  },
+  "feature_dim": 768,
+  "method": "plip_pretrained_patch_mean",
+  "num_classes": 9,
+  "probe_validation_macro_f1": 0.9967313192491649,
+  "test": {
+    "accuracy": 0.9901960784313726,
+    "balanced_accuracy": 0.9901960784313726,
+    "macro_f1": 0.9901897127075583,
+    "weighted_f1": 0.9901897127075583
+  },
+  "test_evaluated_once": true,
+  "test_images": 306,
+  "test_loss": 0.026168134063482285
+}

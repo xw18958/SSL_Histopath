@@ -1,0 +1,129 @@
+{
+  "backbone": {
+    "config_dir": "/raid1/xwan0900/models/plip_model",
+    "hidden_size": 768,
+    "image_size": 256,
+    "patch_size": 32,
+    "type": "fresh_plip"
+  },
+  "data": {
+    "cache_in_ram": true,
+    "expected_ssl_images": 7901,
+    "metadata_csv": "/raid1/xwan0900/SSL_proj/pannuke19_metadata.csv",
+    "root": "/raid1/xwan0900/datasets/PanNuke/data",
+    "use_all_unlabeled": true
+  },
+  "downstream": {
+    "batch_size": 256,
+    "feature_dim": 512,
+    "num_workers": 8,
+    "probe": {
+      "early_stopping_patience": 8,
+      "learning_rates": [
+        0.001,
+        0.003,
+        0.01
+      ],
+      "maximum_epochs": 50,
+      "weight_decays": [
+        0.0,
+        0.0001
+      ]
+    },
+    "test_count": 247,
+    "test_once": true,
+    "train_count": 2052,
+    "validation_count": 247
+  },
+  "early_stopping": {
+    "enabled": true,
+    "min_epochs": 60,
+    "minimum_delta": 0.005,
+    "patience_monitors": 5,
+    "restore_best": true
+  },
+  "method": {
+    "augmentations": {
+      "color_jitter_p": 0.8,
+      "gaussian_blur_p": 0.5,
+      "grayscale_p": 0.2,
+      "horizontal_flip_p": 0.5,
+      "solarize_p": 0.2
+    },
+    "gradient_clip_norm": null,
+    "name": "conch_v1_pretrained_attn_pool",
+    "objective": {
+      "sigreg_lambda": 0.02,
+      "sigreg_points": 17,
+      "sigreg_slices": 1024,
+      "sigreg_t_max": 3.0,
+      "simplex_components": 2,
+      "simplex_sigma": 1.0
+    },
+    "optimizer": {
+      "final_lr_ratio": 0.001,
+      "name": "AdamW",
+      "peak_lr": 0.0005,
+      "warmup_fraction": 0.1,
+      "weight_decay": 0.05
+    },
+    "projector": {
+      "dim": 512,
+      "hidden_dim": 2048
+    },
+    "source_metadata": {
+      "encoder_frozen": true,
+      "evaluation_dataset": "breakhis_8subtype",
+      "evaluation_image_size": 256,
+      "fairness_protocol": "shared frozen-encoder linear probe: raw 256px images, train-only feature normalization, validation-only selection, and one test decode",
+      "hf_repository": "MahmoodLab/CONCH",
+      "hf_revision": "f9ca9f877171a28ade80228fb195ac5d79003357",
+      "implementation": "official frozen CONCH v1 image encoder",
+      "model_config": "conch_ViT-B-16",
+      "native_image_size": 448,
+      "official_linear_probe_call": "model.encode_image(images, proj_contrast=False, normalize=False)",
+      "position_interpolation": "official CONCH create_model_from_pretrained(force_image_size=256) and load_checkpoint resize_pos_embed",
+      "readout": "official_attention_pool_before_contrast_projection_and_l2_normalization"
+    },
+    "views": {
+      "global_count": 2,
+      "global_scale": [
+        0.3,
+        1.0
+      ],
+      "global_size": 256,
+      "local_count": 6,
+      "local_scale": [
+        0.05,
+        0.3
+      ],
+      "local_size": 96
+    }
+  },
+  "output": {
+    "root": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard"
+  },
+  "representation": {
+    "pooling": "official_attention_pool_pre_projection",
+    "source": "official_conch_v1_attention_pool"
+  },
+  "seed": 20260903,
+  "training": {
+    "batch_size": 128,
+    "bf16": true,
+    "max_epochs": 300,
+    "num_workers": 8,
+    "tf32": true
+  },
+  "validation": {
+    "batch_size": 256,
+    "interval_epochs": 10,
+    "knn_k": 20,
+    "knn_temperature": 0.07,
+    "linear_lbfgs_max_iter": 100,
+    "minimum_delta": 0.005,
+    "near_constant_std_threshold": 0.05,
+    "num_workers": 8,
+    "selection_metric": "linear_val_macro_f1"
+  }
+}

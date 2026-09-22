@@ -1,0 +1,171 @@
+{
+  "class_names": [
+    "ADI",
+    "BACK",
+    "DEB",
+    "LYM",
+    "MUC",
+    "MUS",
+    "NORM",
+    "STR",
+    "TUM"
+  ],
+  "dataset": "crc_val_he_7k",
+  "dataset_metadata": {
+    "balancing": {
+      "per_class_quota": 339,
+      "per_class_split_counts": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "policy": "deterministic_equal_class_sample_before_split",
+      "seed": 20260903
+    },
+    "class_names": [
+      "ADI",
+      "BACK",
+      "DEB",
+      "LYM",
+      "MUC",
+      "MUS",
+      "NORM",
+      "STR",
+      "TUM"
+    ],
+    "dataset": "crc_val_he_7k",
+    "manifest_file": "/raid1/xwan0900/SSL_proj/outputs/ssl_standard/dataset_manifests/crc_val_he_7k.json",
+    "manifest_sha256": "073c0f77f8d6c3581bd1cf72a11432147f66e5c55f290d6b7ed22037cbb80170",
+    "num_classes": 9,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "ADI": 339,
+      "BACK": 339,
+      "DEB": 339,
+      "LYM": 339,
+      "MUC": 339,
+      "MUS": 339,
+      "NORM": 339,
+      "STR": 339,
+      "TUM": 339
+    },
+    "selected_class_split_counts": {
+      "ADI": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "BACK": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "DEB": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "LYM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "MUC": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "MUS": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "NORM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "STR": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "TUM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      }
+    },
+    "source_class_counts": {
+      "ADI": 1338,
+      "BACK": 847,
+      "DEB": 339,
+      "LYM": 634,
+      "MUC": 1035,
+      "MUS": 592,
+      "NORM": 741,
+      "STR": 421,
+      "TUM": 1233
+    },
+    "source_image_count": 7180,
+    "split_counts": {
+      "test": 306,
+      "train": 2439,
+      "val": 306
+    },
+    "split_policy": "deterministic_equal_class_339_then_stratified_271_34_34"
+  },
+  "encoder_epoch": "pretrained",
+  "encoder_metadata": {
+    "checkpoint_bytes": 802235437,
+    "checkpoint_file": "/raid1/xwan0900/models/conch_v1/pytorch_model.bin",
+    "checkpoint_sha256": "40a9644b9ba0e83a74576e0a5e5f7313599fa9c9cdaf3c20f8a3e271b0e9ae7c",
+    "encoder_eval_mode": true,
+    "encoder_frozen": true,
+    "evaluation_image_size": 256,
+    "feature_dim": 512,
+    "hf_repository": "MahmoodLab/CONCH",
+    "hf_revision": "f9ca9f877171a28ade80228fb195ac5d79003357",
+    "metadata_file": "/raid1/xwan0900/models/conch_v1/meta.yaml",
+    "metadata_sha256": "152edc9b784bf2eeef01c7c2991904c2d67b20c4d734e628c54206fbd37bc32f",
+    "model_class": "conch.open_clip_custom.CoCa",
+    "model_config": "conch_ViT-B-16",
+    "native_image_size": 448,
+    "normalization": {
+      "mean": [
+        0.48145467042922974,
+        0.45782750844955444,
+        0.40821072459220886
+      ],
+      "std": [
+        0.2686295509338379,
+        0.2613025903701782,
+        0.27577710151672363
+      ]
+    },
+    "official_linear_probe_call": "model.encode_image(images, proj_contrast=False, normalize=False)",
+    "official_loader": "conch.open_clip_custom.create_model_from_pretrained",
+    "parameters_requires_grad": 0,
+    "parameters_total": 394827265,
+    "position_interpolation": "official resize_pos_embed while loading the 448px checkpoint into force_image_size=256",
+    "readout": "attention_pooled_pre_projection_pre_normalization"
+  },
+  "feature_dim": 512,
+  "method": "conch_v1_pretrained_attn_pool",
+  "num_classes": 9,
+  "probe_validation_macro_f1": 0.9901444108605233,
+  "test": {
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "macro_f1": 1.0,
+    "weighted_f1": 1.0
+  },
+  "test_evaluated_once": true,
+  "test_images": 306,
+  "test_loss": 0.0017571987118571997
+}
