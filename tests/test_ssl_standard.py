@@ -1,5 +1,6 @@
 import pytest
 from pannuke_ssl.ssl_framework import EarlyStopper, load_standard_config, load_tuning_spec
+from pannuke_ssl.data import _split_rows_with_balanced_holdouts
 
 
 def test_safe_early_stop_gate():
@@ -42,6 +43,26 @@ def test_pannuke_protocol_is_train_only_ssl_with_balanced_holdouts():
     assert c["downstream"]["validation_count"] // 19 == 42
     assert c["downstream"]["test_count"] // 19 == 42
 
+
+
+def test_generic_split_helper_allows_imbalanced_train_but_requires_balanced_holdouts():
+    rows = []
+    sample_index = 0
+    for class_id in range(3):
+        for _ in range(class_id + 2):
+            rows.append({"fold": 1, "sample_index": sample_index, "tissue_label": str(class_id), "class_id": class_id, "split": "train"})
+            sample_index += 1
+        for split in ("val", "test"):
+            for _ in range(2):
+                rows.append({"fold": 1, "sample_index": sample_index, "tissue_label": str(class_id), "class_id": class_id, "split": split})
+                sample_index += 1
+    parts = _split_rows_with_balanced_holdouts(rows, num_classes=3)
+    assert [len(parts[name]) for name in ("train", "val", "test")] == [9, 6, 6]
+
+    broken = list(rows)
+    broken.pop(next(i for i, row in enumerate(broken) if row["split"] == "val" and row["class_id"] == 2))
+    with pytest.raises(ValueError, match="val split must be balanced"):
+        _split_rows_with_balanced_holdouts(broken, num_classes=3)
 
 def test_ijepa_source_eval_and_ema_metadata():
     c = load_standard_config("ijepa")
