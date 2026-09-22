@@ -5,37 +5,62 @@
     "plateau_early_stopping": false,
     "validation_interval_epochs": 5
   },
+  "executed_trial_count": 3,
   "method": "lejepa",
   "rows": [
     {
       "best_epoch": 20,
-      "best_validation_linear_macro_f1": 0.530532081420198,
+      "best_validation_linear_macro_f1": 0.4388087050869267,
+      "candidate_parameter": "learning_rate",
+      "candidate_value": 0.0001,
       "error": null,
-      "is_source_value": false,
       "learning_rate": 0.0001,
+      "simplex_components": null,
+      "simplex_sigma": null,
+      "stage": "learning_rate",
       "status": "completed"
     },
     {
       "best_epoch": 20,
-      "best_validation_linear_macro_f1": 0.5175227049542778,
+      "best_validation_linear_macro_f1": 0.4541632658653281,
+      "candidate_parameter": "learning_rate",
+      "candidate_value": 0.0005,
       "error": null,
-      "is_source_value": true,
       "learning_rate": 0.0005,
+      "simplex_components": null,
+      "simplex_sigma": null,
+      "stage": "learning_rate",
       "status": "completed"
     },
     {
-      "best_epoch": 10,
-      "best_validation_linear_macro_f1": 0.36973781429544256,
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.337032155969187,
+      "candidate_parameter": "learning_rate",
+      "candidate_value": 0.001,
       "error": null,
-      "is_source_value": false,
       "learning_rate": 0.001,
+      "simplex_components": null,
+      "simplex_sigma": null,
+      "stage": "learning_rate",
       "status": "completed"
     }
   ],
-  "selected_validation_linear_macro_f1": 0.530532081420198,
-  "selected_value": 0.0001,
+  "search_strategy": "single_parameter",
+  "selected_parameters": {
+    "learning_rate": 0.0005
+  },
+  "selected_validation_linear_macro_f1": 0.4541632658653281,
+  "selected_value": 0.0005,
   "source_reference": "galilai-group/lejepa README GOTO hyperparameters",
   "source_value": 0.0005,
   "source_value_included": true,
+  "stages": [
+    {
+      "fixed": {},
+      "name": "learning_rate",
+      "selected_learning_rate": 0.0005,
+      "selected_validation_linear_macro_f1": 0.4541632658653281
+    }
+  ],
   "test_used": false
 }

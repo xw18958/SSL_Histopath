@@ -117,14 +117,14 @@
   "feature_dim": 768,
   "method": "lejepa",
   "num_classes": 8,
-  "probe_validation_macro_f1": 0.7806768986690324,
+  "probe_validation_macro_f1": 0.7629981329348157,
   "test": {
-    "accuracy": 0.7897727272727273,
-    "balanced_accuracy": 0.7897727272727273,
-    "macro_f1": 0.7861511582897527,
-    "weighted_f1": 0.7861511582897527
+    "accuracy": 0.7727272727272727,
+    "balanced_accuracy": 0.7727272727272727,
+    "macro_f1": 0.7718219288130708,
+    "weighted_f1": 0.7718219288130708
   },
   "test_evaluated_once": true,
   "test_images": 352,
-  "test_loss": 0.6842267513275146
+  "test_loss": 0.7644822597503662
 }

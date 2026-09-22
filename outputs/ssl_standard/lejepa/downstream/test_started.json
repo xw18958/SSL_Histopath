@@ -1,1 +1,1 @@
-{"encoder_epoch": 230, "probe_selected": true}
+{"encoder_epoch": 230, "probe_selected": true, "dataset": "pannuke19", "num_classes": 19}

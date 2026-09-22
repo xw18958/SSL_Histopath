@@ -8,10 +8,11 @@
   },
   "data": {
     "cache_in_ram": true,
-    "expected_ssl_images": 7901,
+    "expected_ssl_images": 6305,
     "metadata_csv": "/raid1/xwan0900/SSL_proj/pannuke19_metadata.csv",
     "root": "/raid1/xwan0900/datasets/PanNuke/data",
-    "use_all_unlabeled": true
+    "source_images": 7901,
+    "ssl_split": "train"
   },
   "downstream": {
     "batch_size": 256,
@@ -29,10 +30,10 @@
         0.0001
       ]
     },
-    "test_count": 247,
+    "test_count": 798,
     "test_once": true,
-    "train_count": 2052,
-    "validation_count": 247
+    "train_count": 6305,
+    "validation_count": 798
   },
   "early_stopping": {
     "enabled": true,
@@ -60,7 +61,7 @@
     "optimizer": {
       "final_lr_ratio": 0.001,
       "name": "AdamW",
-      "peak_lr": 0.0001,
+      "peak_lr": 0.001,
       "warmup_fraction": 0.1,
       "weight_decay": 0.05
     },

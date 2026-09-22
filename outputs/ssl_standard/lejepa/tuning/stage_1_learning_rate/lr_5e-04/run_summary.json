@@ -1,12 +1,12 @@
 {
-  "best_epoch": 10,
-  "best_validation_linear_macro_f1": 0.36973781429544256,
+  "best_epoch": 20,
+  "best_validation_linear_macro_f1": 0.4541632658653281,
   "epochs_completed": 20,
   "epochs_planned": 20,
-  "initial_encoder_sha256": "ed6219f02e986dcf2a0de1c3a0cfcbb942489701ce3a9de839ad714d413581ac",
+  "initial_encoder_sha256": "eccdcfba016917e36667d3cf4288f41869b1a3593345729e3115b638d4a8d372",
   "labels_loaded_for_ssl": false,
   "method": "lejepa",
-  "seconds": 1666.8481322450098,
+  "seconds": 428.21099454001524,
   "source_metadata": {
     "deliberate_adaptations": [
       "global resolution 256 instead of 224 for the shared backbone",
@@ -31,7 +31,7 @@
     "source_views": "2_global_plus_6_local",
     "source_weight_decay_vit": 0.05
   },
-  "ssl_images_per_epoch": 7901,
+  "ssl_images_per_epoch": 6305,
   "stop_reason": "max_epochs",
   "test_used_for_ssl_selection": false
 }

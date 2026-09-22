@@ -1,8 +1,8 @@
 {
-  "best_epoch": 19,
+  "best_epoch": 26,
   "learning_rate": 0.01,
   "num_classes": 8,
   "test_used": false,
-  "validation_macro_f1": 0.7806768986690324,
+  "validation_macro_f1": 0.7629981329348157,
   "weight_decay": 0.0
 }
