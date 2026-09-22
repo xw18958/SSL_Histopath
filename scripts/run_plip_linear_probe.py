@@ -45,17 +45,21 @@ def _read_json(path: Path) -> dict[str, Any]:
 
 
 def _comparison_metadata() -> dict[str, Any]:
+    current = load_standard_config("simplex_sigreg_lejepa")
+    resolved = _read_json(SIMPLEX_ROOT / "pretrain/resolved_config.json")
+    for key in ("train_count", "validation_count", "test_count"):
+        if int(resolved["downstream"][key]) != int(current["downstream"][key]):
+            raise RuntimeError("Simplex comparator uses an obsolete PanNuke split; rerun Simplex under the current protocol")
     pretrain = _read_json(SIMPLEX_ROOT / "pretrain/run_summary.json")
     test = _read_json(SIMPLEX_ROOT / "downstream/test_metrics.json")
-    if int(pretrain["best_epoch"]) != 260 or int(test["encoder_epoch"]) != 260:
-        raise RuntimeError("The fixed Simplex comparator must be its completed epoch-260 checkpoint")
+    best_epoch = int(pretrain["best_epoch"])
+    if int(test["encoder_epoch"]) != best_epoch:
+        raise RuntimeError("Simplex downstream result does not use the current best SSL checkpoint")
     macro_f1 = float(test["test"]["macro_f1"])
-    if abs(macro_f1 - 0.9232786951425002) > 1e-12:
-        raise RuntimeError(f"Unexpected fixed Simplex test macro-F1: {macro_f1}")
     return {
         "method": "simplex_sigreg_lejepa",
         "checkpoint": str(SIMPLEX_ROOT / "pretrain/checkpoints/best.pt"),
-        "checkpoint_epoch": 260,
+        "checkpoint_epoch": best_epoch,
         "readout": "mean_final_patch_tokens",
         "test_macro_f1": macro_f1,
         "test_metrics_path": str(SIMPLEX_ROOT / "downstream/test_metrics.json"),
@@ -158,12 +162,20 @@ def _run_baseline(readout: str, output_root: Path, dataset: str) -> dict[str, An
     run_root = root if dataset == PANNUKE_DATASET else downstream.parent
     existing_metrics = downstream / "test_metrics.json"
     marker = downstream / "test_started.json"
+    config = _baseline_config(method_name, readout, dataset)
     if marker.exists():
         if not existing_metrics.exists():
             raise RuntimeError(f"{marker} exists but no completed metrics exist; refusing a second test decode")
+        if dataset == PANNUKE_DATASET:
+            resolved_path = run_root / "resolved_config.json"
+            if not resolved_path.exists():
+                raise RuntimeError("Existing PLIP PanNuke result has no resolved config; refusing to reuse it")
+            saved = _read_json(resolved_path)
+            for key in ("train_count", "validation_count", "test_count"):
+                if int(saved["downstream"][key]) != int(config["downstream"][key]):
+                    raise RuntimeError("Existing PLIP result uses an obsolete PanNuke split; archive/remove it before rerunning")
         return _read_json(existing_metrics)
     run_root.mkdir(parents=True, exist_ok=True)
-    config = _baseline_config(method_name, readout, dataset)
     atomic_json_dump(config, run_root / "resolved_config.json")
     encoder = PretrainedPLIPVisionEncoder(PLIP_MODEL_DIR, image_size=256, readout=readout).eval()
     provenance = _encoder_metadata(encoder, readout)
@@ -181,7 +193,7 @@ def _write_comparison(output_root: Path) -> dict[str, Any]:
     report = {
         "primary_comparison": {
             "protocol": "256px final-patch-token mean pooling with the same fixed downstream protocol",
-            "simplex_sigreg_lejepa_epoch_260_macro_f1": simplex_f1,
+            "simplex_sigreg_lejepa_macro_f1": simplex_f1,
             "plip_pretrained_patch_mean_macro_f1": float(patch["test"]["macro_f1"]),
             "plip_minus_simplex_macro_f1": float(patch["test"]["macro_f1"]) - simplex_f1,
         },
@@ -202,11 +214,11 @@ def _write_comparison(output_root: Path) -> dict[str, Any]:
         "",
         "| Result | Test macro-F1 | Delta vs Simplex epoch-260 |",
         "| --- | ---: | ---: |",
-        f"| Simplex-SIGReg-LeJEPA (matched patch mean) | {simplex_f1:.5f} | 0.00000 |",
+        f"| Simplex-SIGReg-LeJEPA (current best checkpoint, matched patch mean) | {simplex_f1:.5f} | 0.00000 |",
         f"| PLIP pretrained (matched patch mean, primary) | {float(patch['test']['macro_f1']):.5f} | {report['primary_comparison']['plip_minus_simplex_macro_f1']:+.5f} |",
         f"| PLIP pretrained (native CLS, supplementary) | {float(cls['test']['macro_f1']):.5f} | {report['supplementary_plip_native_cls']['plip_cls_minus_simplex_macro_f1']:+.5f} |",
         "",
-        "Both PLIP rows use fixed 2,052/247/247 PanNuke splits, train-only feature normalization, the shared 768-to-19 linear-probe grid, validation-only selection, and one test decode.",
+        "Both PLIP rows use the current fixed PanNuke train/validation/test split, train-only feature normalization, the shared 768-to-19 linear-probe grid, validation-only selection, and one test decode.",
     ]
     (output_root / "plip_pretrained_comparison.md").write_text("\n".join(lines) + "\n")
     return report
