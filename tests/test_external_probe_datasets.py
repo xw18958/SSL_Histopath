@@ -15,6 +15,8 @@ from pannuke_ssl.ssl_framework.external_datasets import (
     load_external_manifest,
     manifest_path,
     prepare_external_manifest,
+    ready_external_datasets,
+    DatasetProtocolNotReadyError,
 )
 
 
@@ -124,7 +126,7 @@ def test_all_standard_methods_keep_pannuke_default_and_resolve_optional_outputs(
         config = load_standard_config(method)
         root = tmp_path / method
         assert standard._downstream_output_path(root, "pannuke19") == root / "downstream"
-        for slug in EXTERNAL_DATASETS:
+        for slug in ready_external_datasets():
             standard._validate_action_dataset("downstream", slug)
             assert standard._downstream_output_path(root, slug) == root / "downstream_datasets" / slug
         # The default config is intentionally still PanNuke's fast gate.
@@ -168,3 +170,17 @@ def test_standard_downstream_requires_every_saved_ssl_checkpoint(tmp_path):
     root = tmp_path / "lejepa"
     with pytest.raises(FileNotFoundError, match="epoch_100.pt"):
         standard._run_downstream_checkpoints(config, root, "crc_val_he_7k")
+
+
+def test_planned_suite_distinguishes_ready_from_blocked_protocols(tmp_path):
+    ready = set(ready_external_datasets())
+    assert ready == {"mhist", "crc_val_he_7k", "breakhis_8subtype", "sicapv2_4class"}
+    assert ready < set(EXTERNAL_DATASETS)
+    with pytest.raises(DatasetProtocolNotReadyError, match="Refusing to invent"):
+        prepare_external_manifest("kather_2016", tmp_path / "outputs")
+
+
+def test_standard_runner_rejects_blocked_dataset_with_scientific_reason():
+    standard = _load_script("run_ssl_standard.py")
+    with pytest.raises(ValueError, match="no final TRAIN/VAL/TEST rule"):
+        standard._validate_action_dataset("downstream", "kather_2016")
