@@ -19,7 +19,7 @@ method:
     sigreg_slices: 1024
     sigreg_points: 17
     sigreg_t_max: 3.0
-    simplex_components: 2
+    simplex_components: 64
     simplex_sigma: 1.0
   optimizer:
     name: AdamW

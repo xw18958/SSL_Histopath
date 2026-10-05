@@ -39,34 +39,161 @@ def _set_schedule(method,optimizer,step,total):
         if not g.get('_no_weight_decay',False): g['weight_decay']=float(vals['weight_decay'])
     return vals
 
-def train_ssl(c:dict[str,Any],out:Path,*,epochs:int|None=None,interval:int|None=None,early_stop:bool|None=None):
+def train_ssl(
+    c: dict[str, Any],
+    out: Path,
+    *,
+    epochs: int | None = None,
+    interval: int | None = None,
+    early_stop: bool | None = None,
+    use_all_data: bool = False,
+    validate: bool = True,
+    checkpoint_epochs: list[int] | tuple[int, ...] | None = None,
+):
     from pannuke_ssl.ssl_methods.registry import build_method
-    if not torch.cuda.is_available(): raise RuntimeError('CUDA required')
-    out=Path(out); out.mkdir(parents=True,exist_ok=True)
-    if (out/'pretrain_metrics.csv').exists() or (out/'run_summary.json').exists(): raise FileExistsError(f'Refuse overwrite: {out}')
-    seed_everything(int(c['seed'])); torch.set_num_threads(4); torch.backends.cuda.matmul.allow_tf32=bool(c['training']['tf32']); torch.backends.cudnn.allow_tf32=bool(c['training']['tf32'])
-    device=torch.device('cuda'); method=build_method(c,device); initial=module_sha(method.encoder); loader=build_ssl_loader(c,method); optimizer=method.build_optimizer(); params=method.optimizer_parameters(); validator=Validator(c,out,device)
-    n_epochs=int(epochs or c['training']['max_epochs']); val_interval=int(interval or c['validation']['interval_epochs']); enabled=bool(c['early_stopping']['enabled'] if early_stop is None else early_stop); stopper=EarlyStopper(enabled=enabled,min_epochs=int(c['early_stopping']['min_epochs']),patience=int(c['early_stopping']['patience_monitors']),delta=float(c['early_stopping']['minimum_delta']))
-    atomic_json_dump(c,out/'resolved_config.json'); total=n_epochs*len(loader); step=0; history=[]; reason='max_epochs'; started=time.perf_counter(); best=out/'checkpoints/best.pt'; last=out/'checkpoints/last.pt'
-    for epoch in range(1,n_epochs+1):
-        method.train_mode(); torch.cuda.reset_peak_memory_stats(); t0=time.perf_counter(); sums={}; seen=0; sched={}; after={}
+
+    if not torch.cuda.is_available():
+        raise RuntimeError("CUDA required")
+    out = Path(out)
+    out.mkdir(parents=True, exist_ok=True)
+    if (out / "pretrain_metrics.csv").exists() or (out / "run_summary.json").exists():
+        raise FileExistsError(f"Refuse overwrite: {out}")
+
+    seed_everything(int(c["seed"]))
+    torch.set_num_threads(4)
+    torch.backends.cuda.matmul.allow_tf32 = bool(c["training"]["tf32"])
+    torch.backends.cudnn.allow_tf32 = bool(c["training"]["tf32"])
+    device = torch.device("cuda")
+    method = build_method(c, device)
+    initial = module_sha(method.encoder)
+    loader = build_ssl_loader(c, method, use_all_data=use_all_data)
+    optimizer = method.build_optimizer()
+    params = method.optimizer_parameters()
+    validator = Validator(c, out, device) if validate else None
+
+    n_epochs = int(epochs or c["training"]["max_epochs"])
+    val_interval = int(interval or c["validation"]["interval_epochs"])
+    enabled = bool(c["early_stopping"]["enabled"] if early_stop is None else early_stop) if validate else False
+    stopper = EarlyStopper(
+        enabled=enabled,
+        min_epochs=int(c["early_stopping"]["min_epochs"]),
+        patience=int(c["early_stopping"]["patience_monitors"]),
+        delta=float(c["early_stopping"]["minimum_delta"]),
+    )
+    snapshot_epochs = set(int(x) for x in (checkpoint_epochs or ()))
+    if snapshot_epochs and (min(snapshot_epochs) < 1 or max(snapshot_epochs) > n_epochs):
+        raise ValueError(f"Checkpoint epochs must lie within 1..{n_epochs}: {sorted(snapshot_epochs)}")
+
+    atomic_json_dump(c, out / "resolved_config.json")
+    total = n_epochs * len(loader)
+    step = 0
+    history = []
+    reason = "max_epochs"
+    started = time.perf_counter()
+    best = out / "checkpoints/best.pt"
+    last = out / "checkpoints/last.pt"
+
+    for epoch in range(1, n_epochs + 1):
+        method.train_mode()
+        torch.cuda.reset_peak_memory_stats()
+        t0 = time.perf_counter()
+        sums = {}
+        seen = 0
+        sched = {}
+        after = {}
         for batch in loader:
-            optimizer.zero_grad(set_to_none=True); sched=_set_schedule(method,optimizer,step,total); result=method.training_step(batch,bf16=bool(c['training']['bf16']))
-            if not torch.isfinite(result.loss): raise FloatingPointError(f'Non-finite SSL loss epoch={epoch} step={step}')
-            result.loss.backward(); norm=torch.nn.utils.clip_grad_norm_(params,float('inf'))
-            if not torch.isfinite(norm): raise FloatingPointError('Non-finite SSL gradients')
-            clip=c['method'].get('gradient_clip_norm')
-            if clip is not None: torch.nn.utils.clip_grad_norm_(params,float(clip))
-            optimizer.step(); after=method.after_optimizer_step(step,total); b=method.batch_size(batch); seen+=b; sums['loss']=sums.get('loss',0.)+float(result.loss.detach())*b; sums['gradient_norm']=sums.get('gradient_norm',0.)+float(norm)*b
-            for k,v in result.metrics.items(): sums[k]=sums.get(k,0.)+float(v)*b
-            step+=1
-        expected=int(c['data']['expected_ssl_images'])
-        if seen!=expected: raise AssertionError(f'Every epoch must use {expected} images, got {seen}')
-        sec=time.perf_counter()-t0; row={'epoch':epoch,'samples':seen,'seconds':sec,'samples_per_second':seen/sec,'learning_rate':sched.get('lr'),'weight_decay':sched.get('weight_decay'),'peak_gpu_memory_gib':torch.cuda.max_memory_allocated()/2**30,**{k:v/seen for k,v in sums.items()},**after}; history.append(row); write_csv(history,out/'pretrain_metrics.csv'); print(json.dumps({'pretrain':row}),flush=True)
-        selection={'metric':'linear_val_macro_f1','minimum_delta':.005,'test_used':False}; save_checkpoint(last,method,c,epoch,selection)
-        if epoch%val_interval==0:
-            metrics=validator.evaluate(method.encoder,epoch); u=stopper.update(epoch,float(metrics['linear_val_macro_f1'])); print(json.dumps({'validation':metrics,'early_stopping':u}),flush=True)
-            if u['improved']: save_checkpoint(best,method,c,epoch,{**selection,'value':u['best_score'],'best_epoch':u['best_epoch']})
-            if u['should_stop']: reason='validation_plateau'; break
-    if not best.exists(): save_checkpoint(best,method,c,int(history[-1]['epoch']),{'metric':'linear_val_macro_f1','test_used':False,'value':None,'best_epoch':int(history[-1]['epoch'])})
-    summary={'method':c['method']['name'],'epochs_planned':n_epochs,'epochs_completed':int(history[-1]['epoch']),'stop_reason':reason,'best_epoch':stopper.best_epoch or int(history[-1]['epoch']),'best_validation_linear_macro_f1':stopper.best if math.isfinite(stopper.best) else None,'initial_encoder_sha256':initial,'ssl_images_per_epoch':int(c['data']['expected_ssl_images']),'labels_loaded_for_ssl':False,'test_used_for_ssl_selection':False,'source_metadata':c['method']['source_metadata'],'seconds':time.perf_counter()-started}; atomic_json_dump(summary,out/'run_summary.json'); return summary
+            optimizer.zero_grad(set_to_none=True)
+            sched = _set_schedule(method, optimizer, step, total)
+            result = method.training_step(batch, bf16=bool(c["training"]["bf16"]))
+            if not torch.isfinite(result.loss):
+                raise FloatingPointError(f"Non-finite SSL loss epoch={epoch} step={step}")
+            result.loss.backward()
+            norm = torch.nn.utils.clip_grad_norm_(params, float("inf"))
+            if not torch.isfinite(norm):
+                raise FloatingPointError("Non-finite SSL gradients")
+            clip = c["method"].get("gradient_clip_norm")
+            if clip is not None:
+                torch.nn.utils.clip_grad_norm_(params, float(clip))
+            optimizer.step()
+            after = method.after_optimizer_step(step, total)
+            b = method.batch_size(batch)
+            seen += b
+            sums["loss"] = sums.get("loss", 0.0) + float(result.loss.detach()) * b
+            sums["gradient_norm"] = sums.get("gradient_norm", 0.0) + float(norm) * b
+            for k, v in result.metrics.items():
+                sums[k] = sums.get(k, 0.0) + float(v) * b
+            step += 1
+
+        expected = int(c["data"]["final_ssl_images"] if use_all_data else c["data"]["expected_ssl_images"])
+        if seen != expected:
+            raise AssertionError(f"Every epoch must use {expected} images, got {seen}")
+
+        sec = time.perf_counter() - t0
+        row = {
+            "epoch": epoch,
+            "samples": seen,
+            "seconds": sec,
+            "samples_per_second": seen / sec,
+            "learning_rate": sched.get("lr"),
+            "weight_decay": sched.get("weight_decay"),
+            "peak_gpu_memory_gib": torch.cuda.max_memory_allocated() / 2**30,
+            **{k: v / seen for k, v in sums.items()},
+            **after,
+        }
+        history.append(row)
+        write_csv(history, out / "pretrain_metrics.csv")
+        print(json.dumps({"pretrain": row}), flush=True)
+
+        selection = {
+            "metric": "linear_val_macro_f1" if validate else "fixed_training_budget",
+            "minimum_delta": 0.005 if validate else None,
+            "test_used": False,
+        }
+        save_checkpoint(last, method, c, epoch, selection)
+        if epoch in snapshot_epochs:
+            save_checkpoint(
+                out / f"checkpoints/epoch_{epoch}.pt",
+                method,
+                c,
+                epoch,
+                {**selection, "fixed_checkpoint": True},
+            )
+
+        if validate and epoch % val_interval == 0:
+            assert validator is not None
+            metrics = validator.evaluate(method.encoder, epoch)
+            u = stopper.update(epoch, float(metrics["linear_val_macro_f1"]))
+            print(json.dumps({"validation": metrics, "early_stopping": u}), flush=True)
+            if u["improved"]:
+                save_checkpoint(best, method, c, epoch, {**selection, "value": u["best_score"], "best_epoch": u["best_epoch"]})
+            if u["should_stop"]:
+                reason = "validation_plateau"
+                break
+
+    if validate and not best.exists():
+        save_checkpoint(best, method, c, int(history[-1]["epoch"]), {
+            "metric": "linear_val_macro_f1",
+            "test_used": False,
+            "value": None,
+            "best_epoch": int(history[-1]["epoch"]),
+        })
+
+    summary = {
+        "method": c["method"]["name"],
+        "epochs_planned": n_epochs,
+        "epochs_completed": int(history[-1]["epoch"]),
+        "stop_reason": reason,
+        "best_epoch": (stopper.best_epoch or int(history[-1]["epoch"])) if validate else None,
+        "best_validation_linear_macro_f1": stopper.best if validate and math.isfinite(stopper.best) else None,
+        "initial_encoder_sha256": initial,
+        "ssl_images_per_epoch": int(c["data"]["final_ssl_images"] if use_all_data else c["data"]["expected_ssl_images"]),
+        "labels_loaded_for_ssl": False,
+        "test_used_for_ssl_selection": False,
+        "validation_used_for_ssl_selection": bool(validate),
+        "full_pretraining_data": bool(use_all_data),
+        "saved_checkpoint_epochs": sorted(snapshot_epochs),
+        "source_metadata": c["method"]["source_metadata"],
+        "seconds": time.perf_counter() - started,
+    }
+    atomic_json_dump(summary, out / "run_summary.json")
+    return summary

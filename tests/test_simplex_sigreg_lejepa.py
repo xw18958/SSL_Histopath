@@ -50,7 +50,7 @@ def test_simplex_sigreg_uses_sequential_k_then_lr_search_with_fixed_sigma():
     c = load_standard_config("simplex_sigreg_lejepa")
     spec = load_tuning_spec("simplex_sigreg_lejepa")
     assert c["method"]["objective"]["simplex_sigma"] == 1.0
-    assert spec["parameters"]["simplex_components"]["candidates"] == [2, 4, 8, 16, 32, 64]
+    assert spec["parameters"]["simplex_components"]["candidates"] == [64]
     assert spec["search"]["strategy"] == "sequential_greedy"
     assert spec["search"]["order"] == ["simplex_components", "learning_rate"]
     assert spec["search"]["fixed_simplex_sigma"] == 1.0
@@ -62,7 +62,7 @@ def test_simplex_sigreg_uses_sequential_k_then_lr_search_with_fixed_sigma():
     assert tuned["method"]["optimizer"]["peak_lr"] == 0.001
     assert tuned["method"]["objective"]["simplex_components"] == 16
     assert tuned["method"]["objective"]["simplex_sigma"] == 1.0
-    assert c["method"]["objective"]["simplex_components"] == 2
+    assert c["method"]["objective"]["simplex_components"] == 64
 
 
 def test_simplex_sigma_cannot_be_tuned_away_from_one():
@@ -105,17 +105,17 @@ def test_simplex_tuning_executes_six_k_trials_then_reuses_source_lr(monkeypatch,
     monkeypatch.setattr(tuning_module, "train_ssl", fake_train)
     result = tuning_module.run_tuning(c)
 
-    assert len(calls) == 8
-    first_stage = calls[:6]
-    second_stage = calls[6:]
-    assert [call[1] for call in first_stage] == [2, 4, 8, 16, 32, 64]
+    assert len(calls) == 3
+    first_stage = calls[:1]
+    second_stage = calls[1:]
+    assert [call[1] for call in first_stage] == [64]
     assert all(call[2] == 0.0005 and call[3] == 1.0 for call in first_stage)
-    assert all(call[1] == 8 and call[3] == 1.0 for call in second_stage)
+    assert all(call[1] == 64 and call[3] == 1.0 for call in second_stage)
     assert [call[2] for call in second_stage] == [0.0001, 0.001]
     assert all(call[4:] == (20, 5, False) for call in calls)
     assert result["search_strategy"] == "sequential_greedy"
-    assert result["executed_trial_count"] == 8
-    assert len(result["rows"]) == 9
+    assert result["executed_trial_count"] == 3
+    assert len(result["rows"]) == 4
     reused = [row for row in result["rows"] if row.get("reused_from_stage") == "simplex_components"]
     assert len(reused) == 1
     assert reused[0]["stage"] == "learning_rate"
@@ -123,6 +123,6 @@ def test_simplex_tuning_executes_six_k_trials_then_reuses_source_lr(monkeypatch,
     assert reused[0]["status"] == "completed"
     assert result["selected_parameters"] == {
         "learning_rate": 0.001,
-        "simplex_components": 8,
+        "simplex_components": 64,
         "simplex_sigma": 1.0,
     }

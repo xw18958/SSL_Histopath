@@ -5,6 +5,8 @@ data:
   source_images: 7901
   expected_ssl_images: 6305
   ssl_split: train
+  development_validation_splits: [val, test]
+  final_ssl_images: 7901
   cache_in_ram: true
 backbone:
   type: fresh_plip
@@ -14,6 +16,7 @@ backbone:
   hidden_size: 768
 training:
   max_epochs: 300
+  checkpoint_epochs: [100, 150, 200, 250, 300]
   batch_size: 128
   num_workers: 8
   bf16: true

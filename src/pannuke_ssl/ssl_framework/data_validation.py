@@ -57,24 +57,28 @@ def validated_pannuke_split(c: dict[str, Any]):
     return rows, index
 
 
-def _base_dataset(c):
+def _base_dataset(c, *, use_all_data: bool = False):
     rows, index = validated_pannuke_split(c)
-    split = str(c["data"]["ssl_split"])
-    ssl_rows = [row for row in rows if row["split"] == split]
-    expected = int(c["data"]["expected_ssl_images"])
+    if use_all_data:
+        ssl_rows = list(rows)
+        expected = int(c["data"]["final_ssl_images"])
+    else:
+        split = str(c["data"]["ssl_split"])
+        ssl_rows = [row for row in rows if row["split"] == split]
+        expected = int(c["data"]["expected_ssl_images"])
     if len(ssl_rows) != expected:
-        raise ValueError(f"Need exactly {expected} SSL train sources, found {len(ssl_rows)}")
+        raise ValueError(f"Need exactly {expected} SSL sources, found {len(ssl_rows)}")
     cache = preload_images(ssl_rows, index) if c["data"]["cache_in_ram"] else None
     return PanNukeImageDataset(ssl_rows, index, cache, include_label=False, include_key=True)
 
 
-def build_ssl_loader(c, method, *, batch_size=None, workers=None):
+def build_ssl_loader(c, method, *, batch_size=None, workers=None, use_all_data: bool = False):
     def seed_worker(_):
         s = torch.initial_seed() % 2**32
         random.seed(s)
         np.random.seed(s)
 
-    dataset = method.wrap_dataset(_base_dataset(c))
+    dataset = method.wrap_dataset(_base_dataset(c, use_all_data=use_all_data))
     w = int(c["training"]["num_workers"] if workers is None else workers)
     kw = dict(
         batch_size=int(batch_size or c["training"]["batch_size"]),
@@ -97,12 +101,17 @@ class Validator:
     def __init__(self, c: dict[str, Any], out: Path, device: torch.device):
         self.c, self.out, self.device, self.history = c, Path(out), device, []
         rows, index = validated_pannuke_split(c)
-        selected = [row for row in rows if row["split"] in ("train", "val")]
+        development_val_splits = tuple(str(x) for x in c["data"].get("development_validation_splits", ["val"]))
+        selected = [row for row in rows if row["split"] == "train" or row["split"] in development_val_splits]
         cache = preload_images(selected, index)
+        split_rows = {
+            "train": [row for row in selected if row["split"] == "train"],
+            "val": [row for row in selected if row["split"] in development_val_splits],
+        }
         self.loaders = {
             split: DataLoader(
                 PanNukeImageDataset(
-                    [row for row in selected if row["split"] == split],
+                    split_rows[split],
                     index,
                     cache,
                     include_label=True,

@@ -22,6 +22,8 @@ def _validate_action_dataset(action: str, dataset: str) -> None:
         raise ValueError(
             f"Optional dataset {dataset!r} is downstream-only; tune/pretrain/pipeline/report remain fixed to {PANNUKE_DATASET}"
         )
+    if action == "downstream" and dataset == PANNUKE_DATASET:
+        raise ValueError("PanNuke is development/pretraining-only; final downstream evaluation must use an external dataset")
 
 def _downstream_output_path(root: Path, dataset: str) -> Path:
     if dataset == PANNUKE_DATASET:
@@ -40,15 +42,15 @@ def main():
     elif a.action=="pretrain":
         c=_apply_saved_tuning(c,root,a.ignore_tuned)
         if a.learning_rate is not None: c=apply_lr(c,a.learning_rate)
-        result=train_ssl(c,root/"pretrain")
+        result=train_ssl(c,root/"pretrain_full",use_all_data=True,validate=False,early_stop=False,checkpoint_epochs=c["training"]["checkpoint_epochs"])
     elif a.action=="downstream":
         c=_apply_saved_tuning(c,root,a.ignore_tuned)
         downstream=_downstream_output_path(root,a.dataset)
-        result=run_downstream(c,root/"pretrain/checkpoints/best.pt",downstream,dataset=a.dataset)
+        result=run_downstream(c,root/"pretrain_full/checkpoints/epoch_300.pt",downstream,dataset=a.dataset)
         if a.dataset==PANNUKE_DATASET: write_final_report(c)
     elif a.action=="report":
         c=_apply_saved_tuning(c,root,a.ignore_tuned); result={"report":str(write_final_report(c))}
     else:
-        tune=run_tuning(c); c=apply_tuned_hyperparameters(c,tune["selected_parameters"]); pre=train_ssl(c,root/"pretrain"); down=run_downstream(c,root/"pretrain/checkpoints/best.pt",root/"downstream"); report=write_final_report(c); result={"tuning":tune,"pretrain":pre,"downstream":down,"report":str(report)}
+        tune=run_tuning(c); c=apply_tuned_hyperparameters(c,tune["selected_parameters"]); pre=train_ssl(c,root/"pretrain_full",use_all_data=True,validate=False,early_stop=False,checkpoint_epochs=c["training"]["checkpoint_epochs"]); result={"tuning":tune,"pretrain":pre}
     print(json.dumps(result,indent=2),flush=True)
 if __name__=="__main__": main()

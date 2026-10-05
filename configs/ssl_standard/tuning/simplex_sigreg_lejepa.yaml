@@ -6,7 +6,7 @@ parameters:
     source_value: 0.0005
     source_reference: galilai-group/lejepa README GOTO hyperparameters
   simplex_components:
-    candidates: [2, 4, 8, 16, 32, 64]
+    candidates: [64]
     selection_role: method_hyperparameter
 search:
   strategy: sequential_greedy
