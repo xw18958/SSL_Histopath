@@ -53,7 +53,6 @@ def main():
     c=load_standard_config(a.method); root=Path(c["output"]["root"])/a.method
     if a.action=="tune": result=run_tuning(c)
     elif a.action=="pretrain":
-        c=_apply_saved_tuning(c,root,a.ignore_tuned)
         if a.learning_rate is not None: c=apply_lr(c,a.learning_rate)
         result=train_ssl(c,root/"pretrain_full",use_all_data=True,validate=False,early_stop=False,checkpoint_epochs=c["training"]["checkpoint_epochs"])
     elif a.action=="downstream":
