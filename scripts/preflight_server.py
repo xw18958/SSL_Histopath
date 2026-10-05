@@ -12,6 +12,7 @@ import yaml
 from pannuke_ssl.config import set_dotted
 from pannuke_ssl.ssl_framework import load_standard_config
 from pannuke_ssl.ssl_framework.external_datasets import load_external_manifest, ready_external_datasets
+from pannuke_ssl.ssl_framework.image_text_datasets import IMAGE_TEXT_DATASETS, load_image_text_manifest
 from pannuke_ssl.ssl_framework.run_management import attach_run_context
 from pannuke_ssl.ssl_framework.runtime_paths import require_runtime_environment, runtime_identity
 
@@ -29,7 +30,7 @@ def _entry(run_id: str) -> dict:
 def main() -> None:
     p=argparse.ArgumentParser(description='Preflight one registered experiment on the current server')
     p.add_argument('--experiment', required=True)
-    p.add_argument('--action', choices=('pretrain','downstream','downstream-suite'), default='pretrain')
+    p.add_argument('--action', choices=('pretrain','downstream','downstream-suite','image-text-retrieval','image-text-retrieval-suite'), default='pretrain')
     p.add_argument('--dataset')
     args=p.parse_args()
     checks=[]
@@ -59,18 +60,34 @@ def main() -> None:
     if torch.cuda.is_available():
         free,total=torch.cuda.mem_get_info()
         check('gpu_identity',True,{'name':torch.cuda.get_device_name(0),'free_gib':round(free/2**30,2),'total_gib':round(total/2**30,2)})
-    datasets=[]
+    classification_datasets=[]
+    image_text_datasets=[]
     if args.action == 'downstream':
         if not args.dataset: raise ValueError('--dataset required for single-dataset evaluation preflight')
-        datasets=[args.dataset]
-    elif args.action.endswith('-suite'):
-        datasets=list(ready_external_datasets(tier='main'))
-    for dataset in datasets:
+        classification_datasets=[args.dataset]
+    elif args.action == 'downstream-suite':
+        classification_datasets=list(ready_external_datasets(tier='main'))
+    elif args.action == 'image-text-retrieval':
+        if not args.dataset: raise ValueError('--dataset required for single image-text retrieval preflight')
+        if args.dataset not in IMAGE_TEXT_DATASETS: raise ValueError(f'unknown image-text dataset {args.dataset!r}')
+        image_text_datasets=[args.dataset]
+    elif args.action == 'image-text-retrieval-suite':
+        image_text_datasets=list(IMAGE_TEXT_DATASETS)
+    for dataset in classification_datasets:
         try:
             ds=load_external_manifest(dataset,Path(c['manifests']['root']))
             check(f'manifest:{dataset}',True,{'sha256':ds.manifest_sha256,'splits':ds.split_counts})
         except Exception as exc:
             check(f'manifest:{dataset}',False,str(exc))
+    for dataset in image_text_datasets:
+        try:
+            ds=load_image_text_manifest(dataset,Path(c['manifests']['root']))
+            check(f'image_text_manifest:{dataset}',True,{'sha256':ds['manifest_sha256'],'splits':ds['split_counts']})
+            model_dir=Path(ds['alignment_protocol']['plip_model_dir'])
+            needed=['config.json','model.safetensors','tokenizer.json','tokenizer_config.json']
+            check(f'plip_text_assets:{dataset}',all((model_dir/name).is_file() for name in needed),{'model_dir':str(model_dir),'missing':[name for name in needed if not (model_dir/name).is_file()]})
+        except Exception as exc:
+            check(f'image_text_manifest:{dataset}',False,str(exc))
     checkpoints=[run_root/'pretrain_full/checkpoints'/f'epoch_{epoch}.pt' for epoch in c['training']['checkpoint_epochs']]
     if args.action=='pretrain':
         occupied=(run_root/'pretrain_full/run_summary.json').exists() or (run_root/'pretrain_full/pretrain_metrics.csv').exists()

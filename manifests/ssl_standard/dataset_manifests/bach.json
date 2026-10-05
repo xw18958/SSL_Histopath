@@ -1,0 +1,4079 @@
+{
+  "balance_policy": "balanced",
+  "balancing": {
+    "per_class_quota": 100,
+    "per_class_split_counts": {
+      "test": 10,
+      "train": 80,
+      "val": 10
+    },
+    "policy": "labeled_400_only_min_1000_then_8_1_1",
+    "unlabeled_public_test_excluded": true
+  },
+  "class_names": [
+    "Normal",
+    "Benign",
+    "InSitu",
+    "Invasive"
+  ],
+  "class_to_id": {
+    "Benign": 1,
+    "InSitu": 2,
+    "Invasive": 3,
+    "Normal": 0
+  },
+  "dataset": "bach",
+  "dataset_root_spec": "${SSL_DATA_ROOT}/BACH/raw/data",
+  "preprocessing": {
+    "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+    "crop": "center_crop_256x256",
+    "input": "raw_rgb_uint8",
+    "resize": "resize_short_side_to_256_bicubic"
+  },
+  "records": [
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "n033.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "n037.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "n096.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "n074.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "n066.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "n082.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "n099.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "n059.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "n030.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "n016.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "n007.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "n003.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "n075.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "n058.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "n044.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "n010.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "n034.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "n041.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "n084.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "n013.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "n031.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "n055.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "n012.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "n017.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "n052.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "n079.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "n024.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "n093.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "n081.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "n028.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "n014.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "n050.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "n088.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "n076.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "n070.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "n098.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "n063.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "n062.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "n048.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "n054.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "n053.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "n046.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "n095.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "n077.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "n045.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "n018.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "n032.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "n039.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "n047.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "n087.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "n094.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "n020.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "n067.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "n064.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "n086.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "n057.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "n035.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "n019.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "n049.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "n008.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "n089.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "n085.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "n005.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "n100.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "n001.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "n023.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "n051.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "n056.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "n026.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "n011.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "n071.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "n097.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "n078.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "n092.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "n006.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "n042.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "n021.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "n015.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "n043.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "n060.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "n083.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "n009.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "n061.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "n080.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "n090.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "n036.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "n022.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "n073.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "n072.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "n002.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "n027.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "n065.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "n040.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "n029.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "n069.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "n038.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00014-of-00015-49fe2a7235e36b3f.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "n091.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "n004.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00012-of-00015-7746dc0da99d87f6.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "n025.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 0,
+      "class_name": "Normal",
+      "parquet_file": "train-00013-of-00015-9d1c485eacb1d332.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "n068.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "b008.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "b026.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "b019.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "b061.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "b039.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "b052.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "b075.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "b053.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "b085.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "b050.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "b045.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "b068.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "b031.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "b010.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "b087.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "b013.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "b011.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "b066.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "b003.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "b064.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "b060.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "b018.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "b059.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 26,
+      "source_name": "b027.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "b089.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "b022.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "b077.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "b065.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "b021.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "b049.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "b014.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "b046.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "b056.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "b080.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "b047.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "b072.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "b004.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "b005.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "b037.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "b051.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "b038.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "b058.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "b032.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "b063.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "b099.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "b100.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 26,
+      "source_name": "b081.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "b055.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "b017.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "b067.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "b074.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "b042.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "b083.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "b094.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "b028.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "b078.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "b007.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "b070.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "b048.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "b001.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "b092.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "b035.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "b082.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "b033.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "b091.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "b062.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "b079.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "b097.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "b041.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "b006.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "b012.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "b093.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "b036.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "b090.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "b015.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "b084.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "b030.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "b096.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "b020.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "b025.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "b016.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "b088.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "b076.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "b029.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "b098.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "b057.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "b069.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 26,
+      "source_name": "b054.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "b095.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "b043.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "b002.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "b024.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "b071.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "b086.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "b040.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00002-of-00015-b969535d4c7f43dd.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "b073.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "b044.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00001-of-00015-6a4fb94127004a14.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "b034.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "b009.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 1,
+      "class_name": "Benign",
+      "parquet_file": "train-00000-of-00015-45961313a94a1995.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "b023.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "is002.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "is098.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "is060.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "is093.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "is071.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "is090.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "is032.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "is092.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "is037.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "is056.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "is010.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "is068.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "is040.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "is097.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "is009.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "is085.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "is027.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "is030.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "is015.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "is084.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "is048.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "is088.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "is031.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "is041.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "is066.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "is028.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "is045.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "is070.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "is014.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "is076.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "is077.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "is061.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "is050.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "is053.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "is080.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "is017.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "is069.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "is063.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "is043.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "is038.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "is054.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "is064.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "is052.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "is011.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "is059.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "is033.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "is023.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "is003.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "is094.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "is042.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "is096.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "is039.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "is086.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "is026.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "is082.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "is036.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "is078.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "is091.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "is016.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "is020.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "is075.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "is055.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "is073.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "is057.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "is079.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 26,
+      "source_name": "is089.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "is004.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 26,
+      "source_name": "is062.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "is024.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "is046.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "is007.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "is058.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "is021.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "is072.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "is051.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "is087.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "is029.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "is095.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "is099.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 26,
+      "source_name": "is035.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "is001.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "is005.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "is012.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "is081.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 26,
+      "source_name": "is008.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "is025.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "is034.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "is047.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00003-of-00015-530d95c6712750e1.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "is006.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "is013.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "is067.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "is022.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "is044.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00005-of-00015-dbcf221bf12fae2a.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "is049.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "is074.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "is065.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "is100.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "is019.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00004-of-00015-9aafc9a5d645bda6.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "is018.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 2,
+      "class_name": "InSitu",
+      "parquet_file": "train-00006-of-00015-4ba058477632586a.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "is083.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "iv059.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "iv096.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "iv069.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "iv010.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "iv037.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "iv088.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "iv092.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "iv025.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "iv050.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "iv024.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "iv018.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "iv044.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "iv029.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "iv039.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "iv072.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "iv082.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "iv060.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "iv086.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "iv074.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "iv089.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "iv021.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "iv020.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "iv077.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "iv058.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "iv098.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "iv099.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "iv026.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "iv017.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "iv090.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "iv005.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "iv031.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "iv052.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 8,
+      "source_name": "iv079.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "iv009.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "iv036.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "iv027.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "iv053.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "iv094.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "iv081.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "iv049.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 9,
+      "source_name": "iv080.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "iv067.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "iv091.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "iv035.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "iv062.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "iv068.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "iv093.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "iv087.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "iv033.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "iv042.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "iv065.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "iv001.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "iv055.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "iv100.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "iv003.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "iv004.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "iv014.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 26,
+      "source_name": "iv043.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 3,
+      "source_name": "iv047.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "iv012.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 19,
+      "source_name": "iv063.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "iv075.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "iv073.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 1,
+      "source_name": "iv045.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 15,
+      "source_name": "iv032.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "iv046.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "iv071.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "iv051.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 18,
+      "source_name": "iv008.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "iv041.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 26,
+      "source_name": "iv070.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00011-of-00015-fee49d4089258703.parquet",
+      "row_group": 0,
+      "row_in_group": 0,
+      "source_name": "iv097.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 20,
+      "source_name": "iv064.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 10,
+      "source_name": "iv054.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "iv011.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "iv030.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "iv057.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "iv061.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 21,
+      "source_name": "iv038.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 2,
+      "source_name": "iv019.tif",
+      "split": "train",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 24,
+      "source_name": "iv095.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 25,
+      "source_name": "iv015.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 26,
+      "source_name": "iv016.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 11,
+      "source_name": "iv028.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "iv022.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 5,
+      "source_name": "iv076.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "iv034.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 17,
+      "source_name": "iv007.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "iv002.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 7,
+      "source_name": "iv078.tif",
+      "split": "val",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 14,
+      "source_name": "iv085.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "iv040.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 4,
+      "source_name": "iv048.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 13,
+      "source_name": "iv084.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 16,
+      "source_name": "iv006.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00007-of-00015-abb8049d5ec98e2a.parquet",
+      "row_group": 0,
+      "row_in_group": 23,
+      "source_name": "iv013.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00010-of-00015-52c95cee7d65d7b1.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "iv083.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 22,
+      "source_name": "iv066.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00008-of-00015-2ca30bc30e43af6c.parquet",
+      "row_group": 0,
+      "row_in_group": 6,
+      "source_name": "iv023.tif",
+      "split": "test",
+      "storage": "parquet"
+    },
+    {
+      "class_id": 3,
+      "class_name": "Invasive",
+      "parquet_file": "train-00009-of-00015-991e02adb7338e11.parquet",
+      "row_group": 0,
+      "row_in_group": 12,
+      "source_name": "iv056.tif",
+      "split": "test",
+      "storage": "parquet"
+    }
+  ],
+  "schema_version": 3,
+  "seed": 20260903,
+  "selected_class_counts": {
+    "Benign": 100,
+    "InSitu": 100,
+    "Invasive": 100,
+    "Normal": 100
+  },
+  "selected_class_split_counts": {
+    "Benign": {
+      "test": 10,
+      "train": 80,
+      "val": 10
+    },
+    "InSitu": {
+      "test": 10,
+      "train": 80,
+      "val": 10
+    },
+    "Invasive": {
+      "test": 10,
+      "train": 80,
+      "val": 10
+    },
+    "Normal": {
+      "test": 10,
+      "train": 80,
+      "val": 10
+    }
+  },
+  "source_class_counts": {
+    "Benign": 100,
+    "InSitu": 100,
+    "Invasive": 100,
+    "Normal": 100
+  },
+  "source_image_count": 400,
+  "split_counts": {
+    "test": 40,
+    "train": 320,
+    "val": 40
+  },
+  "split_policy": "balanced_min1000_smallest100_then_8_1_1_80_10_10_labeled400_only",
+  "tier": "main"
+}

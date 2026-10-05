@@ -8,6 +8,7 @@ from pannuke_ssl.ssl_framework import (
     load_standard_config,
     run_downstream,
     run_tuning,
+    run_image_text_retrieval,
     train_ssl,
     write_final_report,
 )
@@ -19,6 +20,7 @@ from pannuke_ssl.ssl_framework.external_datasets import (
     ready_external_datasets,
 )
 from pannuke_ssl.ssl_framework.run_management import attach_run_context, write_run_metadata
+from pannuke_ssl.ssl_framework.image_text_datasets import IMAGE_TEXT_DATASETS
 
 
 METHODS=("ijepa","lejepa","simplex_sigreg_lejepa","dinov3")
@@ -34,6 +36,11 @@ def _apply_saved_tuning(c,root:Path,ignore_tuned:bool):
 
 def _validate_action_dataset(action: str, dataset: str) -> None:
     single_dataset_actions = {"downstream"}
+    image_text_actions = {"image-text-retrieval"}
+    if action in image_text_actions:
+        if dataset not in IMAGE_TEXT_DATASETS:
+            raise ValueError(f"Image-text retrieval requires one of {IMAGE_TEXT_DATASETS}, got {dataset!r}")
+        return
     if dataset != PANNUKE_DATASET and action not in single_dataset_actions:
         raise ValueError(
             f"Optional dataset {dataset!r} is downstream-only; "
@@ -87,16 +94,37 @@ def _run_downstream_suite(c, root: Path, tier: str):
     }
 
 
+def _run_image_text_retrieval_checkpoints(c, root: Path, dataset: str):
+    if dataset not in IMAGE_TEXT_DATASETS:
+        raise ValueError(f"Unknown image-text dataset {dataset!r}")
+    epochs=[int(epoch) for epoch in c["training"]["checkpoint_epochs"]]
+    results={}
+    for epoch in epochs:
+        checkpoint=root/"pretrain_full"/"checkpoints"/f"epoch_{epoch}.pt"
+        if not checkpoint.is_file():
+            raise FileNotFoundError(f"Missing required SSL checkpoint: {checkpoint}")
+        output=root/"image_text_retrieval"/dataset/f"epoch_{epoch}"
+        results[str(epoch)]=run_image_text_retrieval(c,checkpoint,output,dataset=dataset)
+    return {"dataset":dataset,"checkpoint_epochs":epochs,"results":results}
+
+
+def _run_image_text_retrieval_suite(c, root: Path):
+    return {
+        "datasets": IMAGE_TEXT_DATASETS,
+        "results": {dataset:_run_image_text_retrieval_checkpoints(c,root,dataset) for dataset in IMAGE_TEXT_DATASETS},
+    }
+
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument(
         "action",
         choices=(
-            "tune","pretrain","downstream","downstream-suite","pipeline","report"
+            "tune","pretrain","downstream","downstream-suite","image-text-retrieval","image-text-retrieval-suite","pipeline","report"
         ),
     )
     p.add_argument("--method",required=True,choices=METHODS)
-    p.add_argument("--dataset",choices=(PANNUKE_DATASET,*EXTERNAL_DATASETS),default=PANNUKE_DATASET)
+    p.add_argument("--dataset",choices=(PANNUKE_DATASET,*EXTERNAL_DATASETS,*IMAGE_TEXT_DATASETS),default=PANNUKE_DATASET)
     p.add_argument("--suite-tier",choices=("main","supplementary","all"),default="main")
     p.add_argument("--learning-rate",type=float,default=None)
     p.add_argument("--run-id",default=None)
@@ -127,6 +155,10 @@ def main():
     elif a.action=="downstream-suite":
         c=_apply_saved_tuning(c,root,a.ignore_tuned)
         result=_run_downstream_suite(c,root,a.suite_tier)
+    elif a.action=="image-text-retrieval":
+        result=_run_image_text_retrieval_checkpoints(c,root,a.dataset)
+    elif a.action=="image-text-retrieval-suite":
+        result=_run_image_text_retrieval_suite(c,root)
     elif a.action=="report":
         c=_apply_saved_tuning(c,root,a.ignore_tuned)
         result={"report":str(write_final_report(c))}

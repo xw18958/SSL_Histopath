@@ -10,3 +10,4 @@ matplotlib>=3.9
 pyyaml>=6
 piq>=0.8
 wandb>=0.18
+h5py>=3.12

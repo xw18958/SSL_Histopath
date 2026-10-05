@@ -157,7 +157,7 @@ def _dataset_configs() -> dict[str, ExternalDatasetConfig]:
         if status not in {"ready", "blocked"}:
             raise RuntimeError(f"External dataset {slug} has invalid protocol_status={status!r}")
         balance = str(value.get("balance_policy", "balanced"))
-        if balance not in {"balanced", "natural_imbalance"}:
+        if balance not in {"balanced", "natural_imbalance", "group_constrained"}:
             raise RuntimeError(f"External dataset {slug} has invalid balance_policy={balance!r}")
         blocker = value.get("blocker")
         if status == "blocked" and not blocker:
@@ -530,10 +530,24 @@ def _sicap_records(config: ExternalDatasetConfig, seed: int) -> tuple[list[dict[
     }
 
 
+from . import protocol_builders as _pb
+
 _BUILDERS = {
     "crc_val_he_7k": _crc_records,
     "breakhis_8subtype": _breakhis_records,
     "mhist_balanced_8_1_1": _mhist_records,
+    "kather_2016": _pb.kather_2016,
+    "bach": _pb.bach,
+    "sicapv2_4class": _pb.sicap,
+    "wsss4luad_3class": _pb.wsss,
+    "oral_oscc": _pb.oral_oscc,
+    "endometrial_4class": _pb.endometrial,
+    "osteosarcoma_3class": _pb.osteosarcoma,
+    "gashissdb_binary": _pb.gashis,
+    "renalcell_6class": _pb.renalcell,
+    "ebhi_seg_6class": _pb.ebhi,
+    "lc25000_5class": _pb.lc25000,
+    "pcam_binary": _pb.pcam,
 }
 
 
@@ -629,6 +643,8 @@ def _record_identity(record: Mapping[str, Any]) -> str:
         return "file:" + str(record.get("relative_path"))
     if storage == "parquet":
         return "parquet:" + ":".join(str(record.get(key)) for key in ("parquet_file", "row_group", "row_in_group"))
+    if storage == "hdf5":
+        return "hdf5:" + ":".join(str(record.get(key)) for key in ("hdf5_file", "hdf5_index"))
     raise ValueError(f"Unknown external record storage={storage!r}")
 
 
@@ -683,10 +699,26 @@ def _validate_manifest_payload(config: ExternalDatasetConfig, document: Mapping[
                 raise FileNotFoundError(f"External parquet shard is absent or escapes its root: {relative}")
             if int(record.get("row_group", -1)) < 0 or int(record.get("row_in_group", -1)) < 0:
                 raise ValueError("Parquet record has invalid row coordinates")
+        elif storage == "hdf5":
+            relative = record.get("hdf5_file")
+            if not isinstance(relative, str):
+                raise ValueError("HDF5 record is missing hdf5_file")
+            hdf5_path = (config.root / relative).resolve()
+            if root_resolved not in hdf5_path.parents or not hdf5_path.is_file():
+                raise FileNotFoundError(f"External HDF5 source is absent or escapes its root: {relative}")
+            if int(record.get("hdf5_index", -1)) < 0:
+                raise ValueError("HDF5 record has invalid index")
         else:
             raise ValueError(f"Unknown record storage={storage!r}")
         observed_counts[str(split)] += 1
         class_split_counts[(class_id, str(split))] += 1
+    group_splits: dict[str, set[str]] = {}
+    for record in records:
+        if record.get("group_id") is not None:
+            group_splits.setdefault(str(record["group_id"]), set()).add(str(record["split"]))
+    leaking = [group for group, splits in group_splits.items() if len(splits) > 1]
+    if leaking:
+        raise ValueError(f"External probe manifest group leakage detected: {leaking[:5]}")
     if observed_counts != document.get("split_counts") or not all(observed_counts.values()):
         raise ValueError("External probe manifest split-count mismatch")
     if any(class_split_counts[(class_id, split)] == 0 for class_id in range(len(config.class_names)) for split in _SPLITS):
@@ -729,10 +761,12 @@ class ExternalProbeImageDataset(Dataset):
         self.rows = [dict(row) for row in rows]
         self.root = Path(root)
         self._parquet_handles: dict[Path, pq.ParquetFile] = {}
+        self._hdf5_handles: dict[Path, Any] = {}
 
     def __getstate__(self):
         state = self.__dict__.copy()
         state["_parquet_handles"] = {}
+        state["_hdf5_handles"] = {}
         return state
 
     def __len__(self) -> int:
@@ -773,6 +807,16 @@ class ExternalProbeImageDataset(Dataset):
                 raise ValueError(f"HF-Parquet image record has neither bytes nor path: {path}")
             with Image.open(io.BytesIO(encoded)) as image:
                 return image.convert("RGB").copy()
+        if storage == "hdf5":
+            import h5py
+            path = self.root / str(row["hdf5_file"])
+            handle = self._hdf5_handles.get(path)
+            if handle is None:
+                handle = h5py.File(path, "r")
+                self._hdf5_handles[path] = handle
+            key = next(iter(handle.keys()))
+            array = np.asarray(handle[key][int(row["hdf5_index"])], dtype=np.uint8)
+            return Image.fromarray(array).convert("RGB")
         raise ValueError(f"Unknown external record storage={storage!r}")
 
     def __getitem__(self, index: int) -> tuple[torch.Tensor, int, int]:

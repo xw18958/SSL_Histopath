@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import platform
 import re
@@ -15,6 +16,17 @@ from pannuke_ssl.utils import atomic_json_dump
 from .runtime_paths import runtime_identity
 
 _SAFE = re.compile(r"[^A-Za-z0-9._-]+")
+
+
+def _manifest_hash_catalog(c: dict[str, Any]) -> dict[str, str]:
+    root = Path(c["manifests"]["root"])
+    catalog: dict[str, str] = {}
+    if not root.is_dir():
+        return catalog
+    for checksum in sorted(root.rglob("*.json.sha256")):
+        value = checksum.read_text(encoding="utf-8").strip().split(maxsplit=1)[0]
+        catalog[checksum.relative_to(root).as_posix().removesuffix(".sha256")] = value
+    return catalog
 
 
 def default_run_id(c: dict[str, Any]) -> str:
@@ -66,6 +78,7 @@ def build_run_metadata(c: dict[str, Any], *, run_id: str, action: str, dataset: 
         "simplex_sigma": c["method"].get("objective", {}).get("simplex_sigma"),
         "peak_lr": float(c["method"]["optimizer"]["peak_lr"]),
         "checkpoint_epochs": [int(x) for x in c["training"]["checkpoint_epochs"]],
+        "manifest_hashes": _manifest_hash_catalog(c),
         "runtime": runtime_identity(),
         "python": sys.version.split()[0],
         "platform": platform.platform(),
@@ -83,7 +96,7 @@ def write_run_metadata(c: dict[str, Any], root: Path, *, run_id: str, action: st
         existing = json.loads(path.read_text(encoding="utf-8"))
         immutable = (
             "run_id", "method", "seed", "simplex_components", "simplex_sigma",
-            "peak_lr", "checkpoint_epochs",
+            "peak_lr", "checkpoint_epochs", "manifest_hashes",
         )
         mismatched = [key for key in immutable if existing.get(key) != metadata.get(key)]
         existing_commit = existing.get("runtime", {}).get("git_commit")

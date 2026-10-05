@@ -20,7 +20,7 @@ import pandas as pd
 
 from pannuke_ssl.config import load_yaml
 from pannuke_ssl.utils import atomic_json_dump
-from .runtime_paths import expand_runtime_string
+from .runtime_paths import expand_runtime_string, expand_runtime_paths
 
 
 IMAGE_TEXT_DATASETS = ("arch", "ipath")
@@ -86,6 +86,7 @@ class _UnionFind:
 def _arch_records(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     records: list[dict[str, Any]] = []
     missing: list[str] = []
+    empty_text: list[str] = []
     books_root = root / "extracted/books_set/books_set"
     books = json.loads((books_root / "captions.json").read_text(encoding="utf-8"))
     images = _image_by_stem(books_root / "images")
@@ -96,11 +97,15 @@ def _arch_records(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         if path is None:
             missing.append(f"books:{uuid}")
             continue
+        text = str(value["caption"]).strip()
+        if not text:
+            empty_text.append(f"books:{uuid}")
+            continue
         book_rows.append({
             "source": "books",
             "source_row": str(key),
             "relative_path": path.relative_to(root).as_posix(),
-            "text": str(value["caption"]).strip(),
+            "text": text,
             "figure_id": str(value.get("figure_id", "")),
             "uuid": uuid,
         })
@@ -132,6 +137,9 @@ def _arch_records(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
             missing.append(f"pubmed:{uuid}")
             continue
         text = str(value["caption"]).strip()
+        if not text:
+            empty_text.append(f"pubmed:{uuid}")
+            continue
         group_id = caption_to_group.setdefault(text, f"pubmed:{len(caption_to_group):05d}")
         records.append({
             "source": "pubmed",
@@ -146,6 +154,7 @@ def _arch_records(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         "caption_rows": len(books) + len(pubmed),
         "paired_rows": len(records),
         "missing_images": missing,
+        "empty_text_rows": empty_text,
         "groups": len(groups),
         "multi_record_groups": sum(value > 1 for value in groups.values()),
         "max_group_size": max(groups.values()) if groups else 0,
@@ -164,6 +173,7 @@ def _ipath_records(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         image_root = root / "extracted/IPATH/Images"
     records: list[dict[str, Any]] = []
     missing: list[str] = []
+    empty_text: list[str] = []
     description_to_group: dict[str, str] = {}
     for source_row, row in enumerate(frame.to_dict("records")):
         image_id = str(row["Image_ID"])
@@ -171,7 +181,11 @@ def _ipath_records(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         if not path.is_file():
             missing.append(image_id)
             continue
-        text = " ".join(str(row["Description"]).split())
+        raw_text = row["Description"]
+        text = "" if pd.isna(raw_text) else " ".join(str(raw_text).split())
+        if not text:
+            empty_text.append(image_id)
+            continue
         group_id = description_to_group.setdefault(text, f"description:{len(description_to_group):05d}")
         records.append({
             "source": "ipath",
@@ -188,6 +202,7 @@ def _ipath_records(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         "paired_rows": len(records),
         "unique_descriptions": len(description_to_group),
         "missing_images": missing,
+        "empty_text_rows": empty_text,
         "groups": len(groups),
         "multi_record_groups": sum(value > 1 for value in groups.values()),
         "max_group_size": max(groups.values()) if groups else 0,
@@ -331,6 +346,7 @@ def prepare_image_text_manifest(
         "split_counts": split_counts,
         "group_leakage": False,
         "missing_image_rows_excluded": len(missing),
+        "empty_text_rows_excluded": len(provenance.get("empty_text_rows", ())),
         "alignment_protocol": config.get("alignment_protocol"),
         "retrieval_evaluation_ready": config.get("alignment_protocol") is not None,
         "provenance": provenance,
@@ -355,3 +371,47 @@ def prepare_image_text_manifest(
         "alignment_protocol": config.get("alignment_protocol"),
         "retrieval_evaluation_ready": config.get("alignment_protocol") is not None,
     }
+
+
+def load_image_text_manifest(slug: str, output_root: str | Path) -> dict[str, Any]:
+    """Load and validate a frozen image-text manifest without touching held-out content."""
+    if slug not in IMAGE_TEXT_DATASETS:
+        raise ValueError(f"Unknown image-text dataset {slug!r}")
+    config = _configs()[slug]
+    path = Path(output_root) / "image_text_manifests" / f"{slug}.json"
+    checksum_path = Path(f"{path}.sha256")
+    if not path.is_file() or not checksum_path.is_file():
+        raise FileNotFoundError(f"Missing frozen image-text manifest/checksum for {slug}: {path}")
+    expected = checksum_path.read_text(encoding="utf-8").strip().split(maxsplit=1)[0]
+    observed = _sha256_file(path)
+    if expected != observed:
+        raise RuntimeError(f"Image-text manifest checksum mismatch: {path}")
+    document = json.loads(path.read_text(encoding="utf-8"))
+    if int(document.get("schema_version", -1)) != _MANIFEST_SCHEMA_VERSION or document.get("dataset") != slug:
+        raise ValueError("Image-text manifest identity/schema mismatch")
+    if document.get("dataset_root_spec") != str(config["root"]):
+        raise ValueError("Image-text manifest root-spec mismatch")
+    if document.get("alignment_protocol") != config.get("alignment_protocol"):
+        raise ValueError("Image-text manifest alignment protocol does not match the frozen config")
+    records = document.get("records")
+    if not isinstance(records, list) or not records:
+        raise ValueError("Image-text manifest has no records")
+    seen=set(); groups={}; split_rows={split:[] for split in ("train","val","test")}
+    root = Path(expand_runtime_string(str(config["root"])))
+    for index,row in enumerate(records):
+        split=str(row.get("split")); rel=str(row.get("relative_path","")); gid=str(row.get("group_id",""))
+        if split not in split_rows or not rel or not gid or not str(row.get("text","")).strip():
+            raise ValueError(f"Invalid image-text record at index {index}")
+        if rel in seen: raise ValueError(f"Duplicate image-text image record: {rel}")
+        seen.add(rel); groups.setdefault(gid,set()).add(split)
+        if not (root/rel).is_file(): raise FileNotFoundError(root/rel)
+        split_rows[split].append({**row,"record_index":index})
+    leaking=[g for g,v in groups.items() if len(v)>1]
+    if leaking: raise ValueError(f"Image-text group leakage detected: {leaking[:5]}")
+    observed_counts={k:len(v) for k,v in split_rows.items()}
+    if observed_counts != document.get("split_counts"):
+        raise ValueError(f"Image-text split count mismatch: {observed_counts}")
+    protocol=expand_runtime_paths(config.get("alignment_protocol"))
+    return {"dataset":slug,"root":root,"manifest_path":path,"manifest_sha256":observed,
+            "split_rows":split_rows,"split_counts":observed_counts,"alignment_protocol":protocol,
+            "provenance":document.get("provenance",{})}

@@ -48,6 +48,20 @@ def test_committed_manifests_are_server_path_independent():
         assert '/home/xwan0900' not in raw
 
 
+def test_committed_image_text_manifests_are_server_path_independent():
+    manifest_dir=ROOT/'manifests/ssl_standard/image_text_manifests'
+    files=sorted(manifest_dir.glob('*.json'))
+    assert {path.stem for path in files} == {'arch','ipath'}
+    for path in files:
+        document=json.loads(path.read_text(encoding='utf-8'))
+        assert document['schema_version'] == 2
+        assert document['dataset_root_spec'].startswith('${SSL_DATA_ROOT}/')
+        assert document['retrieval_evaluation_ready'] is True
+        raw=path.read_text(encoding='utf-8')
+        assert '/raid1/xwan0900' not in raw
+        assert '/home/xwan0900' not in raw
+
+
 def test_run_metadata_keeps_per_invocation_execution_history(monkeypatch, tmp_path):
     monkeypatch.setenv('SSL_DATA_ROOT', str(tmp_path/'data'))
     monkeypatch.setenv('SSL_MODEL_ROOT', str(tmp_path/'models'))

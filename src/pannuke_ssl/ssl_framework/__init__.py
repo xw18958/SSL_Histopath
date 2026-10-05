@@ -5,4 +5,5 @@ from .trainer import train_ssl
 from .tuning import run_tuning
 from .downstream import run_downstream,run_frozen_downstream
 from .reporting import write_final_report
-__all__=["apply_lr","apply_tuned_hyperparameters","load_standard_config","load_tuning_spec","EarlyStopper","Validator","build_ssl_loader","module_sha","train_ssl","run_tuning","run_downstream","run_frozen_downstream","write_final_report"]
+from .image_text_retrieval import run_image_text_retrieval
+__all__=["apply_lr","apply_tuned_hyperparameters","load_standard_config","load_tuning_spec","EarlyStopper","Validator","build_ssl_loader","module_sha","train_ssl","run_tuning","run_downstream","run_frozen_downstream","write_final_report","run_image_text_retrieval"]

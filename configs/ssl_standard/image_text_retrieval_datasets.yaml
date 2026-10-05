@@ -5,15 +5,69 @@ datasets:
     val_size: 700
     test_size: 700
     target_total: 4667
-    split_ratio: [7, 1.5, 1.5]
+    split_ratio:
+    - 7
+    - 1.5
+    - 1.5
     split_unit: figure_caption_group
-    alignment_protocol: null
+    alignment_protocol:
+      plip_model_dir: ${SSL_MODEL_ROOT}/plip_model
+      text_branch: frozen_pretrained_plip_text_encoder_and_text_projection
+      ssl_image_encoder: frozen_checkpoint_representation
+      image_projection_head: linear_no_bias_ssl_dim_to_plip_512
+      trainable_parameters: image_projection_head_only
+      loss: clip_symmetric_cross_entropy
+      temperature: frozen_plip_logit_scale
+      search: sequential_greedy
+      learning_rates: &id001
+      - 0.0001
+      - 0.0005
+      - 0.001
+      weight_decays: &id002
+      - 0.0
+      - 0.0001
+      tuning_epochs: 5
+      final_maximum_epochs: 50
+      final_early_stopping_patience: 8
+      batch_size: 256
+      text_batch_size: 256
+      selection_metric: val_overall_mean_recall
+      retrieval_metrics: &id003
+      - i2t_r@1
+      - i2t_r@5
+      - i2t_r@10
+      - t2i_r@1
+      - t2i_r@5
+      - t2i_r@10
+      - overall_mean_recall
+      test_policy: untouched_until_projector_and_hyperparameters_are_frozen
   ipath:
     root: ${SSL_DATA_ROOT}/IPATH
     train_size: 3267
     val_size: 700
     test_size: 700
     target_total: 4667
-    split_ratio: [7, 1.5, 1.5]
+    split_ratio:
+    - 7
+    - 1.5
+    - 1.5
     split_unit: duplicate_description_group
-    alignment_protocol: null
+    alignment_protocol:
+      plip_model_dir: ${SSL_MODEL_ROOT}/plip_model
+      text_branch: frozen_pretrained_plip_text_encoder_and_text_projection
+      ssl_image_encoder: frozen_checkpoint_representation
+      image_projection_head: linear_no_bias_ssl_dim_to_plip_512
+      trainable_parameters: image_projection_head_only
+      loss: clip_symmetric_cross_entropy
+      temperature: frozen_plip_logit_scale
+      search: sequential_greedy
+      learning_rates: *id001
+      weight_decays: *id002
+      tuning_epochs: 5
+      final_maximum_epochs: 50
+      final_early_stopping_patience: 8
+      batch_size: 256
+      text_batch_size: 256
+      selection_metric: val_overall_mean_recall
+      retrieval_metrics: *id003
+      test_policy: untouched_until_projector_and_hyperparameters_are_frozen
