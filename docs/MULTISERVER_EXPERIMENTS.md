@@ -53,10 +53,11 @@ $SSL_RUN_ROOT/ssl_standard/runs/<run-id>/
   run_metadata.json
   pretrain_full/
   downstream_datasets/
-  image_retrieval_datasets/
 ```
 
-Each run has an immutable `run_metadata.json` plus one JSON record per invocation under `executions/`. Every pretrain/downstream/retrieval invocation records the Git commit, hostname, runtime roots, seed, method/K/sigma, LR, package versions, and GPU identity, so one run can safely span multiple servers.
+Image-text retrieval is handled separately for ARCH/IPATH after its alignment protocol is frozen; image-image retrieval is not part of the experiment plan.
+
+Each run has an immutable `run_metadata.json` plus one JSON record per invocation under `executions/`. Every pretrain/downstream invocation records the Git commit, hostname, runtime roots, seed, method/K/sigma, LR, package versions, and GPU identity, so one run can safely span multiple servers.
 
 ## Moving work between servers
 

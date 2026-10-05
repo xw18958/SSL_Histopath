@@ -174,13 +174,30 @@ def test_standard_downstream_requires_every_saved_ssl_checkpoint(tmp_path):
 
 def test_planned_suite_distinguishes_ready_from_blocked_protocols(tmp_path):
     ready = set(ready_external_datasets())
-    assert ready == {"mhist", "crc_val_he_7k", "breakhis_8subtype", "sicapv2_4class"}
-    assert ready < set(EXTERNAL_DATASETS)
-    with pytest.raises(DatasetProtocolNotReadyError, match="Refusing to invent"):
+    assert ready == {"mhist", "crc_val_he_7k", "breakhis_8subtype"}
+    assert len(EXTERNAL_DATASETS) == 15
+    assert "oral_oscc" in EXTERNAL_DATASETS
+    assert "oral_oscc_100x" not in EXTERNAL_DATASETS
+    assert "oral_oscc_400x" not in EXTERNAL_DATASETS
+    assert "pcgipi_he_4class" not in EXTERNAL_DATASETS
+    registry = datasets._dataset_configs()
+    assert registry["oral_oscc"].balance_policy == "natural_imbalance"
+    assert registry["oral_oscc"].expected_images == 1224
+    assert registry["ebhi_seg_6class"].balance_policy == "natural_imbalance"
+    assert registry["ebhi_seg_6class"].expected_images == 2228
+    with pytest.raises(DatasetProtocolNotReadyError, match="manifest builder still needs implementation"):
         prepare_external_manifest("kather_2016", tmp_path / "outputs")
+
+
+def test_balanced_8_1_1_rounding_matches_frozen_counts():
+    assert datasets._split_counts_8_1_1(1000) == {"train": 800, "val": 100, "test": 100}
+    assert datasets._split_counts_8_1_1(990) == {"train": 792, "val": 99, "test": 99}
+    assert datasets._split_counts_8_1_1(625) == {"train": 500, "val": 63, "test": 62}
+    assert datasets._split_counts_8_1_1(535) == {"train": 428, "val": 54, "test": 53}
+    assert datasets._split_counts_8_1_1(339) == {"train": 271, "val": 34, "test": 34}
 
 
 def test_standard_runner_rejects_blocked_dataset_with_scientific_reason():
     standard = _load_script("run_ssl_standard.py")
-    with pytest.raises(ValueError, match="no final TRAIN/VAL/TEST rule"):
+    with pytest.raises(ValueError, match="manifest builder still needs implementation"):
         standard._validate_action_dataset("downstream", "kather_2016")

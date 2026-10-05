@@ -54,6 +54,52 @@ def _split_rows(c:dict[str,Any],external_dataset:ExternalProbeDataset|None=None)
     rows,_=validated_pannuke_split(c)
     return {s:[r for r in rows if r['split']==s] for s in ('train','val','test')}
 
+def _tune_probe_sequential_greedy(
+    features:dict[str,tuple[torch.Tensor,torch.Tensor]],
+    probe_config:Mapping[str,Any],
+    *,
+    seed:int,
+    num_classes:int,
+):
+    if str(probe_config.get('search',''))!='sequential_greedy':
+        raise ValueError("Downstream probe tuning must use sequential_greedy search")
+    learning_rates=[float(value) for value in probe_config['learning_rates']]
+    weight_decays=[float(value) for value in probe_config['weight_decays']]
+    if not learning_rates or not weight_decays:
+        raise ValueError('Probe search requires non-empty learning_rates and weight_decays')
+    tuning_epochs=int(probe_config['tuning_epochs'])
+    if tuning_epochs!=5:
+        raise ValueError(f'Frozen downstream tuning budget is 5 epochs per trial, got {tuning_epochs}')
+
+    board=[]
+    baseline_wd=weight_decays[0]
+    best_lr_trial=None
+    for trial_index,lr in enumerate(learning_rates,1):
+        tr=_fit_probe(
+            features,learning_rate=lr,weight_decay=baseline_wd,
+            maximum_epochs=tuning_epochs,patience=tuning_epochs,
+            seed=seed,num_classes=num_classes,
+        )
+        board.append({'stage':'lr','trial':trial_index,**{k:v for k,v in tr.items() if k not in ('state','history')}})
+        if best_lr_trial is None or tr['val_macro_f1']>best_lr_trial['val_macro_f1']:
+            best_lr_trial=tr
+    assert best_lr_trial is not None
+    selected_lr=float(best_lr_trial['learning_rate'])
+
+    best_wd_trial=None
+    for trial_index,wd in enumerate(weight_decays,1):
+        tr=_fit_probe(
+            features,learning_rate=selected_lr,weight_decay=wd,
+            maximum_epochs=tuning_epochs,patience=tuning_epochs,
+            seed=seed,num_classes=num_classes,
+        )
+        board.append({'stage':'weight_decay','trial':trial_index,**{k:v for k,v in tr.items() if k not in ('state','history')}})
+        if best_wd_trial is None or tr['val_macro_f1']>best_wd_trial['val_macro_f1']:
+            best_wd_trial=tr
+    assert best_wd_trial is not None
+    return selected_lr,float(best_wd_trial['weight_decay']),board,best_wd_trial
+
+
 def _run_downstream(c:dict[str,Any],encoder,out:Path,*,encoder_epoch:int|str,encoder_metadata:Mapping[str,Any]|None=None,external_dataset:ExternalProbeDataset|None=None):
     if not torch.cuda.is_available(): raise RuntimeError('CUDA required')
     out=Path(out); out.mkdir(parents=True,exist_ok=True)
@@ -66,12 +112,45 @@ def _run_downstream(c:dict[str,Any],encoder,out:Path,*,encoder_epoch:int|str,enc
     dataset_metadata=None if external_dataset is None else external_dataset.metadata()
     if dataset_metadata is not None: atomic_json_dump(dataset_metadata,out/'dataset_provenance.json')
     # Only train/val are decoded before probe selection.
-    tx,ty,_=_extract(enc,by['train'],c,device,external_dataset); vx,vy,_=_extract(enc,by['val'],c,device,external_dataset); mean=tx.mean(0,keepdim=True); std=tx.std(0,keepdim=True,unbiased=True).clamp_min(1e-6); feats={'train':((tx-mean)/std,ty),'val':((vx-mean)/std,vy)}; pc=c['downstream']['probe']; board=[]; best=None
-    for lr in pc['learning_rates']:
-        for wd in pc['weight_decays']:
-            tr=_fit_probe(feats,learning_rate=float(lr),weight_decay=float(wd),maximum_epochs=int(pc['maximum_epochs']),patience=int(pc['early_stopping_patience']),seed=int(c['seed']),num_classes=num_classes); board.append({k:v for k,v in tr.items() if k not in ('state','history')})
-            if best is None or tr['val_macro_f1']>best['val_macro_f1']: best=tr
-    write_csv(board,out/'probe_leaderboard.csv'); write_csv(best['history'],out/'selected_probe_metrics.csv'); torch.save({'classifier':{k:v.cpu() for k,v in best['state'].items()},'feature_mean':mean,'feature_std':std,'selection':{'learning_rate':best['learning_rate'],'weight_decay':best['weight_decay'],'best_epoch':best['best_epoch'],'validation_macro_f1':best['val_macro_f1'],'num_classes':num_classes,'test_used':False}},out/'best_linear_probe.pt'); atomic_json_dump({'learning_rate':best['learning_rate'],'weight_decay':best['weight_decay'],'best_epoch':best['best_epoch'],'validation_macro_f1':best['val_macro_f1'],'num_classes':num_classes,'test_used':False},out/'probe_selection.json')
+    tx,ty,_=_extract(enc,by['train'],c,device,external_dataset)
+    vx,vy,_=_extract(enc,by['val'],c,device,external_dataset)
+    mean=tx.mean(0,keepdim=True)
+    std=tx.std(0,keepdim=True,unbiased=True).clamp_min(1e-6)
+    feats={'train':((tx-mean)/std,ty),'val':((vx-mean)/std,vy)}
+    pc=c['downstream']['probe']
+    selected_lr,selected_wd,board,best_wd_trial=_tune_probe_sequential_greedy(
+        feats,pc,seed=int(c['seed']),num_classes=num_classes,
+    )
+    write_csv(board,out/'probe_leaderboard.csv')
+
+    # Hyperparameters are now frozen.  This is the final probe fit, not an HP-tuning trial.
+    final_fit=_fit_probe(
+        feats,learning_rate=selected_lr,weight_decay=selected_wd,
+        maximum_epochs=int(pc['final_maximum_epochs']),
+        patience=int(pc['final_early_stopping_patience']),
+        seed=int(c['seed']),num_classes=num_classes,
+    )
+    write_csv(final_fit['history'],out/'selected_probe_metrics.csv')
+    selection={
+        'search':'sequential_greedy',
+        'tuning_epochs_per_trial':int(pc['tuning_epochs']),
+        'lr_trials':len(pc['learning_rates']),
+        'weight_decay_trials':len(pc['weight_decays']),
+        'learning_rate':selected_lr,
+        'weight_decay':selected_wd,
+        'tuning_validation_macro_f1':float(best_wd_trial['val_macro_f1']),
+        'best_epoch':final_fit['best_epoch'],
+        'validation_macro_f1':final_fit['val_macro_f1'],
+        'num_classes':num_classes,
+        'test_used':False,
+    }
+    torch.save({
+        'classifier':{k:v.cpu() for k,v in final_fit['state'].items()},
+        'feature_mean':mean,
+        'feature_std':std,
+        'selection':selection,
+    },out/'best_linear_probe.pt')
+    atomic_json_dump(selection,out/'probe_selection.json')
     # Exclusive marker is created before any test image is decoded.
     marker={'encoder_epoch':encoder_epoch,'probe_selected':True,'dataset':dataset_slug,'num_classes':num_classes}
     if encoder_metadata is not None: marker['encoder_metadata']=dict(encoder_metadata)
@@ -81,7 +160,7 @@ def _run_downstream(c:dict[str,Any],encoder,out:Path,*,encoder_epoch:int|str,enc
     if external_dataset is not None:
         lookup={int(row['record_index']):row for row in by['test']}
         write_csv([{'record_index':int(record_index),'relative_path':lookup[int(record_index)]['relative_path'],'class_id':int(label),'class_name':class_names[int(label)],'prediction_id':int(prediction),'prediction_name':class_names[int(prediction)]} for record_index,label,prediction in zip(keys,y.numpy(),preds)],out/'test_prediction_records.csv')
-    result={'method':c['method']['name'],'dataset':dataset_slug,'encoder_epoch':encoder_epoch,'feature_dim':int(tx.shape[1]),'num_classes':num_classes,'class_names':list(class_names),'probe_validation_macro_f1':float(best['val_macro_f1']),'test_loss':float(loss),'test':metrics,'test_images':int(y.numel()),'test_evaluated_once':True}
+    result={'method':c['method']['name'],'dataset':dataset_slug,'encoder_epoch':encoder_epoch,'feature_dim':int(tx.shape[1]),'num_classes':num_classes,'class_names':list(class_names),'probe_validation_macro_f1':float(final_fit['val_macro_f1']),'test_loss':float(loss),'test':metrics,'test_images':int(y.numel()),'test_evaluated_once':True}
     if dataset_metadata is not None: result['dataset_metadata']=dataset_metadata
     if encoder_metadata is not None: result['encoder_metadata']=dict(encoder_metadata)
     atomic_json_dump(result,out/'test_metrics.json'); return result

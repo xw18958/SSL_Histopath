@@ -29,7 +29,7 @@ def _entry(run_id: str) -> dict:
 def main() -> None:
     p=argparse.ArgumentParser(description='Preflight one registered experiment on the current server')
     p.add_argument('--experiment', required=True)
-    p.add_argument('--action', choices=('pretrain','downstream','downstream-suite','image-retrieval','image-retrieval-suite'), default='pretrain')
+    p.add_argument('--action', choices=('pretrain','downstream','downstream-suite'), default='pretrain')
     p.add_argument('--dataset')
     args=p.parse_args()
     checks=[]
@@ -60,7 +60,7 @@ def main() -> None:
         free,total=torch.cuda.mem_get_info()
         check('gpu_identity',True,{'name':torch.cuda.get_device_name(0),'free_gib':round(free/2**30,2),'total_gib':round(total/2**30,2)})
     datasets=[]
-    if args.action in ('downstream','image-retrieval'):
+    if args.action == 'downstream':
         if not args.dataset: raise ValueError('--dataset required for single-dataset evaluation preflight')
         datasets=[args.dataset]
     elif args.action.endswith('-suite'):

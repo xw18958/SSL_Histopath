@@ -204,7 +204,11 @@ def inspect_image_text_dataset(slug: str) -> dict[str, Any]:
     return {
         "dataset": slug,
         "root": str(root),
+        "configured_train_size": int(config["train_size"]),
+        "configured_val_size": int(config["val_size"]),
         "configured_test_size": int(config["test_size"]),
+        "configured_target_total": int(config["target_total"]),
+        "configured_split_ratio": list(config["split_ratio"]),
         "split_unit": str(config["split_unit"]),
         "alignment_protocol": config.get("alignment_protocol"),
         "retrieval_evaluation_ready": config.get("alignment_protocol") is not None,
@@ -283,7 +287,7 @@ def prepare_image_text_manifest(
     slug: str,
     output_root: str | Path,
     *,
-    val_count: int,
+    val_count: int | None = None,
     test_count: int | None = None,
     train_count: int | None = None,
     seed: int = 20260903,
@@ -302,14 +306,22 @@ def prepare_image_text_manifest(
             f"{slug} has {len(missing)} metadata rows without a matched local image; "
             "resolve them or pass --allow-missing-images explicitly before freezing a split"
         )
+    target_train = int(config["train_size"] if train_count is None else train_count)
+    target_val = int(config["val_size"] if val_count is None else val_count)
     target_test = int(config["test_size"] if test_count is None else test_count)
     selected, split_counts = _group_split(
         records,
-        val_count=int(val_count),
+        val_count=target_val,
         test_count=target_test,
-        train_count=None if train_count is None else int(train_count),
+        train_count=target_train,
         seed=int(seed),
     )
+    if train_count is None and val_count is None and test_count is None:
+        expected_total = int(config["target_total"])
+        if sum(split_counts.values()) != expected_total:
+            raise AssertionError(
+                f"Configured {slug} 7:1.5:1.5 split must total {expected_total}, got {split_counts}"
+            )
     manifest = {
         "schema_version": _MANIFEST_SCHEMA_VERSION,
         "dataset": slug,

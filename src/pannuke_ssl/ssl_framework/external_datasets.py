@@ -41,8 +41,7 @@ EXTERNAL_DATASETS = (
     "bach",
     "sicapv2_4class",
     "wsss4luad_3class",
-    "oral_oscc_100x",
-    "oral_oscc_400x",
+    "oral_oscc",
     "endometrial_4class",
     "osteosarcoma_3class",
     "gashissdb_binary",
@@ -50,7 +49,6 @@ EXTERNAL_DATASETS = (
     "ebhi_seg_6class",
     "lc25000_5class",
     "pcam_binary",
-    "pcgipi_he_4class",
 )
 _PROJECT_ROOT = Path(__file__).resolve().parents[3]
 _CONFIG_PATH = _PROJECT_ROOT / "configs/ssl_standard/external_probe_datasets.yaml"
@@ -286,6 +284,22 @@ def _deterministic_take(paths: Iterable[Path], count: int, seed: int) -> list[Pa
     return values[:count]
 
 
+def _split_counts_8_1_1(total: int) -> dict[str, int]:
+    """Largest-remainder 8:1:1 split with deterministic train/val/test tie order."""
+    if total < 3:
+        raise ValueError("Need at least three records for an 8:1:1 split")
+    weights = (("train", 0.8), ("val", 0.1), ("test", 0.1))
+    exact = {name: total * weight for name, weight in weights}
+    counts = {name: int(math.floor(value)) for name, value in exact.items()}
+    leftover = total - sum(counts.values())
+    order = sorted((name for name, _ in weights), key=lambda name: (-(exact[name] - counts[name]), ("train", "val", "test").index(name)))
+    for name in order[:leftover]:
+        counts[name] += 1
+    if sum(counts.values()) != total or any(value <= 0 for value in counts.values()):
+        raise AssertionError(f"Invalid 8:1:1 split for total={total}: {counts}")
+    return counts
+
+
 def _crc_records(config: ExternalDatasetConfig, seed: int) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     scanned = {name: _image_paths(config.root / name) for name in config.class_names}
     if any(not values for values in scanned.values()):
@@ -360,43 +374,42 @@ def _mhist_records(config: ExternalDatasetConfig, seed: int) -> tuple[list[dict[
     source_counts = Counter(str(row["Majority Vote Label"]) for row in annotations)
     if source_counts != Counter({"HP": 2162, "SSA": 990}):
         raise ValueError(f"Unexpected MHIST source counts: {dict(source_counts)}")
-    annotation_by_name = {str(row["Image Name"]): row for row in annotations}
+    grouped: dict[str, list[Path]] = {name: [] for name in config.class_names}
+    for row in annotations:
+        class_name = str(row["Majority Vote Label"])
+        if class_name not in grouped:
+            raise ValueError(f"Unexpected MHIST class {class_name!r}")
+        path = config.root / "images" / str(row["Image Name"])
+        if not path.is_file():
+            raise FileNotFoundError(path)
+        grouped[class_name].append(path)
+    quota = min(1000, min(len(paths) for paths in grouped.values()))
+    if quota != 990:
+        raise ValueError(f"MHIST registered dataset requires min(1000, smallest class)=990, found {quota}")
+    split_counts = _split_counts_8_1_1(quota)
+    if split_counts != {"train": 792, "val": 99, "test": 99}:
+        raise AssertionError(f"Unexpected MHIST split counts: {split_counts}")
     records: list[dict[str, Any]] = []
-    per_split_quota: dict[str, int] = {}
-    for split_index, split in enumerate(_SPLITS):
-        rows = list(csv.DictReader((config.root / f"{split}.csv").open(newline="", encoding="utf-8")))
-        grouped: dict[int, list[Path]] = {0: [], 1: []}
-        for row in rows:
-            class_id = int(row["class_id"])
-            if class_id not in grouped:
-                raise ValueError(f"Unexpected MHIST class_id={class_id}")
-            filename = str(row["dir"])
-            path = config.root / "images" / filename
-            if not path.is_file():
-                raise FileNotFoundError(path)
-            expected_name = config.class_names[class_id]
-            if str(annotation_by_name[filename]["Majority Vote Label"]) != expected_name:
-                raise ValueError(f"MHIST CSV/annotation label mismatch for {filename}")
-            if split == "test" and annotation_by_name[filename]["Partition"] != "test":
-                raise ValueError(f"MHIST test membership disagrees with official annotation: {filename}")
-            grouped[class_id].append(path)
-        quota = min(len(grouped[0]), len(grouped[1]), 1000)
-        per_split_quota[split] = quota
-        for class_id, class_name in enumerate(config.class_names):
-            selected = _deterministic_take(grouped[class_id], quota, seed + split_index * 100 + class_id)
-            records.extend(_record(path, config.root, class_id, class_name, split) for path in selected)
-    if per_split_quota != {"train": 504, "val": 126, "test": 360}:
-        raise ValueError(f"Unexpected MHIST balanced split quotas: {per_split_quota}")
+    for class_id, class_name in enumerate(config.class_names):
+        selected = _deterministic_take(grouped[class_name], quota, seed + class_id)
+        train_end = split_counts["train"]
+        val_end = train_end + split_counts["val"]
+        slices = {
+            "train": selected[:train_end],
+            "val": selected[train_end:val_end],
+            "test": selected[val_end:],
+        }
+        for split in _SPLITS:
+            records.extend(_record(path, config.root, class_id, class_name, split) for path in slices[split])
     return sorted(records, key=lambda x: (x["split"], x["class_id"], x["relative_path"])), {
         "source_image_count": len(annotations),
         "source_class_counts": {name: int(source_counts[name]) for name in config.class_names},
         "balancing": {
-            "policy": "balance_within_existing_project_split_without_oversampling",
+            "policy": "min_1000_smallest_class_then_deterministic_8_1_1",
             "seed": seed,
-            "per_class_quota": 990,
-            "per_class_split_counts": per_split_quota,
-            "official_test_membership_preserved": True,
-            "project_split_counts_before_balancing": {"train": 1740, "val": 435, "test": 977},
+            "per_class_quota": quota,
+            "per_class_split_counts": split_counts,
+            "oversampling": False,
         },
     }
 
@@ -520,8 +533,7 @@ def _sicap_records(config: ExternalDatasetConfig, seed: int) -> tuple[list[dict[
 _BUILDERS = {
     "crc_val_he_7k": _crc_records,
     "breakhis_8subtype": _breakhis_records,
-    "mhist_project_split": _mhist_records,
-    "sicapv2_4class": _sicap_records,
+    "mhist_balanced_8_1_1": _mhist_records,
 }
 
 

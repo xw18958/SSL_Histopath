@@ -1,22 +1,19 @@
 from pathlib import Path
 
-import torch
-
-from pannuke_ssl.ssl_framework.image_retrieval import class_retrieval_metrics
+from pannuke_ssl.config import load_yaml
 from pannuke_ssl.ssl_framework.image_text_datasets import _group_split
 
 
-def test_class_retrieval_excludes_self_and_scores_perfect_nearest_neighbour():
-    features = torch.tensor([[1.0, 0.0], [0.99, 0.01], [-1.0, 0.0], [-0.99, -0.01]])
-    labels = torch.tensor([0, 0, 1, 1])
-    metrics, rows = class_retrieval_metrics(features, labels, ks=(1, 2), chunk_size=2)
-    assert len(rows) == 4
-    assert metrics["precision@1"] == 1.0
-    assert metrics["recall@1"] == 1.0
-    assert metrics["hit_rate@1"] == 1.0
-    assert metrics["precision@2"] == 0.5
-    assert metrics["recall@2"] == 1.0
-    assert metrics["mAP"] == 1.0
+def test_image_text_protocol_uses_frozen_7_1_5_1_5_counts():
+    root = Path(__file__).resolve().parents[1]
+    config = load_yaml(root / "configs" / "ssl_standard" / "image_text_retrieval_datasets.yaml")
+    for dataset in ("arch", "ipath"):
+        values = config["datasets"][dataset]
+        assert values["train_size"] == 3267
+        assert values["val_size"] == 700
+        assert values["test_size"] == 700
+        assert values["target_total"] == 4667
+        assert values["split_ratio"] == [7, 1.5, 1.5]
 
 
 def test_image_text_group_split_hits_exact_counts_without_group_leakage():

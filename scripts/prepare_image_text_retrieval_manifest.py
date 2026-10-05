@@ -23,8 +23,6 @@ def main() -> None:
     if args.inspect:
         print(json.dumps(inspect_image_text_dataset(args.dataset),indent=2),flush=True)
         return
-    if args.val_count is None:
-        parser.error("--val-count is required when freezing a retrieval split; no universal VAL size was predeclared")
     result=prepare_image_text_manifest(
         args.dataset,args.output_root,val_count=args.val_count,test_count=args.test_count,
         train_count=args.train_count,allow_missing_images=args.allow_missing_images,force=args.force,

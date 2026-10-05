@@ -19,7 +19,7 @@ def registry() -> dict[str, dict]:
 
 def main() -> None:
     p = argparse.ArgumentParser(description="Run a canonical registered SSL experiment on this server")
-    p.add_argument("action", nargs="?", choices=("pretrain","downstream","downstream-suite","image-retrieval","image-retrieval-suite","report"))
+    p.add_argument("action", nargs="?", choices=("pretrain","downstream","downstream-suite","report"))
     p.add_argument("--experiment")
     p.add_argument("--dataset")
     p.add_argument("--suite-tier", choices=("main","supplementary","all"), default="main")

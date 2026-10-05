@@ -48,10 +48,12 @@ downstream:
   num_workers: 8
   test_once: true
   probe:
+    search: sequential_greedy
     learning_rates: [0.001, 0.003, 0.01]
     weight_decays: [0.0, 0.0001]
-    maximum_epochs: 50
-    early_stopping_patience: 8
+    tuning_epochs: 5
+    final_maximum_epochs: 50
+    final_early_stopping_patience: 8
 output:
   root: ${SSL_RUN_ROOT}/ssl_standard
 

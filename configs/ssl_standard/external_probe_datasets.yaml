@@ -3,8 +3,8 @@ datasets:
     root: ${SSL_DATA_ROOT}/MHIST/extracted/full/MHIST
     class_names: [HP, SSA]
     expected_images: 3152
-    split_policy: existing_project_train_val_test_then_balance_within_split
-    builder: mhist_project_split
+    split_policy: deterministic_balanced_min1000_then_8_1_1_792_99_99
+    builder: mhist_balanced_8_1_1
     protocol_status: ready
     balance_policy: balanced
     tier: main
@@ -33,151 +33,130 @@ datasets:
     root: ${SSL_DATA_ROOT}/Kather2016/raw/data
     class_names: [ADIPOSE, COMPLEX, DEBRIS, EMPTY, LYMPHO, MUCOSA, STROMA, TUMOR]
     expected_images: 5000
-    split_policy: pending_train_val_test_definition_all_625_per_class_retained
+    split_policy: balanced_min1000_smallest625_then_8_1_1_500_63_62
     builder: kather_2016_parquet
     protocol_status: blocked
     balance_policy: balanced
     tier: main
-    blocker: Dataset is verified as 625 images per class, but no final TRAIN/VAL/TEST rule was specified. Refusing to invent one.
+    blocker: Split is frozen at 625/class with 500/63/62 TRAIN/VAL/TEST; manifest builder still needs implementation.
 
   bach:
     root: ${SSL_DATA_ROOT}/BACH/raw/data
     class_names: [Normal, Benign, InSitu, Invasive]
     expected_images: 400
-    split_policy: pending_split_of_400_publicly_labeled_images
+    split_policy: balanced_min1000_smallest100_then_8_1_1_80_10_10_labeled400_only
     builder: bach_parquet
     protocol_status: blocked
     balance_policy: balanced
     tier: main
-    blocker: The 400 public labeled images are 100/class; the released 100-image test partition is Unknown. Exact TRAIN/VAL/TEST counts for the labeled 400 remain to be fixed.
+    blocker: Split is frozen at 100/class with 80/10/10 TRAIN/VAL/TEST using the 400 labeled images only; manifest builder still needs implementation.
 
   sicapv2_4class:
     root: ${SSL_DATA_ROOT}/SICAPv2/extracted/SICAPv2
     class_names: [NC, G3, G4, G5]
     expected_images: 12081
-    split_policy: official_outer_test_plus_validation_val1_train_val_balanced_within_partition
-    builder: sicapv2_4class
-    protocol_status: ready
+    split_policy: balanced_min1000_smallest948_then_group_aware_8_1_1_758_95_95
+    builder: sicapv2_4class_balanced_8_1_1
+    protocol_status: blocked
     balance_policy: balanced
     tier: main
+    blocker: New protocol is frozen at 948/class with target 758/95/95; the old official-partition manifest is retired and a source-group-aware 8:1:1 builder must be implemented before evaluation.
 
   wsss4luad_3class:
     root: ${SSL_DATA_ROOT}/WSSS4LUAD/raw
     class_names: [tumor, stroma, normal]
     expected_images: 10091
-    split_policy: pending_labeled_train_val_test_definition
+    split_policy: clean_single_label_pool_balanced_1000_per_class_then_group_aware_800_100_100
     builder: wsss4luad_parquet
     protocol_status: blocked
     balance_policy: balanced
     tier: main
-    blocker: Train contains 1181/1680/1832 clean single-label tumor/stroma/normal examples, but official validation/test have no direct class labels. Refusing to fabricate labels or a final split.
+    blocker: Clean single-label counts support 1000/class and the 800/100/100 target is frozen; source-group-safe manifest construction still needs implementation.
 
-  oral_oscc_100x:
+  oral_oscc:
     root: ${SSL_DATA_ROOT}/OralOSCC
     class_names: [Normal, OSCC]
-    expected_images: 528
-    split_policy: pending_split_keep_100x_separate
-    builder: oral_oscc
+    expected_images: 1224
+    split_policy: whole_dataset_100x_400x_combined_natural_distribution_group_aware_8_1_1
+    builder: oral_oscc_combined
     protocol_status: blocked
-    balance_policy: balanced
+    balance_policy: natural_imbalance
     tier: main
-    blocker: Archive structure and 100x counts are known, but exact TRAIN/VAL/TEST counts have not been fixed and the archive has not yet been frozen into a manifest source tree.
-
-  oral_oscc_400x:
-    root: ${SSL_DATA_ROOT}/OralOSCC
-    class_names: [Normal, OSCC]
-    expected_images: 696
-    split_policy: pending_split_keep_400x_separate
-    builder: oral_oscc
-    protocol_status: blocked
-    balance_policy: balanced
-    tier: main
-    blocker: Archive structure and 400x counts are known, but exact TRAIN/VAL/TEST counts have not been fixed and the archive has not yet been frozen into a manifest source tree.
+    blocker: Use all 1224 images as one Normal-vs-OSCC task with 100x and 400x combined and no balancing; source/patient-safe grouping must be resolved before freezing the 8:1:1 manifest.
 
   endometrial_4class:
     root: ${SSL_DATA_ROOT}/Endometrial/extracted/histopathological image dataset for ET
     class_names: [EA, EP, EH, NE]
     expected_images: 3302
-    split_policy: pending_split_balanced_535_per_class
+    split_policy: balanced_min1000_smallest535_then_group_aware_8_1_1_428_54_53
     builder: endometrial_4class
     protocol_status: blocked
     balance_policy: balanced
     tier: main
-    blocker: Class structure is verified (535/636/798/1333), but exact TRAIN/VAL/TEST counts were not specified. Refusing to apply a generic split silently.
+    blocker: Split is frozen at 535/class with target 428/54/53; source-group-safe manifest construction still needs implementation.
 
   osteosarcoma_3class:
     root: ${SSL_DATA_ROOT}/Osteosarcoma/extracted/OsteosarcomaTumorAssessment
     class_names: [Non-Tumor, Viable-Tumor, Non-Viable-Tumor]
     expected_images: 1144
-    split_policy: pending_patient_aware_supplementary_protocol
+    split_policy: balanced_min1000_smallest_usable_class_then_patient_grouped_approximately_8_1_1
     builder: osteosarcoma
     protocol_status: blocked
     balance_policy: balanced
-    tier: supplementary
-    blocker: Only about four patients are represented. A defensible patient-aware supplementary split must be fixed before evaluation.
+    tier: main
+    blocker: Only about four patients are represented; patient grouping takes priority over exact 8:1:1 counts, so a defensible patient-grouped split must be fixed before evaluation.
 
   gashissdb_binary:
     root: ${SSL_DATA_ROOT}/GasHisSDB/extracted/GasHisSDB
     class_names: [Normal, Abnormal]
     expected_images: 245196
-    split_policy: pending_single_resolution_selection_then_documented_4_4_2_split
+    split_policy: select_one_resolution_then_balanced_1000_per_class_800_100_100
     builder: gashissdb
     protocol_status: blocked
     balance_policy: balanced
     tier: main
-    blocker: Resolutions 80/120/160 are all present. One resolution must be selected explicitly before freezing the <=1000/class benchmark; the dataset README documents a 4:4:2 train/val/test experiment split.
+    blocker: The balanced 1000/class and 800/100/100 rule is frozen, but one of the 80/120/160 resolutions must still be selected explicitly.
 
   renalcell_6class:
     root: ${SSL_DATA_ROOT}/RenalCell/extracted/tissue_classfication
     class_names: [blood, cancer, empty, normal, other, stroma]
     expected_images: 39458
-    split_policy: pending_tcga_overlap_check_balanced_544_per_class
+    split_policy: balanced_min1000_smallest544_then_source_grouped_8_1_1_435_55_54_after_overlap_check
     builder: renalcell_6class
     protocol_status: blocked
     balance_policy: balanced
-    tier: supplementary
-    blocker: TCGA-KIRC provenance may overlap PanNuke pretraining material. Keep blocked as a primary transfer benchmark until overlap is checked.
+    tier: main
+    blocker: Target is 544/class with 435/55/54 after source grouping; TCGA-KIRC overlap with PanNuke pretraining material must be checked first.
 
   ebhi_seg_6class:
     root: ${SSL_DATA_ROOT}/EBHI-SEG
     class_names: [Adenocarcinoma, High-grade IN, Low-grade IN, Normal, Polyp, Serrated adenoma]
     expected_images: 2228
-    split_policy: pending_full_dataset_natural_imbalance_split
+    split_policy: whole_dataset_natural_distribution_source_grouped_approximately_8_1_1
     builder: ebhi_seg_6class
     protocol_status: blocked
     balance_policy: natural_imbalance
-    tier: supplementary
-    blocker: All 2228 images must be retained without oversampling, but the exact TRAIN/VAL/TEST split rule has not been fixed. Refusing to invent one.
+    tier: main
+    blocker: Use all 2228 images with the natural class distribution and no balancing; source/specimen groups encoded in filenames must stay within one split when freezing the approximately 8:1:1 manifest.
 
   lc25000_5class:
     root: ${SSL_DATA_ROOT}/LC25000
     class_names: [colon_aca, colon_n, lung_aca, lung_n, lung_scc]
     expected_images: 25000
-    split_policy: pending_augmentation_family_recovery
+    split_policy: balanced_1000_per_class_800_100_100_with_augmentation_family_grouping
     builder: lc25000_5class
     protocol_status: blocked
     balance_policy: balanced
-    tier: supplementary
-    blocker: Random splitting would leak augmentation families. Source-family grouping must be recovered before a final manifest can be frozen.
+    tier: main
+    blocker: Target is 1000/class with 800/100/100, but augmentation-family grouping must be recovered first to prevent leakage.
 
   pcam_binary:
     root: ${SSL_DATA_ROOT}/PCam
     class_names: [normal, tumor]
     expected_images: 32768
-    split_policy: pending_complete_local_official_split_inventory
+    split_policy: balanced_1000_per_class_800_100_100_preserving_official_source_grouping
     builder: pcam_binary
     protocol_status: blocked
     balance_policy: balanced
-    tier: supplementary
-    blocker: The current local copy exposes the official test HDF5 files but not a verified complete train/validation set. Refusing to substitute an arbitrary split.
-
-  pcgipi_he_4class:
-    root: ${SSL_DATA_ROOT}/PCGIPI
-    class_names: [Normal, G1, G2, G3]
-    expected_images: 59
-    split_policy: pending_published_he_patch_extraction_and_source_isolation
-    builder: pcgipi_he_4class
-    protocol_status: blocked
-    balance_policy: balanced
-    tier: supplementary
-    blocker: H&E originals are only 7/27/15/10 images. The published patch-extraction protocol and source-image isolation must be reproduced before this becomes a patch benchmark.
+    tier: main
+    blocker: Target is 1000/class with 800/100/100, but the current local copy does not yet contain a verified complete train/validation inventory.
