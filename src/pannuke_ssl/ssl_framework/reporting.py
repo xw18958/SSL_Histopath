@@ -9,9 +9,9 @@ def _read(path: Path) -> dict[str, Any] | None:
 
 
 def write_final_report(config: dict[str, Any]) -> Path:
-    root = Path(config["output"]["root"]) / config["method"]["name"]
+    root = Path(config.get("runtime", {}).get("run_root") or (Path(config["output"]["root"]) / config["method"]["name"]))
     tune = _read(root / "tuning/tuning_summary.json")
-    pre = _read(root / "pretrain/run_summary.json")
+    pre = _read(root / "pretrain_full/run_summary.json") or _read(root / "pretrain/run_summary.json")
     down = _read(root / "downstream/test_metrics.json")
     lines = [
         f"# Standard SSL Report — {config['method']['name']}",

@@ -20,12 +20,13 @@ import pandas as pd
 
 from pannuke_ssl.config import load_yaml
 from pannuke_ssl.utils import atomic_json_dump
+from .runtime_paths import expand_runtime_string
 
 
 IMAGE_TEXT_DATASETS = ("arch", "ipath")
 _PROJECT_ROOT = Path(__file__).resolve().parents[3]
 _CONFIG_PATH = _PROJECT_ROOT / "configs/ssl_standard/image_text_retrieval_datasets.yaml"
-_MANIFEST_SCHEMA_VERSION = 1
+_MANIFEST_SCHEMA_VERSION = 2
 _IMAGE_SUFFIXES = frozenset((".bmp", ".jpeg", ".jpg", ".png", ".tif", ".tiff"))
 
 
@@ -197,7 +198,8 @@ def inspect_image_text_dataset(slug: str) -> dict[str, Any]:
     if slug not in IMAGE_TEXT_DATASETS:
         raise ValueError(f"Unknown image-text dataset {slug!r}")
     config = _configs()[slug]
-    root = Path(config["root"])
+    root_spec = str(config["root"])
+    root = Path(expand_runtime_string(root_spec))
     records, provenance = (_arch_records(root) if slug == "arch" else _ipath_records(root))
     return {
         "dataset": slug,
@@ -291,7 +293,8 @@ def prepare_image_text_manifest(
     if slug not in IMAGE_TEXT_DATASETS:
         raise ValueError(f"Unknown image-text dataset {slug!r}")
     config = _configs()[slug]
-    root = Path(config["root"])
+    root_spec = str(config["root"])
+    root = Path(expand_runtime_string(root_spec))
     records, provenance = (_arch_records(root) if slug == "arch" else _ipath_records(root))
     missing = list(provenance.get("missing_images", ()))
     if missing and not allow_missing_images:
@@ -310,7 +313,7 @@ def prepare_image_text_manifest(
     manifest = {
         "schema_version": _MANIFEST_SCHEMA_VERSION,
         "dataset": slug,
-        "dataset_root": str(root),
+        "dataset_root_spec": root_spec,
         "seed": int(seed),
         "split_unit": config["split_unit"],
         "split_counts": split_counts,

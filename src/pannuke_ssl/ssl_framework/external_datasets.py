@@ -29,6 +29,7 @@ from torch.utils.data import Dataset
 
 from pannuke_ssl.config import load_yaml
 from pannuke_ssl.utils import atomic_json_dump
+from .runtime_paths import expand_runtime_string
 
 
 PANNUKE_DATASET = "pannuke19"
@@ -55,7 +56,7 @@ _PROJECT_ROOT = Path(__file__).resolve().parents[3]
 _CONFIG_PATH = _PROJECT_ROOT / "configs/ssl_standard/external_probe_datasets.yaml"
 _IMAGE_SUFFIXES = frozenset((".bmp", ".jpeg", ".jpg", ".png", ".tif", ".tiff"))
 _SPLITS = ("train", "val", "test")
-_MANIFEST_SCHEMA_VERSION = 2
+_MANIFEST_SCHEMA_VERSION = 3
 
 
 class DatasetProtocolNotReadyError(RuntimeError):
@@ -71,6 +72,7 @@ class ExternalDatasetConfig:
     class_names: tuple[str, ...]
     split_policy: str
     expected_images: int
+    root_spec: str = ""
     builder: str = ""
     protocol_status: str = "ready"
     balance_policy: str = "balanced"
@@ -123,6 +125,7 @@ class ExternalProbeDataset:
             "dataset": self.slug,
             "manifest_file": str(self.manifest_path),
             "manifest_sha256": self.manifest_sha256,
+            "dataset_root_spec": self.config.root_spec,
             "class_names": list(self.class_names),
             "num_classes": self.num_classes,
             "split_policy": self.config.split_policy,
@@ -161,12 +164,14 @@ def _dataset_configs() -> dict[str, ExternalDatasetConfig]:
         blocker = value.get("blocker")
         if status == "blocked" and not blocker:
             raise RuntimeError(f"Blocked dataset {slug} must record why its protocol is not ready")
+        root_spec = str(value["root"])
         result[slug] = ExternalDatasetConfig(
             slug=slug,
-            root=Path(value["root"]),
+            root=Path(expand_runtime_string(root_spec)),
             class_names=classes,
             split_policy=str(value["split_policy"]),
             expected_images=int(value["expected_images"]),
+            root_spec=root_spec,
             builder=str(value.get("builder", slug)),
             protocol_status=status,
             balance_policy=balance,
@@ -180,7 +185,7 @@ def external_dataset_config(slug: str, *, dataset_root: Path | None = None) -> E
     if slug not in EXTERNAL_DATASETS:
         raise ValueError(f"Unknown optional downstream dataset {slug!r}; expected one of {EXTERNAL_DATASETS}")
     config = _dataset_configs()[slug]
-    return config if dataset_root is None else replace(config, root=Path(dataset_root))
+    return config if dataset_root is None else replace(config, root=Path(dataset_root), root_spec=str(dataset_root))
 
 
 def external_dataset_status() -> dict[str, dict[str, Any]]:
@@ -539,7 +544,7 @@ def _manifest_payload(config: ExternalDatasetConfig, records: Iterable[Mapping[s
     return {
         "schema_version": _MANIFEST_SCHEMA_VERSION,
         "dataset": config.slug,
-        "dataset_root": str(config.root),
+        "dataset_root_spec": config.root_spec,
         "seed": int(seed),
         "class_names": list(config.class_names),
         "class_to_id": {name: index for index, name in enumerate(config.class_names)},
@@ -618,8 +623,8 @@ def _record_identity(record: Mapping[str, Any]) -> str:
 def _validate_manifest_payload(config: ExternalDatasetConfig, document: Mapping[str, Any]) -> None:
     if int(document.get("schema_version", -1)) != _MANIFEST_SCHEMA_VERSION:
         raise ValueError("Unsupported external probe manifest schema")
-    if document.get("dataset") != config.slug or Path(document.get("dataset_root", "")) != config.root:
-        raise ValueError("External probe manifest dataset identity/root mismatch")
+    if document.get("dataset") != config.slug or document.get("dataset_root_spec", "") != config.root_spec:
+        raise ValueError("External probe manifest dataset identity/root-spec mismatch")
     if tuple(document.get("class_names", ())) != config.class_names:
         raise ValueError("External probe manifest class mapping mismatch")
     expected_map = {name: index for index, name in enumerate(config.class_names)}

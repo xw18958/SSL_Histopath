@@ -19,6 +19,7 @@ from pannuke_ssl.ssl_framework.external_datasets import (
     ready_external_datasets,
 )
 from pannuke_ssl.ssl_framework.image_retrieval import run_image_retrieval
+from pannuke_ssl.ssl_framework.run_management import attach_run_context, write_run_metadata
 
 
 METHODS=("ijepa","lejepa","simplex_sigreg_lejepa","dinov3")
@@ -133,6 +134,8 @@ def main():
     p.add_argument("--suite-tier",choices=("main","supplementary","all"),default="main")
     p.add_argument("--retrieval-k",type=int,nargs="+",default=[1,5,10])
     p.add_argument("--learning-rate",type=float,default=None)
+    p.add_argument("--run-id",default=None)
+    p.add_argument("--simplex-components",type=int,default=None)
     p.add_argument("--ignore-tuned",action="store_true")
     a=p.parse_args()
     try:
@@ -140,7 +143,14 @@ def main():
     except ValueError as error:
         p.error(str(error))
     c=load_standard_config(a.method)
-    root=Path(c["output"]["root"])/a.method
+    if a.simplex_components is not None:
+        if a.method != "simplex_sigreg_lejepa":
+            p.error("--simplex-components is only valid for simplex_sigreg_lejepa")
+        if a.simplex_components < 2 or a.simplex_components - 1 > int(c["backbone"]["hidden_size"]):
+            p.error("Invalid simplex component count for the shared feature dimension")
+        c["method"]["objective"]["simplex_components"] = int(a.simplex_components)
+    c,run_id,root=attach_run_context(c,a.run_id)
+    write_run_metadata(c,root,run_id=run_id,action=a.action,dataset=None if a.dataset==PANNUKE_DATASET else a.dataset)
     if a.action=="tune":
         result=run_tuning(c)
     elif a.action=="pretrain":

@@ -89,7 +89,7 @@ def _run_downstream(c:dict[str,Any],encoder,out:Path,*,encoder_epoch:int|str,enc
 def _optional_dataset(dataset:str,c:dict[str,Any])->ExternalProbeDataset|None:
     if dataset==PANNUKE_DATASET: return None
     if dataset not in EXTERNAL_DATASETS: raise ValueError(f'Unknown downstream dataset {dataset!r}')
-    return load_external_manifest(dataset,Path(c['output']['root']))
+    return load_external_manifest(dataset,Path(c['manifests']['root']))
 
 def run_downstream(c:dict[str,Any],checkpoint:Path,out:Path,*,dataset:str=PANNUKE_DATASET):
     """Run the existing standard downstream protocol from an SSL checkpoint."""

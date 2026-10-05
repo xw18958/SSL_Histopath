@@ -1,11 +1,11 @@
 datasets:
   arch:
-    root: /raid1/xwan0900/datasets/ARCH
+    root: ${SSL_DATA_ROOT}/ARCH
     test_size: 700
     split_unit: figure_caption_group
     alignment_protocol: null
   ipath:
-    root: /raid1/xwan0900/datasets/IPATH
+    root: ${SSL_DATA_ROOT}/IPATH
     test_size: 700
     split_unit: duplicate_description_group
     alignment_protocol: null

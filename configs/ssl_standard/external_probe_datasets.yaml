@@ -1,6 +1,6 @@
 datasets:
   mhist:
-    root: /raid1/xwan0900/datasets/MHIST/extracted/full/MHIST
+    root: ${SSL_DATA_ROOT}/MHIST/extracted/full/MHIST
     class_names: [HP, SSA]
     expected_images: 3152
     split_policy: existing_project_train_val_test_then_balance_within_split
@@ -10,7 +10,7 @@ datasets:
     tier: main
 
   crc_val_he_7k:
-    root: /raid1/xwan0900/datasets/CRC-VAL-HE-7K
+    root: ${SSL_DATA_ROOT}/CRC-VAL-HE-7K
     class_names: [ADI, BACK, DEB, LYM, MUC, MUS, NORM, STR, TUM]
     expected_images: 7180
     split_policy: deterministic_equal_class_339_then_stratified_271_34_34
@@ -20,7 +20,7 @@ datasets:
     tier: main
 
   breakhis_8subtype:
-    root: /raid1/xwan0900/datasets/BreakHis/BreaKHis_v1/histology_slides/breast
+    root: ${SSL_DATA_ROOT}/BreakHis/BreaKHis_v1/histology_slides/breast
     class_names: [adenosis, ductal_carcinoma, fibroadenoma, lobular_carcinoma, mucinous_carcinoma, papillary_carcinoma, phyllodes_tumor, tubular_adenoma]
     expected_images: 7909
     split_policy: deterministic_equal_subtype_sample_444_then_image_stratified_356_44_44
@@ -30,7 +30,7 @@ datasets:
     tier: main
 
   kather_2016:
-    root: /raid1/xwan0900/datasets/Kather2016/raw/data
+    root: ${SSL_DATA_ROOT}/Kather2016/raw/data
     class_names: [ADIPOSE, COMPLEX, DEBRIS, EMPTY, LYMPHO, MUCOSA, STROMA, TUMOR]
     expected_images: 5000
     split_policy: pending_train_val_test_definition_all_625_per_class_retained
@@ -41,7 +41,7 @@ datasets:
     blocker: Dataset is verified as 625 images per class, but no final TRAIN/VAL/TEST rule was specified. Refusing to invent one.
 
   bach:
-    root: /raid1/xwan0900/datasets/BACH/raw/data
+    root: ${SSL_DATA_ROOT}/BACH/raw/data
     class_names: [Normal, Benign, InSitu, Invasive]
     expected_images: 400
     split_policy: pending_split_of_400_publicly_labeled_images
@@ -52,7 +52,7 @@ datasets:
     blocker: The 400 public labeled images are 100/class; the released 100-image test partition is Unknown. Exact TRAIN/VAL/TEST counts for the labeled 400 remain to be fixed.
 
   sicapv2_4class:
-    root: /raid1/xwan0900/datasets/SICAPv2/extracted/SICAPv2
+    root: ${SSL_DATA_ROOT}/SICAPv2/extracted/SICAPv2
     class_names: [NC, G3, G4, G5]
     expected_images: 12081
     split_policy: official_outer_test_plus_validation_val1_train_val_balanced_within_partition
@@ -62,7 +62,7 @@ datasets:
     tier: main
 
   wsss4luad_3class:
-    root: /raid1/xwan0900/datasets/WSSS4LUAD/raw
+    root: ${SSL_DATA_ROOT}/WSSS4LUAD/raw
     class_names: [tumor, stroma, normal]
     expected_images: 10091
     split_policy: pending_labeled_train_val_test_definition
@@ -73,7 +73,7 @@ datasets:
     blocker: Train contains 1181/1680/1832 clean single-label tumor/stroma/normal examples, but official validation/test have no direct class labels. Refusing to fabricate labels or a final split.
 
   oral_oscc_100x:
-    root: /raid1/xwan0900/datasets/OralOSCC
+    root: ${SSL_DATA_ROOT}/OralOSCC
     class_names: [Normal, OSCC]
     expected_images: 528
     split_policy: pending_split_keep_100x_separate
@@ -84,7 +84,7 @@ datasets:
     blocker: Archive structure and 100x counts are known, but exact TRAIN/VAL/TEST counts have not been fixed and the archive has not yet been frozen into a manifest source tree.
 
   oral_oscc_400x:
-    root: /raid1/xwan0900/datasets/OralOSCC
+    root: ${SSL_DATA_ROOT}/OralOSCC
     class_names: [Normal, OSCC]
     expected_images: 696
     split_policy: pending_split_keep_400x_separate
@@ -95,7 +95,7 @@ datasets:
     blocker: Archive structure and 400x counts are known, but exact TRAIN/VAL/TEST counts have not been fixed and the archive has not yet been frozen into a manifest source tree.
 
   endometrial_4class:
-    root: /raid1/xwan0900/datasets/Endometrial/extracted/histopathological image dataset for ET
+    root: ${SSL_DATA_ROOT}/Endometrial/extracted/histopathological image dataset for ET
     class_names: [EA, EP, EH, NE]
     expected_images: 3302
     split_policy: pending_split_balanced_535_per_class
@@ -106,7 +106,7 @@ datasets:
     blocker: Class structure is verified (535/636/798/1333), but exact TRAIN/VAL/TEST counts were not specified. Refusing to apply a generic split silently.
 
   osteosarcoma_3class:
-    root: /raid1/xwan0900/datasets/Osteosarcoma/extracted/OsteosarcomaTumorAssessment
+    root: ${SSL_DATA_ROOT}/Osteosarcoma/extracted/OsteosarcomaTumorAssessment
     class_names: [Non-Tumor, Viable-Tumor, Non-Viable-Tumor]
     expected_images: 1144
     split_policy: pending_patient_aware_supplementary_protocol
@@ -117,7 +117,7 @@ datasets:
     blocker: Only about four patients are represented. A defensible patient-aware supplementary split must be fixed before evaluation.
 
   gashissdb_binary:
-    root: /raid1/xwan0900/datasets/GasHisSDB/extracted/GasHisSDB
+    root: ${SSL_DATA_ROOT}/GasHisSDB/extracted/GasHisSDB
     class_names: [Normal, Abnormal]
     expected_images: 245196
     split_policy: pending_single_resolution_selection_then_documented_4_4_2_split
@@ -128,7 +128,7 @@ datasets:
     blocker: Resolutions 80/120/160 are all present. One resolution must be selected explicitly before freezing the <=1000/class benchmark; the dataset README documents a 4:4:2 train/val/test experiment split.
 
   renalcell_6class:
-    root: /raid1/xwan0900/datasets/RenalCell/extracted/tissue_classfication
+    root: ${SSL_DATA_ROOT}/RenalCell/extracted/tissue_classfication
     class_names: [blood, cancer, empty, normal, other, stroma]
     expected_images: 39458
     split_policy: pending_tcga_overlap_check_balanced_544_per_class
@@ -139,7 +139,7 @@ datasets:
     blocker: TCGA-KIRC provenance may overlap PanNuke pretraining material. Keep blocked as a primary transfer benchmark until overlap is checked.
 
   ebhi_seg_6class:
-    root: /raid1/xwan0900/datasets/EBHI-SEG
+    root: ${SSL_DATA_ROOT}/EBHI-SEG
     class_names: [Adenocarcinoma, High-grade IN, Low-grade IN, Normal, Polyp, Serrated adenoma]
     expected_images: 2228
     split_policy: pending_full_dataset_natural_imbalance_split
@@ -150,7 +150,7 @@ datasets:
     blocker: All 2228 images must be retained without oversampling, but the exact TRAIN/VAL/TEST split rule has not been fixed. Refusing to invent one.
 
   lc25000_5class:
-    root: /raid1/xwan0900/datasets/LC25000
+    root: ${SSL_DATA_ROOT}/LC25000
     class_names: [colon_aca, colon_n, lung_aca, lung_n, lung_scc]
     expected_images: 25000
     split_policy: pending_augmentation_family_recovery
@@ -161,7 +161,7 @@ datasets:
     blocker: Random splitting would leak augmentation families. Source-family grouping must be recovered before a final manifest can be frozen.
 
   pcam_binary:
-    root: /raid1/xwan0900/datasets/PCam
+    root: ${SSL_DATA_ROOT}/PCam
     class_names: [normal, tumor]
     expected_images: 32768
     split_policy: pending_complete_local_official_split_inventory
@@ -172,7 +172,7 @@ datasets:
     blocker: The current local copy exposes the official test HDF5 files but not a verified complete train/validation set. Refusing to substitute an arbitrary split.
 
   pcgipi_he_4class:
-    root: /raid1/xwan0900/datasets/PCGIPI
+    root: ${SSL_DATA_ROOT}/PCGIPI
     class_names: [Normal, G1, G2, G3]
     expected_images: 59
     split_policy: pending_published_he_patch_extraction_and_source_isolation

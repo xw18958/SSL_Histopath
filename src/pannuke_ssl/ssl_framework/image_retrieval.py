@@ -115,7 +115,7 @@ def run_image_retrieval(
     if (out / "retrieval_metrics.json").exists():
         raise FileExistsError(f"Refuse overwrite: {out}")
     seed_everything(int(c["seed"]))
-    external = load_external_manifest(dataset, Path(c["output"]["root"]))
+    external = load_external_manifest(dataset, Path(c["manifests"]["root"]))
     device = torch.device("cuda")
     method = build_method(c, device)
     checkpoint_state = load_checkpoint(method, Path(checkpoint), device)

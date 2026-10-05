@@ -3,6 +3,7 @@ import copy
 from pathlib import Path
 from typing import Any
 from pannuke_ssl.config import deep_update, load_yaml
+from .runtime_paths import expand_runtime_paths, require_runtime_environment
 
 ROOT = Path(__file__).resolve().parents[3]
 
@@ -16,7 +17,9 @@ def tuning_config_path(method: str) -> Path:
 
 
 def load_standard_config(method: str) -> dict[str, Any]:
+    require_runtime_environment()
     c = deep_update(load_yaml(ROOT / "configs/ssl_standard/base.yaml"), load_yaml(method_config_path(method)))
+    c = expand_runtime_paths(c)
     if c["method"]["name"] != method:
         raise ValueError("Method config name mismatch")
     validate_standard_config(c)

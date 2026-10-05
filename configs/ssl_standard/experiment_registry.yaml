@@ -1,0 +1,20 @@
+experiments:
+  ssl-lejepa-s20260903:
+    method: lejepa
+    role: primary
+    seed: 20260903
+    overrides: {}
+  ssl-simplex-k64-s20260903:
+    method: simplex_sigreg_lejepa
+    role: primary
+    seed: 20260903
+    overrides:
+      method.objective.simplex_components: 64
+      method.objective.simplex_sigma: 1.0
+  ssl-simplex-k16-s20260903:
+    method: simplex_sigreg_lejepa
+    role: sensitivity
+    seed: 20260903
+    overrides:
+      method.objective.simplex_components: 16
+      method.objective.simplex_sigma: 1.0

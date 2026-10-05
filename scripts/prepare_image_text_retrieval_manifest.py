@@ -18,7 +18,7 @@ def main() -> None:
     parser.add_argument("--train-count",type=int,default=None)
     parser.add_argument("--allow-missing-images",action="store_true")
     parser.add_argument("--force",action="store_true")
-    parser.add_argument("--output-root",type=Path,default=Path(load_standard_config("lejepa")["output"]["root"]))
+    parser.add_argument("--output-root",type=Path,default=Path(load_standard_config("lejepa")["manifests"]["root"]))
     args=parser.parse_args()
     if args.inspect:
         print(json.dumps(inspect_image_text_dataset(args.dataset),indent=2),flush=True)

@@ -21,11 +21,14 @@ from pannuke_ssl.ijepa import encode_context
 from pannuke_ssl.ijepa_lejepa_fairness import FlexiblePLIPVisionEncoder
 from pannuke_ssl.models import B0Predictor, FreshPLIPVisionEncoder, make_teacher, update_ema
 from pannuke_ssl.training import _weight_decay
+from pannuke_ssl.ssl_framework.runtime_paths import require_runtime_environment
 
 
-PLIP_CONFIG = Path("/raid1/xwan0900/models/plip_model")
-DATA_ROOT = Path("/raid1/xwan0900/datasets/PanNuke/data")
-METADATA = Path("/raid1/xwan0900/SSL_proj/pannuke19_metadata.csv")
+ROOT = Path(__file__).resolve().parents[1]
+_RUNTIME = require_runtime_environment()
+PLIP_CONFIG = Path(_RUNTIME["SSL_MODEL_ROOT"]) / "plip_model"
+DATA_ROOT = Path(_RUNTIME["SSL_DATA_ROOT"]) / "PanNuke/data"
+METADATA = ROOT / "pannuke19_metadata.csv"
 
 
 def test_piecewise_fit_recovers_known_breakpoint() -> None:

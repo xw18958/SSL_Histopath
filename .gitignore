@@ -41,3 +41,7 @@ datasets/
 *.pem
 *.key
 *.token
+
+# Machine-local SSL server roots
+.ssl_server.env
+.ssl_assignment.json

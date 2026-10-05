@@ -15,7 +15,7 @@ from pannuke_ssl.ssl_framework.external_datasets import (
 
 
 def main() -> None:
-    default_output = Path(load_standard_config("lejepa")["output"]["root"])
+    default_output = Path(load_standard_config("lejepa")["manifests"]["root"])
     parser = argparse.ArgumentParser(description="Prepare immutable external linear-probe manifests")
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--dataset", choices=EXTERNAL_DATASETS)

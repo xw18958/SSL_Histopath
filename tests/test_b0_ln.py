@@ -15,7 +15,7 @@ from pannuke_ssl.losses import b0_loss
 from pannuke_ssl.models import B0Predictor, make_teacher, update_ema
 
 
-ROOT = Path("/raid1/xwan0900/SSL_proj")
+ROOT = Path(__file__).resolve().parents[1]
 PILOT = ROOT / "outputs/b0_ln_duration_pilot"
 
 

@@ -1,7 +1,7 @@
 seed: 20260903
 data:
-  root: /raid1/xwan0900/datasets/PanNuke/data
-  metadata_csv: /raid1/xwan0900/SSL_proj/pannuke19_metadata.csv
+  root: ${SSL_DATA_ROOT}/PanNuke/data
+  metadata_csv: ${SSL_PROJECT_ROOT}/pannuke19_metadata.csv
   source_images: 7901
   expected_ssl_images: 6305
   ssl_split: train
@@ -10,7 +10,7 @@ data:
   cache_in_ram: true
 backbone:
   type: fresh_plip
-  config_dir: /raid1/xwan0900/models/plip_model
+  config_dir: ${SSL_MODEL_ROOT}/plip_model
   image_size: 256
   patch_size: 32
   hidden_size: 768
@@ -53,4 +53,7 @@ downstream:
     maximum_epochs: 50
     early_stopping_patience: 8
 output:
-  root: /raid1/xwan0900/SSL_proj/outputs/ssl_standard
+  root: ${SSL_RUN_ROOT}/ssl_standard
+
+manifests:
+  root: ${SSL_PROJECT_ROOT}/manifests/ssl_standard

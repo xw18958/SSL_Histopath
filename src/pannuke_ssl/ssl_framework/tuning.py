@@ -215,7 +215,7 @@ def _simplex_sequential_tuning(c: dict[str, Any], spec: dict[str, Any], root: Pa
 
 def run_tuning(c: dict[str, Any]):
     spec = load_tuning_spec(c["method"]["name"])
-    root = Path(c["output"]["root"]) / c["method"]["name"] / "tuning"
+    root = Path(c.get("runtime", {}).get("run_root") or (Path(c["output"]["root"]) / c["method"]["name"])) / "tuning"
     root.mkdir(parents=True, exist_ok=True)
     if (root / "tuning_summary.json").exists():
         raise FileExistsError("Tuning already exists")
