@@ -33,6 +33,19 @@ def _downstream_output_path(root: Path, dataset: str) -> Path:
     return root / "downstream_datasets" / dataset
 
 
+def _run_downstream_checkpoints(c, root: Path, dataset: str):
+    epochs = [int(epoch) for epoch in c["training"]["checkpoint_epochs"]]
+    base = _downstream_output_path(root, dataset)
+    results = {}
+    for epoch in epochs:
+        checkpoint = root / "pretrain_full" / "checkpoints" / f"epoch_{epoch}.pt"
+        if not checkpoint.is_file():
+            raise FileNotFoundError(f"Missing required SSL checkpoint: {checkpoint}")
+        output = base / f"epoch_{epoch}"
+        results[str(epoch)] = run_downstream(c, checkpoint, output, dataset=dataset)
+    return {"dataset": dataset, "checkpoint_epochs": epochs, "results": results}
+
+
 def main():
     p=argparse.ArgumentParser(); p.add_argument("action",choices=("tune","pretrain","downstream","pipeline","report")); p.add_argument("--method",required=True,choices=METHODS); p.add_argument("--dataset",choices=(PANNUKE_DATASET,*EXTERNAL_DATASETS),default=PANNUKE_DATASET); p.add_argument("--learning-rate",type=float,default=None); p.add_argument("--ignore-tuned",action="store_true"); a=p.parse_args()
     try: _validate_action_dataset(a.action,a.dataset)
@@ -45,9 +58,7 @@ def main():
         result=train_ssl(c,root/"pretrain_full",use_all_data=True,validate=False,early_stop=False,checkpoint_epochs=c["training"]["checkpoint_epochs"])
     elif a.action=="downstream":
         c=_apply_saved_tuning(c,root,a.ignore_tuned)
-        downstream=_downstream_output_path(root,a.dataset)
-        result=run_downstream(c,root/"pretrain_full/checkpoints/epoch_300.pt",downstream,dataset=a.dataset)
-        if a.dataset==PANNUKE_DATASET: write_final_report(c)
+        result=_run_downstream_checkpoints(c,root,a.dataset)
     elif a.action=="report":
         c=_apply_saved_tuning(c,root,a.ignore_tuned); result={"report":str(write_final_report(c))}
     else:

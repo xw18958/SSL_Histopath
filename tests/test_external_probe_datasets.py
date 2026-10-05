@@ -132,3 +132,39 @@ def test_all_standard_methods_keep_pannuke_default_and_resolve_optional_outputs(
         assert config["downstream"]["train_count"] == 6305
         assert config["downstream"]["validation_count"] == 798
         assert config["downstream"]["test_count"] == 798
+
+
+def test_standard_downstream_runs_all_saved_ssl_checkpoints(tmp_path, monkeypatch):
+    standard = _load_script("run_ssl_standard.py")
+    config = load_standard_config("lejepa")
+    root = tmp_path / "lejepa"
+    calls = []
+    for epoch in config["training"]["checkpoint_epochs"]:
+        checkpoint = root / "pretrain_full" / "checkpoints" / f"epoch_{epoch}.pt"
+        checkpoint.parent.mkdir(parents=True, exist_ok=True)
+        checkpoint.touch()
+
+    def fake_run_downstream(c, checkpoint, out, *, dataset):
+        calls.append((Path(checkpoint), Path(out), dataset))
+        return {"encoder_epoch": int(Path(checkpoint).stem.split("_")[-1]), "dataset": dataset}
+
+    monkeypatch.setattr(standard, "run_downstream", fake_run_downstream)
+    result = standard._run_downstream_checkpoints(config, root, "crc_val_he_7k")
+
+    assert result["checkpoint_epochs"] == [100, 150, 200, 250, 300]
+    assert [call[0].name for call in calls] == [
+        "epoch_100.pt", "epoch_150.pt", "epoch_200.pt", "epoch_250.pt", "epoch_300.pt"
+    ]
+    assert [call[1] for call in calls] == [
+        root / "downstream_datasets" / "crc_val_he_7k" / f"epoch_{epoch}"
+        for epoch in (100, 150, 200, 250, 300)
+    ]
+    assert all(call[2] == "crc_val_he_7k" for call in calls)
+
+
+def test_standard_downstream_requires_every_saved_ssl_checkpoint(tmp_path):
+    standard = _load_script("run_ssl_standard.py")
+    config = load_standard_config("lejepa")
+    root = tmp_path / "lejepa"
+    with pytest.raises(FileNotFoundError, match="epoch_100.pt"):
+        standard._run_downstream_checkpoints(config, root, "crc_val_he_7k")
