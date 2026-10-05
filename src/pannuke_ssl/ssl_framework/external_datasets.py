@@ -15,13 +15,13 @@ import math
 import os
 import random
 import tempfile
+import zipfile
 from collections import Counter
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
 import numpy as np
-import pandas as pd
 import pyarrow.parquet as pq
 import torch
 from PIL import Image
@@ -396,16 +396,74 @@ def _mhist_records(config: ExternalDatasetConfig, seed: int) -> tuple[list[dict[
     }
 
 
+def _xlsx_first_sheet_records(path: Path) -> list[dict[str, str]]:
+    """Read a simple first-sheet XLSX table using only the Python stdlib.
+
+    SICAPv2 partition workbooks are plain rectangular tables. Avoiding pandas
+    Excel engines keeps the standard environment portable across both servers.
+    """
+    from xml.etree import ElementTree as ET
+
+    main_ns = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
+    ns = {"m": main_ns}
+    with zipfile.ZipFile(path) as archive:
+        shared: list[str] = []
+        if "xl/sharedStrings.xml" in archive.namelist():
+            root = ET.fromstring(archive.read("xl/sharedStrings.xml"))
+            for item in root.findall("m:si", ns):
+                shared.append("".join(node.text or "" for node in item.iter(f"{{{main_ns}}}t")))
+        worksheet_names = sorted(
+            name for name in archive.namelist()
+            if name.startswith("xl/worksheets/sheet") and name.endswith(".xml")
+        )
+        if not worksheet_names:
+            raise ValueError(f"XLSX contains no worksheet: {path}")
+        sheet = ET.fromstring(archive.read(worksheet_names[0]))
+
+    def column_index(cell_ref: str) -> int:
+        letters = "".join(ch for ch in cell_ref if ch.isalpha())
+        value = 0
+        for ch in letters.upper():
+            value = value * 26 + (ord(ch) - ord("A") + 1)
+        return value - 1
+
+    raw_rows: list[dict[int, str]] = []
+    for row in sheet.findall(".//m:sheetData/m:row", ns):
+        values: dict[int, str] = {}
+        for cell in row.findall("m:c", ns):
+            index = column_index(str(cell.attrib.get("r", "A1")))
+            cell_type = cell.attrib.get("t")
+            if cell_type == "inlineStr":
+                inline = cell.find("m:is", ns)
+                value = "" if inline is None else "".join(
+                    node.text or "" for node in inline.iter(f"{{{main_ns}}}t")
+                )
+            else:
+                node = cell.find("m:v", ns)
+                value = "" if node is None or node.text is None else node.text
+                if cell_type == "s" and value:
+                    value = shared[int(value)]
+            values[index] = value
+        raw_rows.append(values)
+    if not raw_rows:
+        raise ValueError(f"XLSX worksheet is empty: {path}")
+    max_column = max(max(row, default=-1) for row in raw_rows)
+    headers = [raw_rows[0].get(index, "") for index in range(max_column + 1)]
+    return [
+        {headers[index]: row.get(index, "") for index in range(len(headers)) if headers[index]}
+        for row in raw_rows[1:]
+        if any(row.get(index, "") for index in range(len(headers)))
+    ]
+
+
 def _primary_sicap_rows(path: Path, class_names: tuple[str, ...]) -> dict[str, list[str]]:
-    frame = pd.read_excel(path)
     grouped = {name: [] for name in class_names}
-    for row in frame.to_dict("records"):
-        active = [name for name in class_names if int(row[name]) == 1]
+    for row in _xlsx_first_sheet_records(path):
+        active = [name for name in class_names if int(float(row[name])) == 1]
         if len(active) != 1:
-            raise ValueError(f"SICAPv2 primary class is not one-hot for {row.get(image_name)}: {active}")
+            raise ValueError(f"SICAPv2 primary class is not one-hot for {row.get('image_name')}: {active}")
         grouped[active[0]].append(str(row["image_name"]))
     return grouped
-
 
 def _sicap_records(config: ExternalDatasetConfig, seed: int) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     partition = config.root / "partition"
