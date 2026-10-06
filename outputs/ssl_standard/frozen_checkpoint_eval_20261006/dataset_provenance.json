@@ -1,0 +1,1198 @@
+{
+  "bach": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "per_class_quota": 100,
+      "per_class_split_counts": {
+        "test": 10,
+        "train": 80,
+        "val": 10
+      },
+      "policy": "labeled_400_only_min_1000_then_8_1_1",
+      "unlabeled_public_test_excluded": true
+    },
+    "class_names": [
+      "Normal",
+      "Benign",
+      "InSitu",
+      "Invasive"
+    ],
+    "dataset": "bach",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/BACH/raw/data",
+    "manifest_sha256": "494020d0f28274eef5ce448648128e87faee4af5c067273e7fad48d95065c92c",
+    "num_classes": 4,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "Benign": 100,
+      "InSitu": 100,
+      "Invasive": 100,
+      "Normal": 100
+    },
+    "selected_class_split_counts": {
+      "Benign": {
+        "test": 10,
+        "train": 80,
+        "val": 10
+      },
+      "InSitu": {
+        "test": 10,
+        "train": 80,
+        "val": 10
+      },
+      "Invasive": {
+        "test": 10,
+        "train": 80,
+        "val": 10
+      },
+      "Normal": {
+        "test": 10,
+        "train": 80,
+        "val": 10
+      }
+    },
+    "source_class_counts": {
+      "Benign": 100,
+      "InSitu": 100,
+      "Invasive": 100,
+      "Normal": 100
+    },
+    "source_image_count": 400,
+    "split_counts": {
+      "test": 40,
+      "train": 320,
+      "val": 40
+    },
+    "split_policy": "balanced_min1000_smallest100_then_8_1_1_80_10_10_labeled400_only",
+    "tier": "main"
+  },
+  "breakhis_8subtype": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "patient_isolation_enforced": false,
+      "per_class_quota": 444,
+      "per_class_split_counts": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "policy": "deterministic_equal_subtype_image_sample_before_split",
+      "seed": 20260903,
+      "split_unit": "image"
+    },
+    "class_names": [
+      "adenosis",
+      "ductal_carcinoma",
+      "fibroadenoma",
+      "lobular_carcinoma",
+      "mucinous_carcinoma",
+      "papillary_carcinoma",
+      "phyllodes_tumor",
+      "tubular_adenoma"
+    ],
+    "dataset": "breakhis_8subtype",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/BreakHis/BreaKHis_v1/histology_slides/breast",
+    "manifest_sha256": "350eb74afd1a26e6a1fb65b5668cf9225ff692e39213de3a5375bd592de2fd81",
+    "num_classes": 8,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "adenosis": 444,
+      "ductal_carcinoma": 444,
+      "fibroadenoma": 444,
+      "lobular_carcinoma": 444,
+      "mucinous_carcinoma": 444,
+      "papillary_carcinoma": 444,
+      "phyllodes_tumor": 444,
+      "tubular_adenoma": 444
+    },
+    "selected_class_split_counts": {
+      "adenosis": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "ductal_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "fibroadenoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "lobular_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "mucinous_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "papillary_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "phyllodes_tumor": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "tubular_adenoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      }
+    },
+    "source_class_counts": {
+      "adenosis": 444,
+      "ductal_carcinoma": 3451,
+      "fibroadenoma": 1014,
+      "lobular_carcinoma": 626,
+      "mucinous_carcinoma": 792,
+      "papillary_carcinoma": 560,
+      "phyllodes_tumor": 453,
+      "tubular_adenoma": 569
+    },
+    "source_image_count": 7909,
+    "split_counts": {
+      "test": 352,
+      "train": 2848,
+      "val": 352
+    },
+    "split_policy": "deterministic_equal_subtype_sample_444_then_image_stratified_356_44_44",
+    "tier": "main"
+  },
+  "crc_val_he_7k": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "per_class_quota": 339,
+      "per_class_split_counts": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "policy": "deterministic_equal_class_sample_before_split",
+      "seed": 20260903
+    },
+    "class_names": [
+      "ADI",
+      "BACK",
+      "DEB",
+      "LYM",
+      "MUC",
+      "MUS",
+      "NORM",
+      "STR",
+      "TUM"
+    ],
+    "dataset": "crc_val_he_7k",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/CRC-VAL-HE-7K",
+    "manifest_sha256": "b6e4699ab8f3d5797b32eba507c2af17b9e36583dfa3a89263ba38ec74c62ee9",
+    "num_classes": 9,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "ADI": 339,
+      "BACK": 339,
+      "DEB": 339,
+      "LYM": 339,
+      "MUC": 339,
+      "MUS": 339,
+      "NORM": 339,
+      "STR": 339,
+      "TUM": 339
+    },
+    "selected_class_split_counts": {
+      "ADI": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "BACK": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "DEB": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "LYM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "MUC": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "MUS": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "NORM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "STR": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "TUM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      }
+    },
+    "source_class_counts": {
+      "ADI": 1338,
+      "BACK": 847,
+      "DEB": 339,
+      "LYM": 634,
+      "MUC": 1035,
+      "MUS": 592,
+      "NORM": 741,
+      "STR": 421,
+      "TUM": 1233
+    },
+    "source_image_count": 7180,
+    "split_counts": {
+      "test": 306,
+      "train": 2439,
+      "val": 306
+    },
+    "split_policy": "deterministic_equal_class_339_then_stratified_271_34_34",
+    "tier": "main"
+  },
+  "ebhi_seg_6class": {
+    "balance_policy": "natural_imbalance",
+    "balancing": {
+      "groups": 524,
+      "oversampling": false,
+      "policy": "whole_dataset_natural_specimen_grouped_approx_8_1_1",
+      "split_unit": "specimen_slide_prefix",
+      "subsampling": false
+    },
+    "class_names": [
+      "Adenocarcinoma",
+      "High-grade IN",
+      "Low-grade IN",
+      "Normal",
+      "Polyp",
+      "Serrated adenoma"
+    ],
+    "dataset": "ebhi_seg_6class",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/EBHI-SEG",
+    "manifest_sha256": "099ef5be158884329b9b28fe43f2a0f9d9147231fca3f616a74042e2a4633129",
+    "num_classes": 6,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "Adenocarcinoma": 795,
+      "High-grade IN": 186,
+      "Low-grade IN": 639,
+      "Normal": 76,
+      "Polyp": 474,
+      "Serrated adenoma": 58
+    },
+    "selected_class_split_counts": {
+      "Adenocarcinoma": {
+        "test": 37,
+        "train": 655,
+        "val": 103
+      },
+      "High-grade IN": {
+        "test": 24,
+        "train": 138,
+        "val": 24
+      },
+      "Low-grade IN": {
+        "test": 65,
+        "train": 513,
+        "val": 61
+      },
+      "Normal": {
+        "test": 9,
+        "train": 63,
+        "val": 4
+      },
+      "Polyp": {
+        "test": 47,
+        "train": 387,
+        "val": 40
+      },
+      "Serrated adenoma": {
+        "test": 5,
+        "train": 48,
+        "val": 5
+      }
+    },
+    "source_class_counts": {
+      "Adenocarcinoma": 795,
+      "High-grade IN": 186,
+      "Low-grade IN": 639,
+      "Normal": 76,
+      "Polyp": 474,
+      "Serrated adenoma": 58
+    },
+    "source_image_count": 2228,
+    "split_counts": {
+      "test": 187,
+      "train": 1804,
+      "val": 237
+    },
+    "split_policy": "whole_dataset_natural_specimen_grouped_approx_8_1_1",
+    "tier": "main"
+  },
+  "endometrial_4class": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "groups": 1508,
+      "per_class_quota": 535,
+      "per_class_split_counts": {
+        "test": 53,
+        "train": 428,
+        "val": 54
+      },
+      "policy": "min1000_case_grouped_8_1_1",
+      "split_unit": "case_id"
+    },
+    "class_names": [
+      "EA",
+      "EP",
+      "EH",
+      "NE"
+    ],
+    "dataset": "endometrial_4class",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/Endometrial/extracted/histopathological image dataset for ET",
+    "manifest_sha256": "d228063b6cd21fe19d90a2ea0db5eb708515a4c9c81eb64005fe9cba138b918c",
+    "num_classes": 4,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "EA": 535,
+      "EH": 535,
+      "EP": 535,
+      "NE": 535
+    },
+    "selected_class_split_counts": {
+      "EA": {
+        "test": 53,
+        "train": 428,
+        "val": 54
+      },
+      "EH": {
+        "test": 53,
+        "train": 428,
+        "val": 54
+      },
+      "EP": {
+        "test": 53,
+        "train": 428,
+        "val": 54
+      },
+      "NE": {
+        "test": 53,
+        "train": 428,
+        "val": 54
+      }
+    },
+    "source_class_counts": {
+      "EA": 535,
+      "EH": 798,
+      "EP": 636,
+      "NE": 1333
+    },
+    "source_image_count": 3302,
+    "split_counts": {
+      "test": 212,
+      "train": 1712,
+      "val": 216
+    },
+    "split_policy": "balanced_min1000_smallest535_case_grouped_8_1_1_428_54_53",
+    "tier": "main"
+  },
+  "gashissdb_binary": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "per_class_quota": 1000,
+      "per_class_split_counts": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "policy": "160px_subdatabase_min1000_then_8_1_1",
+      "resolution": 160,
+      "split_unit": "image_WSI_ids_not_released"
+    },
+    "class_names": [
+      "Normal",
+      "Abnormal"
+    ],
+    "dataset": "gashissdb_binary",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/GasHisSDB/extracted/GasHisSDB",
+    "manifest_sha256": "e4beb5a0a5f0b3261d49fa0f734fc497e2cc6ce796384e5b4990a87f74c58709",
+    "num_classes": 2,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "Abnormal": 1000,
+      "Normal": 1000
+    },
+    "selected_class_split_counts": {
+      "Abnormal": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "Normal": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      }
+    },
+    "source_class_counts": {
+      "Abnormal": 13124,
+      "Normal": 20160
+    },
+    "source_image_count": 33284,
+    "split_counts": {
+      "test": 200,
+      "train": 1600,
+      "val": 200
+    },
+    "split_policy": "160px_balanced1000_per_class_800_100_100",
+    "tier": "main"
+  },
+  "kather_2016": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "oversampling": false,
+      "per_class_quota": 625,
+      "per_class_split_counts": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "policy": "min_1000_smallest_class_then_8_1_1"
+    },
+    "class_names": [
+      "ADIPOSE",
+      "COMPLEX",
+      "DEBRIS",
+      "EMPTY",
+      "LYMPHO",
+      "MUCOSA",
+      "STROMA",
+      "TUMOR"
+    ],
+    "dataset": "kather_2016",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/Kather2016/raw/data",
+    "manifest_sha256": "40b022892592b23cfd2b401452f22ded835fd61975062a5f1f751e2ebe595e88",
+    "num_classes": 8,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "ADIPOSE": 625,
+      "COMPLEX": 625,
+      "DEBRIS": 625,
+      "EMPTY": 625,
+      "LYMPHO": 625,
+      "MUCOSA": 625,
+      "STROMA": 625,
+      "TUMOR": 625
+    },
+    "selected_class_split_counts": {
+      "ADIPOSE": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "COMPLEX": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "DEBRIS": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "EMPTY": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "LYMPHO": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "MUCOSA": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "STROMA": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "TUMOR": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      }
+    },
+    "source_class_counts": {
+      "ADIPOSE": 625,
+      "COMPLEX": 625,
+      "DEBRIS": 625,
+      "EMPTY": 625,
+      "LYMPHO": 625,
+      "MUCOSA": 625,
+      "STROMA": 625,
+      "TUMOR": 625
+    },
+    "source_image_count": 5000,
+    "split_counts": {
+      "test": 496,
+      "train": 4000,
+      "val": 504
+    },
+    "split_policy": "balanced_min1000_smallest625_then_8_1_1_500_63_62",
+    "tier": "main"
+  },
+  "lc25000_5class": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "family_reconstruction": "250 families/class via deterministic dihedral-invariant perceptual-hash MiniBatchKMeans; release provides no original-family IDs",
+      "family_stats": {
+        "colon_aca": {
+          "families": 250,
+          "max_size": 76,
+          "min_size": 1
+        },
+        "colon_n": {
+          "families": 250,
+          "max_size": 75,
+          "min_size": 1
+        },
+        "lung_aca": {
+          "families": 250,
+          "max_size": 68,
+          "min_size": 1
+        },
+        "lung_n": {
+          "families": 250,
+          "max_size": 83,
+          "min_size": 1
+        },
+        "lung_scc": {
+          "families": 250,
+          "max_size": 76,
+          "min_size": 1
+        }
+      },
+      "per_class_quota": 1000,
+      "per_class_split_counts": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "policy": "min1000_reconstructed_augmentation_family_grouped_8_1_1",
+      "split_unit": "reconstructed_augmentation_family"
+    },
+    "class_names": [
+      "colon_aca",
+      "colon_n",
+      "lung_aca",
+      "lung_n",
+      "lung_scc"
+    ],
+    "dataset": "lc25000_5class",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/LC25000",
+    "manifest_sha256": "1ddc93e6a53fb93a659da0e30c79c8e095167512e08e036cb4b9a3b6c446fd2e",
+    "num_classes": 5,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "colon_aca": 1000,
+      "colon_n": 1000,
+      "lung_aca": 1000,
+      "lung_n": 1000,
+      "lung_scc": 1000
+    },
+    "selected_class_split_counts": {
+      "colon_aca": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "colon_n": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "lung_aca": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "lung_n": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "lung_scc": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      }
+    },
+    "source_class_counts": {
+      "colon_aca": 5000,
+      "colon_n": 5000,
+      "lung_aca": 5000,
+      "lung_n": 5000,
+      "lung_scc": 5000
+    },
+    "source_image_count": 25000,
+    "split_counts": {
+      "test": 500,
+      "train": 4000,
+      "val": 500
+    },
+    "split_policy": "balanced1000_reconstructed_augmentation_family_grouped_800_100_100",
+    "tier": "main"
+  },
+  "mhist": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "oversampling": false,
+      "per_class_quota": 990,
+      "per_class_split_counts": {
+        "test": 99,
+        "train": 792,
+        "val": 99
+      },
+      "policy": "min_1000_smallest_class_then_deterministic_8_1_1",
+      "seed": 20260903
+    },
+    "class_names": [
+      "HP",
+      "SSA"
+    ],
+    "dataset": "mhist",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/MHIST/extracted/full/MHIST",
+    "manifest_sha256": "c3697411b1a0296b0902c40a9c92ec39a41b495184057047683dc6a40c4f5482",
+    "num_classes": 2,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "HP": 990,
+      "SSA": 990
+    },
+    "selected_class_split_counts": {
+      "HP": {
+        "test": 99,
+        "train": 792,
+        "val": 99
+      },
+      "SSA": {
+        "test": 99,
+        "train": 792,
+        "val": 99
+      }
+    },
+    "source_class_counts": {
+      "HP": 2162,
+      "SSA": 990
+    },
+    "source_image_count": 3152,
+    "split_counts": {
+      "test": 198,
+      "train": 1584,
+      "val": 198
+    },
+    "split_policy": "deterministic_balanced_min1000_then_8_1_1_792_99_99",
+    "tier": "main"
+  },
+  "oral_oscc": {
+    "balance_policy": "natural_imbalance",
+    "balancing": {
+      "magnifications": [
+        "100x",
+        "400x"
+      ],
+      "oversampling": false,
+      "per_class_split_counts": {
+        "Normal": {
+          "test": 29,
+          "train": 232,
+          "val": 29
+        },
+        "OSCC": {
+          "test": 93,
+          "train": 747,
+          "val": 94
+        }
+      },
+      "policy": "whole_dataset_natural_stratified_8_1_1",
+      "subsampling": false
+    },
+    "class_names": [
+      "Normal",
+      "OSCC"
+    ],
+    "dataset": "oral_oscc",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/OralOSCC",
+    "manifest_sha256": "10a38bd91670008e921d552ccda9971994683cbf2895382d03565a31a78f79f8",
+    "num_classes": 2,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "Normal": 290,
+      "OSCC": 934
+    },
+    "selected_class_split_counts": {
+      "Normal": {
+        "test": 29,
+        "train": 232,
+        "val": 29
+      },
+      "OSCC": {
+        "test": 93,
+        "train": 747,
+        "val": 94
+      }
+    },
+    "source_class_counts": {
+      "Normal": 290,
+      "OSCC": 934
+    },
+    "source_image_count": 1224,
+    "split_counts": {
+      "test": 122,
+      "train": 979,
+      "val": 123
+    },
+    "split_policy": "whole_dataset_100x_400x_combined_natural_stratified_8_1_1",
+    "tier": "main"
+  },
+  "osteosarcoma_3class": {
+    "balance_policy": "group_constrained",
+    "balancing": {
+      "ambiguous_viable_nonviable_excluded": 53,
+      "patient_assignment": {
+        "Case-3": "val",
+        "Case-4": "train",
+        "Case-48": "test",
+        "P9": "train"
+      },
+      "policy": "fixed_four_patient_disjoint_split_after_deduplicating_annotations",
+      "selected_class_split_counts": {
+        "test": {
+          "Non-Tumor": 136,
+          "Non-Viable-Tumor": 2,
+          "Viable-Tumor": 202
+        },
+        "train": {
+          "Non-Tumor": 290,
+          "Non-Viable-Tumor": 90,
+          "Viable-Tumor": 87
+        },
+        "val": {
+          "Non-Tumor": 110,
+          "Non-Viable-Tumor": 171,
+          "Viable-Tumor": 3
+        }
+      },
+      "split_unit": "patient"
+    },
+    "class_names": [
+      "Non-Tumor",
+      "Viable-Tumor",
+      "Non-Viable-Tumor"
+    ],
+    "dataset": "osteosarcoma_3class",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/Osteosarcoma/extracted/OsteosarcomaTumorAssessment",
+    "manifest_sha256": "db3d125e5c1c66f9e9d9265fe4cf782d8aea2d2a72127ff79e8c6f57c98e081f",
+    "num_classes": 3,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "Non-Tumor": 536,
+      "Non-Viable-Tumor": 263,
+      "Viable-Tumor": 292
+    },
+    "selected_class_split_counts": {
+      "Non-Tumor": {
+        "test": 136,
+        "train": 290,
+        "val": 110
+      },
+      "Non-Viable-Tumor": {
+        "test": 2,
+        "train": 90,
+        "val": 171
+      },
+      "Viable-Tumor": {
+        "test": 202,
+        "train": 87,
+        "val": 3
+      }
+    },
+    "source_class_counts": {
+      "Non-Tumor": 536,
+      "Non-Viable-Tumor": 263,
+      "Viable-Tumor": 292
+    },
+    "source_image_count": 1144,
+    "split_counts": {
+      "test": 340,
+      "train": 467,
+      "val": 284
+    },
+    "split_policy": "fixed_patient_disjoint_train_Case4_P9_val_Case3_test_Case48_unambiguous_labels",
+    "tier": "main"
+  },
+  "pcam_binary": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "groups": 129,
+      "note": "Local PCam copy contains the official 32768-image test pool; this pool is deterministically repartitioned for the downstream probe benchmark.",
+      "per_class_quota": 1000,
+      "per_class_split_counts": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "policy": "official_test_pool_min1000_WSI_grouped_8_1_1",
+      "split_unit": "WSI"
+    },
+    "class_names": [
+      "normal",
+      "tumor"
+    ],
+    "dataset": "pcam_binary",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/PCam",
+    "manifest_sha256": "181f10391dc29525d7d70d5b9f9cb7bfd81050967963309c96f553068e99116a",
+    "num_classes": 2,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "normal": 1000,
+      "tumor": 1000
+    },
+    "selected_class_split_counts": {
+      "normal": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "tumor": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      }
+    },
+    "source_class_counts": {
+      "normal": 16391,
+      "tumor": 16377
+    },
+    "source_image_count": 32768,
+    "split_counts": {
+      "test": 200,
+      "train": 1600,
+      "val": 200
+    },
+    "split_policy": "official_test_pool_balanced1000_WSI_grouped_800_100_100",
+    "tier": "main"
+  },
+  "renalcell_6class": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "groups": 502,
+      "pannuke_source_overlap": "PanNuke contains 134 Kidney patches but exposes no TCGA case IDs; exact case overlap cannot be identified from released PanNuke metadata.",
+      "per_class_quota": 544,
+      "per_class_split_counts": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "policy": "min1000_TCGA_case_grouped_8_1_1",
+      "split_unit": "TCGA_case"
+    },
+    "class_names": [
+      "blood",
+      "cancer",
+      "empty",
+      "normal",
+      "other",
+      "stroma"
+    ],
+    "dataset": "renalcell_6class",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/RenalCell/extracted/tissue_classfication",
+    "manifest_sha256": "7989857bffbdcc9eb2fc3429c40f9184e67e9963ea3ad3962b3cc83168fd387b",
+    "num_classes": 6,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "blood": 544,
+      "cancer": 544,
+      "empty": 544,
+      "normal": 544,
+      "other": 544,
+      "stroma": 544
+    },
+    "selected_class_split_counts": {
+      "blood": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "cancer": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "empty": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "normal": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "other": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "stroma": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      }
+    },
+    "source_class_counts": {
+      "blood": 544,
+      "cancer": 11755,
+      "empty": 11609,
+      "normal": 6313,
+      "other": 6210,
+      "stroma": 3027
+    },
+    "source_image_count": 39458,
+    "split_counts": {
+      "test": 324,
+      "train": 2610,
+      "val": 330
+    },
+    "split_policy": "balanced_min1000_smallest544_TCGA_case_grouped_8_1_1_435_55_54",
+    "tier": "main"
+  },
+  "sicapv2_4class": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "g4c_used_as_separate_class": false,
+      "groups": 95,
+      "per_class_quota": 948,
+      "per_class_split_counts": {
+        "test": 95,
+        "train": 758,
+        "val": 95
+      },
+      "policy": "min1000_patient_grouped_8_1_1",
+      "split_unit": "patient"
+    },
+    "class_names": [
+      "NC",
+      "G3",
+      "G4",
+      "G5"
+    ],
+    "dataset": "sicapv2_4class",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/SICAPv2/extracted/SICAPv2",
+    "manifest_sha256": "eea6f07f39cf05c70e41ef360afa5d5aae59264a060653e81e962f44a7da5cdc",
+    "num_classes": 4,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "G3": 948,
+      "G4": 948,
+      "G5": 948,
+      "NC": 948
+    },
+    "selected_class_split_counts": {
+      "G3": {
+        "test": 95,
+        "train": 758,
+        "val": 95
+      },
+      "G4": {
+        "test": 95,
+        "train": 758,
+        "val": 95
+      },
+      "G5": {
+        "test": 95,
+        "train": 758,
+        "val": 95
+      },
+      "NC": {
+        "test": 95,
+        "train": 758,
+        "val": 95
+      }
+    },
+    "source_class_counts": {
+      "G3": 2222,
+      "G4": 4494,
+      "G5": 948,
+      "NC": 4417
+    },
+    "source_image_count": 12081,
+    "split_counts": {
+      "test": 380,
+      "train": 3032,
+      "val": 380
+    },
+    "split_policy": "balanced_min1000_smallest948_patient_grouped_8_1_1_758_95_95",
+    "tier": "main"
+  },
+  "wsss4luad_3class": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "groups": 63,
+      "official_unlabeled_val_test_excluded": true,
+      "per_class_quota": 1000,
+      "per_class_split_counts": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "policy": "clean_single_label_min1000_grouped_8_1_1",
+      "split_unit": "WSI"
+    },
+    "class_names": [
+      "tumor",
+      "stroma",
+      "normal"
+    ],
+    "dataset": "wsss4luad_3class",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/WSSS4LUAD/raw",
+    "manifest_sha256": "5db67848fe4ac4267b271f51cf00d0a2643e492338d317a949a4ed4cab67f29b",
+    "num_classes": 3,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "normal": 1000,
+      "stroma": 1000,
+      "tumor": 1000
+    },
+    "selected_class_split_counts": {
+      "normal": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "stroma": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "tumor": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      }
+    },
+    "source_class_counts": {
+      "normal": 1832,
+      "stroma": 1680,
+      "tumor": 1181
+    },
+    "source_image_count": 10091,
+    "split_counts": {
+      "test": 300,
+      "train": 2400,
+      "val": 300
+    },
+    "split_policy": "clean_single_label_balanced1000_WSI_grouped_800_100_100",
+    "tier": "main"
+  }
+}

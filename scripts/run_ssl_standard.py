@@ -73,6 +73,10 @@ def _run_downstream_checkpoints(c, root: Path, dataset: str):
         if not checkpoint.is_file():
             raise FileNotFoundError(f"Missing required SSL checkpoint: {checkpoint}")
         output = base / f"epoch_{epoch}"
+        completed = output / "test_metrics.json"
+        if completed.is_file():
+            results[str(epoch)] = json.loads(completed.read_text())
+            continue
         results[str(epoch)] = run_downstream(c, checkpoint, output, dataset=dataset)
     return {"dataset": dataset, "checkpoint_epochs": epochs, "results": results}
 
@@ -104,6 +108,10 @@ def _run_image_text_retrieval_checkpoints(c, root: Path, dataset: str):
         if not checkpoint.is_file():
             raise FileNotFoundError(f"Missing required SSL checkpoint: {checkpoint}")
         output=root/"image_text_retrieval"/dataset/f"epoch_{epoch}"
+        completed = output / "test_retrieval_metrics.json"
+        if completed.is_file():
+            results[str(epoch)] = json.loads(completed.read_text())
+            continue
         results[str(epoch)]=run_image_text_retrieval(c,checkpoint,output,dataset=dataset)
     return {"dataset":dataset,"checkpoint_epochs":epochs,"results":results}
 

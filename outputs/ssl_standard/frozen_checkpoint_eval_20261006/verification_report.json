@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "classification_evaluations": 150,
+  "retrieval_evaluations": 20,
+  "total_checkpoint_level_evaluations": 170,
+  "datasets": [
+    "bach",
+    "breakhis_8subtype",
+    "crc_val_he_7k",
+    "ebhi_seg_6class",
+    "endometrial_4class",
+    "gashissdb_binary",
+    "kather_2016",
+    "lc25000_5class",
+    "mhist",
+    "oral_oscc",
+    "osteosarcoma_3class",
+    "pcam_binary",
+    "renalcell_6class",
+    "sicapv2_4class",
+    "wsss4luad_3class"
+  ],
+  "retrieval_datasets": [
+    "arch",
+    "ipath"
+  ],
+  "checkpoint_epochs": [
+    100,
+    150,
+    200,
+    250,
+    300
+  ],
+  "primary_checkpoint_epoch": 300,
+  "errors": [],
+  "checks_total": 2844,
+  "checks_passed": 2844,
+  "checks_failed": 0
+}

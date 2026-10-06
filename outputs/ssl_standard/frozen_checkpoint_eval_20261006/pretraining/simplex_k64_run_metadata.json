@@ -1,0 +1,56 @@
+{
+  "action": "pretrain",
+  "checkpoint_epochs": [
+    100,
+    150,
+    200,
+    250,
+    300
+  ],
+  "created_at_utc": "2026-10-05T19:11:37.627211+00:00",
+  "cuda_device": {
+    "index": 0,
+    "name": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "total_memory_bytes": 101949898752
+  },
+  "dataset": null,
+  "manifest_hashes": {
+    "dataset_manifests/bach.json": "494020d0f28274eef5ce448648128e87faee4af5c067273e7fad48d95065c92c",
+    "dataset_manifests/breakhis_8subtype.json": "350eb74afd1a26e6a1fb65b5668cf9225ff692e39213de3a5375bd592de2fd81",
+    "dataset_manifests/crc_val_he_7k.json": "b6e4699ab8f3d5797b32eba507c2af17b9e36583dfa3a89263ba38ec74c62ee9",
+    "dataset_manifests/ebhi_seg_6class.json": "099ef5be158884329b9b28fe43f2a0f9d9147231fca3f616a74042e2a4633129",
+    "dataset_manifests/endometrial_4class.json": "d228063b6cd21fe19d90a2ea0db5eb708515a4c9c81eb64005fe9cba138b918c",
+    "dataset_manifests/gashissdb_binary.json": "e4beb5a0a5f0b3261d49fa0f734fc497e2cc6ce796384e5b4990a87f74c58709",
+    "dataset_manifests/kather_2016.json": "40b022892592b23cfd2b401452f22ded835fd61975062a5f1f751e2ebe595e88",
+    "dataset_manifests/lc25000_5class.json": "1ddc93e6a53fb93a659da0e30c79c8e095167512e08e036cb4b9a3b6c446fd2e",
+    "dataset_manifests/mhist.json": "c3697411b1a0296b0902c40a9c92ec39a41b495184057047683dc6a40c4f5482",
+    "dataset_manifests/oral_oscc.json": "10a38bd91670008e921d552ccda9971994683cbf2895382d03565a31a78f79f8",
+    "dataset_manifests/osteosarcoma_3class.json": "db3d125e5c1c66f9e9d9265fe4cf782d8aea2d2a72127ff79e8c6f57c98e081f",
+    "dataset_manifests/pcam_binary.json": "181f10391dc29525d7d70d5b9f9cb7bfd81050967963309c96f553068e99116a",
+    "dataset_manifests/renalcell_6class.json": "7989857bffbdcc9eb2fc3429c40f9184e67e9963ea3ad3962b3cc83168fd387b",
+    "dataset_manifests/sicapv2_4class.json": "eea6f07f39cf05c70e41ef360afa5d5aae59264a060653e81e962f44a7da5cdc",
+    "dataset_manifests/wsss4luad_3class.json": "5db67848fe4ac4267b271f51cf00d0a2643e492338d317a949a4ed4cab67f29b",
+    "image_text_manifests/arch.json": "5ce05513becbd0ec80ba82c645a69a7e7d689d8326393da55a048d4106df4f91",
+    "image_text_manifests/ipath.json": "65ae5f1ff5dbd132b7916b7fc4bf81f6a0650d0ccbb80a6379dc2d263c5042e8"
+  },
+  "method": "simplex_sigreg_lejepa",
+  "numpy": "1.26.4",
+  "peak_lr": 0.0005,
+  "platform": "Linux-6.17.0-1032-oem-x86_64-with-glibc2.39",
+  "python": "3.13.1",
+  "run_id": "ssl-simplex-k64-s20260903",
+  "runtime": {
+    "data_root": "/home/xwan0900/datasets",
+    "git_commit": "f1147e2dc931da7488753888d2565943e8753841",
+    "hostname": "gpu1-358-0",
+    "model_root": "/home/xwan0900/models",
+    "project_root": "/home/xwan0900/SSL_proj",
+    "results_master": "xwan0900@gpu1-jinman-2.it.usyd.edu.au:/raid1/xwan0900/SSL_results_master",
+    "run_root": "/home/xwan0900/SSL_runs",
+    "source_tree_clean": true
+  },
+  "seed": 20260903,
+  "simplex_components": 64,
+  "simplex_sigma": 1.0,
+  "torch": "2.11.0+cu128"
+}
