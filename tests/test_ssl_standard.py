@@ -90,7 +90,7 @@ def test_dinov3_source_eval_and_base_objective_metadata():
 
 
 def test_common_protocol_matches_across_methods():
-    configs = [load_standard_config(name) for name in ("ijepa", "lejepa", "simplex_sigreg_lejepa", "dinov3")]
+    configs = [load_standard_config(name) for name in ("ijepa", "lejepa", "ppc_lejepa", "simplex_sigreg_lejepa", "dinov3")]
     paths = [
         ("seed",),
         ("data", "source_images"),

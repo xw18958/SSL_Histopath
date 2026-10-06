@@ -4,6 +4,11 @@ experiments:
     role: primary
     seed: 20260903
     overrides: {}
+  ssl-ppc-lejepa-s20260903:
+    method: ppc_lejepa
+    role: primary
+    seed: 20260903
+    overrides: {}
   ssl-simplex-k64-s20260903:
     method: simplex_sigreg_lejepa
     role: primary

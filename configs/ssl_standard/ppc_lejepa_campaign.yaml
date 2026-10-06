@@ -1,0 +1,31 @@
+campaign: ppc_lejepa_functional_drift_250
+seed: 20260903
+lambda_candidates: [0.01, 0.05, 0.10]
+smoke_lambda: 0.05
+standard_lejepa_lambda: 0.0
+epsilon: 1.0e-8
+stop_epoch: 250
+schedule_epochs: 250
+checkpoint_epochs: [100, 150, 200, 250]
+ssl_batch_size: 128
+ssl_learning_rate: 0.0005
+initial_encoder_sha256: eccdcfba016917e36667d3cf4288f41869b1a3593345729e3115b638d4a8d372
+initial_projector_sha256: 33d6f98dd5ecd91795313f9f4337291eafb456e05f3d25c5874c16d4c9189321
+classification_datasets:
+  - mhist
+  - crc_val_he_7k
+  - breakhis_8subtype
+  - kather_2016
+  - bach
+  - sicapv2_4class
+  - wsss4luad_3class
+  - oral_oscc
+  - endometrial_4class
+  - osteosarcoma_3class
+  - gashissdb_binary
+  - renalcell_6class
+  - ebhi_seg_6class
+  - lc25000_5class
+  - pcam_binary
+retrieval_datasets: [arch, ipath, pathcap]
+downstream_policy: each_saved_checkpoint_all_classification_and_retrieval_datasets

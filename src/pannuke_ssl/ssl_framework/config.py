@@ -35,6 +35,24 @@ def load_tuning_spec(method: str) -> dict[str, Any]:
     ):
         raise ValueError("Unexpected tuning protocol")
 
+    if method == "ppc_lejepa":
+        p = s["parameters"].get("ppc_lambda", {})
+        candidates = [float(x) for x in p.get("candidates", ())]
+        if candidates != [0.01, 0.05, 0.10]:
+            raise ValueError("PPC lambda search must be exactly [0.01, 0.05, 0.10]")
+        if float(p.get("baseline_value")) != 0.0:
+            raise ValueError("Standard LeJEPA must correspond to PPC lambda=0")
+        if float(p.get("default_smoke_value")) != 0.05:
+            raise ValueError("PPC smoke default must be lambda=0.05")
+        search = s.get("search", {})
+        if search.get("strategy") != "sequential_greedy":
+            raise ValueError("PPC tuning must use sequential_greedy search")
+        if list(search.get("order", ())) != ["ppc_lambda"]:
+            raise ValueError("PPC tuning order must contain only ppc_lambda")
+        if float(search.get("fixed_learning_rate")) != 0.0005:
+            raise ValueError("PPC lambda stage must keep the standard LeJEPA learning rate fixed at 0.0005")
+        return s
+
     p = s["parameters"]["learning_rate"]
     candidates = [float(x) for x in p["candidates"]]
     source = float(p["source_value"])
@@ -57,7 +75,6 @@ def load_tuning_spec(method: str) -> dict[str, Any]:
         if float(search.get("k_stage_learning_rate")) != source:
             raise ValueError("K-stage learning rate must equal the LeJEPA source learning rate")
     return s
-
 
 def validate_standard_config(c: dict[str, Any]) -> None:
     data = c["data"]
@@ -89,6 +106,18 @@ def validate_standard_config(c: dict[str, Any]) -> None:
         raise ValueError("Standard downstream protocol changed")
     if c["method"]["name"] == "simplex_sigreg_lejepa" and float(c["method"]["objective"]["simplex_sigma"]) != 1.0:
         raise ValueError("Simplex sigma must remain fixed at 1.0")
+    if c["method"]["name"] == "ppc_lejepa":
+        ppc = c["method"].get("projector_plasticity", {})
+        if float(ppc.get("epsilon", 0.0)) != 1e-8:
+            raise ValueError("PPC epsilon must remain 1e-8")
+        if [float(x) for x in ppc.get("lambda_candidates", ())] != [0.01, 0.05, 0.10]:
+            raise ValueError("PPC lambda candidates must be [0.01, 0.05, 0.10]")
+        if float(ppc.get("standard_lejepa_lambda", -1.0)) != 0.0:
+            raise ValueError("Standard LeJEPA must correspond to PPC lambda=0")
+        if float(ppc.get("lambda", -1.0)) not in (0.0, 0.01, 0.05, 0.10):
+            raise ValueError("PPC lambda must be 0 or one of the three frozen search candidates")
+        if "simplex_components" in c["method"]["objective"] or "simplex_sigma" in c["method"]["objective"]:
+            raise ValueError("PPC-LeJEPA must use standard-normal SIGReg, not Simplex-SIGReg")
 
 
 def apply_lr(c: dict[str, Any], lr: float) -> dict[str, Any]:
@@ -100,12 +129,19 @@ def apply_lr(c: dict[str, Any], lr: float) -> dict[str, Any]:
 def apply_tuned_hyperparameters(c: dict[str, Any], selected: dict[str, Any]) -> dict[str, Any]:
     """Apply saved tuning results while enforcing the fixed-sigma Simplex protocol."""
     out = copy.deepcopy(c)
-    allowed = {"learning_rate", "simplex_components", "simplex_sigma"}
+    allowed = {"learning_rate", "simplex_components", "simplex_sigma", "ppc_lambda"}
     unknown = set(selected) - allowed
     if unknown:
         raise ValueError(f"Unknown tuned hyperparameters: {sorted(unknown)}")
     if "learning_rate" in selected:
         out["method"]["optimizer"]["peak_lr"] = float(selected["learning_rate"])
+    if "ppc_lambda" in selected:
+        if out["method"]["name"] != "ppc_lejepa":
+            raise ValueError("ppc_lambda only applies to ppc_lejepa")
+        value = float(selected["ppc_lambda"])
+        if value not in (0.0, 0.01, 0.05, 0.10):
+            raise ValueError("ppc_lambda must be 0 or one of [0.01, 0.05, 0.10]")
+        out["method"]["projector_plasticity"]["lambda"] = value
     if "simplex_components" in selected:
         if out["method"]["name"] != "simplex_sigreg_lejepa":
             raise ValueError("simplex_components only applies to simplex_sigreg_lejepa")

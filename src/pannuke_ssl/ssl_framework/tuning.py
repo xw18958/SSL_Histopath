@@ -62,7 +62,16 @@ def _run_trial(
         "stage": stage,
         "candidate_parameter": candidate_parameter,
         "candidate_value": candidate_value,
-        "learning_rate": float(selected["learning_rate"]),
+        "learning_rate": (
+            float(selected["learning_rate"])
+            if "learning_rate" in selected
+            else float(c["method"]["optimizer"]["peak_lr"])
+        ),
+        "ppc_lambda": (
+            float(selected["ppc_lambda"])
+            if "ppc_lambda" in selected
+            else c["method"].get("projector_plasticity", {}).get("lambda")
+        ),
         "simplex_components": selected.get("simplex_components"),
         "simplex_sigma": selected.get("simplex_sigma"),
         "status": status,
@@ -111,6 +120,42 @@ def _standard_lr_tuning(c: dict[str, Any], spec: dict[str, Any], root: Path) -> 
             }
         ],
         "search_strategy": "single_parameter",
+    }
+
+
+def _ppc_lambda_tuning(c: dict[str, Any], spec: dict[str, Any], root: Path) -> dict[str, Any]:
+    p = spec["parameters"]["ppc_lambda"]
+    candidates = [float(x) for x in p["candidates"]]
+    rows = []
+    stage_dir = root / "stage_1_ppc_lambda"
+    for value in candidates:
+        rows.append(
+            _run_trial(
+                c,
+                selected={"ppc_lambda": value},
+                out=stage_dir / f"lambda_{value:.2f}",
+                stage="ppc_lambda",
+                candidate_parameter="ppc_lambda",
+                candidate_value=value,
+                budget=spec["budget"],
+            )
+        )
+    chosen = min(_top_ties(rows), key=lambda row: float(row["ppc_lambda"]))
+    write_csv(rows, stage_dir / "summary.csv")
+    return {
+        "rows": rows,
+        "selected_parameters": {"ppc_lambda": float(chosen["ppc_lambda"])},
+        "selected_row": chosen,
+        "stages": [
+            {
+                "name": "ppc_lambda",
+                "fixed_learning_rate": float(c["method"]["optimizer"]["peak_lr"]),
+                "selected_ppc_lambda": float(chosen["ppc_lambda"]),
+                "selected_validation_linear_macro_f1": float(chosen["best_validation_linear_macro_f1"]),
+            }
+        ],
+        "search_strategy": "sequential_greedy",
+        "executed_trial_count": len(rows),
     }
 
 
@@ -214,29 +259,50 @@ def _simplex_sequential_tuning(c: dict[str, Any], spec: dict[str, Any], root: Pa
 
 
 def run_tuning(c: dict[str, Any]):
-    spec = load_tuning_spec(c["method"]["name"])
-    root = Path(c.get("runtime", {}).get("run_root") or (Path(c["output"]["root"]) / c["method"]["name"])) / "tuning"
+    method = c["method"]["name"]
+    spec = load_tuning_spec(method)
+    root = Path(c.get("runtime", {}).get("run_root") or (Path(c["output"]["root"]) / method)) / "tuning"
     root.mkdir(parents=True, exist_ok=True)
     if (root / "tuning_summary.json").exists():
         raise FileExistsError("Tuning already exists")
 
-    p = spec["parameters"]["learning_rate"]
-    source = float(p["source_value"])
-    if c["method"]["name"] == "simplex_sigreg_lejepa":
-        search = _simplex_sequential_tuning(c, spec, root)
+    if method == "ppc_lejepa":
+        p = spec["parameters"]["ppc_lambda"]
+        baseline = float(p["baseline_value"])
+        search = _ppc_lambda_tuning(c, spec, root)
+        selected_name = "ppc_lambda"
+        selected_value = float(search["selected_parameters"]["ppc_lambda"])
+        source_reference = p["source_reference"]
+        source_payload = {
+            "ppc_lambda": baseline,
+            "included_in_candidates": False,
+            "citation": source_reference,
+        }
     else:
-        search = _standard_lr_tuning(c, spec, root)
+        p = spec["parameters"]["learning_rate"]
+        source = float(p["source_value"])
+        if method == "simplex_sigreg_lejepa":
+            search = _simplex_sequential_tuning(c, spec, root)
+        else:
+            search = _standard_lr_tuning(c, spec, root)
+        selected_name = "learning_rate"
+        selected_value = float(search["selected_parameters"]["learning_rate"])
+        source_reference = p["source_reference"]
+        source_payload = {
+            "learning_rate": source,
+            "included_in_candidates": True,
+            "citation": source_reference,
+        }
 
     chosen = search["selected_row"]
     selected_parameters = search["selected_parameters"]
     result = {
-        "method": c["method"]["name"],
+        "method": method,
         "search_strategy": search["search_strategy"],
-        "selected_value": float(selected_parameters["learning_rate"]),
+        "selected_parameter": selected_name,
+        "selected_value": selected_value,
         "selected_validation_linear_macro_f1": float(chosen["best_validation_linear_macro_f1"]),
-        "source_value": source,
-        "source_value_included": True,
-        "source_reference": p["source_reference"],
+        "source_reference": source_reference,
         "selected_parameters": selected_parameters,
         "budget": spec["budget"],
         "stages": search["stages"],
@@ -244,6 +310,12 @@ def run_tuning(c: dict[str, Any]):
         "executed_trial_count": search.get("executed_trial_count", len(search["rows"])),
         "test_used": False,
     }
+    if method == "ppc_lejepa":
+        result["standard_lejepa_ppc_lambda"] = baseline
+        result["lambda_candidates"] = [float(x) for x in p["candidates"]]
+    else:
+        result["source_value"] = source
+        result["source_value_included"] = True
     if "simplex_components" in selected_parameters:
         result["selected_simplex_components"] = int(selected_parameters["simplex_components"])
         result["selected_simplex_sigma"] = float(selected_parameters["simplex_sigma"])
@@ -253,7 +325,7 @@ def run_tuning(c: dict[str, Any]):
     (root / "best_hyperparameters.yaml").write_text(
         yaml.safe_dump(
             {
-                "method": c["method"]["name"],
+                "method": method,
                 "selected": selected_parameters,
                 "selection": {
                     "metric": "linear_val_macro_f1",
@@ -261,11 +333,7 @@ def run_tuning(c: dict[str, Any]):
                     "test_used": False,
                     "search_strategy": result["search_strategy"],
                 },
-                "source_reference": {
-                    "learning_rate": source,
-                    "included_in_candidates": True,
-                    "citation": p["source_reference"],
-                },
+                "source_reference": source_payload,
             },
             sort_keys=False,
         ),
