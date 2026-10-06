@@ -101,7 +101,7 @@ def write_run_metadata(c: dict[str, Any], root: Path, *, run_id: str, action: st
         mismatched = [key for key in immutable if existing.get(key) != metadata.get(key)]
         existing_commit = existing.get("runtime", {}).get("git_commit")
         current_commit = metadata.get("runtime", {}).get("git_commit")
-        if existing_commit != current_commit:
+        if existing_commit != current_commit and action == "pretrain":
             mismatched.append("git_commit")
         if mismatched:
             raise RuntimeError(f"Run metadata collision at {path}; mismatched fields={sorted(set(mismatched))}")
