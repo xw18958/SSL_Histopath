@@ -24,7 +24,7 @@ def settings(path):
     return machines,p
 
 def env(w):
-    return {'CUDA_VISIBLE_DEVICES':str(w['gpu']),'SSL_PROJECT_ROOT':w['project'],'SSL_DATA_ROOT':w['data'],
+    return {'SSL_PIN_MEMORY':str(w.get('pin_memory',1)),'CUDA_VISIBLE_DEVICES':str(w['gpu']),'SSL_PROJECT_ROOT':w['project'],'SSL_DATA_ROOT':w['data'],
             'SSL_MODEL_ROOT':w['models'],'SSL_RUN_ROOT':w['run_root'],'SSL_ABLATION_RUN_ROOT':w['run_root'],
             'SSL_ABLATION_SCRATCH':w['scratch'],'SSL_WORKER_NAME':w['name'],
             'SSL_WORKER_ROLE':'pretrain' if w.get('pretrain_k') else 'downstream',
@@ -126,18 +126,22 @@ def verify_complete(master,p):
         with (master/(name+'.csv')).open('w',newline='') as f:
             writer=csv.DictWriter(f,fieldnames=list(rows[0]));writer.writeheader();writer.writerows(rows)
 
-def start(m,p):
+def start(m,p,resume=False):
     master=Path(m['master_root']);master.mkdir(parents=True,exist_ok=True)
     with (master/'coordinator.lock').open('a') as lock:
         fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        if (master/'campaign_started.json').exists():raise RuntimeError('Campaign already started; preserve outputs and diagnose before any restart')
+        old=json.loads((master/'status.json').read_text()) if resume else {}
+        if resume and old.get('state')!='failed':raise RuntimeError('Resume requires a failed coordinator')
+        if not resume and (master/'campaign_started.json').exists():raise RuntimeError('Campaign already started; preserve outputs and diagnose before any restart')
         ready=check(m,p);atomic(ready,master/'launch_readiness.json')
-        with (master/'campaign_started.json').open('x') as f:json.dump({'started_at':time.time(),'plan':p},f,indent=2)
+        if not resume:
+            with (master/'campaign_started.json').open('x') as f:json.dump({'started_at':time.time(),'plan':p},f,indent=2)
         workers=m['workers'];running={};pretrain={w['pretrain_k']:w for w in workers.values() if w.get('pretrain_k')}
-        completed=[];available=set();backed=set();pretrain_finished=set()
+        completed=[tuple(x) for x in old.get('completed_bundles',[])];available=set();backed=set();pretrain_finished=set(old.get('pretraining_finished',[]))
+        if resume:running=dict(old['running'])
         try:
             for name,w in workers.items():
-                if w.get('pretrain_k'):running[name]=launch(w,'pretrain',w['pretrain_k'])
+                if w.get('pretrain_k') and not resume:running[name]=launch(w,'pretrain',w['pretrain_k'])
             while len(completed)!=12 or len(pretrain_finished)!=3:
                 for name,j in list(running.items()):
                     w=workers[name];s=job(w,'status',j['root'])
@@ -169,12 +173,12 @@ def start(m,p):
                 time.sleep(30)
             verify_complete(master,p);atomic({'state':'complete','ssl_runs':3,'checkpoint_bundles':12,'evaluations':216,'classification':180,'retrieval':36,'finished_at':time.time()},master/'status.json')
         except Exception as e:
-            atomic({'state':'failed','error':str(e),'running':running,'completed_bundles':completed,'updated_at':time.time()},master/'status.json')
+            atomic({'state':'failed','error':str(e),'running':running,'completed_bundles':completed,'pretraining_finished':sorted(pretrain_finished),'updated_at':time.time()},master/'status.json')
             # Detached jobs already running are preserved; no automatic reruns.
             raise
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('action',choices=['prepare','check','launch','start','status']);parser.add_argument('--machines',type=Path,required=True);a=parser.parse_args();m,p=settings(a.machines)
+    parser=argparse.ArgumentParser();parser.add_argument('action',choices=['prepare','check','launch','launch-resume','resume','start','status']);parser.add_argument('--machines',type=Path,required=True);a=parser.parse_args();m,p=settings(a.machines)
     if a.action=='prepare':
         for w in m['workers'].values():
             for k in p['components']:call(w,['scripts/run_simplex_k_ablation.py','prepare','--k',str(k)])
@@ -182,16 +186,18 @@ def main():
     elif a.action=='check':r=check(m,p);atomic(r,Path(m['master_root'])/'ready_to_start.json')
     elif a.action=='status':
         file=Path(m['master_root'])/'status.json';r=json.loads(file.read_text()) if file.exists() else {'state':'not_started'}
-    elif a.action=='launch':
+    elif a.action in ('launch','launch-resume'):
         master=Path(m['master_root'])
-        if (master/'campaign_started.json').exists():raise RuntimeError('Campaign already started')
+        if a.action=='launch' and (master/'campaign_started.json').exists():raise RuntimeError('Campaign already started')
+        if a.action=='launch-resume' and json.loads((master/'status.json').read_text()).get('state')!='failed':raise RuntimeError('Resume requires failed status')
         check(m,p)
-        with (master/'launch_requested.json').open('x') as f:json.dump({'requested_at':time.time()},f)
+        if a.action=='launch':
+            with (master/'launch_requested.json').open('x') as f:json.dump({'requested_at':time.time()},f)
         controller=m['workers']['jinman-g0']
         with (master/'coordinator.log').open('ab') as log:
-            child=subprocess.Popen([controller['python'],'-u',str(Path(__file__).resolve()),'start','--machines',str(a.machines.resolve())],stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+            child=subprocess.Popen([controller['python'],'-u',str(Path(__file__).resolve()),'resume' if a.action=='launch-resume' else 'start','--machines',str(a.machines.resolve())],stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
         r={'state':'launch_requested','pid':child.pid,'log':str(master/'coordinator.log')};atomic(r,master/'launcher.json')
-    else:start(m,p);r={'state':'complete'}
+    else:start(m,p,resume=a.action=='resume');r={'state':'complete'}
     print(json.dumps(r),flush=True)
 
 if __name__=='__main__':main()

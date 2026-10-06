@@ -74,6 +74,13 @@ class PanNukeImageDataset(Dataset):
         return tuple(result) if len(result) > 1 else result[0]
 
 
+def pin_memory_enabled() -> bool:
+    value = os.environ.get("SSL_PIN_MEMORY", "1")
+    if value not in ("0", "1"):
+        raise ValueError("SSL_PIN_MEMORY must be 0 or 1")
+    return value == "1" and torch.cuda.is_available()
+
+
 def loader_kwargs(batch_size: int, num_workers: int, *, shuffle: bool) -> dict[str, object]:
     if num_workers < 0:
         raise ValueError("num_workers must be non-negative")
@@ -81,7 +88,7 @@ def loader_kwargs(batch_size: int, num_workers: int, *, shuffle: bool) -> dict[s
         "batch_size": batch_size,
         "shuffle": shuffle,
         "num_workers": num_workers,
-        "pin_memory": torch.cuda.is_available(),
+        "pin_memory": pin_memory_enabled(),
         "persistent_workers": num_workers > 0,
         "drop_last": False,
     }

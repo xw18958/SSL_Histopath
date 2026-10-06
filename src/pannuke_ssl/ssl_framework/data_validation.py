@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Any
 import numpy as np, torch
 from torch.utils.data import DataLoader
-from pannuke_ssl.data import PanNukeImageDataset, loader_kwargs
+from pannuke_ssl.data import PanNukeImageDataset, loader_kwargs, pin_memory_enabled
 from pannuke_ssl.monitor import _classification_metrics, _fixed_linear_predictions, feature_diagnostics, weighted_knn_predictions
 from pannuke_ssl.parquet import build_source_index, preload_images, read_metadata, verify_records
 from pannuke_ssl.utils import write_csv
@@ -84,7 +84,7 @@ def build_ssl_loader(c, method, *, batch_size=None, workers=None, use_all_data: 
         batch_size=int(batch_size or c["training"]["batch_size"]),
         shuffle=True,
         num_workers=w,
-        pin_memory=torch.cuda.is_available(),
+        pin_memory=pin_memory_enabled(),
         persistent_workers=w > 0,
         drop_last=False,
         generator=torch.Generator().manual_seed(int(c["seed"])),
