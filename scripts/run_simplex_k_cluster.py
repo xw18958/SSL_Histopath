@@ -27,6 +27,7 @@ def env(w):
     return {'CUDA_VISIBLE_DEVICES':str(w['gpu']),'SSL_PROJECT_ROOT':w['project'],'SSL_DATA_ROOT':w['data'],
             'SSL_MODEL_ROOT':w['models'],'SSL_RUN_ROOT':w['run_root'],'SSL_ABLATION_RUN_ROOT':w['run_root'],
             'SSL_ABLATION_SCRATCH':w['scratch'],'SSL_WORKER_NAME':w['name'],
+            'SSL_WORKER_ROLE':'pretrain' if w.get('pretrain_k') else 'downstream',
             'PYTHONPATH':w['project']+'/src'+(':'+w['extra_pythonpath'] if w.get('extra_pythonpath') else ''),
             'OMP_NUM_THREADS':'4','TOKENIZERS_PARALLELISM':'false','PYTHONUNBUFFERED':'1'}
 

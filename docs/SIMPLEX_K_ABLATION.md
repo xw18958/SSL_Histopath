@@ -8,8 +8,8 @@ Each of the 12 saved checkpoints receives all 15 existing frozen-feature classif
 |---|---|---|
 | gpu1-jinman-2, CUDA 0 | K=32 SSL | Shared downstream queue after its own SSL run finishes |
 | gpu1-358-0, CUDA 0 | K=16 SSL | Shared downstream queue after its own SSL run finishes |
-| gpu2-358-0, CUDA 1 | K=8 SSL | Shared downstream queue after its own SSL run finishes |
-| gpu2-358-0, CUDA 0 | Downstream as checkpoints arrive | Shared downstream queue throughout |
+| gpu2-358-0, CUDA 0 | K=8 SSL | Shared downstream queue after its own SSL run finishes |
+| gpu2-358-0, CUDA 1 | Downstream as checkpoints arrive | Shared downstream queue throughout |
 
 Workers use one GPU each. Checkpoints are copied to the persistent results master as they appear, checked by SHA-256, and dispatched to a free worker. Every checkpoint is a bundle of 18 evaluations. A classification encoder is loaded once for its pending datasets. Completed results are skipped only after their checkpoint identity is checked. Results are copied to the master after every bundle; completion requires all 216 result files. Failed jobs and partial TEST attempts remain available for diagnosis, and are not automatically retried.
 

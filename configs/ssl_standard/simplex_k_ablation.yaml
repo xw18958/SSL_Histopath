@@ -28,7 +28,7 @@ retrieval_datasets: [arch, ipath, pathcap]
 allocation:
   jinman-g0: {host: gpu1-jinman-2.it.usyd.edu.au, gpu: 0, pretrain_k: 32}
   gpu1-358-g0: {host: gpu1-358-0.research.sydney.edu.au, gpu: 0, pretrain_k: 16}
-  gpu2-358-g1: {host: gpu2-358-0.research.sydney.edu.au, gpu: 1, pretrain_k: 8}
-  gpu2-358-g0: {host: gpu2-358-0.research.sydney.edu.au, gpu: 0, role: downstream}
+  gpu2-358-g0: {host: gpu2-358-0.research.sydney.edu.au, gpu: 0, pretrain_k: 8}
+  gpu2-358-g1: {host: gpu2-358-0.research.sydney.edu.au, gpu: 1, role: downstream}
 downstream_policy: each_saved_checkpoint_all_classification_and_retrieval_datasets
 reuse_completed_methods: [lejepa, simplex_k64]
