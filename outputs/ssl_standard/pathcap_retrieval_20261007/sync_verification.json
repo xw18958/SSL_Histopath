@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "master": "gpu1-jinman-2.it.usyd.edu.au",
+  "expected": {
+    "csv_sha256": "7fad16773b62dcaee02e77e44ae8c011f6cc74a948b9e6e834729a8b2a3bbee6",
+    "all_results_sha256": "b5342e9fb8aeb7fac715da65ebc307329b73177ca883520a7d5132463f0eeb7d",
+    "manifest_sha256": "0fe42bacb3f02bafa7f89745b737a94ca2f39d9247dd7592ad724bb32c5b6024",
+    "dataset_loader_sha256": "beb0a6a0ebbca92cc3e5a6039ef71cefd968929e65ca2df15678a54e3cb6fc06"
+  },
+  "other_servers": [
+    {
+      "host": "gpu1-358-0.research.sydney.edu.au",
+      "csv_sha256": "7fad16773b62dcaee02e77e44ae8c011f6cc74a948b9e6e834729a8b2a3bbee6",
+      "all_results_sha256": "b5342e9fb8aeb7fac715da65ebc307329b73177ca883520a7d5132463f0eeb7d",
+      "manifest_sha256": "0fe42bacb3f02bafa7f89745b737a94ca2f39d9247dd7592ad724bb32c5b6024",
+      "dataset_loader_sha256": "beb0a6a0ebbca92cc3e5a6039ef71cefd968929e65ca2df15678a54e3cb6fc06",
+      "evaluations": 10,
+      "verification_status": "PASS"
+    },
+    {
+      "host": "gpu2-358-0.research.sydney.edu.au",
+      "csv_sha256": "7fad16773b62dcaee02e77e44ae8c011f6cc74a948b9e6e834729a8b2a3bbee6",
+      "all_results_sha256": "b5342e9fb8aeb7fac715da65ebc307329b73177ca883520a7d5132463f0eeb7d",
+      "manifest_sha256": "0fe42bacb3f02bafa7f89745b737a94ca2f39d9247dd7592ad724bb32c5b6024",
+      "dataset_loader_sha256": "beb0a6a0ebbca92cc3e5a6039ef71cefd968929e65ca2df15678a54e3cb6fc06",
+      "evaluations": 10,
+      "verification_status": "PASS"
+    }
+  ]
+}

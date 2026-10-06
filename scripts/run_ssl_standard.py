@@ -2,6 +2,7 @@ from __future__ import annotations
 import argparse, json
 from pathlib import Path
 import yaml
+import torch
 from pannuke_ssl.ssl_framework import (
     apply_lr,
     apply_tuned_hyperparameters,
@@ -22,6 +23,9 @@ from pannuke_ssl.ssl_framework.external_datasets import (
 from pannuke_ssl.ssl_framework.run_management import attach_run_context, write_run_metadata
 from pannuke_ssl.ssl_framework.image_text_datasets import IMAGE_TEXT_DATASETS
 from pannuke_ssl.ssl_framework.retrieval_protocol import RETRIEVAL_VERSION
+from pannuke_ssl.ssl_framework.downstream import _optional_dataset, _run_downstream
+from pannuke_ssl.ssl_framework.trainer import load_checkpoint
+from pannuke_ssl.ssl_methods.registry import build_method
 
 
 METHODS=("ijepa","lejepa","simplex_sigreg_lejepa","dinov3")
@@ -92,10 +96,46 @@ def _run_downstream_suite(c, root: Path, tier: str):
     datasets = _suite_dataset_names(tier)
     if not datasets:
         raise RuntimeError(f"No ready external datasets for tier={tier!r}")
+    epochs = [int(epoch) for epoch in c["training"]["checkpoint_epochs"]]
+    results = {}
+    for dataset in datasets:
+        assert_dataset_ready(dataset)
+        results[dataset] = {"dataset": dataset, "checkpoint_epochs": epochs, "results": {}}
+
+    for epoch in epochs:
+        checkpoint = root / "pretrain_full" / "checkpoints" / f"epoch_{epoch}.pt"
+        if not checkpoint.is_file():
+            raise FileNotFoundError(f"Missing required SSL checkpoint: {checkpoint}")
+        pending = []
+        for dataset in datasets:
+            output = _downstream_output_path(root, dataset) / f"epoch_{epoch}"
+            completed = output / "test_metrics.json"
+            if completed.is_file():
+                results[dataset]["results"][str(epoch)] = json.loads(completed.read_text())
+            else:
+                pending.append((dataset, output))
+        if not pending:
+            continue
+        if not torch.cuda.is_available():
+            raise RuntimeError("CUDA required")
+
+        # Each dataset still uses the existing independently seeded probe/test
+        # protocol. Only model construction and checkpoint loading are shared.
+        method = build_method(c, torch.device("cuda"))
+        state = load_checkpoint(method, checkpoint, torch.device("cuda"))
+        encoder = method.encoder
+        try:
+            for dataset, output in pending:
+                results[dataset]["results"][str(epoch)] = _run_downstream(
+                    c, encoder, output, encoder_epoch=int(state["epoch"]),
+                    external_dataset=_optional_dataset(dataset, c),
+                )
+        finally:
+            del encoder, state, method
     return {
         "tier": tier,
         "datasets": datasets,
-        "results": {dataset: _run_downstream_checkpoints(c, root, dataset) for dataset in datasets},
+        "results": results,
     }
 
 

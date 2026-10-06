@@ -39,6 +39,12 @@ def _set_schedule(method,optimizer,step,total):
         if not g.get('_no_weight_decay',False): g['weight_decay']=float(vals['weight_decay'])
     return vals
 
+def training_horizon(c, n_epochs, override=None):
+    horizon = int(override if override is not None else c['training'].get('schedule_epochs', n_epochs))
+    if n_epochs < 1 or horizon < n_epochs:
+        raise ValueError('The learning-rate schedule horizon cannot be shorter than the positive stopping budget')
+    return horizon
+
 def train_ssl(
     c: dict[str, Any],
     out: Path,
@@ -49,9 +55,12 @@ def train_ssl(
     use_all_data: bool = False,
     validate: bool = True,
     checkpoint_epochs: list[int] | tuple[int, ...] | None = None,
+    schedule_epochs: int | None = None,
 ):
     from pannuke_ssl.ssl_methods.registry import build_method
 
+    n_epochs = int(epochs if epochs is not None else c['training']['max_epochs'])
+    horizon = training_horizon(c, n_epochs, schedule_epochs)
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA required")
     out = Path(out)
@@ -71,7 +80,6 @@ def train_ssl(
     params = method.optimizer_parameters()
     validator = Validator(c, out, device) if validate else None
 
-    n_epochs = int(epochs or c["training"]["max_epochs"])
     val_interval = int(interval or c["validation"]["interval_epochs"])
     enabled = bool(c["early_stopping"]["enabled"] if early_stop is None else early_stop) if validate else False
     stopper = EarlyStopper(
@@ -85,7 +93,7 @@ def train_ssl(
         raise ValueError(f"Checkpoint epochs must lie within 1..{n_epochs}: {sorted(snapshot_epochs)}")
 
     atomic_json_dump(c, out / "resolved_config.json")
-    total = n_epochs * len(loader)
+    total = horizon * len(loader)
     step = 0
     history = []
     reason = "max_epochs"
@@ -181,6 +189,8 @@ def train_ssl(
     summary = {
         "method": c["method"]["name"],
         "epochs_planned": n_epochs,
+        "schedule_epochs": horizon,
+        "schedule_total_steps": total,
         "epochs_completed": int(history[-1]["epoch"]),
         "stop_reason": reason,
         "best_epoch": (stopper.best_epoch or int(history[-1]["epoch"])) if validate else None,
