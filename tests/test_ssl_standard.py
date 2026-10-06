@@ -39,7 +39,8 @@ def test_pannuke_protocol_is_train_only_ssl_with_balanced_holdouts():
     assert c["data"]["expected_ssl_images"] == 6305
     assert c["data"]["development_validation_splits"] == ["val", "test"]
     assert c["data"]["final_ssl_images"] == 7901
-    assert c["training"]["checkpoint_epochs"] == [100, 150, 200, 250, 300]
+    assert c['training']['max_epochs'] == 250
+    assert c["training"]["checkpoint_epochs"] == [100, 150, 200, 250]
     assert c["downstream"]["train_count"] == 6305
     assert c["downstream"]["validation_count"] == 798
     assert c["downstream"]["test_count"] == 798

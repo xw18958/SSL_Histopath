@@ -15,8 +15,8 @@ backbone:
   patch_size: 32
   hidden_size: 768
 training:
-  max_epochs: 300
-  checkpoint_epochs: [100, 150, 200, 250, 300]
+  max_epochs: 250
+  checkpoint_epochs: [100, 150, 200, 250]
   batch_size: 128
   num_workers: 8
   bf16: true

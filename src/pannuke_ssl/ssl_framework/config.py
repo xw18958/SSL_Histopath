@@ -71,10 +71,12 @@ def validate_standard_config(c: dict[str, Any]) -> None:
         raise ValueError("Final SSL pretraining must use all 7901 PanNuke images")
     if list(data.get("development_validation_splits", ())) != ["val", "test"]:
         raise ValueError("Development validation must combine the old val/test partitions")
-    if (int(c["training"]["max_epochs"]), int(c["training"]["batch_size"])) != (300, 128):
-        raise ValueError("Standard full training must be 300 epochs, batch 128")
-    if [int(x) for x in c["training"].get("checkpoint_epochs", ())] != [100,150,200,250,300]:
-        raise ValueError("Final SSL checkpoints must be saved at 100/150/200/250/300 epochs")
+    if (int(c["training"]["max_epochs"]), int(c["training"]["batch_size"])) != (250, 128):
+        raise ValueError("Standard full training must be 250 epochs, batch 128")
+    if int(c['training'].get('schedule_epochs', c['training']['max_epochs'])) != 250:
+        raise ValueError('Standard full training must use a 250-epoch learning-rate schedule')
+    if [int(x) for x in c["training"].get("checkpoint_epochs", ())] != [100,150,200,250]:
+        raise ValueError("Final SSL checkpoints must be saved at 100/150/200/250 epochs")
     if c["representation"]["pooling"] != "mean_patch_tokens":
         raise ValueError("Standard readout must mean-pool final patch tokens")
     if c["validation"]["selection_metric"] != "linear_val_macro_f1" or int(c["validation"]["interval_epochs"]) != 10:

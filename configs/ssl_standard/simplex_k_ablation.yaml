@@ -2,7 +2,7 @@ campaign: simplex_k_ablation_stop250
 seed: 20260903
 components: [8, 16, 32]
 stop_epoch: 250
-schedule_epochs: 300
+schedule_epochs: 250
 checkpoint_epochs: [100, 150, 200, 250]
 ssl_batch_size: 128
 ssl_learning_rate: 0.0005

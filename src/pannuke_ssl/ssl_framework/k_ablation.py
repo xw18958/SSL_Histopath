@@ -22,7 +22,7 @@ def plan():
     p=load_yaml(ROOT/'configs/ssl_standard/simplex_k_ablation.yaml')
     if p['components']!=[8,16,32] or p['checkpoint_epochs']!=[100,150,200,250] or p['stop_epoch']!=250:
         raise ValueError('Campaign must contain three K values and four checkpoints stopping at 250')
-    if p['schedule_epochs']!=300 or p['ssl_batch_size']!=128 or p['sigma']!=1.0 or p['ssl_learning_rate']!=.0005:
+    if p['schedule_epochs']!=250 or p['ssl_batch_size']!=128 or p['sigma']!=1.0 or p['ssl_learning_rate']!=.0005:
         raise ValueError('Frozen SSL comparison settings changed')
     if tuple(p['classification_datasets'])!=EXTERNAL_DATASETS or tuple(p['retrieval_datasets'])!=IMAGE_TEXT_DATASETS:
         raise ValueError('Campaign must cover all 15 classification and three retrieval datasets')
@@ -124,7 +124,7 @@ def smoke(k,*,all_downstream=False):
     torch.cuda.reset_peak_memory_stats()
     for step,batch in enumerate(itertools.islice(loader,2)):
         assert batch['global_views'].shape[:2]==(128,2) and batch['local_views'].shape[:2]==(128,6)
-        opt.zero_grad(set_to_none=True);_set_schedule(method,opt,step,300*len(loader))
+        opt.zero_grad(set_to_none=True);_set_schedule(method,opt,step,c['training']['schedule_epochs']*len(loader))
         result=method.training_step(batch,bf16=True);assert torch.isfinite(result.loss);result.loss.backward()
         norm=torch.nn.utils.clip_grad_norm_(method.optimizer_parameters(),float('inf'));assert torch.isfinite(norm)
         opt.step();losses.append(float(result.loss.detach()))
