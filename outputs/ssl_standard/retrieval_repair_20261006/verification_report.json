@@ -1,0 +1,55 @@
+{
+  "assets": {
+    "config.json": "b7fd95e67e44fdb1d12974c352ee57bbaeab089ebed9f2168c17aeed0eb65d61",
+    "model.safetensors": "23e8aac7c222f8fb30f7ecc678df24c6921ef3b5c2540770aa6d91a30b67082d",
+    "tokenizer.json": "6d9109cc838977f3ca94a379eec36aecc7c807e1785cd729660ca2fc0171fb35",
+    "tokenizer_config.json": "fd30f604020e4f6df29fcb71987de1824455dcca8db2587605e93142c08be92c",
+    "vocab_size": 49408
+  },
+  "checkpoint_policy": "all_requested_checkpoints_no_primary_designation",
+  "classification_evaluations_retained": 150,
+  "classification_rerun": false,
+  "evaluation_protocol_version": "caption_aware_v2_20261006",
+  "frozen_components_unchanged_all_retrieval_fits": true,
+  "legacy_retrieval_excluded": true,
+  "preservation_verification": [
+    {
+      "canonical_manifests_verified_unchanged": 17,
+      "correct_artifacts_verified_unchanged": 834,
+      "correct_mismatches": [],
+      "manifest_mismatches": [],
+      "old_retrieval_artifacts_preserved": 60,
+      "old_retrieval_mismatches": [],
+      "status": "PASS"
+    },
+    {
+      "canonical_manifests_verified_unchanged": 17,
+      "correct_artifacts_verified_unchanged": 834,
+      "correct_mismatches": [],
+      "manifest_mismatches": [],
+      "old_retrieval_artifacts_preserved": 60,
+      "old_retrieval_mismatches": [],
+      "status": "PASS"
+    }
+  ],
+  "protocol_sha256": "412949ea7b13ac8e04fc1f5fb7b721fd9d5ba30143cf8610a999826afb12211f",
+  "regression_tests_passed_per_server": 15,
+  "retrieval_evaluations_replaced": 20,
+  "server_input_sync": {
+    "canonical_manifest_count": 17,
+    "manifest_and_image_checksums_match": true,
+    "retrieval_image_file_count": 9334,
+    "status": "PASS"
+  },
+  "source": {
+    "models.py": "9c04fb2076626969a0320fa7b156adc25227db29d03fbaf27ca9e3169e2739bf",
+    "ssl_framework/image_text_retrieval.py": "3b72a87dc7aad73cf07cb295965deb8fd6897650830e0419fead63f1f6e8fac2",
+    "ssl_framework/retrieval_protocol.py": "30ac3e5e68f944595cb653ac5c2503433686a234db938877eebe6da499dbad93",
+    "ssl_framework/retrieval_repair.py": "60d1b32101806e34dd291287ad900c52145c70a272fca20e8b0f16e96ba6543d",
+    "ssl_framework/trainer.py": "d50b243b67cd752768b67f907128a490709e8351d7dfef7c3b21a31f22ec9c00"
+  },
+  "ssl_pretraining_rerun": false,
+  "status": "PASS",
+  "train_val_selection_before_test_all_retrieval_fits": true,
+  "train_val_smoke_tests_passed": 4
+}

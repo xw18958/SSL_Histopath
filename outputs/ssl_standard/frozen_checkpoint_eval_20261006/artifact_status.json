@@ -1,0 +1,6 @@
+{
+  "retrieval": "superseded_do_not_use_for_paper",
+  "classification": "retained",
+  "checkpoint_policy": "no_primary_designation",
+  "replacement_bundle": "outputs/ssl_standard/retrieval_repair_20261006"
+}

@@ -21,6 +21,7 @@ from pannuke_ssl.ssl_framework.external_datasets import (
 )
 from pannuke_ssl.ssl_framework.run_management import attach_run_context, write_run_metadata
 from pannuke_ssl.ssl_framework.image_text_datasets import IMAGE_TEXT_DATASETS
+from pannuke_ssl.ssl_framework.retrieval_protocol import RETRIEVAL_VERSION
 
 
 METHODS=("ijepa","lejepa","simplex_sigreg_lejepa","dinov3")
@@ -110,7 +111,10 @@ def _run_image_text_retrieval_checkpoints(c, root: Path, dataset: str):
         output=root/"image_text_retrieval"/dataset/f"epoch_{epoch}"
         completed = output / "test_retrieval_metrics.json"
         if completed.is_file():
-            results[str(epoch)] = json.loads(completed.read_text())
+            saved = json.loads(completed.read_text())
+            if saved.get("evaluation_protocol_version") != RETRIEVAL_VERSION:
+                raise RuntimeError("Superseded retrieval output: preserve it and use run_retrieval_repair.py with a fresh output root")
+            results[str(epoch)] = saved
             continue
         results[str(epoch)]=run_image_text_retrieval(c,checkpoint,output,dataset=dataset)
     return {"dataset":dataset,"checkpoint_epochs":epochs,"results":results}

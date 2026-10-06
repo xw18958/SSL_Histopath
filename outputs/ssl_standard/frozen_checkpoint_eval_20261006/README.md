@@ -1,3 +1,5 @@
+> **Retrieval results superseded.** LeJEPA's tokenizer was incomplete, and the original scoring did not handle repeated captions for caption-level retrieval. Use [the corrected bundle](../retrieval_repair_20261006/README.md). Classification values are retained. The original checkpoint-primary designation is superseded; the repaired comparison reports all saved checkpoints.
+
 # Frozen-checkpoint downstream evaluation (2026-10-06)
 
 This directory contains the compact, publication-facing outputs for the final frozen-checkpoint comparison between LeJEPA (ssl-lejepa-s20260903) and Simplex-SIGReg-LeJEPA K=64, sigma=1 (ssl-simplex-k64-s20260903).
@@ -8,7 +10,7 @@ This directory contains the compact, publication-facing outputs for the final fr
 - Frozen encoder checkpoints at epochs 100, 150, 200, 250, and 300.
 - ARCH and IPATH image-text retrieval.
 - 150 classification checkpoint evaluations + 20 retrieval checkpoint evaluations = **170 total**.
-- Epoch 300 is the predeclared primary checkpoint. Earlier checkpoints are trajectory analyses and must not be selected using TEST performance.
+- All saved checkpoints are reported. No checkpoint is designated primary in the repaired comparison.
 
 ## Files
 

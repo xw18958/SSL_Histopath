@@ -1,0 +1,8 @@
+{
+  "checkpoint_policy": "no_primary_designation",
+  "classification": "retained_original_results",
+  "legacy_bundle": "outputs/ssl_standard/frozen_checkpoint_eval_20261006",
+  "legacy_lejepa_retrieval": "invalid_tokenizer",
+  "legacy_simplex_retrieval": "superseded_pair_id_protocol",
+  "replacement_protocol": "caption_aware_v2_20261006"
+}
