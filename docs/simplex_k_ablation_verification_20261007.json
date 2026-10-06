@@ -1,0 +1,384 @@
+{
+  "status": "PASS",
+  "training_started": false,
+  "ssl_runs": 3,
+  "checkpoint_bundles": 12,
+  "evaluations": 216,
+  "classification": 180,
+  "retrieval": 36,
+  "date": "2026-10-07",
+  "unit_tests": {
+    "passed": 41,
+    "seconds": 2.77
+  },
+  "transport": {
+    "status": "PASS",
+    "workers": 4,
+    "checkpoint_roundtrips": 4,
+    "detached_success_failure_exclusivity": true,
+    "training_started": false
+  },
+  "workers": {
+    "jinman-g0": {
+      "worker": "jinman-g0",
+      "status": "PASS",
+      "source_sha256": "f0a0eefa9f8d52283d0e5452f7203b44f8728c518b27ddb8b0e4332b2f2cf5e5",
+      "input_ledger_sha256": "b09be6b5739297dc87c0f6c4ffb321a6a139b8e5ecdcfb7561db994a7f59b694",
+      "input_verification": {
+        "status": "PASS",
+        "files": 43347,
+        "bytes": 21894848311,
+        "ledger_sha256": "b09be6b5739297dc87c0f6c4ffb321a6a139b8e5ecdcfb7561db994a7f59b694",
+        "test_decoded": false
+      },
+      "model_files": {
+        "config.json": "b7fd95e67e44fdb1d12974c352ee57bbaeab089ebed9f2168c17aeed0eb65d61",
+        "model.safetensors": "23e8aac7c222f8fb30f7ecc678df24c6921ef3b5c2540770aa6d91a30b67082d",
+        "tokenizer.json": "6d9109cc838977f3ca94a379eec36aecc7c807e1785cd729660ca2fc0171fb35",
+        "tokenizer_config.json": "fd30f604020e4f6df29fcb71987de1824455dcca8db2587605e93142c08be92c"
+      },
+      "python_version": "3.13.1 | packaged by Anaconda, Inc. | (main, Dec 11 2024, 16:29:23) [GCC 11.2.0]",
+      "torch_version": "2.11.0+cu128",
+      "smoke": {
+        "classification": [],
+        "initial_encoder_sha256": "eccdcfba016917e36667d3cf4288f41869b1a3593345729e3115b638d4a8d372",
+        "initial_projector_sha256": "33d6f98dd5ecd91795313f9f4337291eafb456e05f3d25c5874c16d4c9189321",
+        "k": 32,
+        "retrieval": [],
+        "ssl_batch_size": 128,
+        "ssl_losses": [
+          6.408884525299072,
+          6.438139915466309
+        ],
+        "ssl_peak_memory_gib": 12.240314960479736,
+        "ssl_steps": 2,
+        "status": "PASS",
+        "test_touched": false
+      },
+      "preflight": {
+        "status": "PASS",
+        "k": 32,
+        "pannuke_images": 7901,
+        "manifest_hashes": {
+          "mhist": "c3697411b1a0296b0902c40a9c92ec39a41b495184057047683dc6a40c4f5482",
+          "crc_val_he_7k": "b6e4699ab8f3d5797b32eba507c2af17b9e36583dfa3a89263ba38ec74c62ee9",
+          "breakhis_8subtype": "350eb74afd1a26e6a1fb65b5668cf9225ff692e39213de3a5375bd592de2fd81",
+          "kather_2016": "40b022892592b23cfd2b401452f22ded835fd61975062a5f1f751e2ebe595e88",
+          "bach": "494020d0f28274eef5ce448648128e87faee4af5c067273e7fad48d95065c92c",
+          "sicapv2_4class": "eea6f07f39cf05c70e41ef360afa5d5aae59264a060653e81e962f44a7da5cdc",
+          "wsss4luad_3class": "5db67848fe4ac4267b271f51cf00d0a2643e492338d317a949a4ed4cab67f29b",
+          "oral_oscc": "10a38bd91670008e921d552ccda9971994683cbf2895382d03565a31a78f79f8",
+          "endometrial_4class": "d228063b6cd21fe19d90a2ea0db5eb708515a4c9c81eb64005fe9cba138b918c",
+          "osteosarcoma_3class": "db3d125e5c1c66f9e9d9265fe4cf782d8aea2d2a72127ff79e8c6f57c98e081f",
+          "gashissdb_binary": "e4beb5a0a5f0b3261d49fa0f734fc497e2cc6ce796384e5b4990a87f74c58709",
+          "renalcell_6class": "7989857bffbdcc9eb2fc3429c40f9184e67e9963ea3ad3962b3cc83168fd387b",
+          "ebhi_seg_6class": "099ef5be158884329b9b28fe43f2a0f9d9147231fca3f616a74042e2a4633129",
+          "lc25000_5class": "1ddc93e6a53fb93a659da0e30c79c8e095167512e08e036cb4b9a3b6c446fd2e",
+          "pcam_binary": "181f10391dc29525d7d70d5b9f9cb7bfd81050967963309c96f553068e99116a",
+          "arch": "5ce05513becbd0ec80ba82c645a69a7e7d689d8326393da55a048d4106df4f91",
+          "ipath": "65ae5f1ff5dbd132b7916b7fc4bf81f6a0650d0ccbb80a6379dc2d263c5042e8",
+          "pathcap": "0fe42bacb3f02bafa7f89745b737a94ca2f39d9247dd7592ad724bb32c5b6024"
+        },
+        "evaluations": 216,
+        "test_decoded": false
+      }
+    },
+    "gpu1-358-g0": {
+      "worker": "gpu1-358-g0",
+      "status": "PASS",
+      "source_sha256": "f0a0eefa9f8d52283d0e5452f7203b44f8728c518b27ddb8b0e4332b2f2cf5e5",
+      "input_ledger_sha256": "b09be6b5739297dc87c0f6c4ffb321a6a139b8e5ecdcfb7561db994a7f59b694",
+      "input_verification": {
+        "status": "PASS",
+        "files": 43347,
+        "bytes": 21894848311,
+        "ledger_sha256": "b09be6b5739297dc87c0f6c4ffb321a6a139b8e5ecdcfb7561db994a7f59b694",
+        "test_decoded": false
+      },
+      "model_files": {
+        "config.json": "b7fd95e67e44fdb1d12974c352ee57bbaeab089ebed9f2168c17aeed0eb65d61",
+        "model.safetensors": "23e8aac7c222f8fb30f7ecc678df24c6921ef3b5c2540770aa6d91a30b67082d",
+        "tokenizer.json": "6d9109cc838977f3ca94a379eec36aecc7c807e1785cd729660ca2fc0171fb35",
+        "tokenizer_config.json": "fd30f604020e4f6df29fcb71987de1824455dcca8db2587605e93142c08be92c"
+      },
+      "python_version": "3.13.1 (main, Jan 14 2025, 22:47:38) [Clang 19.1.6 ]",
+      "torch_version": "2.11.0+cu128",
+      "smoke": {
+        "classification": [],
+        "initial_encoder_sha256": "eccdcfba016917e36667d3cf4288f41869b1a3593345729e3115b638d4a8d372",
+        "initial_projector_sha256": "33d6f98dd5ecd91795313f9f4337291eafb456e05f3d25c5874c16d4c9189321",
+        "k": 16,
+        "retrieval": [],
+        "ssl_batch_size": 128,
+        "ssl_losses": [
+          6.4088850021362305,
+          6.438139915466309
+        ],
+        "ssl_peak_memory_gib": 12.240253925323486,
+        "ssl_steps": 2,
+        "status": "PASS",
+        "test_touched": false
+      },
+      "preflight": {
+        "status": "PASS",
+        "k": 16,
+        "pannuke_images": 7901,
+        "manifest_hashes": {
+          "mhist": "c3697411b1a0296b0902c40a9c92ec39a41b495184057047683dc6a40c4f5482",
+          "crc_val_he_7k": "b6e4699ab8f3d5797b32eba507c2af17b9e36583dfa3a89263ba38ec74c62ee9",
+          "breakhis_8subtype": "350eb74afd1a26e6a1fb65b5668cf9225ff692e39213de3a5375bd592de2fd81",
+          "kather_2016": "40b022892592b23cfd2b401452f22ded835fd61975062a5f1f751e2ebe595e88",
+          "bach": "494020d0f28274eef5ce448648128e87faee4af5c067273e7fad48d95065c92c",
+          "sicapv2_4class": "eea6f07f39cf05c70e41ef360afa5d5aae59264a060653e81e962f44a7da5cdc",
+          "wsss4luad_3class": "5db67848fe4ac4267b271f51cf00d0a2643e492338d317a949a4ed4cab67f29b",
+          "oral_oscc": "10a38bd91670008e921d552ccda9971994683cbf2895382d03565a31a78f79f8",
+          "endometrial_4class": "d228063b6cd21fe19d90a2ea0db5eb708515a4c9c81eb64005fe9cba138b918c",
+          "osteosarcoma_3class": "db3d125e5c1c66f9e9d9265fe4cf782d8aea2d2a72127ff79e8c6f57c98e081f",
+          "gashissdb_binary": "e4beb5a0a5f0b3261d49fa0f734fc497e2cc6ce796384e5b4990a87f74c58709",
+          "renalcell_6class": "7989857bffbdcc9eb2fc3429c40f9184e67e9963ea3ad3962b3cc83168fd387b",
+          "ebhi_seg_6class": "099ef5be158884329b9b28fe43f2a0f9d9147231fca3f616a74042e2a4633129",
+          "lc25000_5class": "1ddc93e6a53fb93a659da0e30c79c8e095167512e08e036cb4b9a3b6c446fd2e",
+          "pcam_binary": "181f10391dc29525d7d70d5b9f9cb7bfd81050967963309c96f553068e99116a",
+          "arch": "5ce05513becbd0ec80ba82c645a69a7e7d689d8326393da55a048d4106df4f91",
+          "ipath": "65ae5f1ff5dbd132b7916b7fc4bf81f6a0650d0ccbb80a6379dc2d263c5042e8",
+          "pathcap": "0fe42bacb3f02bafa7f89745b737a94ca2f39d9247dd7592ad724bb32c5b6024"
+        },
+        "evaluations": 216,
+        "test_decoded": false
+      }
+    },
+    "gpu2-358-g1": {
+      "worker": "gpu2-358-g1",
+      "status": "PASS",
+      "source_sha256": "f0a0eefa9f8d52283d0e5452f7203b44f8728c518b27ddb8b0e4332b2f2cf5e5",
+      "input_ledger_sha256": "b09be6b5739297dc87c0f6c4ffb321a6a139b8e5ecdcfb7561db994a7f59b694",
+      "input_verification": {
+        "status": "PASS",
+        "files": 43347,
+        "bytes": 21894848311,
+        "ledger_sha256": "b09be6b5739297dc87c0f6c4ffb321a6a139b8e5ecdcfb7561db994a7f59b694",
+        "test_decoded": false
+      },
+      "model_files": {
+        "config.json": "b7fd95e67e44fdb1d12974c352ee57bbaeab089ebed9f2168c17aeed0eb65d61",
+        "model.safetensors": "23e8aac7c222f8fb30f7ecc678df24c6921ef3b5c2540770aa6d91a30b67082d",
+        "tokenizer.json": "6d9109cc838977f3ca94a379eec36aecc7c807e1785cd729660ca2fc0171fb35",
+        "tokenizer_config.json": "fd30f604020e4f6df29fcb71987de1824455dcca8db2587605e93142c08be92c"
+      },
+      "python_version": "3.13.1 | packaged by Anaconda, Inc. | (main, Dec 11 2024, 16:29:23) [GCC 11.2.0]",
+      "torch_version": "2.11.0+cu128",
+      "smoke": {
+        "classification": [],
+        "initial_encoder_sha256": "eccdcfba016917e36667d3cf4288f41869b1a3593345729e3115b638d4a8d372",
+        "initial_projector_sha256": "33d6f98dd5ecd91795313f9f4337291eafb456e05f3d25c5874c16d4c9189321",
+        "k": 8,
+        "retrieval": [],
+        "ssl_batch_size": 128,
+        "ssl_losses": [
+          6.408884525299072,
+          6.438139915466309
+        ],
+        "ssl_peak_memory_gib": 12.240223407745361,
+        "ssl_steps": 2,
+        "status": "PASS",
+        "test_touched": false
+      },
+      "preflight": {
+        "status": "PASS",
+        "k": 8,
+        "pannuke_images": 7901,
+        "manifest_hashes": {
+          "mhist": "c3697411b1a0296b0902c40a9c92ec39a41b495184057047683dc6a40c4f5482",
+          "crc_val_he_7k": "b6e4699ab8f3d5797b32eba507c2af17b9e36583dfa3a89263ba38ec74c62ee9",
+          "breakhis_8subtype": "350eb74afd1a26e6a1fb65b5668cf9225ff692e39213de3a5375bd592de2fd81",
+          "kather_2016": "40b022892592b23cfd2b401452f22ded835fd61975062a5f1f751e2ebe595e88",
+          "bach": "494020d0f28274eef5ce448648128e87faee4af5c067273e7fad48d95065c92c",
+          "sicapv2_4class": "eea6f07f39cf05c70e41ef360afa5d5aae59264a060653e81e962f44a7da5cdc",
+          "wsss4luad_3class": "5db67848fe4ac4267b271f51cf00d0a2643e492338d317a949a4ed4cab67f29b",
+          "oral_oscc": "10a38bd91670008e921d552ccda9971994683cbf2895382d03565a31a78f79f8",
+          "endometrial_4class": "d228063b6cd21fe19d90a2ea0db5eb708515a4c9c81eb64005fe9cba138b918c",
+          "osteosarcoma_3class": "db3d125e5c1c66f9e9d9265fe4cf782d8aea2d2a72127ff79e8c6f57c98e081f",
+          "gashissdb_binary": "e4beb5a0a5f0b3261d49fa0f734fc497e2cc6ce796384e5b4990a87f74c58709",
+          "renalcell_6class": "7989857bffbdcc9eb2fc3429c40f9184e67e9963ea3ad3962b3cc83168fd387b",
+          "ebhi_seg_6class": "099ef5be158884329b9b28fe43f2a0f9d9147231fca3f616a74042e2a4633129",
+          "lc25000_5class": "1ddc93e6a53fb93a659da0e30c79c8e095167512e08e036cb4b9a3b6c446fd2e",
+          "pcam_binary": "181f10391dc29525d7d70d5b9f9cb7bfd81050967963309c96f553068e99116a",
+          "arch": "5ce05513becbd0ec80ba82c645a69a7e7d689d8326393da55a048d4106df4f91",
+          "ipath": "65ae5f1ff5dbd132b7916b7fc4bf81f6a0650d0ccbb80a6379dc2d263c5042e8",
+          "pathcap": "0fe42bacb3f02bafa7f89745b737a94ca2f39d9247dd7592ad724bb32c5b6024"
+        },
+        "evaluations": 216,
+        "test_decoded": false
+      }
+    },
+    "gpu2-358-g0": {
+      "worker": "gpu2-358-g0",
+      "status": "PASS",
+      "source_sha256": "f0a0eefa9f8d52283d0e5452f7203b44f8728c518b27ddb8b0e4332b2f2cf5e5",
+      "input_ledger_sha256": "b09be6b5739297dc87c0f6c4ffb321a6a139b8e5ecdcfb7561db994a7f59b694",
+      "input_verification": {
+        "status": "PASS",
+        "files": 43347,
+        "bytes": 21894848311,
+        "ledger_sha256": "b09be6b5739297dc87c0f6c4ffb321a6a139b8e5ecdcfb7561db994a7f59b694",
+        "test_decoded": false
+      },
+      "model_files": {
+        "config.json": "b7fd95e67e44fdb1d12974c352ee57bbaeab089ebed9f2168c17aeed0eb65d61",
+        "model.safetensors": "23e8aac7c222f8fb30f7ecc678df24c6921ef3b5c2540770aa6d91a30b67082d",
+        "tokenizer.json": "6d9109cc838977f3ca94a379eec36aecc7c807e1785cd729660ca2fc0171fb35",
+        "tokenizer_config.json": "fd30f604020e4f6df29fcb71987de1824455dcca8db2587605e93142c08be92c"
+      },
+      "python_version": "3.13.1 | packaged by Anaconda, Inc. | (main, Dec 11 2024, 16:29:23) [GCC 11.2.0]",
+      "torch_version": "2.11.0+cu128",
+      "smoke": {
+        "classification": [
+          {
+            "dataset": "mhist",
+            "status": "PASS",
+            "train_images": 4,
+            "val_images": 4
+          },
+          {
+            "dataset": "crc_val_he_7k",
+            "status": "PASS",
+            "train_images": 18,
+            "val_images": 18
+          },
+          {
+            "dataset": "breakhis_8subtype",
+            "status": "PASS",
+            "train_images": 16,
+            "val_images": 16
+          },
+          {
+            "dataset": "kather_2016",
+            "status": "PASS",
+            "train_images": 16,
+            "val_images": 16
+          },
+          {
+            "dataset": "bach",
+            "status": "PASS",
+            "train_images": 8,
+            "val_images": 8
+          },
+          {
+            "dataset": "sicapv2_4class",
+            "status": "PASS",
+            "train_images": 8,
+            "val_images": 8
+          },
+          {
+            "dataset": "wsss4luad_3class",
+            "status": "PASS",
+            "train_images": 6,
+            "val_images": 6
+          },
+          {
+            "dataset": "oral_oscc",
+            "status": "PASS",
+            "train_images": 4,
+            "val_images": 4
+          },
+          {
+            "dataset": "endometrial_4class",
+            "status": "PASS",
+            "train_images": 8,
+            "val_images": 8
+          },
+          {
+            "dataset": "osteosarcoma_3class",
+            "status": "PASS",
+            "train_images": 6,
+            "val_images": 6
+          },
+          {
+            "dataset": "gashissdb_binary",
+            "status": "PASS",
+            "train_images": 4,
+            "val_images": 4
+          },
+          {
+            "dataset": "renalcell_6class",
+            "status": "PASS",
+            "train_images": 12,
+            "val_images": 12
+          },
+          {
+            "dataset": "ebhi_seg_6class",
+            "status": "PASS",
+            "train_images": 12,
+            "val_images": 12
+          },
+          {
+            "dataset": "lc25000_5class",
+            "status": "PASS",
+            "train_images": 10,
+            "val_images": 10
+          },
+          {
+            "dataset": "pcam_binary",
+            "status": "PASS",
+            "train_images": 4,
+            "val_images": 4
+          }
+        ],
+        "initial_encoder_sha256": "eccdcfba016917e36667d3cf4288f41869b1a3593345729e3115b638d4a8d372",
+        "initial_projector_sha256": "33d6f98dd5ecd91795313f9f4337291eafb456e05f3d25c5874c16d4c9189321",
+        "k": 8,
+        "retrieval": [
+          {
+            "dataset": "arch",
+            "status": "PASS"
+          },
+          {
+            "dataset": "ipath",
+            "status": "PASS"
+          },
+          {
+            "dataset": "pathcap",
+            "status": "PASS"
+          }
+        ],
+        "ssl_batch_size": 128,
+        "ssl_losses": [
+          6.408884525299072,
+          6.438139915466309
+        ],
+        "ssl_peak_memory_gib": 12.240223407745361,
+        "ssl_steps": 2,
+        "status": "PASS",
+        "test_touched": false
+      },
+      "preflight": {
+        "status": "PASS",
+        "k": 8,
+        "pannuke_images": 7901,
+        "manifest_hashes": {
+          "mhist": "c3697411b1a0296b0902c40a9c92ec39a41b495184057047683dc6a40c4f5482",
+          "crc_val_he_7k": "b6e4699ab8f3d5797b32eba507c2af17b9e36583dfa3a89263ba38ec74c62ee9",
+          "breakhis_8subtype": "350eb74afd1a26e6a1fb65b5668cf9225ff692e39213de3a5375bd592de2fd81",
+          "kather_2016": "40b022892592b23cfd2b401452f22ded835fd61975062a5f1f751e2ebe595e88",
+          "bach": "494020d0f28274eef5ce448648128e87faee4af5c067273e7fad48d95065c92c",
+          "sicapv2_4class": "eea6f07f39cf05c70e41ef360afa5d5aae59264a060653e81e962f44a7da5cdc",
+          "wsss4luad_3class": "5db67848fe4ac4267b271f51cf00d0a2643e492338d317a949a4ed4cab67f29b",
+          "oral_oscc": "10a38bd91670008e921d552ccda9971994683cbf2895382d03565a31a78f79f8",
+          "endometrial_4class": "d228063b6cd21fe19d90a2ea0db5eb708515a4c9c81eb64005fe9cba138b918c",
+          "osteosarcoma_3class": "db3d125e5c1c66f9e9d9265fe4cf782d8aea2d2a72127ff79e8c6f57c98e081f",
+          "gashissdb_binary": "e4beb5a0a5f0b3261d49fa0f734fc497e2cc6ce796384e5b4990a87f74c58709",
+          "renalcell_6class": "7989857bffbdcc9eb2fc3429c40f9184e67e9963ea3ad3962b3cc83168fd387b",
+          "ebhi_seg_6class": "099ef5be158884329b9b28fe43f2a0f9d9147231fca3f616a74042e2a4633129",
+          "lc25000_5class": "1ddc93e6a53fb93a659da0e30c79c8e095167512e08e036cb4b9a3b6c446fd2e",
+          "pcam_binary": "181f10391dc29525d7d70d5b9f9cb7bfd81050967963309c96f553068e99116a",
+          "arch": "5ce05513becbd0ec80ba82c645a69a7e7d689d8326393da55a048d4106df4f91",
+          "ipath": "65ae5f1ff5dbd132b7916b7fc4bf81f6a0650d0ccbb80a6379dc2d263c5042e8",
+          "pathcap": "0fe42bacb3f02bafa7f89745b737a94ca2f39d9247dd7592ad724bb32c5b6024"
+        },
+        "evaluations": 216,
+        "test_decoded": false
+      }
+    }
+  },
+  "test_decoded_in_smokes": false
+}

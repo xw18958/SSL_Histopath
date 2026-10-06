@@ -1,0 +1,34 @@
+campaign: simplex_k_ablation_stop250
+seed: 20260903
+components: [8, 16, 32]
+stop_epoch: 250
+schedule_epochs: 300
+checkpoint_epochs: [100, 150, 200, 250]
+ssl_batch_size: 128
+ssl_learning_rate: 0.0005
+sigma: 1.0
+initial_encoder_sha256: eccdcfba016917e36667d3cf4288f41869b1a3593345729e3115b638d4a8d372
+classification_datasets:
+  - mhist
+  - crc_val_he_7k
+  - breakhis_8subtype
+  - kather_2016
+  - bach
+  - sicapv2_4class
+  - wsss4luad_3class
+  - oral_oscc
+  - endometrial_4class
+  - osteosarcoma_3class
+  - gashissdb_binary
+  - renalcell_6class
+  - ebhi_seg_6class
+  - lc25000_5class
+  - pcam_binary
+retrieval_datasets: [arch, ipath, pathcap]
+allocation:
+  jinman-g0: {host: gpu1-jinman-2.it.usyd.edu.au, gpu: 0, pretrain_k: 32}
+  gpu1-358-g0: {host: gpu1-358-0.research.sydney.edu.au, gpu: 0, pretrain_k: 16}
+  gpu2-358-g1: {host: gpu2-358-0.research.sydney.edu.au, gpu: 1, pretrain_k: 8}
+  gpu2-358-g0: {host: gpu2-358-0.research.sydney.edu.au, gpu: 0, role: downstream}
+downstream_policy: each_saved_checkpoint_all_classification_and_retrieval_datasets
+reuse_completed_methods: [lejepa, simplex_k64]

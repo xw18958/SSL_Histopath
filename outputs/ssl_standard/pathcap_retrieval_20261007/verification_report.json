@@ -1,0 +1,124 @@
+{
+  "status": "PASS",
+  "retrieval_evaluations": 10,
+  "fast_unit_tests": 22,
+  "smoke_tests": 8,
+  "nvidia_gpu_workers": 4,
+  "servers": 3,
+  "split_counts": {
+    "train": 3267,
+    "val": 700,
+    "test": 700
+  },
+  "test_unique_captions": 679,
+  "all_checkpoint_checksums_match": true,
+  "all_frozen_weights_unchanged": true,
+  "all_heads_selected_before_any_test": true,
+  "retrieval_protocol_unchanged_from_corrected_ARCH_IPATH": true,
+  "ssl_pretraining_rerun": false,
+  "previous_dataset_experiments_rerun": false,
+  "manifest_sha256": "0fe42bacb3f02bafa7f89745b737a94ca2f39d9247dd7592ad724bb32c5b6024",
+  "selections": [
+    {
+      "method": "lejepa",
+      "epoch": 100,
+      "lr": 0.001,
+      "wd": 0.0,
+      "best_head_epoch": 10,
+      "head_epochs_run": 18,
+      "token_collisions": 1
+    },
+    {
+      "method": "simplex_sigreg_lejepa",
+      "epoch": 100,
+      "lr": 0.0005,
+      "wd": 0.0,
+      "best_head_epoch": 10,
+      "head_epochs_run": 18,
+      "token_collisions": 1
+    },
+    {
+      "method": "lejepa",
+      "epoch": 150,
+      "lr": 0.001,
+      "wd": 0.0,
+      "best_head_epoch": 10,
+      "head_epochs_run": 18,
+      "token_collisions": 1
+    },
+    {
+      "method": "simplex_sigreg_lejepa",
+      "epoch": 150,
+      "lr": 0.0005,
+      "wd": 0.0,
+      "best_head_epoch": 10,
+      "head_epochs_run": 18,
+      "token_collisions": 1
+    },
+    {
+      "method": "lejepa",
+      "epoch": 200,
+      "lr": 0.001,
+      "wd": 0.0,
+      "best_head_epoch": 7,
+      "head_epochs_run": 15,
+      "token_collisions": 1
+    },
+    {
+      "method": "simplex_sigreg_lejepa",
+      "epoch": 200,
+      "lr": 0.001,
+      "wd": 0.0,
+      "best_head_epoch": 8,
+      "head_epochs_run": 16,
+      "token_collisions": 1
+    },
+    {
+      "method": "lejepa",
+      "epoch": 250,
+      "lr": 0.0005,
+      "wd": 0.0,
+      "best_head_epoch": 7,
+      "head_epochs_run": 15,
+      "token_collisions": 1
+    },
+    {
+      "method": "simplex_sigreg_lejepa",
+      "epoch": 250,
+      "lr": 0.001,
+      "wd": 0.0,
+      "best_head_epoch": 19,
+      "head_epochs_run": 27,
+      "token_collisions": 1
+    },
+    {
+      "method": "lejepa",
+      "epoch": 300,
+      "lr": 0.001,
+      "wd": 0.0,
+      "best_head_epoch": 7,
+      "head_epochs_run": 15,
+      "token_collisions": 1
+    },
+    {
+      "method": "simplex_sigreg_lejepa",
+      "epoch": 300,
+      "lr": 0.001,
+      "wd": 0.0,
+      "best_head_epoch": 9,
+      "head_epochs_run": 17,
+      "token_collisions": 1
+    }
+  ],
+  "chance": {
+    "i2t_mean_recall": 0.007854688267059401,
+    "i2t_r@1": 0.0014727540500736377,
+    "i2t_r@10": 0.014727540500736377,
+    "i2t_r@5": 0.007363770250368188,
+    "overall_mean_recall": 0.007853529447706651,
+    "t2i_mean_recall": 0.007852370628353903,
+    "t2i_r@1": 0.0014727540500736555,
+    "t2i_r@10": 0.014721851751186583,
+    "t2i_r@5": 0.007362506083801472
+  }
+}

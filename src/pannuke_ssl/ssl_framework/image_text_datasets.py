@@ -23,7 +23,7 @@ from pannuke_ssl.utils import atomic_json_dump
 from .runtime_paths import expand_runtime_string, expand_runtime_paths
 
 
-IMAGE_TEXT_DATASETS = ("arch", "ipath")
+IMAGE_TEXT_DATASETS = ("arch", "ipath", "pathcap")
 _PROJECT_ROOT = Path(__file__).resolve().parents[3]
 _CONFIG_PATH = _PROJECT_ROOT / "configs/ssl_standard/image_text_retrieval_datasets.yaml"
 _MANIFEST_SCHEMA_VERSION = 2
@@ -209,13 +209,76 @@ def _ipath_records(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     }
 
 
+def _pathcap_records(root: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    metadata_path = root / "original/data.json"
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    if not isinstance(metadata, list):
+        raise ValueError("PathCap metadata must be a list")
+    records: list[dict[str, Any]] = []
+    missing: list[str] = []
+    empty_text: list[str] = []
+    unknown_article: list[str] = []
+    seen_images: set[str] = set()
+    for source_row, row in enumerate(metadata):
+        image_id = str(row["img"])
+        relative = Path("images/images") / image_id
+        if Path(image_id).is_absolute() or ".." in Path(image_id).parts:
+            raise ValueError(f"Unsafe PathCap image path: {image_id}")
+        if image_id in seen_images:
+            raise ValueError(f"Duplicate PathCap image reference: {image_id}")
+        seen_images.add(image_id)
+        text = str(row.get("caption") or "").strip()
+        if not text:
+            empty_text.append(image_id)
+            continue
+        article_id = str(row.get("pmc_id") or "").strip()
+        if article_id.lower() in ("", "0", "none", "nan"):
+            unknown_article.append(image_id)
+            continue
+        if not (root / relative).is_file():
+            missing.append(image_id)
+            continue
+        records.append({"source": "pathcap", "source_row": source_row,
+                        "relative_path": relative.as_posix(), "text": text,
+                        "image_id": image_id, "article_id": article_id,
+                        "figure_id": str(row.get("figure_fn") or "")})
+    # Keep all panels from an article together, and merge articles connected
+    # by an identical stored caption before selecting the fixed-size sample.
+    uf = _UnionFind(len(records))
+    tables: list[dict[str, int]] = [{}, {}]
+    for index, row in enumerate(records):
+        for value, table in zip((row["article_id"], row["text"]), tables):
+            if value in table:
+                uf.union(index, table[value])
+            else:
+                table[value] = index
+    groups: dict[int, int] = {}
+    for index, row in enumerate(records):
+        component = uf.find(index)
+        groups.setdefault(component, len(groups))
+        row["group_id"] = f"pathcap:{groups[component]:06d}"
+    sizes = Counter(row["group_id"] for row in records)
+    return records, {"metadata_rows": len(metadata), "paired_rows": len(records),
+                     "metadata_sha256": _sha256_file(metadata_path),
+                     "missing_images": missing, "empty_text_rows": empty_text,
+                     "unknown_article_rows": unknown_article,
+                     "groups": len(sizes), "max_group_size": max(sizes.values(), default=0),
+                     "multi_record_groups": sum(size > 1 for size in sizes.values()),
+                     "source": "jamessyx/PathCap", "official_retrieval_test_split": False}
+
+
+def _dataset_records(slug: str, root: Path):
+    return {"arch": _arch_records, "ipath": _ipath_records,
+            "pathcap": _pathcap_records}[slug](root)
+
+
 def inspect_image_text_dataset(slug: str) -> dict[str, Any]:
     if slug not in IMAGE_TEXT_DATASETS:
         raise ValueError(f"Unknown image-text dataset {slug!r}")
     config = _configs()[slug]
     root_spec = str(config["root"])
     root = Path(expand_runtime_string(root_spec))
-    records, provenance = (_arch_records(root) if slug == "arch" else _ipath_records(root))
+    records, provenance = _dataset_records(slug, root)
     return {
         "dataset": slug,
         "root": str(root),
@@ -314,7 +377,7 @@ def prepare_image_text_manifest(
     config = _configs()[slug]
     root_spec = str(config["root"])
     root = Path(expand_runtime_string(root_spec))
-    records, provenance = (_arch_records(root) if slug == "arch" else _ipath_records(root))
+    records, provenance = _dataset_records(slug, root)
     missing = list(provenance.get("missing_images", ()))
     if missing and not allow_missing_images:
         raise ImageTextProtocolNotReadyError(

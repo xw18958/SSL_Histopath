@@ -16,6 +16,7 @@ from pannuke_ssl.data import loader_kwargs
 from pannuke_ssl.utils import atomic_json_dump, seed_everything, write_csv
 from .image_text_datasets import load_image_text_manifest
 from .trainer import load_checkpoint
+from .retrieval_protocol import caption_aware_metrics, multi_positive_clip_loss
 
 
 class ImageTextPairDataset(Dataset):
@@ -82,7 +83,9 @@ def _sym_clip_loss(image_emb:torch.Tensor,text_emb:torch.Tensor,logit_scale:floa
     return .5*(F.cross_entropy(logits,target)+F.cross_entropy(logits.T,target))
 
 
-def _retrieval_metrics(image_emb:torch.Tensor,text_emb:torch.Tensor):
+def _retrieval_metrics(image_emb:torch.Tensor,text_emb:torch.Tensor,caption_ids=None):
+    if caption_ids is not None:
+        return caption_aware_metrics(image_emb,text_emb,caption_ids)
     sim=F.normalize(image_emb.float(),dim=-1)@F.normalize(text_emb.float(),dim=-1).T
     n=sim.shape[0]; truth=torch.arange(n)
     out={}
@@ -97,23 +100,28 @@ def _retrieval_metrics(image_emb:torch.Tensor,text_emb:torch.Tensor):
     return out
 
 
-def _train_trial(train_i,train_t,val_i,val_t,*,lr,wd,epochs,batch_size,seed,device,logit_scale,patience=None):
+def _train_trial(train_i,train_t,val_i,val_t,*,lr,wd,epochs,batch_size,seed,device,logit_scale,patience=None,train_caption_ids=None,val_caption_ids=None):
     seed_everything(seed)
     head=nn.Linear(train_i.shape[1],train_t.shape[1],bias=False).to(device)
     trainable=[name for name,param in head.named_parameters() if param.requires_grad]
     if trainable != ['weight']:
         raise AssertionError(f'Only the image projector weight may be trainable, got {trainable}')
     opt=torch.optim.AdamW(head.parameters(),lr=lr,weight_decay=wd)
-    ds=TensorDataset(train_i,train_t); gen=torch.Generator().manual_seed(seed)
+    groups=torch.arange(len(train_i)) if train_caption_ids is None else train_caption_ids
+    ds=TensorDataset(train_i,train_t,groups); gen=torch.Generator().manual_seed(seed)
     dl=DataLoader(ds,batch_size=batch_size,shuffle=True,generator=gen,num_workers=0,drop_last=False)
     best=None; history=[]; stale=0
     for epoch in range(1,epochs+1):
         head.train(); losses=[]
-        for xi,xt in dl:
+        for xi,xt,gi in dl:
             xi=xi.to(device); xt=xt.to(device); opt.zero_grad(set_to_none=True)
-            loss=_sym_clip_loss(head(xi),xt,logit_scale); loss.backward(); opt.step(); losses.append(float(loss.detach()))
+            loss=(_sym_clip_loss(head(xi),xt,logit_scale) if train_caption_ids is None else multi_positive_clip_loss(head(xi),xt,gi.to(device),logit_scale))
+            if not torch.isfinite(loss): raise RuntimeError('Nonfinite retrieval training loss')
+            loss.backward()
+            if not torch.isfinite(head.weight.grad).all(): raise RuntimeError('Nonfinite retrieval head gradient')
+            opt.step(); losses.append(float(loss.detach()))
         head.eval()
-        with torch.inference_mode(): metrics=_retrieval_metrics(head(val_i.to(device)).cpu(),val_t)
+        with torch.inference_mode(): metrics=_retrieval_metrics(head(val_i.to(device)).cpu(),val_t,val_caption_ids)
         row={'epoch':epoch,'train_loss':sum(losses)/max(1,len(losses)),**metrics}; history.append(row)
         score=metrics['overall_mean_recall']
         if best is None or score>best['score']:
@@ -124,57 +132,24 @@ def _train_trial(train_i,train_t,val_i,val_t,*,lr,wd,epochs,batch_size,seed,devi
     return {'learning_rate':lr,'weight_decay':wd,'best_epoch':best['epoch'],'val_overall_mean_recall':best['score'],'val_metrics':best['metrics'],'state':best['state'],'history':history}
 
 
-def _tune(train_i,train_t,val_i,val_t,protocol,*,seed,device,logit_scale):
+def _tune(train_i,train_t,val_i,val_t,protocol,*,seed,device,logit_scale,train_caption_ids=None,val_caption_ids=None):
     lrs=[float(x) for x in protocol['learning_rates']]; wds=[float(x) for x in protocol['weight_decays']]
     te=int(protocol['tuning_epochs']); bs=int(protocol['batch_size']); board=[]
     best_lr=None
     for j,lr in enumerate(lrs,1):
-        tr=_train_trial(train_i,train_t,val_i,val_t,lr=lr,wd=wds[0],epochs=te,batch_size=bs,seed=seed,device=device,logit_scale=logit_scale)
+        tr=_train_trial(train_i,train_t,val_i,val_t,lr=lr,wd=wds[0],epochs=te,batch_size=bs,seed=seed,device=device,logit_scale=logit_scale,train_caption_ids=train_caption_ids,val_caption_ids=val_caption_ids)
         board.append({'stage':'lr','trial':j,'learning_rate':lr,'weight_decay':wds[0],'best_epoch':tr['best_epoch'],'val_overall_mean_recall':tr['val_overall_mean_recall']})
         if best_lr is None or tr['val_overall_mean_recall']>best_lr['val_overall_mean_recall']: best_lr=tr
     selected_lr=float(best_lr['learning_rate']); best_wd=None
     for j,wd in enumerate(wds,1):
-        tr=_train_trial(train_i,train_t,val_i,val_t,lr=selected_lr,wd=wd,epochs=te,batch_size=bs,seed=seed,device=device,logit_scale=logit_scale)
+        tr=_train_trial(train_i,train_t,val_i,val_t,lr=selected_lr,wd=wd,epochs=te,batch_size=bs,seed=seed,device=device,logit_scale=logit_scale,train_caption_ids=train_caption_ids,val_caption_ids=val_caption_ids)
         board.append({'stage':'weight_decay','trial':j,'learning_rate':selected_lr,'weight_decay':wd,'best_epoch':tr['best_epoch'],'val_overall_mean_recall':tr['val_overall_mean_recall']})
         if best_wd is None or tr['val_overall_mean_recall']>best_wd['val_overall_mean_recall']: best_wd=tr
     return selected_lr,float(best_wd['weight_decay']),board
 
 
-def run_image_text_retrieval(c:dict[str,Any],checkpoint:Path,out:Path,*,dataset:str):
-    from pannuke_ssl.ssl_methods.registry import build_method
-    if not torch.cuda.is_available(): raise RuntimeError('CUDA required')
-    out=Path(out); out.mkdir(parents=True,exist_ok=True)
-    if (out/'test_started.json').exists(): raise FileExistsError('TEST has already started for this retrieval run')
-    seed=int(c['seed']); seed_everything(seed); device=torch.device('cuda')
-    manifest=load_image_text_manifest(dataset,Path(c['manifests']['root']))
-    by=manifest['split_rows']; root=manifest['root']; protocol=manifest['alignment_protocol']
-    if protocol is None: raise RuntimeError('Image-text alignment protocol is not frozen')
-    method=build_method(c,device); ck=load_checkpoint(method,Path(checkpoint),device); encoder=_freeze(method.encoder.to(device)); _assert_frozen(encoder,'SSL encoder')
-    plip_dir=Path(protocol['plip_model_dir']); plip=CLIPModel.from_pretrained(plip_dir,local_files_only=True).to(device).eval()
-    tokenizer=AutoTokenizer.from_pretrained(plip_dir,local_files_only=True)
-    _freeze(plip)
-    text_branch=plip.text_model; text_projection=plip.text_projection
-    _assert_frozen(text_branch,'PLIP text encoder'); _assert_frozen(text_projection,'PLIP text projection')
-    logit_scale=float(plip.logit_scale.detach().exp().cpu())
-    # The pretrained PLIP vision branch is deliberately not part of downstream alignment.
-    # Keep only references to the frozen text components and release the unused vision branch.
-    del plip
-    torch.cuda.empty_cache()
-    # TEST rows are deliberately untouched here. TRAIN/VAL only before selection.
-    train_i=_ssl_features(encoder,by['train'],root,c,device); val_i=_ssl_features(encoder,by['val'],root,c,device)
-    train_t=_text_features(text_branch,text_projection,tokenizer,[r['text'] for r in by['train']],device,int(protocol['text_batch_size']))
-    val_t=_text_features(text_branch,text_projection,tokenizer,[r['text'] for r in by['val']],device,int(protocol['text_batch_size']))
-    lr,wd,board=_tune(train_i,train_t,val_i,val_t,protocol,seed=seed,device=device,logit_scale=logit_scale); write_csv(board,out/'projector_tuning.csv')
-    final=_train_trial(train_i,train_t,val_i,val_t,lr=lr,wd=wd,epochs=int(protocol['final_maximum_epochs']),batch_size=int(protocol['batch_size']),seed=seed,device=device,logit_scale=logit_scale,patience=int(protocol['final_early_stopping_patience']))
-    write_csv(final['history'],out/'projector_training.csv')
-    selection={'dataset':dataset,'encoder_epoch':int(ck['epoch']),'projector':'linear_bias_false','ssl_encoder_frozen':True,'plip_text_branch_frozen':True,'trainable_component':'image_projection_head_only','loss':'symmetric_clip_cross_entropy','fixed_plip_logit_scale':logit_scale,'learning_rate':lr,'weight_decay':wd,'best_epoch':final['best_epoch'],'validation':final['val_metrics'],'selection_metric':'val_overall_mean_recall','test_used':False}
-    torch.save({'projector':final['state'],'selection':selection,'input_dim':int(train_i.shape[1]),'output_dim':int(train_t.shape[1])},out/'best_image_projector.pt'); atomic_json_dump(selection,out/'projector_selection.json')
-    # Exclusive marker BEFORE TEST images or TEST text are decoded/tokenized.
-    with (out/'test_started.json').open('x') as f: json.dump({'projector_selected':True,'test_used_for_selection':False,**selection},f)
-    test_i=_ssl_features(encoder,by['test'],root,c,device)
-    test_t=_text_features(text_branch,text_projection,tokenizer,[r['text'] for r in by['test']],device,int(protocol['text_batch_size']))
-    head=nn.Linear(train_i.shape[1],train_t.shape[1],bias=False).to(device); head.load_state_dict(final['state']); head.eval()
-    with torch.inference_mode(): test_img=head(test_i.to(device)).cpu(); metrics=_retrieval_metrics(test_img,test_t)
-    result={'method':c['method']['name'],'dataset':dataset,'encoder_epoch':int(ck['epoch']),'pairs':len(by['test']),'test':metrics,'test_evaluated_once':True,'selection':selection}
-    atomic_json_dump(result,out/'test_retrieval_metrics.json')
-    return result
+def run_image_text_retrieval(c, checkpoint, out, *, dataset):
+    from .retrieval_repair import run_train_val, run_test
+    cache_root = Path(out).parent.parent / 'caption_aware_feature_cache'
+    run_train_val(c, checkpoint, out, dataset=dataset, cache_root=cache_root)
+    return run_test(c, checkpoint, out, dataset=dataset, cache_root=cache_root)

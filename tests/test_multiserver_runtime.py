@@ -51,7 +51,7 @@ def test_committed_manifests_are_server_path_independent():
 def test_committed_image_text_manifests_are_server_path_independent():
     manifest_dir=ROOT/'manifests/ssl_standard/image_text_manifests'
     files=sorted(manifest_dir.glob('*.json'))
-    assert {path.stem for path in files} == {'arch','ipath'}
+    assert {path.stem for path in files} == {'arch','ipath','pathcap'}
     for path in files:
         document=json.loads(path.read_text(encoding='utf-8'))
         assert document['schema_version'] == 2
