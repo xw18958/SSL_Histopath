@@ -159,7 +159,15 @@ def _run_downstream(c:dict[str,Any],encoder,out:Path,*,encoder_epoch:int|str,enc
     labels=list(range(num_classes)); report=classification_report(y.numpy(),preds,labels=labels,target_names=list(class_names),output_dict=True,zero_division=0); write_csv([{'class_id':i,'class_name':class_names[i],**report[class_names[i]]} for i in labels],out/'test_per_class_metrics.csv'); np.savetxt(out/'test_confusion_matrix.csv',confusion_matrix(y.numpy(),preds,labels=labels),delimiter=',',fmt='%d')
     if external_dataset is not None:
         lookup={int(row['record_index']):row for row in by['test']}
-        write_csv([{'record_index':int(record_index),'relative_path':lookup[int(record_index)]['relative_path'],'class_id':int(label),'class_name':class_names[int(label)],'prediction_id':int(prediction),'prediction_name':class_names[int(prediction)]} for record_index,label,prediction in zip(keys,y.numpy(),preds)],out/'test_prediction_records.csv')
+        def _sample_ref(row):
+            if row.get('relative_path'):
+                return str(row['relative_path'])
+            if row.get('storage') == 'parquet':
+                return f"{row.get('parquet_file','')}#row_group={row.get('row_group','')}#row={row.get('row_in_group','')}"
+            if row.get('storage') == 'hdf5':
+                return f"{row.get('hdf5_file','')}#index={row.get('hdf5_index','')}"
+            return str(row.get('source_name', row.get('record_index', '')))
+        write_csv([{'record_index':int(record_index),'sample_ref':_sample_ref(lookup[int(record_index)]),'relative_path':lookup[int(record_index)].get('relative_path',''),'class_id':int(label),'class_name':class_names[int(label)],'prediction_id':int(prediction),'prediction_name':class_names[int(prediction)]} for record_index,label,prediction in zip(keys,y.numpy(),preds)],out/'test_prediction_records.csv')
     result={'method':c['method']['name'],'dataset':dataset_slug,'encoder_epoch':encoder_epoch,'feature_dim':int(tx.shape[1]),'num_classes':num_classes,'class_names':list(class_names),'probe_validation_macro_f1':float(final_fit['val_macro_f1']),'test_loss':float(loss),'test':metrics,'test_images':int(y.numel()),'test_evaluated_once':True}
     if dataset_metadata is not None: result['dataset_metadata']=dataset_metadata
     if encoder_metadata is not None: result['encoder_metadata']=dict(encoder_metadata)
