@@ -14,7 +14,13 @@ def digest(path):
 
 def status(root):
     if (root/'return.json').exists():return json.loads((root/'return.json').read_text())
-    if not (root/'started.json').exists():return {'state':'missing'}
+    if not (root/'started.json').exists():
+        if (root/'launch.json').exists():
+            launched=json.loads((root/'launch.json').read_text())
+            try:os.kill(launched['pid'],0)
+            except ProcessLookupError:return {'state':'lost','pid':launched['pid']}
+            return {'state':'running','pid':launched['pid']}
+        return {'state':'missing'}
     s=json.loads((root/'started.json').read_text())
     try:os.kill(s['pid'],0)
     except ProcessLookupError:return {'state':'lost','pid':s['pid'],'log':str(root/'job.log')}
@@ -27,11 +33,15 @@ def main():
         r={'exists':a.file.is_file()}
         if r['exists']:r.update(bytes=a.file.stat().st_size,sha256=digest(a.file))
     elif a.action=='launch':
-        spec=json.loads(base64.b64decode(a.spec_base64));root=Path(spec['job_root']);root.mkdir(parents=True,exist_ok=False)
+        spec=json.loads(base64.b64decode(a.spec_base64));root=Path(spec['job_root'])
+        if root.exists():
+            if json.loads((root/'spec.json').read_text())!=spec:raise RuntimeError('Existing job specification differs')
+            print(json.dumps(status(root)),flush=True);return
+        root.mkdir(parents=True,exist_ok=False)
         (root/'spec.json').write_text(json.dumps(spec,indent=2)+'\n')
         with (root/'runner.log').open('ab') as log:
             child=subprocess.Popen([sys.executable,str(Path(__file__).resolve()),'run','--root',str(root)],stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
-        r={'state':'launched','pid':child.pid,'root':str(root)}
+        r={'state':'launched','pid':child.pid,'root':str(root)};atomic(r,root/'launch.json')
     elif a.action=='status':r=status(a.root)
     else:
         spec=json.loads((a.root/'spec.json').read_text());atomic({'pid':os.getpid(),'started_at':time.time()},a.root/'started.json')

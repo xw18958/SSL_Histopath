@@ -52,7 +52,8 @@ def check(report):
     if not torch.cuda.is_available() or torch.cuda.device_count()!=1:raise RuntimeError('Exactly one CUDA GPU must be visible per worker')
     if sys.version!=r['python_version'] or torch.__version__!=r['torch_version']:raise RuntimeError('Runtime changed')
     free,total=torch.cuda.mem_get_info()
-    if free<20*2**30:raise RuntimeError(f'Insufficient free GPU memory: {free/2**30:.1f} GiB')
+    minimum_gib=20 if os.environ.get('SSL_WORKER_ROLE','pretrain')=='pretrain' else 16
+    if free<minimum_gib*2**30:raise RuntimeError(f'Insufficient free GPU memory: {free/2**30:.1f} GiB; {minimum_gib} GiB required for this worker role')
     r['free_gpu_memory_gib']=free/2**30
     # Leave the detailed per-file map in the saved report, not every console update.
     r.pop('source_files');return r

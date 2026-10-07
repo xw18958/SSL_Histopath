@@ -1,0 +1,2130 @@
+{
+  "classification": [
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "mhist",
+      "accuracy": 0.7676767676767676,
+      "balanced_accuracy": 0.7676767676767677,
+      "macro_f1": 0.7672968829841594,
+      "weighted_f1": 0.7672968829841595
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9738562091503268,
+      "balanced_accuracy": 0.9738562091503269,
+      "macro_f1": 0.9739947604970316,
+      "weighted_f1": 0.9739947604970317
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.6676136363636364,
+      "balanced_accuracy": 0.6676136363636364,
+      "macro_f1": 0.6642526623443991,
+      "weighted_f1": 0.6642526623443991
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "kather_2016",
+      "accuracy": 0.9112903225806451,
+      "balanced_accuracy": 0.9112903225806452,
+      "macro_f1": 0.9111907395006938,
+      "weighted_f1": 0.9111907395006937
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "bach",
+      "accuracy": 0.7,
+      "balanced_accuracy": 0.7,
+      "macro_f1": 0.6870915032679739,
+      "weighted_f1": 0.6870915032679739
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5684210526315789,
+      "balanced_accuracy": 0.5684210526315789,
+      "macro_f1": 0.5434819629534701,
+      "weighted_f1": 0.5434819629534701
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.8266666666666667,
+      "balanced_accuracy": 0.8266666666666667,
+      "macro_f1": 0.8265083754594612,
+      "weighted_f1": 0.826508375459461
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "oral_oscc",
+      "accuracy": 0.8114754098360656,
+      "balanced_accuracy": 0.7458286985539488,
+      "macro_f1": 0.7429225836005497,
+      "weighted_f1": 0.8125635499350421
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.5188679245283019,
+      "balanced_accuracy": 0.5188679245283019,
+      "macro_f1": 0.5211372064154952,
+      "weighted_f1": 0.5211372064154952
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.43529411764705883,
+      "balanced_accuracy": 0.32030188312948943,
+      "macro_f1": 0.33088512241054613,
+      "weighted_f1": 0.46681289464938514
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.885,
+      "balanced_accuracy": 0.885,
+      "macro_f1": 0.8849741191768148,
+      "weighted_f1": 0.8849741191768148
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.6358024691358025,
+      "balanced_accuracy": 0.6358024691358025,
+      "macro_f1": 0.6279849826391047,
+      "weighted_f1": 0.6279849826391047
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.7005347593582888,
+      "balanced_accuracy": 0.5011181394160118,
+      "macro_f1": 0.5051820060469641,
+      "weighted_f1": 0.6814412919574352
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.964,
+      "balanced_accuracy": 0.9640000000000001,
+      "macro_f1": 0.9639867948379471,
+      "weighted_f1": 0.9639867948379471
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "pcam_binary",
+      "accuracy": 0.87,
+      "balanced_accuracy": 0.87,
+      "macro_f1": 0.8698828946051447,
+      "weighted_f1": 0.8698828946051447
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "mhist",
+      "accuracy": 0.7323232323232324,
+      "balanced_accuracy": 0.7323232323232323,
+      "macro_f1": 0.730778111290695,
+      "weighted_f1": 0.730778111290695
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9640522875816994,
+      "balanced_accuracy": 0.9640522875816993,
+      "macro_f1": 0.9641448907777114,
+      "weighted_f1": 0.9641448907777113
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.6704545454545454,
+      "balanced_accuracy": 0.6704545454545454,
+      "macro_f1": 0.6693431927362186,
+      "weighted_f1": 0.6693431927362186
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "kather_2016",
+      "accuracy": 0.8951612903225806,
+      "balanced_accuracy": 0.8951612903225806,
+      "macro_f1": 0.8954122796133485,
+      "weighted_f1": 0.8954122796133485
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "bach",
+      "accuracy": 0.575,
+      "balanced_accuracy": 0.575,
+      "macro_f1": 0.5535130718954249,
+      "weighted_f1": 0.5535130718954248
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5421052631578948,
+      "balanced_accuracy": 0.5421052631578948,
+      "macro_f1": 0.5409250776912534,
+      "weighted_f1": 0.5409250776912534
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.8566666666666667,
+      "balanced_accuracy": 0.8566666666666668,
+      "macro_f1": 0.8550547463493334,
+      "weighted_f1": 0.8550547463493334
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "oral_oscc",
+      "accuracy": 0.7786885245901639,
+      "balanced_accuracy": 0.7243233222098628,
+      "macro_f1": 0.7111286503551697,
+      "weighted_f1": 0.7844139376609262
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.4716981132075472,
+      "balanced_accuracy": 0.4716981132075472,
+      "macro_f1": 0.4709437078117674,
+      "weighted_f1": 0.4709437078117674
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.5088235294117647,
+      "balanced_accuracy": 0.5121578334304019,
+      "macro_f1": 0.382685647037144,
+      "weighted_f1": 0.5497568081522667
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.895,
+      "balanced_accuracy": 0.895,
+      "macro_f1": 0.8948712172411204,
+      "weighted_f1": 0.8948712172411203
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.595679012345679,
+      "balanced_accuracy": 0.595679012345679,
+      "macro_f1": 0.5812398930045989,
+      "weighted_f1": 0.5812398930045988
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.6737967914438503,
+      "balanced_accuracy": 0.5824537917623024,
+      "macro_f1": 0.5601543055014019,
+      "weighted_f1": 0.6673772073935813
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.966,
+      "balanced_accuracy": 0.966,
+      "macro_f1": 0.9658063009573933,
+      "weighted_f1": 0.9658063009573933
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "pcam_binary",
+      "accuracy": 0.88,
+      "balanced_accuracy": 0.88,
+      "macro_f1": 0.8799519807923168,
+      "weighted_f1": 0.879951980792317
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "mhist",
+      "accuracy": 0.7828282828282829,
+      "balanced_accuracy": 0.7828282828282829,
+      "macro_f1": 0.7823786519438694,
+      "weighted_f1": 0.7823786519438692
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9771241830065359,
+      "balanced_accuracy": 0.977124183006536,
+      "macro_f1": 0.9770689809625566,
+      "weighted_f1": 0.9770689809625565
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.65625,
+      "balanced_accuracy": 0.65625,
+      "macro_f1": 0.6530821490078063,
+      "weighted_f1": 0.6530821490078064
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "kather_2016",
+      "accuracy": 0.9233870967741935,
+      "balanced_accuracy": 0.9233870967741935,
+      "macro_f1": 0.923203432015447,
+      "weighted_f1": 0.923203432015447
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "bach",
+      "accuracy": 0.675,
+      "balanced_accuracy": 0.675,
+      "macro_f1": 0.6162008281573499,
+      "weighted_f1": 0.6162008281573499
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5815789473684211,
+      "balanced_accuracy": 0.5815789473684211,
+      "macro_f1": 0.5584498186186002,
+      "weighted_f1": 0.5584498186186002
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.8766666666666667,
+      "balanced_accuracy": 0.8766666666666666,
+      "macro_f1": 0.8761315184124906,
+      "weighted_f1": 0.8761315184124906
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "oral_oscc",
+      "accuracy": 0.7213114754098361,
+      "balanced_accuracy": 0.7222840192806823,
+      "macro_f1": 0.675125313283208,
+      "weighted_f1": 0.7393843214593862
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.5188679245283019,
+      "balanced_accuracy": 0.5188679245283019,
+      "macro_f1": 0.5207678034298214,
+      "weighted_f1": 0.5207678034298215
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.49411764705882355,
+      "balanced_accuracy": 0.35010192195690154,
+      "macro_f1": 0.3696120689655173,
+      "weighted_f1": 0.5369536004056795
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.88,
+      "balanced_accuracy": 0.88,
+      "macro_f1": 0.8799519807923168,
+      "weighted_f1": 0.879951980792317
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.6080246913580247,
+      "balanced_accuracy": 0.6080246913580246,
+      "macro_f1": 0.6003693255286584,
+      "weighted_f1": 0.6003693255286584
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.6577540106951871,
+      "balanced_accuracy": 0.5574123632634271,
+      "macro_f1": 0.5393262364403182,
+      "weighted_f1": 0.6542168612910001
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.964,
+      "balanced_accuracy": 0.9640000000000001,
+      "macro_f1": 0.9639407857117611,
+      "weighted_f1": 0.963940785711761
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "pcam_binary",
+      "accuracy": 0.795,
+      "balanced_accuracy": 0.7949999999999999,
+      "macro_f1": 0.7931330255556397,
+      "weighted_f1": 0.7931330255556397
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "mhist",
+      "accuracy": 0.7626262626262627,
+      "balanced_accuracy": 0.7626262626262627,
+      "macro_f1": 0.7618913594145793,
+      "weighted_f1": 0.7618913594145792
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9771241830065359,
+      "balanced_accuracy": 0.977124183006536,
+      "macro_f1": 0.9771687173679768,
+      "weighted_f1": 0.9771687173679768
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.7102272727272727,
+      "balanced_accuracy": 0.7102272727272727,
+      "macro_f1": 0.705001862600694,
+      "weighted_f1": 0.7050018626006939
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "kather_2016",
+      "accuracy": 0.9395161290322581,
+      "balanced_accuracy": 0.9395161290322581,
+      "macro_f1": 0.9394580643115631,
+      "weighted_f1": 0.9394580643115631
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "bach",
+      "accuracy": 0.775,
+      "balanced_accuracy": 0.775,
+      "macro_f1": 0.7748120300751881,
+      "weighted_f1": 0.7748120300751878
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5394736842105263,
+      "balanced_accuracy": 0.5394736842105263,
+      "macro_f1": 0.5432108233535877,
+      "weighted_f1": 0.5432108233535877
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.7966666666666666,
+      "balanced_accuracy": 0.7966666666666667,
+      "macro_f1": 0.7945832114457562,
+      "weighted_f1": 0.7945832114457562
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "oral_oscc",
+      "accuracy": 0.8524590163934426,
+      "balanced_accuracy": 0.7845754542083796,
+      "macro_f1": 0.7914133738601824,
+      "weighted_f1": 0.8506091484378894
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.49056603773584906,
+      "balanced_accuracy": 0.49056603773584906,
+      "macro_f1": 0.4907181253806737,
+      "weighted_f1": 0.4907181253806738
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.46176470588235297,
+      "balanced_accuracy": 0.4849543777907203,
+      "macro_f1": 0.35272157422079337,
+      "weighted_f1": 0.5032931420275635
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.87,
+      "balanced_accuracy": 0.87,
+      "macro_f1": 0.8697916666666667,
+      "weighted_f1": 0.8697916666666667
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.6172839506172839,
+      "balanced_accuracy": 0.6172839506172839,
+      "macro_f1": 0.6080586156964521,
+      "weighted_f1": 0.6080586156964521
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.7433155080213903,
+      "balanced_accuracy": 0.6045097675416825,
+      "macro_f1": 0.594352238357453,
+      "weighted_f1": 0.7325994489836309
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.966,
+      "balanced_accuracy": 0.966,
+      "macro_f1": 0.9659296745576536,
+      "weighted_f1": 0.9659296745576534
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "pcam_binary",
+      "accuracy": 0.825,
+      "balanced_accuracy": 0.825,
+      "macro_f1": 0.8249956248906223,
+      "weighted_f1": 0.8249956248906223
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "mhist",
+      "accuracy": 0.8080808080808081,
+      "balanced_accuracy": 0.8080808080808081,
+      "macro_f1": 0.8080808080808081,
+      "weighted_f1": 0.8080808080808081
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9836601307189542,
+      "balanced_accuracy": 0.9836601307189543,
+      "macro_f1": 0.9836217771541155,
+      "weighted_f1": 0.9836217771541155
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.7102272727272727,
+      "balanced_accuracy": 0.7102272727272727,
+      "macro_f1": 0.7083621666544905,
+      "weighted_f1": 0.7083621666544905
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "kather_2016",
+      "accuracy": 0.9112903225806451,
+      "balanced_accuracy": 0.9112903225806451,
+      "macro_f1": 0.9107869923339935,
+      "weighted_f1": 0.9107869923339935
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "bach",
+      "accuracy": 0.675,
+      "balanced_accuracy": 0.675,
+      "macro_f1": 0.6495670995670996,
+      "weighted_f1": 0.6495670995670995
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5657894736842105,
+      "balanced_accuracy": 0.5657894736842105,
+      "macro_f1": 0.5312154057372931,
+      "weighted_f1": 0.5312154057372932
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.82,
+      "balanced_accuracy": 0.82,
+      "macro_f1": 0.8181364859782817,
+      "weighted_f1": 0.8181364859782817
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "oral_oscc",
+      "accuracy": 0.7459016393442623,
+      "balanced_accuracy": 0.7146829810901001,
+      "macro_f1": 0.6867908902691511,
+      "weighted_f1": 0.7581699080202288
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.5141509433962265,
+      "balanced_accuracy": 0.5141509433962265,
+      "macro_f1": 0.5143115942028986,
+      "weighted_f1": 0.5143115942028985
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.5117647058823529,
+      "balanced_accuracy": 0.37121432731508447,
+      "macro_f1": 0.3805733514527923,
+      "weighted_f1": 0.5450980392156862
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.91,
+      "balanced_accuracy": 0.91,
+      "macro_f1": 0.9099639855942376,
+      "weighted_f1": 0.9099639855942376
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.595679012345679,
+      "balanced_accuracy": 0.595679012345679,
+      "macro_f1": 0.5797147362808439,
+      "weighted_f1": 0.579714736280844
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.7486631016042781,
+      "balanced_accuracy": 0.6432054394820352,
+      "macro_f1": 0.6400377296988958,
+      "weighted_f1": 0.7361324236998864
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.972,
+      "balanced_accuracy": 0.9719999999999999,
+      "macro_f1": 0.9719992999824996,
+      "weighted_f1": 0.9719992999824995
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "pcam_binary",
+      "accuracy": 0.615,
+      "balanced_accuracy": 0.615,
+      "macro_f1": 0.5882242840717666,
+      "weighted_f1": 0.5882242840717666
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "mhist",
+      "accuracy": 0.7929292929292929,
+      "balanced_accuracy": 0.7929292929292929,
+      "macro_f1": 0.7927971617448123,
+      "weighted_f1": 0.7927971617448123
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9738562091503268,
+      "balanced_accuracy": 0.9738562091503267,
+      "macro_f1": 0.9739432141081186,
+      "weighted_f1": 0.9739432141081187
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.7357954545454546,
+      "balanced_accuracy": 0.7357954545454545,
+      "macro_f1": 0.7323509780532247,
+      "weighted_f1": 0.7323509780532246
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "kather_2016",
+      "accuracy": 0.9213709677419355,
+      "balanced_accuracy": 0.9213709677419355,
+      "macro_f1": 0.9208652287369135,
+      "weighted_f1": 0.9208652287369135
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "bach",
+      "accuracy": 0.725,
+      "balanced_accuracy": 0.725,
+      "macro_f1": 0.7158730158730159,
+      "weighted_f1": 0.7158730158730158
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.47986814575956505,
+      "weighted_f1": 0.4798681457595651
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.8433333333333334,
+      "balanced_accuracy": 0.8433333333333334,
+      "macro_f1": 0.8419945144779323,
+      "weighted_f1": 0.8419945144779323
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "oral_oscc",
+      "accuracy": 0.7459016393442623,
+      "balanced_accuracy": 0.7502780867630701,
+      "macro_f1": 0.7016173570019724,
+      "weighted_f1": 0.7619193584893459
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.5566037735849056,
+      "balanced_accuracy": 0.5566037735849056,
+      "macro_f1": 0.5569199920425856,
+      "weighted_f1": 0.5569199920425856
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.4647058823529412,
+      "balanced_accuracy": 0.5042224810716366,
+      "macro_f1": 0.3582453720606331,
+      "weighted_f1": 0.4975218187067939
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.87,
+      "balanced_accuracy": 0.8700000000000001,
+      "macro_f1": 0.8695303091128062,
+      "weighted_f1": 0.8695303091128062
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.6512345679012346,
+      "balanced_accuracy": 0.6512345679012346,
+      "macro_f1": 0.6453308830375716,
+      "weighted_f1": 0.6453308830375716
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.7272727272727273,
+      "balanced_accuracy": 0.5710385303470411,
+      "macro_f1": 0.5874431394899232,
+      "weighted_f1": 0.7213925948891706
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.98,
+      "balanced_accuracy": 0.9800000000000001,
+      "macro_f1": 0.9799597489937248,
+      "weighted_f1": 0.9799597489937248
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "pcam_binary",
+      "accuracy": 0.775,
+      "balanced_accuracy": 0.775,
+      "macro_f1": 0.7729508817074093,
+      "weighted_f1": 0.7729508817074094
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "mhist",
+      "accuracy": 0.797979797979798,
+      "balanced_accuracy": 0.797979797979798,
+      "macro_f1": 0.7978973155047464,
+      "weighted_f1": 0.7978973155047465
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9803921568627451,
+      "balanced_accuracy": 0.9803921568627452,
+      "macro_f1": 0.9803893292842409,
+      "weighted_f1": 0.980389329284241
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.7301136363636364,
+      "balanced_accuracy": 0.7301136363636365,
+      "macro_f1": 0.7315339641022984,
+      "weighted_f1": 0.7315339641022983
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "kather_2016",
+      "accuracy": 0.9455645161290323,
+      "balanced_accuracy": 0.9455645161290323,
+      "macro_f1": 0.9460669027069895,
+      "weighted_f1": 0.9460669027069895
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "bach",
+      "accuracy": 0.775,
+      "balanced_accuracy": 0.775,
+      "macro_f1": 0.7661616161616163,
+      "weighted_f1": 0.7661616161616162
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5710526315789474,
+      "balanced_accuracy": 0.5710526315789474,
+      "macro_f1": 0.5657191585895701,
+      "weighted_f1": 0.5657191585895701
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.8233333333333334,
+      "balanced_accuracy": 0.8233333333333333,
+      "macro_f1": 0.8220212467348086,
+      "weighted_f1": 0.8220212467348087
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "oral_oscc",
+      "accuracy": 0.8032786885245902,
+      "balanced_accuracy": 0.8116425658138673,
+      "macro_f1": 0.7635658914728682,
+      "weighted_f1": 0.8143982716990722
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.5471698113207547,
+      "balanced_accuracy": 0.5471698113207547,
+      "macro_f1": 0.5499782143947878,
+      "weighted_f1": 0.5499782143947878
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.43823529411764706,
+      "balanced_accuracy": 0.4725538730343623,
+      "macro_f1": 0.35212194807000813,
+      "weighted_f1": 0.49811885392454847
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.92,
+      "balanced_accuracy": 0.9199999999999999,
+      "macro_f1": 0.9199679871948779,
+      "weighted_f1": 0.919967987194878
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.6358024691358025,
+      "balanced_accuracy": 0.6358024691358025,
+      "macro_f1": 0.6307283669543425,
+      "weighted_f1": 0.6307283669543425
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.7807486631016043,
+      "balanced_accuracy": 0.6798596264021796,
+      "macro_f1": 0.6693089795266856,
+      "weighted_f1": 0.7757793934020226
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.972,
+      "balanced_accuracy": 0.9720000000000001,
+      "macro_f1": 0.9719992999824996,
+      "weighted_f1": 0.9719992999824996
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "pcam_binary",
+      "accuracy": 0.835,
+      "balanced_accuracy": 0.835,
+      "macro_f1": 0.8347976270931892,
+      "weighted_f1": 0.8347976270931892
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "mhist",
+      "accuracy": 0.8080808080808081,
+      "balanced_accuracy": 0.8080808080808081,
+      "macro_f1": 0.8080024497295091,
+      "weighted_f1": 0.808002449729509
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9705882352941176,
+      "balanced_accuracy": 0.9705882352941175,
+      "macro_f1": 0.9705705519119269,
+      "weighted_f1": 0.970570551911927
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.75,
+      "balanced_accuracy": 0.75,
+      "macro_f1": 0.747277665283794,
+      "weighted_f1": 0.747277665283794
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "kather_2016",
+      "accuracy": 0.9556451612903226,
+      "balanced_accuracy": 0.9556451612903226,
+      "macro_f1": 0.9556705727244686,
+      "weighted_f1": 0.9556705727244686
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "bach",
+      "accuracy": 0.8,
+      "balanced_accuracy": 0.8,
+      "macro_f1": 0.7949419002050581,
+      "weighted_f1": 0.794941900205058
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5763157894736842,
+      "balanced_accuracy": 0.5763157894736841,
+      "macro_f1": 0.5417885156638953,
+      "weighted_f1": 0.5417885156638953
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.8833333333333333,
+      "balanced_accuracy": 0.8833333333333333,
+      "macro_f1": 0.8831549409653442,
+      "weighted_f1": 0.8831549409653443
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "oral_oscc",
+      "accuracy": 0.8278688524590164,
+      "balanced_accuracy": 0.7803114571746386,
+      "macro_f1": 0.7704918032786885,
+      "weighted_f1": 0.8306906745498521
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.5005191923066384,
+      "weighted_f1": 0.5005191923066385
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.5,
+      "balanced_accuracy": 0.5232236458940012,
+      "macro_f1": 0.3912370569305999,
+      "weighted_f1": 0.5496254629715103
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.895,
+      "balanced_accuracy": 0.895,
+      "macro_f1": 0.8947869435607105,
+      "weighted_f1": 0.8947869435607104
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.6265432098765432,
+      "balanced_accuracy": 0.6265432098765432,
+      "macro_f1": 0.6116367075851182,
+      "weighted_f1": 0.6116367075851182
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.732620320855615,
+      "balanced_accuracy": 0.6519199027177751,
+      "macro_f1": 0.6265232993266819,
+      "weighted_f1": 0.7281248538885371
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.964,
+      "balanced_accuracy": 0.9640000000000001,
+      "macro_f1": 0.9638455548345229,
+      "weighted_f1": 0.963845554834523
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "pcam_binary",
+      "accuracy": 0.875,
+      "balanced_accuracy": 0.875,
+      "macro_f1": 0.8746207277012964,
+      "weighted_f1": 0.8746207277012965
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "mhist",
+      "accuracy": 0.8383838383838383,
+      "balanced_accuracy": 0.8383838383838385,
+      "macro_f1": 0.8383673469387756,
+      "weighted_f1": 0.8383673469387756
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9640522875816994,
+      "balanced_accuracy": 0.9640522875816993,
+      "macro_f1": 0.9642080660973862,
+      "weighted_f1": 0.9642080660973862
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.7443181818181818,
+      "balanced_accuracy": 0.7443181818181818,
+      "macro_f1": 0.7411414593339101,
+      "weighted_f1": 0.74114145933391
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "kather_2016",
+      "accuracy": 0.9233870967741935,
+      "balanced_accuracy": 0.9233870967741935,
+      "macro_f1": 0.9232418491961252,
+      "weighted_f1": 0.9232418491961251
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "bach",
+      "accuracy": 0.725,
+      "balanced_accuracy": 0.7250000000000001,
+      "macro_f1": 0.710948494230228,
+      "weighted_f1": 0.710948494230228
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5368421052631579,
+      "balanced_accuracy": 0.5368421052631579,
+      "macro_f1": 0.5162859361627398,
+      "weighted_f1": 0.5162859361627398
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.84,
+      "balanced_accuracy": 0.84,
+      "macro_f1": 0.8394301484957757,
+      "weighted_f1": 0.8394301484957756
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "oral_oscc",
+      "accuracy": 0.8114754098360656,
+      "balanced_accuracy": 0.7695587690025956,
+      "macro_f1": 0.7539244058581075,
+      "weighted_f1": 0.8163526135630113
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.5613207547169812,
+      "balanced_accuracy": 0.5613207547169811,
+      "macro_f1": 0.558221658111156,
+      "weighted_f1": 0.5582216581111559
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.5088235294117647,
+      "balanced_accuracy": 0.5377839254513687,
+      "macro_f1": 0.39699385118407404,
+      "weighted_f1": 0.5519679130606574
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.915,
+      "balanced_accuracy": 0.915,
+      "macro_f1": 0.9149808706959066,
+      "weighted_f1": 0.9149808706959065
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.654320987654321,
+      "balanced_accuracy": 0.6543209876543209,
+      "macro_f1": 0.6467142393447507,
+      "weighted_f1": 0.6467142393447508
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.7219251336898396,
+      "balanced_accuracy": 0.6578662336641061,
+      "macro_f1": 0.6325288889567644,
+      "weighted_f1": 0.7158007236861612
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.976,
+      "balanced_accuracy": 0.976,
+      "macro_f1": 0.9759597489937247,
+      "weighted_f1": 0.9759597489937248
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "pcam_binary",
+      "accuracy": 0.8,
+      "balanced_accuracy": 0.8,
+      "macro_f1": 0.7994987468671679,
+      "weighted_f1": 0.7994987468671678
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "mhist",
+      "accuracy": 0.7929292929292929,
+      "balanced_accuracy": 0.7929292929292929,
+      "macro_f1": 0.7922882071488883,
+      "weighted_f1": 0.7922882071488883
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9869281045751634,
+      "balanced_accuracy": 0.9869281045751634,
+      "macro_f1": 0.9869266907859114,
+      "weighted_f1": 0.9869266907859113
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.75,
+      "balanced_accuracy": 0.75,
+      "macro_f1": 0.7459949779409217,
+      "weighted_f1": 0.7459949779409217
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "kather_2016",
+      "accuracy": 0.9375,
+      "balanced_accuracy": 0.9375,
+      "macro_f1": 0.9379771266562864,
+      "weighted_f1": 0.9379771266562862
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "bach",
+      "accuracy": 0.725,
+      "balanced_accuracy": 0.725,
+      "macro_f1": 0.7257575757575757,
+      "weighted_f1": 0.7257575757575758
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5684210526315789,
+      "balanced_accuracy": 0.5684210526315789,
+      "macro_f1": 0.5646360357972222,
+      "weighted_f1": 0.5646360357972222
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.8533333333333334,
+      "balanced_accuracy": 0.8533333333333334,
+      "macro_f1": 0.8523204976071411,
+      "weighted_f1": 0.8523204976071412
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "oral_oscc",
+      "accuracy": 0.8032786885245902,
+      "balanced_accuracy": 0.7641824249165741,
+      "macro_f1": 0.7458333333333333,
+      "weighted_f1": 0.8092213114754099
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.5471698113207547,
+      "balanced_accuracy": 0.5471698113207547,
+      "macro_f1": 0.5541231715144759,
+      "weighted_f1": 0.5541231715144759
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.47058823529411764,
+      "balanced_accuracy": 0.6613278974956319,
+      "macro_f1": 0.38325705515568,
+      "weighted_f1": 0.5329300681102573
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.905,
+      "balanced_accuracy": 0.905,
+      "macro_f1": 0.9049786201895427,
+      "weighted_f1": 0.9049786201895427
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.6296296296296297,
+      "balanced_accuracy": 0.6296296296296297,
+      "macro_f1": 0.6205084999594569,
+      "weighted_f1": 0.6205084999594569
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.7005347593582888,
+      "balanced_accuracy": 0.5785638338829828,
+      "macro_f1": 0.5753021132742048,
+      "weighted_f1": 0.6941973649521842
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.976,
+      "balanced_accuracy": 0.976,
+      "macro_f1": 0.976,
+      "weighted_f1": 0.976
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "pcam_binary",
+      "accuracy": 0.86,
+      "balanced_accuracy": 0.86,
+      "macro_f1": 0.859775641025641,
+      "weighted_f1": 0.859775641025641
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "mhist",
+      "accuracy": 0.8282828282828283,
+      "balanced_accuracy": 0.8282828282828283,
+      "macro_f1": 0.8282127181790344,
+      "weighted_f1": 0.8282127181790344
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9673202614379085,
+      "balanced_accuracy": 0.9673202614379084,
+      "macro_f1": 0.9672749429825152,
+      "weighted_f1": 0.9672749429825153
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.7215909090909091,
+      "balanced_accuracy": 0.7215909090909092,
+      "macro_f1": 0.7175789703614801,
+      "weighted_f1": 0.7175789703614801
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "kather_2016",
+      "accuracy": 0.9576612903225806,
+      "balanced_accuracy": 0.9576612903225807,
+      "macro_f1": 0.9582510323079438,
+      "weighted_f1": 0.958251032307944
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "bach",
+      "accuracy": 0.575,
+      "balanced_accuracy": 0.575,
+      "macro_f1": 0.5605201863354037,
+      "weighted_f1": 0.5605201863354037
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5842105263157895,
+      "balanced_accuracy": 0.5842105263157894,
+      "macro_f1": 0.559035099529396,
+      "weighted_f1": 0.559035099529396
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.8933333333333333,
+      "balanced_accuracy": 0.8933333333333332,
+      "macro_f1": 0.8931959880726484,
+      "weighted_f1": 0.8931959880726484
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "oral_oscc",
+      "accuracy": 0.7540983606557377,
+      "balanced_accuracy": 0.7556544308490916,
+      "macro_f1": 0.7090620031796502,
+      "weighted_f1": 0.7691104798144335
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.5518867924528302,
+      "balanced_accuracy": 0.5518867924528301,
+      "macro_f1": 0.552171309283664,
+      "weighted_f1": 0.5521713092836639
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.5352941176470588,
+      "balanced_accuracy": 0.7040380508639098,
+      "macro_f1": 0.418018018018018,
+      "weighted_f1": 0.5838473767885531
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.88,
+      "balanced_accuracy": 0.88,
+      "macro_f1": 0.8798076923076923,
+      "weighted_f1": 0.8798076923076923
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.6172839506172839,
+      "balanced_accuracy": 0.6172839506172839,
+      "macro_f1": 0.5981498808960134,
+      "weighted_f1": 0.5981498808960134
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.7540106951871658,
+      "balanced_accuracy": 0.6690502900609284,
+      "macro_f1": 0.6460787306375543,
+      "weighted_f1": 0.7444275159673083
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.976,
+      "balanced_accuracy": 0.976,
+      "macro_f1": 0.9759993999849996,
+      "weighted_f1": 0.9759993999849996
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "pcam_binary",
+      "accuracy": 0.89,
+      "balanced_accuracy": 0.89,
+      "macro_f1": 0.8892914653784219,
+      "weighted_f1": 0.8892914653784219
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "mhist",
+      "accuracy": 0.8383838383838383,
+      "balanced_accuracy": 0.8383838383838385,
+      "macro_f1": 0.8383178524037971,
+      "weighted_f1": 0.8383178524037971
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "crc_val_he_7k",
+      "accuracy": 0.9771241830065359,
+      "balanced_accuracy": 0.9771241830065358,
+      "macro_f1": 0.9771114515589073,
+      "weighted_f1": 0.9771114515589076
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "breakhis_8subtype",
+      "accuracy": 0.7727272727272727,
+      "balanced_accuracy": 0.7727272727272727,
+      "macro_f1": 0.7699424165402701,
+      "weighted_f1": 0.7699424165402701
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "kather_2016",
+      "accuracy": 0.9334677419354839,
+      "balanced_accuracy": 0.933467741935484,
+      "macro_f1": 0.9339524600901439,
+      "weighted_f1": 0.933952460090144
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "bach",
+      "accuracy": 0.675,
+      "balanced_accuracy": 0.675,
+      "macro_f1": 0.66504329004329,
+      "weighted_f1": 0.66504329004329
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "sicapv2_4class",
+      "accuracy": 0.5210526315789473,
+      "balanced_accuracy": 0.5210526315789473,
+      "macro_f1": 0.5081299356978575,
+      "weighted_f1": 0.5081299356978575
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "wsss4luad_3class",
+      "accuracy": 0.8633333333333333,
+      "balanced_accuracy": 0.8633333333333333,
+      "macro_f1": 0.8627688744304568,
+      "weighted_f1": 0.8627688744304568
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "oral_oscc",
+      "accuracy": 0.819672131147541,
+      "balanced_accuracy": 0.810530218761587,
+      "macro_f1": 0.7757352941176471,
+      "weighted_f1": 0.8278085824493733
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "endometrial_4class",
+      "accuracy": 0.589622641509434,
+      "balanced_accuracy": 0.5896226415094339,
+      "macro_f1": 0.5870825743776563,
+      "weighted_f1": 0.5870825743776563
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "osteosarcoma_3class",
+      "accuracy": 0.5058823529411764,
+      "balanced_accuracy": 0.536133760434867,
+      "macro_f1": 0.39321282820902276,
+      "weighted_f1": 0.5459102656012722
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "gashissdb_binary",
+      "accuracy": 0.91,
+      "balanced_accuracy": 0.91,
+      "macro_f1": 0.90999099909991,
+      "weighted_f1": 0.90999099909991
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "renalcell_6class",
+      "accuracy": 0.6481481481481481,
+      "balanced_accuracy": 0.648148148148148,
+      "macro_f1": 0.6396301225894919,
+      "weighted_f1": 0.6396301225894918
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "ebhi_seg_6class",
+      "accuracy": 0.786096256684492,
+      "balanced_accuracy": 0.7426683639449596,
+      "macro_f1": 0.6887623496272633,
+      "weighted_f1": 0.7731472477271628
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "lc25000_5class",
+      "accuracy": 0.968,
+      "balanced_accuracy": 0.968,
+      "macro_f1": 0.9679412395239957,
+      "weighted_f1": 0.9679412395239958
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "pcam_binary",
+      "accuracy": 0.84,
+      "balanced_accuracy": 0.8400000000000001,
+      "macro_f1": 0.8398558702832549,
+      "weighted_f1": 0.8398558702832548
+    }
+  ],
+  "retrieval": [
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.11238095238095237,
+      "i2t_r@1": 0.03571428571428571,
+      "i2t_r@10": 0.18428571428571427,
+      "i2t_r@5": 0.11714285714285715,
+      "overall_mean_recall": 0.11690067092128947,
+      "t2i_mean_recall": 0.12142038946162657,
+      "t2i_r@1": 0.03264604810996564,
+      "t2i_r@10": 0.1958762886597938,
+      "t2i_r@5": 0.13573883161512026
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.07428571428571429,
+      "i2t_r@1": 0.018571428571428572,
+      "i2t_r@10": 0.13142857142857142,
+      "i2t_r@5": 0.07285714285714286,
+      "overall_mean_recall": 0.07352783366867874,
+      "t2i_mean_recall": 0.0727699530516432,
+      "t2i_r@1": 0.018779342723004695,
+      "t2i_r@10": 0.11267605633802817,
+      "t2i_r@5": 0.08685446009389672
+    },
+    {
+      "k": 8,
+      "epoch": 100,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.035238095238095235,
+      "i2t_r@1": 0.012857142857142857,
+      "i2t_r@10": 0.06428571428571428,
+      "i2t_r@5": 0.02857142857142857,
+      "overall_mean_recall": 0.033082965144820814,
+      "t2i_mean_recall": 0.030927835051546393,
+      "t2i_r@1": 0.004418262150220913,
+      "t2i_r@10": 0.061855670103092786,
+      "t2i_r@5": 0.026509572901325478
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.11142857142857143,
+      "i2t_r@1": 0.03142857142857143,
+      "i2t_r@10": 0.18142857142857144,
+      "i2t_r@5": 0.12142857142857143,
+      "overall_mean_recall": 0.11642448044509901,
+      "t2i_mean_recall": 0.12142038946162657,
+      "t2i_r@1": 0.0429553264604811,
+      "t2i_r@10": 0.1958762886597938,
+      "t2i_r@5": 0.1254295532646048
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.06999999999999999,
+      "i2t_r@1": 0.027142857142857142,
+      "i2t_r@10": 0.11,
+      "i2t_r@5": 0.07285714285714286,
+      "overall_mean_recall": 0.07490610328638497,
+      "t2i_mean_recall": 0.07981220657276995,
+      "t2i_r@1": 0.014084507042253521,
+      "t2i_r@10": 0.13145539906103287,
+      "t2i_r@5": 0.09389671361502347
+    },
+    {
+      "k": 16,
+      "epoch": 100,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.03619047619047619,
+      "i2t_r@1": 0.012857142857142857,
+      "i2t_r@10": 0.06142857142857143,
+      "i2t_r@5": 0.03428571428571429,
+      "overall_mean_recall": 0.03454099165439371,
+      "t2i_mean_recall": 0.03289150711831124,
+      "t2i_r@1": 0.008836524300441826,
+      "t2i_r@10": 0.05891016200294551,
+      "t2i_r@5": 0.030927835051546393
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.11904761904761905,
+      "i2t_r@1": 0.037142857142857144,
+      "i2t_r@10": 0.2,
+      "i2t_r@5": 0.12,
+      "overall_mean_recall": 0.1205203730976927,
+      "t2i_mean_recall": 0.12199312714776633,
+      "t2i_r@1": 0.041237113402061855,
+      "t2i_r@10": 0.20790378006872853,
+      "t2i_r@5": 0.11683848797250859
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.06,
+      "i2t_r@1": 0.007142857142857143,
+      "i2t_r@10": 0.11714285714285715,
+      "i2t_r@5": 0.055714285714285716,
+      "overall_mean_recall": 0.06247261345852895,
+      "t2i_mean_recall": 0.0649452269170579,
+      "t2i_r@1": 0.01643192488262911,
+      "t2i_r@10": 0.11971830985915492,
+      "t2i_r@5": 0.05868544600938967
+    },
+    {
+      "k": 32,
+      "epoch": 100,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.03428571428571429,
+      "i2t_r@1": 0.01,
+      "i2t_r@10": 0.06,
+      "i2t_r@5": 0.032857142857142856,
+      "overall_mean_recall": 0.03579774177712322,
+      "t2i_mean_recall": 0.037309769268532154,
+      "t2i_r@1": 0.007363770250368188,
+      "t2i_r@10": 0.0662739322533137,
+      "t2i_r@5": 0.03829160530191458
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.13523809523809524,
+      "i2t_r@1": 0.045714285714285714,
+      "i2t_r@10": 0.20714285714285716,
+      "i2t_r@5": 0.15285714285714286,
+      "overall_mean_recall": 0.1380657830142366,
+      "t2i_mean_recall": 0.140893470790378,
+      "t2i_r@1": 0.048109965635738834,
+      "t2i_r@10": 0.22336769759450173,
+      "t2i_r@5": 0.15120274914089346
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.07333333333333333,
+      "i2t_r@1": 0.02,
+      "i2t_r@10": 0.13428571428571429,
+      "i2t_r@5": 0.06571428571428571,
+      "overall_mean_recall": 0.06796557120500782,
+      "t2i_mean_recall": 0.06259780907668232,
+      "t2i_r@1": 0.01643192488262911,
+      "t2i_r@10": 0.10328638497652583,
+      "t2i_r@5": 0.06807511737089202
+    },
+    {
+      "k": 8,
+      "epoch": 150,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.04238095238095238,
+      "i2t_r@1": 0.011428571428571429,
+      "i2t_r@10": 0.07142857142857142,
+      "i2t_r@5": 0.04428571428571428,
+      "overall_mean_recall": 0.04401816396661758,
+      "t2i_mean_recall": 0.045655375552282766,
+      "t2i_r@1": 0.014727540500736377,
+      "t2i_r@10": 0.07216494845360824,
+      "t2i_r@5": 0.050073637702503684
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.11238095238095237,
+      "i2t_r@1": 0.03,
+      "i2t_r@10": 0.1957142857142857,
+      "i2t_r@5": 0.11142857142857143,
+      "overall_mean_recall": 0.11260513827524136,
+      "t2i_mean_recall": 0.11282932416953036,
+      "t2i_r@1": 0.029209621993127148,
+      "t2i_r@10": 0.1958762886597938,
+      "t2i_r@5": 0.1134020618556701
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.07047619047619048,
+      "i2t_r@1": 0.022857142857142857,
+      "i2t_r@10": 0.11714285714285715,
+      "i2t_r@5": 0.07142857142857142,
+      "overall_mean_recall": 0.07123183545718757,
+      "t2i_mean_recall": 0.07198748043818466,
+      "t2i_r@1": 0.018779342723004695,
+      "t2i_r@10": 0.12206572769953052,
+      "t2i_r@5": 0.07511737089201878
+    },
+    {
+      "k": 16,
+      "epoch": 150,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.037142857142857144,
+      "i2t_r@1": 0.005714285714285714,
+      "i2t_r@10": 0.06857142857142857,
+      "i2t_r@5": 0.037142857142857144,
+      "overall_mean_recall": 0.034771723122238585,
+      "t2i_mean_recall": 0.03240058910162003,
+      "t2i_r@1": 0.005891016200294551,
+      "t2i_r@10": 0.061855670103092786,
+      "t2i_r@5": 0.029455081001472753
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.10666666666666667,
+      "i2t_r@1": 0.02857142857142857,
+      "i2t_r@10": 0.1757142857142857,
+      "i2t_r@5": 0.11571428571428571,
+      "overall_mean_recall": 0.12177548682703321,
+      "t2i_mean_recall": 0.13688430698739976,
+      "t2i_r@1": 0.0429553264604811,
+      "t2i_r@10": 0.22508591065292097,
+      "t2i_r@5": 0.14261168384879724
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.0880952380952381,
+      "i2t_r@1": 0.024285714285714285,
+      "i2t_r@10": 0.15,
+      "i2t_r@5": 0.09,
+      "overall_mean_recall": 0.08708361278783815,
+      "t2i_mean_recall": 0.08607198748043819,
+      "t2i_r@1": 0.03051643192488263,
+      "t2i_r@10": 0.14084507042253522,
+      "t2i_r@5": 0.08685446009389672
+    },
+    {
+      "k": 32,
+      "epoch": 150,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.03190476190476191,
+      "i2t_r@1": 0.008571428571428572,
+      "i2t_r@10": 0.05285714285714286,
+      "i2t_r@5": 0.03428571428571429,
+      "overall_mean_recall": 0.03239813451153657,
+      "t2i_mean_recall": 0.03289150711831124,
+      "t2i_r@1": 0.008836524300441826,
+      "t2i_r@10": 0.060382916053019146,
+      "t2i_r@5": 0.029455081001472753
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.13999999999999999,
+      "i2t_r@1": 0.037142857142857144,
+      "i2t_r@10": 0.23285714285714285,
+      "i2t_r@5": 0.15,
+      "overall_mean_recall": 0.13844215349369987,
+      "t2i_mean_recall": 0.13688430698739976,
+      "t2i_r@1": 0.054982817869415807,
+      "t2i_r@10": 0.21477663230240548,
+      "t2i_r@5": 0.140893470790378
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.08666666666666667,
+      "i2t_r@1": 0.022857142857142857,
+      "i2t_r@10": 0.1442857142857143,
+      "i2t_r@5": 0.09285714285714286,
+      "overall_mean_recall": 0.08676056338028168,
+      "t2i_mean_recall": 0.0868544600938967,
+      "t2i_r@1": 0.03286384976525822,
+      "t2i_r@10": 0.13849765258215962,
+      "t2i_r@5": 0.0892018779342723
+    },
+    {
+      "k": 8,
+      "epoch": 200,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.04238095238095238,
+      "i2t_r@1": 0.014285714285714285,
+      "i2t_r@10": 0.07285714285714286,
+      "i2t_r@5": 0.04,
+      "overall_mean_recall": 0.0413181148748159,
+      "t2i_mean_recall": 0.04025527736867943,
+      "t2i_r@1": 0.008836524300441826,
+      "t2i_r@10": 0.07658321060382917,
+      "t2i_r@5": 0.035346097201767304
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.1257142857142857,
+      "i2t_r@1": 0.027142857142857142,
+      "i2t_r@10": 0.22142857142857142,
+      "i2t_r@5": 0.12857142857142856,
+      "overall_mean_recall": 0.12872197676321387,
+      "t2i_mean_recall": 0.13172966781214204,
+      "t2i_r@1": 0.041237113402061855,
+      "t2i_r@10": 0.21649484536082475,
+      "t2i_r@5": 0.13745704467353953
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.08047619047619048,
+      "i2t_r@1": 0.02857142857142857,
+      "i2t_r@10": 0.14285714285714285,
+      "i2t_r@5": 0.07,
+      "overall_mean_recall": 0.08523027051196067,
+      "t2i_mean_recall": 0.08998435054773084,
+      "t2i_r@1": 0.025821596244131457,
+      "t2i_r@10": 0.1596244131455399,
+      "t2i_r@5": 0.08450704225352113
+    },
+    {
+      "k": 16,
+      "epoch": 200,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.03571428571428571,
+      "i2t_r@1": 0.011428571428571429,
+      "i2t_r@10": 0.05714285714285714,
+      "i2t_r@5": 0.03857142857142857,
+      "overall_mean_recall": 0.03454835542464409,
+      "t2i_mean_recall": 0.033382425135002454,
+      "t2i_r@1": 0.008836524300441826,
+      "t2i_r@10": 0.05743740795287187,
+      "t2i_r@5": 0.033873343151693665
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.12714285714285714,
+      "i2t_r@1": 0.037142857142857144,
+      "i2t_r@10": 0.20857142857142857,
+      "i2t_r@5": 0.1357142857142857,
+      "overall_mean_recall": 0.12542709867452134,
+      "t2i_mean_recall": 0.12371134020618557,
+      "t2i_r@1": 0.03951890034364261,
+      "t2i_r@10": 0.20446735395189003,
+      "t2i_r@5": 0.12714776632302405
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.08523809523809522,
+      "i2t_r@1": 0.018571428571428572,
+      "i2t_r@10": 0.15428571428571428,
+      "i2t_r@5": 0.08285714285714285,
+      "overall_mean_recall": 0.07978649675832775,
+      "t2i_mean_recall": 0.07433489827856025,
+      "t2i_r@1": 0.01643192488262911,
+      "t2i_r@10": 0.13145539906103287,
+      "t2i_r@5": 0.07511737089201878
+    },
+    {
+      "k": 32,
+      "epoch": 200,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.03523809523809524,
+      "i2t_r@1": 0.007142857142857143,
+      "i2t_r@10": 0.05857142857142857,
+      "i2t_r@5": 0.04,
+      "overall_mean_recall": 0.03357388316151203,
+      "t2i_mean_recall": 0.03190967108492882,
+      "t2i_r@1": 0.007363770250368188,
+      "t2i_r@10": 0.061855670103092786,
+      "t2i_r@5": 0.026509572901325478
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.14142857142857143,
+      "i2t_r@1": 0.037142857142857144,
+      "i2t_r@10": 0.23142857142857143,
+      "i2t_r@5": 0.15571428571428572,
+      "overall_mean_recall": 0.1400155457371952,
+      "t2i_mean_recall": 0.13860252004581902,
+      "t2i_r@1": 0.0429553264604811,
+      "t2i_r@10": 0.218213058419244,
+      "t2i_r@5": 0.15463917525773196
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.06857142857142857,
+      "i2t_r@1": 0.017142857142857144,
+      "i2t_r@10": 0.12428571428571429,
+      "i2t_r@5": 0.06428571428571428,
+      "overall_mean_recall": 0.07301810865191147,
+      "t2i_mean_recall": 0.07746478873239437,
+      "t2i_r@1": 0.025821596244131457,
+      "t2i_r@10": 0.13145539906103287,
+      "t2i_r@5": 0.07511737089201878
+    },
+    {
+      "k": 8,
+      "epoch": 250,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.045714285714285714,
+      "i2t_r@1": 0.012857142857142857,
+      "i2t_r@10": 0.07285714285714286,
+      "i2t_r@5": 0.05142857142857143,
+      "overall_mean_recall": 0.0442120765832106,
+      "t2i_mean_recall": 0.04270986745213549,
+      "t2i_r@1": 0.010309278350515464,
+      "t2i_r@10": 0.07511045655375552,
+      "t2i_r@5": 0.042709867452135494
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.12666666666666668,
+      "i2t_r@1": 0.04,
+      "i2t_r@10": 0.2,
+      "i2t_r@5": 0.14,
+      "overall_mean_recall": 0.13063001145475372,
+      "t2i_mean_recall": 0.13459335624284077,
+      "t2i_r@1": 0.03951890034364261,
+      "t2i_r@10": 0.23024054982817868,
+      "t2i_r@5": 0.13402061855670103
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.07809523809523809,
+      "i2t_r@1": 0.025714285714285714,
+      "i2t_r@10": 0.13428571428571429,
+      "i2t_r@5": 0.07428571428571429,
+      "overall_mean_recall": 0.08325732170802594,
+      "t2i_mean_recall": 0.08841940532081377,
+      "t2i_r@1": 0.028169014084507043,
+      "t2i_r@10": 0.15023474178403756,
+      "t2i_r@5": 0.08685446009389672
+    },
+    {
+      "k": 16,
+      "epoch": 250,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.04,
+      "i2t_r@1": 0.008571428571428572,
+      "i2t_r@10": 0.06857142857142857,
+      "i2t_r@5": 0.04285714285714286,
+      "overall_mean_recall": 0.04061855670103093,
+      "t2i_mean_recall": 0.041237113402061855,
+      "t2i_r@1": 0.010309278350515464,
+      "t2i_r@10": 0.07069219440353461,
+      "t2i_r@5": 0.042709867452135494
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "arch",
+      "i2t_mean_recall": 0.12619047619047621,
+      "i2t_r@1": 0.03428571428571429,
+      "i2t_r@10": 0.20714285714285716,
+      "i2t_r@5": 0.13714285714285715,
+      "overall_mean_recall": 0.12666912125675012,
+      "t2i_mean_recall": 0.12714776632302405,
+      "t2i_r@1": 0.0429553264604811,
+      "t2i_r@10": 0.20446735395189003,
+      "t2i_r@5": 0.13402061855670103
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "ipath",
+      "i2t_mean_recall": 0.08047619047619048,
+      "i2t_r@1": 0.025714285714285714,
+      "i2t_r@10": 0.13714285714285715,
+      "i2t_r@5": 0.07857142857142857,
+      "overall_mean_recall": 0.07584059915045831,
+      "t2i_mean_recall": 0.07120500782472614,
+      "t2i_r@1": 0.02112676056338028,
+      "t2i_r@10": 0.12910798122065728,
+      "t2i_r@5": 0.06338028169014084
+    },
+    {
+      "k": 32,
+      "epoch": 250,
+      "dataset": "pathcap",
+      "i2t_mean_recall": 0.037142857142857144,
+      "i2t_r@1": 0.005714285714285714,
+      "i2t_r@10": 0.06142857142857143,
+      "i2t_r@5": 0.04428571428571428,
+      "overall_mean_recall": 0.03378988708885616,
+      "t2i_mean_recall": 0.030436917034855182,
+      "t2i_r@1": 0.010309278350515464,
+      "t2i_r@10": 0.050073637702503684,
+      "t2i_r@5": 0.030927835051546393
+    }
+  ]
+}

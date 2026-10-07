@@ -1,0 +1,72 @@
+{
+  "state": "complete",
+  "pretraining_finished": [
+    8,
+    16,
+    32
+  ],
+  "checkpoint_bundles_backed_up": 12,
+  "completed_bundles": 12,
+  "completed_bundle_keys": [
+    [
+      32,
+      100
+    ],
+    [
+      32,
+      150
+    ],
+    [
+      32,
+      200
+    ],
+    [
+      32,
+      250
+    ],
+    [
+      16,
+      100
+    ],
+    [
+      16,
+      150
+    ],
+    [
+      16,
+      200
+    ],
+    [
+      16,
+      250
+    ],
+    [
+      8,
+      100
+    ],
+    [
+      8,
+      150
+    ],
+    [
+      8,
+      200
+    ],
+    [
+      8,
+      250
+    ]
+  ],
+  "completed_evaluations": 216,
+  "total_evaluations": 216,
+  "running": {},
+  "connection_errors": {},
+  "job_errors": {},
+  "updated_at": 1791353183.8010747,
+  "ssl_runs": 3,
+  "checkpoint_bundles": 12,
+  "evaluations": 216,
+  "classification": 180,
+  "retrieval": 36,
+  "finished_at": 1791353183.8010683
+}
