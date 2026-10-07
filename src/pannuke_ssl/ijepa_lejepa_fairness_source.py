@@ -462,11 +462,23 @@ class LeJEPAFair(nn.Module):
         self.encoder = FlexiblePLIPVisionEncoder(base)
         proj = int(l["projector_dim"])
         hidden = int(l["projector_hidden_dim"])
+        # Preserve the released 768->512 entrance exactly. The controlled
+        # depth ablation varies only the internal torchvision-MLP channels.
+        mlp_channels = l.get("projector_mlp_channels")
+        if mlp_channels is None:
+            mlp_channels = [hidden, hidden, proj]
+        else:
+            mlp_channels = [int(x) for x in mlp_channels]
+            if len(mlp_channels) < 2 or mlp_channels[-1] != proj or any(x <= 0 for x in mlp_channels):
+                raise ValueError(
+                    f"Invalid LeJEPA projector MLP channels {mlp_channels}; "
+                    f"expected at least one hidden channel followed by output {proj}"
+                )
         self.projector = nn.Sequential(
             nn.Linear(768, proj, bias=True),
             MLP(
                 in_channels=proj,
-                hidden_channels=[hidden, hidden, proj],
+                hidden_channels=mlp_channels,
                 norm_layer=nn.BatchNorm1d,
                 activation_layer=nn.ReLU,
                 inplace=True,

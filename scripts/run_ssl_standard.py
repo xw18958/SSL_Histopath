@@ -181,6 +181,10 @@ def main():
     p.add_argument("--learning-rate",type=float,default=None)
     p.add_argument("--run-id",default=None)
     p.add_argument("--simplex-components",type=int,default=None)
+    p.add_argument("--projector-mlp-channels",type=str,default=None,help="Comma-separated torchvision-MLP channels after the fixed 768->512 bottleneck, e.g. 2048,512")
+    p.add_argument("--max-epochs",type=int,default=None)
+    p.add_argument("--schedule-epochs",type=int,default=None)
+    p.add_argument("--checkpoint-epochs",type=str,default=None,help="Comma-separated fixed checkpoint epochs")
     p.add_argument("--ignore-tuned",action="store_true")
     a=p.parse_args()
     try:
@@ -188,6 +192,34 @@ def main():
     except ValueError as error:
         p.error(str(error))
     c=load_standard_config(a.method)
+    if a.projector_mlp_channels is not None:
+        if a.method != "lejepa":
+            p.error("--projector-mlp-channels is reserved for LeJEPA projector-depth ablations")
+        try:
+            channels=[int(x.strip()) for x in a.projector_mlp_channels.split(",") if x.strip()]
+        except ValueError:
+            p.error("--projector-mlp-channels must be comma-separated positive integers")
+        if len(channels) < 2 or any(x <= 0 for x in channels):
+            p.error("--projector-mlp-channels must contain at least one hidden channel plus the output channel")
+        if channels[-1] != int(c["method"]["projector"]["dim"]):
+            p.error(f"--projector-mlp-channels must end at projector dim {c['method']['projector']['dim']}")
+        c["method"]["projector"]["mlp_channels"]=channels
+    if a.max_epochs is not None:
+        if a.max_epochs < 1:
+            p.error("--max-epochs must be positive")
+        c["training"]["max_epochs"]=int(a.max_epochs)
+    if a.schedule_epochs is not None:
+        if a.schedule_epochs < int(c["training"]["max_epochs"]):
+            p.error("--schedule-epochs cannot be shorter than --max-epochs")
+        c["training"]["schedule_epochs"]=int(a.schedule_epochs)
+    if a.checkpoint_epochs is not None:
+        try:
+            checkpoint_epochs=[int(x.strip()) for x in a.checkpoint_epochs.split(",") if x.strip()]
+        except ValueError:
+            p.error("--checkpoint-epochs must be comma-separated positive integers")
+        if not checkpoint_epochs or any(x < 1 or x > int(c["training"]["max_epochs"]) for x in checkpoint_epochs):
+            p.error("--checkpoint-epochs must lie within 1..max_epochs")
+        c["training"]["checkpoint_epochs"]=checkpoint_epochs
     if a.simplex_components is not None:
         if a.method != "simplex_sigreg_lejepa":
             p.error("--simplex-components is only valid for simplex_sigreg_lejepa")
