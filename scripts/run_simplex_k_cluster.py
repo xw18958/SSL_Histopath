@@ -1,6 +1,6 @@
 """Four single-GPU workers: three fixed-budget SSL runs and a shared downstream queue.
 
-Nothing trains unless the explicit ``start`` action is used. A machine-local JSON
+Training requires an explicit launch or resume action. A machine-local JSON
 file keeps storage and Python paths out of the scientific campaign definition.
 """
 from __future__ import annotations
@@ -19,6 +19,7 @@ def settings(path):
     if set(workers)!=set(p['allocation']):raise ValueError('Exactly the four declared GPU workers are required')
     for name,w in workers.items():
         allocation=p['allocation'][name]
+        if w['run_root'].startswith(('/dev/shm/','/tmp/')):raise ValueError(f'Primary scientific outputs must use persistent storage: {name}')
         if (w['host'],w['gpu'],w.get('pretrain_k'))!=(allocation['host'],allocation['gpu'],allocation.get('pretrain_k')):raise ValueError(f'Allocation mismatch: {name}')
     if p['components']!=[8,16,32] or p['checkpoint_epochs']!=[100,150,200,250] or p['stop_epoch']!=250:raise ValueError('Campaign changed')
     return machines,p
@@ -34,11 +35,20 @@ def env(w):
 def command(w,args):
     return 'cd '+shlex.quote(w['project'])+' && '+shlex.join(['env',*(k+'='+v for k,v in env(w).items()),w['python'],*args])
 
-def call(w,args,*,timeout=120):
+class WorkerUnavailable(ConnectionError):
+    """A transport failure; the scientific job may still be running."""
+
+
+def call(w,args,*,timeout=45):
     cmd=command(w,args)
-    cp=subprocess.run(['bash','-c',cmd] if w.get('local') else SSH+['xwan0900@'+w['host'],cmd],text=True,capture_output=True,timeout=timeout)
-    if cp.returncode:raise RuntimeError(f'{w["name"]}: {cp.stderr[-2000:]} {cp.stdout[-2000:]}')
-    # Scientific commands may print progress first; their last line is JSON.
+    try:
+        cp=subprocess.run(['bash','-c',cmd] if w.get('local') else SSH+['xwan0900@'+w['host'],cmd],text=True,capture_output=True,timeout=timeout)
+    except subprocess.TimeoutExpired as exc:
+        raise WorkerUnavailable(f'{w["name"]}: RPC timed out') from exc
+    if cp.returncode:
+        error=f'{w["name"]}: {cp.stderr[-2000:]} {cp.stdout[-2000:]}'
+        if cp.returncode==255:raise WorkerUnavailable(error)
+        raise RuntimeError(error)
     return json.loads(cp.stdout.strip().splitlines()[-1])
 
 def job(w,action,job_root=None,spec=None):
@@ -52,7 +62,8 @@ def launch(w,action,k,epoch=None):
     args=[w['python'],'-u','scripts/run_simplex_k_ablation.py',action,'--k',str(k)]
     if epoch:args+=['--epoch',str(epoch)]
     spec={'project':w['project'],'command':args,'env':env(w),'job_root':w['scratch']+'/jobs/'+name}
-    job(w,'launch',spec=spec)
+    result=job(w,'launch',spec=spec)
+    if result['state'] in ('failed','lost','missing'):raise RuntimeError(f'Existing job is not runnable: {result}')
     return {'root':spec['job_root'],'action':action,'k':k,'epoch':epoch}
 
 def bundle_queue(p):
@@ -86,7 +97,7 @@ def pull(w,relative,destination):
     if w.get('local'):
         if Path(source).resolve()!=destination.resolve():
             subprocess.run(['rsync','-a','--checksum',source,str(destination)],check=True)
-    else:subprocess.run(['rsync','-a','--checksum','-e',shlex.join(TRANSFER_SSH),'xwan0900@'+w['host']+':'+source,str(destination)],check=True)
+    else:transfer(['rsync','-a','--checksum','-e',shlex.join(TRANSFER_SSH),'xwan0900@'+w['host']+':'+source,str(destination)])
 
 def push_file(w,source,relative):
     target=w['run_root']+'/'+relative
@@ -94,8 +105,27 @@ def push_file(w,source,relative):
     call(w,['scripts/ssl_campaign_readiness.py','--mkdir',str(Path(target).parent)])
     temp=target+'.transfer'
     destination=temp if w.get('local') else 'xwan0900@'+w['host']+':'+temp
-    subprocess.run(['rsync','-a','--checksum','-e',shlex.join(TRANSFER_SSH),str(source),destination],check=True)
+    transfer(['rsync','-a','--checksum','-e',shlex.join(TRANSFER_SSH),str(source),destination])
     call(w,['scripts/ssl_campaign_readiness.py','--install-checkpoint',temp,'--destination',target,'--sha256',digest(Path(source))])
+
+def transfer(args,*,missing_ok=False):
+    try:cp=subprocess.run(args,capture_output=True,text=True,timeout=180)
+    except subprocess.TimeoutExpired as exc:raise WorkerUnavailable('Transfer timed out') from exc
+    if cp.returncode:
+        if missing_ok and cp.returncode==23 and 'No such file or directory' in cp.stderr:return
+        if cp.returncode in (10,12,30,35,255):raise WorkerUnavailable(cp.stderr[-2000:])
+        raise RuntimeError(cp.stderr[-2000:])
+
+
+def backup_partial(w,k,master):
+    # Keep completed per-dataset results and TEST attempt markers even if a
+    # later dataset fails. Checkpoint transfers use separate identity checks.
+    for task in ('downstream_datasets','image_text_retrieval'):
+        rel=f'k{k}/{task}/';source=w['run_root']+'/'+rel;target=master/rel
+        if w.get('local') and Path(source).resolve()==target.resolve():continue
+        target.mkdir(parents=True,exist_ok=True)
+        if not w.get('local'):source='xwan0900@'+w['host']+':'+source
+        transfer(['rsync','-a','--exclude=*.tmp','-e',shlex.join(TRANSFER_SSH),source,str(target)+'/'],missing_ok=True)
 
 def collect(w,k,e,master,p):
     for task,ds in [('downstream_datasets',p['classification_datasets']),('image_text_retrieval',p['retrieval_datasets'])]:
@@ -137,45 +167,91 @@ def start(m,p,resume=False):
         if not resume:
             with (master/'campaign_started.json').open('x') as f:json.dump({'started_at':time.time(),'plan':p},f,indent=2)
         workers=m['workers'];running={};pretrain={w['pretrain_k']:w for w in workers.values() if w.get('pretrain_k')}
-        completed=[tuple(x) for x in old.get('completed_bundles',[])];available=set();backed=set();pretrain_finished=set(old.get('pretraining_finished',[]))
+        # Recovery can move the one lost run to an idle faster worker while
+        # preserving the original completed runs and immutable checkpoints.
+        for k,name in m.get('pretrain_sources',{}).items():
+            if int(k) not in p['components'] or name not in workers:raise ValueError('Invalid recovery source')
+            pretrain[int(k)]=workers[name]
+        saved=old.get('completed_bundle_keys',old.get('completed_bundles',[]))
+        completed=[tuple(x) for x in saved] if isinstance(saved,list) else []
+        available=set();backed=set();pretrain_finished=set(old.get('pretraining_finished',[]))
         if resume:running=dict(old['running'])
+        failures={};retry_after={};job_errors={}
+        def defer(name,error):
+            count=failures.get(name,{}).get('attempts',0)+1
+            retry_after[name]=time.time()+min(300,15*2**min(count-1,5))
+            failures[name]={'attempts':count,'error':str(error),'retry_at':retry_after[name]}
+        def online(name):return time.time()>=retry_after.get(name,0) and name not in job_errors
+        def journal(state='running',**extra):
+            atomic({'state':state,'pretraining_finished':sorted(pretrain_finished),
+                'checkpoint_bundles_backed_up':len(backed),'completed_bundles':len(completed),
+                'completed_bundle_keys':[list(x) for x in completed],'completed_evaluations':18*len(completed),
+                'total_evaluations':216,'running':running,'connection_errors':failures,'job_errors':job_errors,
+                'updated_at':time.time(),**extra},master/'status.json')
         try:
             for name,w in workers.items():
-                if w.get('pretrain_k') and not resume:running[name]=launch(w,'pretrain',w['pretrain_k'])
+                if w.get('pretrain_k') and not resume:
+                    running[name]=launch(w,'pretrain',w['pretrain_k']);journal()
             while len(completed)!=12 or len(pretrain_finished)!=3:
                 for name,j in list(running.items()):
-                    w=workers[name];s=job(w,'status',j['root'])
-                    if s['state'] in ('failed','lost','missing'):raise RuntimeError(f'{name} {j}: {s}')
-                    if s['state']=='complete':
-                        if j['action']=='pretrain':
-                            k=j['k'];summary=call(w,['scripts/ssl_campaign_readiness.py','--json-file',w['run_root']+f'/k{k}/pretrain_full/run_summary.json'])
-                            if summary['epochs_completed']!=250 or summary['saved_checkpoint_epochs']!=[100,150,200,250]:raise RuntimeError('Wrong pretraining budget')
-                            for f in ['run_summary.json','resolved_config.json','pretrain_metrics.csv']:pull(w,f'k{k}/pretrain_full/{f}',master/f'k{k}/pretrain_full/{f}')
-                            pretrain_finished.add(k)
-                        else:
-                            collect(w,j['k'],j['epoch'],master,p);completed.append((j['k'],j['epoch']))
-                        del running[name]
+                    if not online(name) or j.get('dispatch_pending'):continue
+                    w=workers[name]
+                    try:
+                        status=job(w,'status',j['root'])
+                        if j['action']=='downstream':backup_partial(w,j['k'],master)
+                        if status['state'] in ('failed','lost','missing'):
+                            job_errors[name]={'job':j,'status':status};continue
+                        if status['state']=='complete':
+                            if j['action']=='pretrain':
+                                k=j['k'];summary=call(w,['scripts/ssl_campaign_readiness.py','--json-file',w['run_root']+f'/k{k}/pretrain_full/run_summary.json'])
+                                if summary['epochs_completed']!=250 or summary['saved_checkpoint_epochs']!=[100,150,200,250]:raise RuntimeError('Wrong pretraining budget')
+                                for f in ['run_summary.json','resolved_config.json','pretrain_metrics.csv']:pull(w,f'k{k}/pretrain_full/{f}',master/f'k{k}/pretrain_full/{f}')
+                                pretrain_finished.add(k)
+                            else:
+                                collect(w,j['k'],j['epoch'],master,p)
+                                if (j['k'],j['epoch']) not in completed:completed.append((j['k'],j['epoch']))
+                            del running[name];journal()
+                        failures.pop(name,None);retry_after.pop(name,None)
+                    except WorkerUnavailable as exc:defer(name,exc)
                 for k,e in bundle_queue(p):
                     if (k,e) in backed:continue
-                    source=pretrain[k];rel=f'k{k}/pretrain_full/checkpoints/epoch_{e}.pt'
-                    info=call(source,['scripts/ssl_campaign_job.py','inspect','--file',source['run_root']+'/'+rel])
-                    if info['exists']:
-                        local=master/rel;pull(source,rel,local)
-                        if digest(local)!=info['sha256']:raise RuntimeError('Checkpoint transfer mismatch')
-                        backed.add((k,e));available.add((k,e))
+                    source=pretrain[k];rel=f'k{k}/pretrain_full/checkpoints/epoch_{e}.pt';local=master/rel
+                    # Previously verified durable copies remain usable while their source is offline.
+                    receipt=master/'checkpoint_receipts'/f'k{k}_e{e}.json'
+                    if local.exists() and receipt.exists():
+                        if digest(local)!=json.loads(receipt.read_text())['sha256']:raise RuntimeError('Durable checkpoint changed')
+                        backed.add((k,e));available.add((k,e));continue
+                    if not online(source['name']):continue
+                    try:
+                        info=call(source,['scripts/ssl_campaign_job.py','inspect','--file',source['run_root']+'/'+rel])
+                        if info['exists']:
+                            pull(source,rel,local)
+                            if digest(local)!=info['sha256']:raise RuntimeError('Checkpoint transfer mismatch')
+                            receipt.parent.mkdir(parents=True,exist_ok=True);atomic(info,receipt)
+                            backed.add((k,e));available.add((k,e))
+                    except WorkerUnavailable as exc:defer(source['name'],exc)
                 for name,w in workers.items():
-                    if name in running:continue
+                    if name in running or not online(name):continue
                     tasks=[x for x in bundle_queue(p) if x in available and x not in completed and not any((j['k'],j['epoch'])==x for j in running.values() if j['action']=='downstream')]
                     if tasks:
-                        k,e=tasks[0];rel=f'k{k}/pretrain_full/checkpoints/epoch_{e}.pt';push_file(w,master/rel,rel)
-                        running[name]=launch(w,'downstream',k,e)
-                atomic({'state':'running','pretraining_finished':sorted(pretrain_finished),'checkpoint_bundles_backed_up':len(backed),'completed_bundles':len(completed),'completed_evaluations':18*len(completed),'total_evaluations':216,'running':running,'updated_at':time.time()},master/'status.json')
-                time.sleep(30)
-            verify_complete(master,p);atomic({'state':'complete','ssl_runs':3,'checkpoint_bundles':12,'evaluations':216,'classification':180,'retrieval':36,'finished_at':time.time()},master/'status.json')
-        except Exception as e:
-            atomic({'state':'failed','error':str(e),'running':running,'completed_bundles':completed,'pretraining_finished':sorted(pretrain_finished),'updated_at':time.time()},master/'status.json')
-            # Detached jobs already running are preserved; no automatic reruns.
-            raise
+                        k,e=tasks[0];rel=f'k{k}/pretrain_full/checkpoints/epoch_{e}.pt'
+                        try:
+                            push_file(w,master/rel,rel)
+                            # Journal intent before dispatch. After a lost SSH acknowledgement,
+                            # the deterministic, idempotent job root is adopted on the next poll.
+                            root=w['scratch']+f'/jobs/downstream_k{k}_e{e}'
+                            running[name]={'root':root,'action':'downstream','k':k,'epoch':e,'dispatch_pending':True};journal()
+                            running[name]=launch(w,'downstream',k,e);journal()
+                        except WorkerUnavailable as exc:defer(name,exc)
+                # Retry only transport/dispatch; failed scientific jobs require diagnosis.
+                for name,j in list(running.items()):
+                    if j.get('dispatch_pending') and online(name):
+                        try:running[name]=launch(workers[name],j['action'],j['k'],j['epoch'])
+                        except WorkerUnavailable as exc:defer(name,exc)
+                journal();time.sleep(30)
+            verify_complete(master,p);journal('complete',ssl_runs=3,checkpoint_bundles=12,evaluations=216,classification=180,retrieval=36,finished_at=time.time())
+        except Exception as exc:
+            journal('failed',error=str(exc));raise
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('action',choices=['prepare','check','launch','launch-resume','resume','start','status']);parser.add_argument('--machines',type=Path,required=True);a=parser.parse_args();m,p=settings(a.machines)
