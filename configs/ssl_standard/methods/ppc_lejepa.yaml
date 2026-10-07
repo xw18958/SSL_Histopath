@@ -1,0 +1,60 @@
+method:
+  name: ppc_lejepa
+  views:
+    global_count: 2
+    local_count: 6
+    global_size: 256
+    local_size: 96
+    global_scale: [0.3, 1.0]
+    local_scale: [0.05, 0.3]
+  augmentations:
+    horizontal_flip_p: 0.5
+    color_jitter_p: 0.8
+    grayscale_p: 0.2
+    gaussian_blur_p: 0.5
+    solarize_p: 0.2
+  projector: {dim: 512, hidden_dim: 2048}
+  objective:
+    sigreg_lambda: 0.02
+    sigreg_slices: 1024
+    sigreg_points: 17
+    sigreg_t_max: 3.0
+  projector_plasticity:
+    lambda: 0.05
+    epsilon: 1.0e-8
+    lambda_candidates: [0.01, 0.05, 0.10]
+    standard_lejepa_lambda: 0.0
+    reference_projector: frozen_initial_deepcopy
+    encoder_features: stop_gradient
+  optimizer:
+    name: AdamW
+    peak_lr: 0.0005
+    final_lr_ratio: 0.001
+    warmup_fraction: 0.10
+    weight_decay: 0.05
+  gradient_clip_norm: null
+  source_metadata:
+    implementation: standard LeJEPA plus normalized frozen-initial-projector functional drift regularization
+    baseline_method: lejepa
+    baseline_implementation: galilai-group/lejepa and released stable-pretraining recipe
+    baseline_sigreg_target: standard_normal
+    sigreg_target: standard_normal
+    ppc_reference: deepcopy of initial random trainable projector, permanently frozen
+    ppc_encoder_gradient: stopped
+    ppc_default_lambda_for_smoke: 0.05
+    ppc_lambda_candidates: [0.01, 0.05, 0.10]
+    ppc_epsilon: 1.0e-8
+    source_peak_lr: 0.0005
+    source_weight_decay_vit: 0.05
+    source_precision: bf16
+    source_schedule: linear warmup plus cosine annealing over 250 epochs
+    source_views: 2_global_plus_6_local
+    source_global_scale: [0.3, 1.0]
+    source_local_scale: [0.05, 0.3]
+    source_sigreg_lambda_released: 0.02
+    deliberate_adaptations:
+      - global resolution 256 instead of 224 for the shared backbone
+      - local resolution 96 instead of README 98 for an exact 3x3 patch-32 grid
+      - mean final patch tokens for the shared encoder readout
+      - warmup fraction 0.10 because README gives warmup form but no universal length
+      - add only the PPC functional projector-drift penalty; no projector reinitialization or lifecycle reset

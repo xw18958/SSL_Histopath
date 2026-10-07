@@ -118,4 +118,4 @@ def test_standard_runner_preserves_completed_corrected_retrieval(tmp_path, monke
         raise AssertionError('Completed corrected experiments must not be rerun')
     monkeypatch.setattr(standard, 'run_image_text_retrieval', forbidden)
     result = standard._run_image_text_retrieval_checkpoints(c, tmp_path, 'arch')
-    assert len(result['results']) == 5
+    assert len(result['results']) == 4

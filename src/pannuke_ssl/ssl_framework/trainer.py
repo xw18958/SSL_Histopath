@@ -9,7 +9,9 @@ from .early import EarlyStopper
 
 def save_checkpoint(path:Path,method,c:dict[str,Any],epoch:int,selection:dict[str,Any]):
     path.parent.mkdir(parents=True,exist_ok=True); tmp=path.with_suffix('.tmp')
-    torch.save({'framework':'ssl_standard_v1','method_name':c['method']['name'],'epoch':int(epoch),'method_state':{k:v.detach().cpu() for k,v in method.state_dict().items()},'encoder_sha256':module_sha(method.encoder),'config':c,'selection':selection},tmp); tmp.replace(path)
+    metadata_hook=getattr(method,'checkpoint_metadata',None)
+    method_metadata=metadata_hook() if callable(metadata_hook) else {}
+    torch.save({'framework':'ssl_standard_v1','method_name':c['method']['name'],'epoch':int(epoch),'method_state':{k:v.detach().cpu() for k,v in method.state_dict().items()},'encoder_sha256':module_sha(method.encoder),'config':c,'selection':selection,'method_metadata':method_metadata},tmp); tmp.replace(path)
 
 def load_checkpoint(method,path:Path,device):
     x=torch.load(path,map_location=device,weights_only=False)
@@ -167,6 +169,7 @@ def train_ssl(
                 {**selection, "fixed_checkpoint": True},
             )
 
+        stop_now = False
         if validate and epoch % val_interval == 0:
             assert validator is not None
             metrics = validator.evaluate(method.encoder, epoch)
@@ -176,7 +179,10 @@ def train_ssl(
                 save_checkpoint(best, method, c, epoch, {**selection, "value": u["best_score"], "best_epoch": u["best_epoch"]})
             if u["should_stop"]:
                 reason = "validation_plateau"
-                break
+                stop_now = True
+
+        if stop_now:
+            break
 
     if validate and not best.exists():
         save_checkpoint(best, method, c, int(history[-1]["epoch"]), {
@@ -205,5 +211,8 @@ def train_ssl(
         "source_metadata": c["method"]["source_metadata"],
         "seconds": time.perf_counter() - started,
     }
+    metadata_hook = getattr(method, "training_metadata", None)
+    if callable(metadata_hook):
+        summary.update(metadata_hook())
     atomic_json_dump(summary, out / "run_summary.json")
     return summary

@@ -80,7 +80,7 @@ def test_standard_retrieval_runs_all_saved_ssl_checkpoints(tmp_path, monkeypatch
         calls.append((Path(checkpoint),Path(out),dataset)); return {"dataset":dataset}
     monkeypatch.setattr(standard,"run_image_text_retrieval",fake)
     result=standard._run_image_text_retrieval_checkpoints(config,run_root,"arch")
-    assert result["checkpoint_epochs"] == [100,150,200,250,300]
-    assert [x[0].name for x in calls] == [f"epoch_{e}.pt" for e in (100,150,200,250,300)]
-    assert [x[1] for x in calls] == [run_root/"image_text_retrieval"/"arch"/f"epoch_{e}" for e in (100,150,200,250,300)]
+    assert result["checkpoint_epochs"] == [100,150,200,250]
+    assert [x[0].name for x in calls] == [f"epoch_{e}.pt" for e in (100,150,200,250)]
+    assert [x[1] for x in calls] == [run_root/"image_text_retrieval"/"arch"/f"epoch_{e}" for e in (100,150,200,250)]
     assert all(x[2] == "arch" for x in calls)

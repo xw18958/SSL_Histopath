@@ -81,7 +81,24 @@
         },
         "evaluations": 216,
         "test_decoded": false
-      }
+      },
+      "configuration_update": {
+        "checkpoint_epochs": [
+          100,
+          150,
+          200,
+          250
+        ],
+        "existing_checkpoints_removed": false,
+        "gpu_smokes_repeated": false,
+        "note": "Existing functional GPU/downstream smoke evidence retained; epoch controls verified by focused CPU tests.",
+        "previous_source_sha256": "f0a0eefa9f8d52283d0e5452f7203b44f8728c518b27ddb8b0e4332b2f2cf5e5",
+        "schedule_epochs": 250,
+        "stop_epoch": 250,
+        "tests": "250_setting_tests.log",
+        "training_started": false
+      },
+      "updated_source_sha256": "e5c400289c0de5ae5aed27fef0255a9e9a21f3af3fb392a5f0b75ebe1fd3bed1"
     },
     "gpu1-358-g0": {
       "worker": "gpu1-358-g0",
@@ -145,7 +162,24 @@
         },
         "evaluations": 216,
         "test_decoded": false
-      }
+      },
+      "configuration_update": {
+        "checkpoint_epochs": [
+          100,
+          150,
+          200,
+          250
+        ],
+        "existing_checkpoints_removed": false,
+        "gpu_smokes_repeated": false,
+        "note": "Existing functional GPU/downstream smoke evidence retained; epoch controls verified by focused CPU tests.",
+        "previous_source_sha256": "f0a0eefa9f8d52283d0e5452f7203b44f8728c518b27ddb8b0e4332b2f2cf5e5",
+        "schedule_epochs": 250,
+        "stop_epoch": 250,
+        "tests": "250_setting_tests.log",
+        "training_started": false
+      },
+      "updated_source_sha256": "e5c400289c0de5ae5aed27fef0255a9e9a21f3af3fb392a5f0b75ebe1fd3bed1"
     },
     "gpu2-358-g1": {
       "worker": "gpu2-358-g1",
@@ -209,7 +243,24 @@
         },
         "evaluations": 216,
         "test_decoded": false
-      }
+      },
+      "configuration_update": {
+        "checkpoint_epochs": [
+          100,
+          150,
+          200,
+          250
+        ],
+        "existing_checkpoints_removed": false,
+        "gpu_smokes_repeated": false,
+        "note": "Existing functional GPU/downstream smoke evidence retained; epoch controls verified by focused CPU tests.",
+        "previous_source_sha256": "f0a0eefa9f8d52283d0e5452f7203b44f8728c518b27ddb8b0e4332b2f2cf5e5",
+        "schedule_epochs": 250,
+        "stop_epoch": 250,
+        "tests": "250_setting_tests.log",
+        "training_started": false
+      },
+      "updated_source_sha256": "e5c400289c0de5ae5aed27fef0255a9e9a21f3af3fb392a5f0b75ebe1fd3bed1"
     },
     "gpu2-358-g0": {
       "worker": "gpu2-358-g0",
@@ -377,8 +428,39 @@
         },
         "evaluations": 216,
         "test_decoded": false
-      }
+      },
+      "configuration_update": {
+        "checkpoint_epochs": [
+          100,
+          150,
+          200,
+          250
+        ],
+        "existing_checkpoints_removed": false,
+        "gpu_smokes_repeated": false,
+        "note": "Existing functional GPU/downstream smoke evidence retained; epoch controls verified by focused CPU tests.",
+        "previous_source_sha256": "f0a0eefa9f8d52283d0e5452f7203b44f8728c518b27ddb8b0e4332b2f2cf5e5",
+        "schedule_epochs": 250,
+        "stop_epoch": 250,
+        "tests": "250_setting_tests.log",
+        "training_started": false
+      },
+      "updated_source_sha256": "e5c400289c0de5ae5aed27fef0255a9e9a21f3af3fb392a5f0b75ebe1fd3bed1"
     }
   },
-  "test_decoded_in_smokes": false
+  "test_decoded_in_smokes": false,
+  "configuration_update": {
+    "stop_epoch": 250,
+    "schedule_epochs": 250,
+    "future_checkpoint_epochs": [
+      100,
+      150,
+      200,
+      250
+    ],
+    "existing_checkpoints_removed": false,
+    "focused_cpu_tests_passed": 17,
+    "training_started": false,
+    "note": "Epoch controls changed only. Previous GPU/downstream functional smoke evidence retained; no model training was run for this update."
+  }
 }

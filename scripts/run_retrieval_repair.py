@@ -15,7 +15,7 @@ def main():
     parser.add_argument("phase", choices=("smoke", "train-val", "test"))
     parser.add_argument("--source-run", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
-    parser.add_argument("--epochs", default="100,150,200,250,300")
+    parser.add_argument("--epochs", default="100,150,200,250")
     parser.add_argument("--datasets", default="arch,ipath")
     args = parser.parse_args()
     require_runtime_environment()

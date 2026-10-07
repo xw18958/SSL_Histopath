@@ -8,6 +8,8 @@ def build_method(config: dict, device: torch.device):
         from .ijepa_standard import StandardIJEPA; return StandardIJEPA(config,device)
     if name=="lejepa":
         from .lejepa_standard import StandardLeJEPA; return StandardLeJEPA(config,device)
+    if name=="ppc_lejepa":
+        from .ppc_lejepa_standard import StandardPPCLeJEPA; return StandardPPCLeJEPA(config,device)
     if name=="simplex_sigreg_lejepa":
         from .simplex_sigreg_lejepa_standard import StandardSimplexSIGRegLeJEPA; return StandardSimplexSIGRegLeJEPA(config,device)
     if name=="dinov3":

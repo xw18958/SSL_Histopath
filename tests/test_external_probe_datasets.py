@@ -153,13 +153,13 @@ def test_standard_downstream_runs_all_saved_ssl_checkpoints(tmp_path, monkeypatc
     monkeypatch.setattr(standard, "run_downstream", fake_run_downstream)
     result = standard._run_downstream_checkpoints(config, root, "crc_val_he_7k")
 
-    assert result["checkpoint_epochs"] == [100, 150, 200, 250, 300]
+    assert result["checkpoint_epochs"] == [100, 150, 200, 250]
     assert [call[0].name for call in calls] == [
-        "epoch_100.pt", "epoch_150.pt", "epoch_200.pt", "epoch_250.pt", "epoch_300.pt"
+        "epoch_100.pt", "epoch_150.pt", "epoch_200.pt", "epoch_250.pt"
     ]
     assert [call[1] for call in calls] == [
         root / "downstream_datasets" / "crc_val_he_7k" / f"epoch_{epoch}"
-        for epoch in (100, 150, 200, 250, 300)
+        for epoch in (100, 150, 200, 250)
     ]
     assert all(call[2] == "crc_val_he_7k" for call in calls)
 

@@ -35,6 +35,8 @@ def default_run_id(c: dict[str, Any]) -> str:
     if method == "simplex_sigreg_lejepa":
         k = int(c["method"]["objective"]["simplex_components"])
         return f"ssl-simplex-k{k}-s{seed}"
+    if method == "ppc_lejepa":
+        return f"ssl-ppc-lejepa-s{seed}"
     return f"ssl-{method.replace('_', '-')}-s{seed}"
 
 
@@ -76,6 +78,8 @@ def build_run_metadata(c: dict[str, Any], *, run_id: str, action: str, dataset: 
         "seed": int(c["seed"]),
         "simplex_components": c["method"].get("objective", {}).get("simplex_components"),
         "simplex_sigma": c["method"].get("objective", {}).get("simplex_sigma"),
+        "ppc_lambda": c["method"].get("projector_plasticity", {}).get("lambda"),
+        "ppc_epsilon": c["method"].get("projector_plasticity", {}).get("epsilon"),
         "peak_lr": float(c["method"]["optimizer"]["peak_lr"]),
         "checkpoint_epochs": [int(x) for x in c["training"]["checkpoint_epochs"]],
         "manifest_hashes": _manifest_hash_catalog(c),
@@ -96,7 +100,7 @@ def write_run_metadata(c: dict[str, Any], root: Path, *, run_id: str, action: st
         existing = json.loads(path.read_text(encoding="utf-8"))
         immutable = (
             "run_id", "method", "seed", "simplex_components", "simplex_sigma",
-            "peak_lr", "checkpoint_epochs", "manifest_hashes",
+            "ppc_lambda", "ppc_epsilon", "peak_lr", "checkpoint_epochs", "manifest_hashes",
         )
         mismatched = [key for key in immutable if existing.get(key) != metadata.get(key)]
         existing_commit = existing.get("runtime", {}).get("git_commit")
