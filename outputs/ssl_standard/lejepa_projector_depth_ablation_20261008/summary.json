@@ -1,0 +1,303 @@
+{
+  "averaging": "unweighted mean over 15 datasets; percentage-point delta",
+  "datasets": [
+    "bach",
+    "breakhis_8subtype",
+    "crc_val_he_7k",
+    "ebhi_seg_6class",
+    "endometrial_4class",
+    "gashissdb_binary",
+    "kather_2016",
+    "lc25000_5class",
+    "mhist",
+    "oral_oscc",
+    "osteosarcoma_3class",
+    "pcam_binary",
+    "renalcell_6class",
+    "sicapv2_4class",
+    "wsss4luad_3class"
+  ],
+  "epochs": [
+    100,
+    150,
+    200,
+    250
+  ],
+  "experiment": "controlled LeJEPA projector-depth ablation",
+  "metric": "test.macro_f1",
+  "n_test_metric_files_verified": 180,
+  "overall": {
+    "baseline": {
+      "mean_macro_f1": 0.7400838949690312,
+      "n_dataset_checkpoint_pairs": 60
+    },
+    "deep": {
+      "mean_macro_f1": 0.7269274525945237,
+      "n_dataset_checkpoint_pairs": 60
+    },
+    "shallow": {
+      "mean_macro_f1": 0.7334479586577376,
+      "n_dataset_checkpoint_pairs": 60
+    }
+  },
+  "per_checkpoint": {
+    "100": {
+      "dataset_best_architecture": {
+        "bach": "deep",
+        "breakhis_8subtype": "shallow",
+        "crc_val_he_7k": "deep",
+        "ebhi_seg_6class": "shallow",
+        "endometrial_4class": "baseline",
+        "gashissdb_binary": "deep",
+        "kather_2016": "deep",
+        "lc25000_5class": "deep",
+        "mhist": "baseline",
+        "oral_oscc": "deep",
+        "osteosarcoma_3class": "shallow",
+        "pcam_binary": "shallow",
+        "renalcell_6class": "deep",
+        "sicapv2_4class": "baseline",
+        "wsss4luad_3class": "deep"
+      },
+      "datasets_won_vs_baseline": {
+        "deep": 9,
+        "shallow": 7
+      },
+      "difference_vs_baseline_pp": {
+        "deep": -0.017936518895478315,
+        "shallow": 1.0940728683760614
+      },
+      "means": {
+        "baseline": {
+          "accuracy": 0.742524102095728,
+          "balanced_accuracy": 0.7204296174162158,
+          "macro_f1": 0.7158674365509593,
+          "weighted_f1": 0.741530301973137
+        },
+        "deep": {
+          "accuracy": 0.7399921668176876,
+          "balanced_accuracy": 0.7197189965471803,
+          "macro_f1": 0.7156880713620045,
+          "weighted_f1": 0.738720899553461
+        },
+        "shallow": {
+          "accuracy": 0.7471030770570021,
+          "balanced_accuracy": 0.7392681926074628,
+          "macro_f1": 0.7268081652347199,
+          "weighted_f1": 0.7459945645677678
+        }
+      }
+    },
+    "150": {
+      "dataset_best_architecture": {
+        "bach": "deep",
+        "breakhis_8subtype": "baseline",
+        "crc_val_he_7k": "deep",
+        "ebhi_seg_6class": "baseline",
+        "endometrial_4class": "deep",
+        "gashissdb_binary": "baseline",
+        "kather_2016": "shallow",
+        "lc25000_5class": "baseline",
+        "mhist": "shallow",
+        "oral_oscc": "deep",
+        "osteosarcoma_3class": "shallow",
+        "pcam_binary": "baseline",
+        "renalcell_6class": "deep",
+        "sicapv2_4class": "baseline",
+        "wsss4luad_3class": "baseline"
+      },
+      "datasets_won_vs_baseline": {
+        "deep": 5,
+        "shallow": 4
+      },
+      "difference_vs_baseline_pp": {
+        "deep": -2.8685625175781104,
+        "shallow": -2.186344362709014
+      },
+      "means": {
+        "baseline": {
+          "accuracy": 0.7660982775345333,
+          "balanced_accuracy": 0.7495666287570837,
+          "macro_f1": 0.746323740224992,
+          "weighted_f1": 0.7650741974266572
+        },
+        "deep": {
+          "accuracy": 0.7426818925148504,
+          "balanced_accuracy": 0.7348002818873723,
+          "macro_f1": 0.7176381150492109,
+          "weighted_f1": 0.7383834740161253
+        },
+        "shallow": {
+          "accuracy": 0.7467982231961988,
+          "balanced_accuracy": 0.7319424841147292,
+          "macro_f1": 0.7244602965979019,
+          "weighted_f1": 0.7472538278971641
+        }
+      }
+    },
+    "200": {
+      "dataset_best_architecture": {
+        "bach": "baseline",
+        "breakhis_8subtype": "baseline",
+        "crc_val_he_7k": "deep",
+        "ebhi_seg_6class": "baseline",
+        "endometrial_4class": "deep",
+        "gashissdb_binary": "baseline",
+        "kather_2016": "baseline",
+        "lc25000_5class": "baseline",
+        "mhist": "shallow",
+        "oral_oscc": "shallow",
+        "osteosarcoma_3class": "shallow",
+        "pcam_binary": "baseline",
+        "renalcell_6class": "shallow",
+        "sicapv2_4class": "shallow",
+        "wsss4luad_3class": "shallow"
+      },
+      "datasets_won_vs_baseline": {
+        "deep": 3,
+        "shallow": 7
+      },
+      "difference_vs_baseline_pp": {
+        "deep": -1.9902312218802343,
+        "shallow": -0.21528025987538335
+      },
+      "means": {
+        "baseline": {
+          "accuracy": 0.769476172018059,
+          "balanced_accuracy": 0.7624430606542724,
+          "macro_f1": 0.7470393633547946,
+          "weighted_f1": 0.7706606286471954
+        },
+        "deep": {
+          "accuracy": 0.7518688252481328,
+          "balanced_accuracy": 0.7453926641582684,
+          "macro_f1": 0.7271370511359923,
+          "weighted_f1": 0.74811590522955
+        },
+        "shallow": {
+          "accuracy": 0.7703777104959012,
+          "balanced_accuracy": 0.7585444844858859,
+          "macro_f1": 0.7448865607560408,
+          "weighted_f1": 0.7704235614857322
+        }
+      }
+    },
+    "250": {
+      "dataset_best_architecture": {
+        "bach": "baseline",
+        "breakhis_8subtype": "baseline",
+        "crc_val_he_7k": "deep",
+        "ebhi_seg_6class": "deep",
+        "endometrial_4class": "shallow",
+        "gashissdb_binary": "deep",
+        "kather_2016": "baseline",
+        "lc25000_5class": "baseline",
+        "mhist": "deep",
+        "oral_oscc": "baseline",
+        "osteosarcoma_3class": "shallow",
+        "pcam_binary": "baseline",
+        "renalcell_6class": "shallow",
+        "sicapv2_4class": "shallow",
+        "wsss4luad_3class": "deep"
+      },
+      "datasets_won_vs_baseline": {
+        "deep": 7,
+        "shallow": 5
+      },
+      "difference_vs_baseline_pp": {
+        "deep": -0.3858466914491543,
+        "shallow": -1.3468227703091196
+      },
+      "means": {
+        "baseline": {
+          "accuracy": 0.7770418904893004,
+          "balanced_accuracy": 0.756339543618198,
+          "macro_f1": 0.7511050397453789,
+          "weighted_f1": 0.7770174596574344
+        },
+        "deep": {
+          "accuracy": 0.7697344674754589,
+          "balanced_accuracy": 0.7628965397766301,
+          "macro_f1": 0.7472465728308874,
+          "weighted_f1": 0.7676355518062157
+        },
+        "shallow": {
+          "accuracy": 0.758695964742999,
+          "balanced_accuracy": 0.7427682724533045,
+          "macro_f1": 0.7376368120422877,
+          "weighted_f1": 0.7609580547019194
+        }
+      }
+    }
+  },
+  "projector_variants": {
+    "baseline": {
+      "batch_size": 128,
+      "checkpoint_epochs": [
+        100,
+        150,
+        200,
+        250,
+        300
+      ],
+      "max_epochs": 300,
+      "projector_dims": [
+        768,
+        512,
+        2048,
+        2048,
+        512
+      ],
+      "run_id": "ssl-lejepa-s20260903",
+      "schedule_epochs": 300,
+      "seed": 20260903,
+      "sigreg_lambda": 0.02,
+      "source_commit": "f1147e2dc931da7488753888d2565943e8753841"
+    },
+    "deep": {
+      "batch_size": 128,
+      "checkpoint_epochs": [
+        100,
+        150,
+        200,
+        250
+      ],
+      "max_epochs": 250,
+      "projector_dims": [
+        768,
+        512,
+        2048,
+        2048,
+        2048,
+        512
+      ],
+      "run_id": "ssl-lejepa-proj-deep-s20260903",
+      "schedule_epochs": 300,
+      "seed": 20260903,
+      "sigreg_lambda": 0.02,
+      "source_commit": "0e477e58c31dadce9352ddebc62e8960bcf73d20"
+    },
+    "shallow": {
+      "batch_size": 128,
+      "checkpoint_epochs": [
+        100,
+        150,
+        200,
+        250
+      ],
+      "max_epochs": 250,
+      "projector_dims": [
+        768,
+        512,
+        2048,
+        512
+      ],
+      "run_id": "ssl-lejepa-proj-shallow-s20260903",
+      "schedule_epochs": 300,
+      "seed": 20260903,
+      "sigreg_lambda": 0.02,
+      "source_commit": "0e477e58c31dadce9352ddebc62e8960bcf73d20"
+    }
+  },
+  "seed": 20260903
+}
