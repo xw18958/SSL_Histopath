@@ -9,6 +9,24 @@ experiments:
     role: primary
     seed: 20260903
     overrides: {}
+  ssl-lejepa-proj-shallow-s20260903:
+    method: lejepa
+    role: projector_depth_controlled_ablation
+    seed: 20260903
+    overrides:
+      method.projector.mlp_channels: [2048, 512]
+      training.max_epochs: 250
+      training.schedule_epochs: 300
+      training.checkpoint_epochs: [100, 150, 200, 250]
+  ssl-lejepa-proj-deep-s20260903:
+    method: lejepa
+    role: projector_depth_controlled_ablation
+    seed: 20260903
+    overrides:
+      method.projector.mlp_channels: [2048, 2048, 2048, 512]
+      training.max_epochs: 250
+      training.schedule_epochs: 300
+      training.checkpoint_epochs: [100, 150, 200, 250]
   ssl-simplex-k64-s20260903:
     method: simplex_sigreg_lejepa
     role: primary

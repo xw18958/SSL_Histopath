@@ -38,11 +38,32 @@ def main() -> None:
     spec = entries[args.experiment]
     cmd = [sys.executable, str(ROOT/'scripts/run_ssl_standard.py'), args.action, '--method', spec['method'], '--run-id', args.experiment]
     overrides = dict(spec.get('overrides') or {})
+    supported_overrides = {
+        'method.objective.simplex_components',
+        'method.objective.simplex_sigma',
+        'method.projector.mlp_channels',
+        'training.max_epochs',
+        'training.schedule_epochs',
+        'training.checkpoint_epochs',
+    }
+    unknown_overrides = set(overrides) - supported_overrides
+    if unknown_overrides:
+        p.error(f"Unsupported registry overrides: {sorted(unknown_overrides)}")
     if 'method.objective.simplex_components' in overrides:
         cmd += ['--simplex-components', str(int(overrides['method.objective.simplex_components']))]
     sigma = overrides.get('method.objective.simplex_sigma')
     if sigma is not None and float(sigma) != 1.0:
         p.error('Registry violates fixed simplex sigma=1.0 protocol')
+    if 'method.projector.mlp_channels' in overrides:
+        channels = [int(x) for x in overrides['method.projector.mlp_channels']]
+        cmd += ['--projector-mlp-channels', ','.join(str(x) for x in channels)]
+    if 'training.max_epochs' in overrides:
+        cmd += ['--max-epochs', str(int(overrides['training.max_epochs']))]
+    if 'training.schedule_epochs' in overrides:
+        cmd += ['--schedule-epochs', str(int(overrides['training.schedule_epochs']))]
+    if 'training.checkpoint_epochs' in overrides:
+        epochs = [int(x) for x in overrides['training.checkpoint_epochs']]
+        cmd += ['--checkpoint-epochs', ','.join(str(x) for x in epochs)]
     if args.dataset:
         cmd += ['--dataset', args.dataset]
     if args.action.endswith('-suite'):
