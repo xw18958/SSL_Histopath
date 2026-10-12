@@ -1,0 +1,49 @@
+{
+  "ssh_user": "YOUR_USERNAME",
+  "workers": [
+    {
+      "name": "primary_gpu0",
+      "host": "primary.example.edu",
+      "gpu": 0,
+      "repo": "/path/to/repo",
+      "python": "/path/to/python",
+      "out": "/path/to/repo/outputs/patch_benchmark_v1",
+      "env": {}
+    },
+    {
+      "name": "secondary_gpu0",
+      "host": "secondary.example.edu",
+      "gpu": 0,
+      "repo": "/path/to/repo",
+      "python": "/path/to/python",
+      "out": "/path/to/output",
+      "env": {}
+    },
+    {
+      "name": "third_gpu0",
+      "host": "third.example.edu",
+      "gpu": 0,
+      "repo": "/path/to/repo",
+      "python": "/path/to/python",
+      "out": "/path/to/output",
+      "env": {
+        "SSL_DATA_ROOT": "/path/to/datasets",
+        "SSL_RUN_ROOT": "/path/to/SSL_runs",
+        "SSL_MODEL_ROOT": "/path/to/models"
+      }
+    },
+    {
+      "name": "third_gpu1",
+      "host": "third.example.edu",
+      "gpu": 1,
+      "repo": "/path/to/repo",
+      "python": "/path/to/python",
+      "out": "/path/to/output",
+      "env": {
+        "SSL_DATA_ROOT": "/path/to/datasets",
+        "SSL_RUN_ROOT": "/path/to/SSL_runs",
+        "SSL_MODEL_ROOT": "/path/to/models"
+      }
+    }
+  ]
+}

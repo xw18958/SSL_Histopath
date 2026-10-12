@@ -1,0 +1,34 @@
+{
+  "aggregate_independently_verified": true,
+  "aggregate_metric_rows": 75,
+  "all_input_identity_checked": true,
+  "all_support_selections_identical": true,
+  "baseline_completed_jobs": 150,
+  "checkpoint_300_k8_is_missing": true,
+  "dataset_count": 15,
+  "frozen_backbone_no_retraining": true,
+  "full_three_method_common_epoch_comparison": true,
+  "k8_epoch_300_status": "unavailable_not_trained_no_interpolation",
+  "lejepa_k64_epochs": [
+    100,
+    150,
+    200,
+    250,
+    300
+  ],
+  "methods": [
+    "lejepa",
+    "simplex_k64",
+    "simplex_k8"
+  ],
+  "new_k8_completed_jobs": 60,
+  "per_dataset_metric_rows": 1125,
+  "shared_epoch_three_model_results": 180,
+  "shared_epochs": [
+    100,
+    150,
+    200,
+    250
+  ],
+  "total_method_checkpoint_dataset_results": 210
+}

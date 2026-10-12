@@ -1,0 +1,32 @@
+{
+  "aggregation_recomputed": true,
+  "all_available_pairs_fairness_checked": true,
+  "checkpoints_per_method": 5,
+  "comparison_rows": 1125,
+  "completed_jobs": 150,
+  "dataset_count": 15,
+  "expected_feature_jobs": 150,
+  "final_complete": true,
+  "method_count": 2,
+  "missing": [],
+  "protocol": "patch_benchmark_v1",
+  "source_independence_warnings": {
+    "bach": "unverified",
+    "breakhis_8subtype": "overlap_detected",
+    "crc_val_he_7k": "unverified",
+    "ebhi_seg_6class": "group-disjoint-by-recorded-ID",
+    "endometrial_4class": "group-disjoint-by-recorded-ID",
+    "gashissdb_binary": "unverified",
+    "kather_2016": "unverified",
+    "lc25000_5class": "group-disjoint-by-recorded-ID",
+    "mhist": "unverified",
+    "oral_oscc": "unverified",
+    "osteosarcoma_3class": "group-disjoint-by-recorded-ID",
+    "pcam_binary": "group-disjoint-by-recorded-ID",
+    "renalcell_6class": "group-disjoint-by-recorded-ID",
+    "sicapv2_4class": "group-disjoint-by-recorded-ID",
+    "wsss4luad_3class": "group-disjoint-by-recorded-ID"
+  },
+  "split_variant": "main",
+  "support_splits_shared_across_methods": true
+}
