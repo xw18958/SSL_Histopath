@@ -1,0 +1,9 @@
+{
+  "cases": 528,
+  "metric_comparisons": 1584,
+  "exact_metric_matches": 1584,
+  "differences_gt_1e-6": 0,
+  "max_absolute_metric_difference": 0.0,
+  "first_differences": [],
+  "independent_reference": "sklearn LogisticRegression lbfgs tol=1e-10 C=1.0"
+}
