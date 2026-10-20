@@ -267,7 +267,9 @@ def main():
     if src["dataset"]=="glas":
         for label in ("testa","testb"):
             ids=[i for i,r in enumerate(split["test"]) if r["category"].lower()==label]
-            if not ids:raise ValueError("Missing GlaS official "+label+" subset")
+            if not ids:
+                if args.smoke:continue
+                raise ValueError("Missing GlaS official "+label+" subset")
             metrics[label]=evaluate(head,(test[0][ids],test[1][ids]),device)
     result={**selection,"test":metrics,"test_used_for_tuning":False}
     (out/"result.json").write_text(json.dumps(result,indent=2)+"\n")
