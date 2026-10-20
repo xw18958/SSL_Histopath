@@ -1,0 +1,22 @@
+{
+  "status": "VERIFIED",
+  "runs": 4,
+  "source_images": 165,
+  "source_split": {
+    "train": 70,
+    "val": 15,
+    "testA": 60,
+    "testB": 20
+  },
+  "source_manifest_sha256": "c944423a89cc67df0c55b003381a69b689ce52be2f421d0caabd9319de62f724",
+  "checkpoint_sha256": {
+    "simplex_k8@100": "59d3382945b755ddb8beef37c2b1f0b26e5548a3da7ff0bc5abb2e2c552915f1",
+    "lejepa@200": "a4d79662b16436688214e2471566f611ec08d1830668a538b26d1987d0e2719d",
+    "simplex_k8@200": "8297e61095a41ac210b9c328b5bd6d2410f5de5d3cdbd41e58e35d08ea05c3aa",
+    "lejepa@100": "f80076dfaecf17367bd802a07bb1d1d370ef6eaeb8d27c6753b34ea3e1b01c29"
+  },
+  "protocol": "full-resolution 256-patch overlap, frozen 8x8x768, 2-channel gland+distance linear head, watershed instance map",
+  "published_metric_family": "GlaS object detection F1, symmetric area-weighted object Dice, symmetric area-weighted object Hausdorff",
+  "qualifier": "Python challenge-style metric port with explicit one-to-one matching and empty-prediction penalty; not official Matlab evaluator",
+  "test_independence": "head and postprocessing selected using train/validation, test read only after selection"
+}

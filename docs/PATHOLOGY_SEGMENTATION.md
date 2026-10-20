@@ -1,3 +1,5 @@
+> **Update (2026-10-20):** GlaS gland-instance evaluation with full native-resolution objects is now implemented in [GLAS_INSTANCE_FROZEN.md](GLAS_INSTANCE_FROZEN.md), with results in `benchmark_reports/glas_instance_v1`. The binary GlaS probe in this document is supplementary and not an official instance-segmentation challenge result.
+
 # Frozen pathology semantic segmentation (October 2026)
 
 This is a **new, independent downstream**. It does not modify existing SSL training, classification, few-shot, retrieval, or checkpoint files.
