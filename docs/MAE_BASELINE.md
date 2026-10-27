@@ -77,3 +77,26 @@ LR=0.000075, and whether sequential LR tuning should precede full training.
 After approval: choose GPUs with free VRAM, train one fixed seed, evaluate
 frozen encoders at 100/200 (and optionally 150/250) on exact same downstream
 protocols and compare against LeJEPA/Simplex.
+
+## 27 October 2026 verification record
+
+- Compared against the actual LeJEPA and Simplex method builders: PASS.
+- Identical initial FreshPLIPVisionEncoder SHA-256 for all three:
+  eccdcfba016917e36667d3cf4288f41869b1a3593345729e3115b638d4a8d372.
+- Exact equality checked for patch size 32, 64 patch tokens, feature dimension
+  768, source image count 7901, epoch budget 250, checkpoints
+  100/150/200/250, seed, and shared downstream patch-mean pooling.
+- gpu1-jinman-2 (RTX PRO 6000 Blackwell): 10/10 unit tests PASS;
+  synthetic two-image single-step CUDA smoke PASS; real unlabeled
+  PanNuke two-image single-step smoke PASS; 2.165 GiB peak allocation.
+- gpu1-358-0 (RTX PRO 6000 Blackwell): 10/10 unit tests PASS;
+  synthetic two-image single-step CUDA smoke PASS; 2.165 GiB peak allocation.
+- gpu2-358-0 (two RTX PRO 6000 Blackwell Max-Q): SSH/VRAM inspection
+  PASS; smoke not run because previously used PyTorch environment is
+  missing. A suitable environment is needed before that smoke test.
+- A two-image smoke VRAM result does NOT prove batch 128 fits.
+- Full MAE training and downstream experiments NOT started.
+
+To reproduce the exact backbone comparison:
+
+    PYTHONPATH=src python scripts/audit_mae_backbone_match.py
