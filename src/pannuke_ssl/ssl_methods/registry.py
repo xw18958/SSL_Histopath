@@ -6,6 +6,8 @@ def build_method(config: dict, device: torch.device):
     name=config["method"]["name"]
     if name=="ijepa":
         from .ijepa_standard import StandardIJEPA; return StandardIJEPA(config,device)
+    if name=="mae":
+        from .mae_standard import StandardMAE; return StandardMAE(config,device)
     if name=="lejepa":
         from .lejepa_standard import StandardLeJEPA; return StandardLeJEPA(config,device)
     if name=="ppc_lejepa":

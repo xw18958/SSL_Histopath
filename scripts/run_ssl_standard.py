@@ -28,7 +28,7 @@ from pannuke_ssl.ssl_framework.trainer import load_checkpoint
 from pannuke_ssl.ssl_methods.registry import build_method
 
 
-METHODS=("ijepa","lejepa","simplex_sigreg_lejepa","dinov3")
+METHODS=("ijepa","mae","lejepa","simplex_sigreg_lejepa","dinov3")
 
 
 def _apply_saved_tuning(c,root:Path,ignore_tuned:bool):

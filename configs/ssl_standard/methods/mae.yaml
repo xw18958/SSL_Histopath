@@ -1,0 +1,36 @@
+method:
+  name: mae
+  objective:
+    mask_ratio: 0.75
+    norm_pix_loss: true
+  augmentations:
+    min_crop_scale: 0.2
+  decoder:
+    embed_dim: 512
+    depth: 8
+    num_heads: 16
+  optimizer:
+    name: AdamW
+    peak_lr: 0.000075   # MAE official base_lr 1.5e-4 x effective_batch 128 / 256
+    final_lr_ratio: 0.0
+    warmup_fraction: 0.05  # 12.5 of 250 epochs; original: 40 of 800
+    weight_decay: 0.05
+  gradient_clip_norm: null
+  source_metadata:
+    implementation: facebookresearch/mae
+    reference: https://github.com/facebookresearch/mae/blob/main/models_mae.py
+    paper: He et al. Masked Autoencoders Are Scalable Vision Learners CVPR 2022
+    official_decoder: 512 dimensional 8 blocks 16 heads
+    source_mask_ratio: 0.75
+    source_normalized_pixel_target: true
+    source_augmentations: random_resized_crop_0.2_to_1.0_plus_horizontal_flip
+    source_base_lr: 0.00015
+    source_adamw_betas: [0.9, 0.95]
+    deliberate_adaptations:
+      - fresh shared CLIP ViT-B/32 256px instead of official MAE ViT-B/16 224px
+      - shared trainable CLIP positional embeddings and pre-layernorm instead of fixed encoder sincos positions
+      - CLIP normalization of encoder inputs for matched encoder architecture
+      - full-patch mean readout for the shared downstream protocol
+      - 250 instead of 800 training epochs; matched to existing LeJEPA checkpoint budget
+      - batch 128 instead of official 4096; base learning rate linearly scaled to effective batch
+      - single GPU no distributed training; MAE decoder unchanged
