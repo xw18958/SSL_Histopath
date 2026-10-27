@@ -112,8 +112,10 @@ def main():
         data_root=Path(os.environ["SSL_DATA_ROOT"])
         for epoch in EPOCHS:
             ckpt,_=checked_checkpoint(args.ckpt_root,epoch)
-            for ds, root in (("glas",data_root/"GlaS/Warwick_QU_Dataset"),
-                             ("ebhi",data_root/"EBHI-SEG")):
+            # Source manifests contain paths such as GlaS/Warwick_QU_Dataset/
+            # and EBHI-SEG/...; all are relative to SSL_DATA_ROOT itself.
+            for ds in ("glas", "ebhi"):
+                root = data_root
                 out=args.out_root/"segmentation_semantic"/ds/f"epoch_{epoch}"
                 if existing_done(out,"result.json"):
                     print("SKIP COMPLETED SEMANTIC",ds,epoch,flush=True);continue
@@ -125,7 +127,7 @@ def main():
             out=args.out_root/"segmentation_semantic"/"bcss5"/f"epoch_{epoch}"
             if not existing_done(out,"result.json"):
                 run_cmd([ROOT/"scripts/run_bcss5_official.py",
-                        "--data-root",data_root/"segmentation_benchmark_v2/bcss5",
+                        "--data-root",data_root,
                         "--manifest",manifest_dir/"bcss5.json",
                         "--checkpoint",ckpt,"--model-root",os.environ["SSL_MODEL_ROOT"],
                         "--out-dir",out,"--method","mae","--epoch",str(epoch),
@@ -133,7 +135,7 @@ def main():
             out=args.out_root/"glas_instance"/f"epoch_{epoch}"
             if not existing_done(out,"result.json"):
                 run_cmd([ROOT/"scripts/run_glas_instance.py",
-                        "--data-root",data_root/"GlaS/Warwick_QU_Dataset",
+                        "--data-root",data_root,
                         "--manifest",manifest_dir/"glas.json",
                         "--checkpoint",ckpt,"--model-root",os.environ["SSL_MODEL_ROOT"],
                         "--out-dir",out,"--method","mae","--epoch",str(epoch),
