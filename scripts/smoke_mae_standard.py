@@ -3,12 +3,39 @@
 No experiment runs, test-set inspection, stored checkpoints, or downstream evaluation.
 """
 from __future__ import annotations
-import argparse, copy, json
+import argparse, copy, hashlib, json, os
+from pathlib import Path
+import yaml
 import torch
 from pannuke_ssl.ssl_methods.registry import build_method
-from pannuke_ssl.ssl_framework.config import load_standard_config
-from pannuke_ssl.ssl_framework.data_validation import build_ssl_loader, module_sha
 from pannuke_ssl.utils import seed_everything
+
+def module_sha(module):
+    h = hashlib.sha256()
+    for name, value in module.state_dict().items():
+        t = value.detach().cpu().contiguous()
+        h.update(name.encode())
+        h.update(str(t.dtype).encode())
+        h.update(str(tuple(t.shape)).encode())
+        h.update((t.view(torch.uint16) if t.dtype == torch.bfloat16 else t).numpy().tobytes())
+    return h.hexdigest()
+
+
+def smoke_config(with_dataset: bool):
+    if with_dataset:
+        from pannuke_ssl.ssl_framework.config import load_standard_config
+        return load_standard_config("mae")
+    root = Path(__file__).resolve().parents[1]
+    with (root / "configs/ssl_standard/base.yaml").open() as f:
+        base = yaml.safe_load(f)
+    with (root / "configs/ssl_standard/methods/mae.yaml").open() as f:
+        method = yaml.safe_load(f)
+    base["method"] = method["method"]
+    base["backbone"]["config_dir"] = os.path.expandvars(base["backbone"]["config_dir"])
+    if not Path(base["backbone"]["config_dir"]).joinpath("config.json").is_file():
+        raise FileNotFoundError("Required fresh-encoder CLIP config.json not found")
+    return base
+
 
 def main():
     p = argparse.ArgumentParser()
@@ -17,7 +44,7 @@ def main():
     args = p.parse_args()
     if not torch.cuda.is_available(): raise RuntimeError("CUDA is required")
     if not 1 <= args.batch_size <= 4: raise ValueError("Only batch sizes 1..4 allowed")
-    c = copy.deepcopy(load_standard_config("mae"))
+    c = copy.deepcopy(smoke_config(args.with_dataset))
     c["training"]["batch_size"] = args.batch_size
     c["training"]["num_workers"] = 0
     c["data"]["cache_in_ram"] = False
@@ -25,6 +52,7 @@ def main():
     model = build_method(c, torch.device("cuda"))
     initial_hash = module_sha(model.encoder)
     if args.with_dataset:
+        from pannuke_ssl.ssl_framework.data_validation import build_ssl_loader
         loader = build_ssl_loader(c, model, batch_size=args.batch_size, workers=0)
         assert len(loader.dataset) == 6305
         batch = next(iter(loader))
