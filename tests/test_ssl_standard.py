@@ -23,7 +23,7 @@ def test_delta_improvement_resets_patience():
 
 
 def test_source_learning_rates_must_be_in_tuning_candidates():
-    expected = {"ijepa": 0.001, "lejepa": 0.0005, "simplex_sigreg_lejepa": 0.0005, "dinov3": 0.001}
+    expected = {"ijepa": 0.001, "lejepa": 0.0005, "simplex_sigreg_lejepa": 0.0005, "dinov3": 0.001, "mae": 0.000075}
     for name, source in expected.items():
         load_standard_config(name)
         spec = load_tuning_spec(name)
@@ -90,7 +90,7 @@ def test_dinov3_source_eval_and_base_objective_metadata():
 
 
 def test_common_protocol_matches_across_methods():
-    configs = [load_standard_config(name) for name in ("ijepa", "lejepa", "ppc_lejepa", "simplex_sigreg_lejepa", "dinov3")]
+    configs = [load_standard_config(name) for name in ("ijepa", "lejepa", "ppc_lejepa", "simplex_sigreg_lejepa", "dinov3", "mae")]
     paths = [
         ("seed",),
         ("data", "source_images"),
