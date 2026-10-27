@@ -183,7 +183,11 @@ class StandardMAE(nn.Module):
         return self.decoder_pred(self.decoder_norm(x))[:, 1:]
 
     def reconstruction_loss(self, images: torch.Tensor, pred: torch.Tensor, mask: torch.Tensor):
-        target = patchify(images, 32).float()
+        # Official MAE reconstructs pixels from the *same normalized input*
+        # fed to patch embedding (ImageNet-normalized in Meta source).  This
+        # controlled CLIP-backbone adaptation uses CLIP-normalized pixels for
+        # BOTH the encoder and target, never raw RGB for the target alone.
+        target = patchify(normalize_clip(images), 32).float()
         if self.norm_pix_loss:
             mean = target.mean(-1, keepdim=True)
             var = target.var(-1, keepdim=True)  # default unbiased=True, per official implementation

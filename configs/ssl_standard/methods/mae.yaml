@@ -29,8 +29,8 @@ method:
     deliberate_adaptations:
       - fresh shared CLIP ViT-B/32 256px instead of official MAE ViT-B/16 224px
       - shared trainable CLIP positional embeddings and pre-layernorm instead of fixed encoder sincos positions
-      - CLIP normalization of encoder inputs for matched encoder architecture
+      - CLIP normalization of BOTH encoder inputs and pixel reconstruction targets for matched encoder architecture
       - full-patch mean readout for the shared downstream protocol
       - 250 instead of 800 training epochs; matched to existing LeJEPA checkpoint budget
       - batch 128 instead of official 4096; base learning rate linearly scaled to effective batch
-      - single GPU no distributed training; MAE decoder unchanged
+      - single GPU no distributed training; decoder architecture matched using native PyTorch blocks rather than official timm

@@ -14,9 +14,13 @@ Official source: https://github.com/facebookresearch/mae and PRETRAIN.md.
 - Decoder gets learned mask tokens, unshuffles all 64 positions using ids_restore,
   and predicts all original RGB patch pixels.
 - Decoder has 512-d embeddings, eight pre-norm transformer blocks, 16 heads,
-  fourfold MLP and fixed 2D sin/cos decoder positions; discarded downstream.
+  fourfold MLP and fixed 2D sin/cos decoder positions; discarded downstream.\n  Decoder is topology-equivalent, but implemented with native PyTorch rather\n  than the official timm Block, so not literally identical source code.
 - Per-patch pixel-variance normalisation (norm_pix_loss=true);
   squared reconstruction loss ONLY on masked patches.
+- Encoder input and reconstruction targets are both CLIP-normalized pixel
+  tensors; this fixes a raw-RGB target mismatch found during the paper audit.
+  Official MAE likewise uses normalized images for both paths, but uses
+  ImageNet rather than CLIP statistics.
 - MAE-style random resized crop (0.2–1.0) and random horizontal flip.
 - AdamW (betas 0.9,0.95), weight decay 0.05, cosine scheduler with warmup.
 - All images sourced from the existing validated PanNuke pipeline, no SSL labels.

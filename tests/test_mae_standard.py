@@ -3,6 +3,7 @@ from types import SimpleNamespace
 import pytest
 import torch
 from pannuke_ssl.ssl_methods.mae_standard import StandardMAE, fixed_2d_sincos, patchify, random_masking
+from pannuke_ssl.models import normalize_clip
 
 def test_random_masks_correctly_invert_shuffling():
     torch.manual_seed(99)
@@ -34,17 +35,50 @@ def test_decoder_positions_fixed():
 
 def test_masked_only_mse():
     images = torch.zeros(2, 3, 256, 256)
-    predicted = torch.zeros(2, 64, 3072)
+    # Exactly the pixels supplied to the CLIP patch embedding are the target.
+    predicted = patchify(normalize_clip(images), 32)
     mask = torch.zeros(2, 64)
     mask[:, 20:] = 1
-    predicted[:, :20] = 9
+    predicted[:, :20] = predicted[:, :20] + 9
     stub = SimpleNamespace(norm_pix_loss=False)
     assert float(StandardMAE.reconstruction_loss(stub, images, predicted, mask)) == 0
-    predicted[:, 20:] = 2
-    assert float(StandardMAE.reconstruction_loss(stub, images, predicted, mask)) == 4
+    predicted[:, 20:] = predicted[:, 20:] + 2
+    assert abs(float(StandardMAE.reconstruction_loss(stub, images, predicted, mask)) - 4) < 1e-5
+
+
+def test_reconstruction_target_equals_normalized_encoder_pixels():
+    images = torch.rand(2, 3, 256, 256)
+    target = patchify(normalize_clip(images), 32)
+    mask = torch.ones(2, 64)
+    stub = SimpleNamespace(norm_pix_loss=False)
+    assert StandardMAE.reconstruction_loss(stub, images, target, mask) == 0
+    raw = patchify(images, 32)
+    assert float(StandardMAE.reconstruction_loss(stub, images, raw, mask)) > .01
+
 
 def test_normalized_target_finite():
     images = torch.rand(2, 3, 256, 256)
     stub = SimpleNamespace(norm_pix_loss=True)
     mse = StandardMAE.reconstruction_loss(stub, images, torch.zeros(2, 64, 3072), torch.ones(2, 64))
     assert torch.isfinite(mse) and .9 < float(mse) < 1.1
+
+
+def test_decoder_2d_sincos_matches_official_grid_convention():
+    import numpy as np
+    axis = np.arange(8, dtype=np.float32)
+    grid_w, grid_h = np.meshgrid(axis, axis)
+    omega = np.arange(128, dtype=np.float32) / 128.0
+    omega = 1.0 / (10000 ** omega)
+    def reference_1d(coordinates):
+        out = np.einsum("m,d->md", coordinates.reshape(-1), omega)
+        return np.concatenate([np.sin(out), np.cos(out)], axis=1)
+    official_reference = np.concatenate([
+        np.zeros((1, 512), dtype=np.float32),
+        np.concatenate([reference_1d(grid_w), reference_1d(grid_h)], axis=1),
+    ], axis=0)
+    torch.testing.assert_close(
+        fixed_2d_sincos(8, 512)[0],
+        torch.from_numpy(official_reference),
+        rtol=1e-5,
+        atol=1e-5,
+    )
