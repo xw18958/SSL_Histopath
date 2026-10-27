@@ -190,7 +190,7 @@ def main():
     parser.add_argument("--checkpoint",type=Path,required=True)
     parser.add_argument("--model-root",type=Path,required=True)
     parser.add_argument("--out-dir",type=Path,required=True)
-    parser.add_argument("--method",choices=["lejepa","simplex_k8"],required=True)
+    parser.add_argument("--method",choices=["lejepa","simplex_k8","mae"],required=True)
     parser.add_argument("--epoch",type=int,choices=[100,200],required=True)
     parser.add_argument("--gpu",type=int,default=0)
     parser.add_argument("--smoke",action="store_true")
@@ -204,7 +204,7 @@ def main():
     ckpt=args.checkpoint.resolve()
     chash=sha(ckpt)
     raw=torch.load(ckpt,map_location="cpu",weights_only=False)
-    expected="lejepa" if args.method=="lejepa" else "simplex_sigreg_lejepa"
+    expected={"lejepa":"lejepa", "simplex_k8":"simplex_sigreg_lejepa", "mae":"mae"}[args.method]
     if raw.get("framework")!="ssl_standard_v1" or raw["method_name"]!=expected or raw["epoch"]!=args.epoch:
         raise ValueError("Wrong checkpoint method/framework/epoch")
     config=copy.deepcopy(raw["config"])

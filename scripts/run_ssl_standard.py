@@ -226,12 +226,14 @@ def main():
         if a.simplex_components < 2 or a.simplex_components - 1 > int(c["backbone"]["hidden_size"]):
             p.error("Invalid simplex component count for the shared feature dimension")
         c["method"]["objective"]["simplex_components"] = int(a.simplex_components)
+    # Resolve explicitly selected LR BEFORE immutable run metadata is written.
+    if a.action == "pretrain" and a.learning_rate is not None:
+        c=apply_lr(c,a.learning_rate)
     c,run_id,root=attach_run_context(c,a.run_id)
     write_run_metadata(c,root,run_id=run_id,action=a.action,dataset=None if a.dataset==PANNUKE_DATASET else a.dataset)
     if a.action=="tune":
         result=run_tuning(c)
     elif a.action=="pretrain":
-        if a.learning_rate is not None: c=apply_lr(c,a.learning_rate)
         result=train_ssl(c,root/"pretrain_full",use_all_data=True,validate=False,early_stop=False,checkpoint_epochs=c["training"]["checkpoint_epochs"])
     elif a.action=="downstream":
         c=_apply_saved_tuning(c,root,a.ignore_tuned)
