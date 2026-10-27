@@ -22,10 +22,10 @@ def test_patchify_layout():
     x = torch.arange(3*256*256).reshape(1, 3, 256, 256).float()
     y = patchify(x, 32)
     assert y.shape == (1, 64, 3072)
-    assert torch.equal(y[0, 0, :3], x[0, 0, 0, :3])
-    assert y[0, 0, 32*32] == x[0, 1, 0, 0]
-    assert torch.equal(y[0, 1, :3], x[0, 0, 0, 32:35])
-    assert torch.equal(y[0, 8, :3], x[0, 0, 32, :3])
+    assert torch.equal(y[0, 0, :3], x[0, :, 0, 0])
+    assert torch.equal(y[0, 0, 3:6], x[0, :, 0, 1])
+    assert torch.equal(y[0, 1, :3], x[0, :, 0, 32])
+    assert torch.equal(y[0, 8, :3], x[0, :, 32, 0])
 
 def test_decoder_positions_fixed():
     x = fixed_2d_sincos(8, 512)
