@@ -68,10 +68,21 @@ described in the source code and campaign record. Do not run the generic
 `pipeline` action for this CVPR experiment: it has different early-stopping
 behavior.
 
-## Status (28 October 2026, Sydney)
+## Completed campaign (28 October 2026, Sydney)
 
-Corrections merged as [PR #10](https://github.com/xw18958/SSL_Histopath/pull/10).
-The three-trial tuning campaign has started on `gpu1-jinman-2`. Pretraining
-and matching downstream launchers are installed and **waiting at dependency
-gates** on `gpu1-358-0` and `gpu2-358-0`; do not interpret a queued job as a
-completed experiment or claim DINOv3 benchmark scores before results exist.
+The three sequential LR trials completed; selected **peak LR = 0.0001**.
+The 250-epoch final SSL run completed on all 7,901 PanNuke images, and the
+100/150/200/250 checkpoints were retained. The downstream jobs and strict
+crash recovery finished **22 classification, 4 image-text retrieval, 22 patch
+retrieval, 22 trainable few-shot dataset/checkpoint runs, 6 semantic and 2
+instance-segmentation evaluations**. All frozen 100/200 evaluations are complete.
+
+The final [four-method results and SHA-256 protocol audit](benchmark_reports/dinov3_cvpr_20261028/README.md)
+are published from [PR #13](https://github.com/xw18958/SSL_Histopath/pull/13).
+The reproducible aggregator verified **124 metric rows**, including
+manifest/split/protocol/few-shot subset identities against MAE. Existing
+LeJEPA, Simplex K=8 and MAE results were unchanged.
+
+The initial launch and dependency gates are preserved in
+[the campaign log](docs/DINOV3_CAMPAIGN_20261028.md) as historical records.
+
