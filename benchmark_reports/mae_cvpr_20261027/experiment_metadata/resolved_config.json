@@ -1,0 +1,137 @@
+{
+  "backbone": {
+    "config_dir": "/home/xwan0900/models/plip_model",
+    "hidden_size": 768,
+    "image_size": 256,
+    "patch_size": 32,
+    "type": "fresh_plip"
+  },
+  "data": {
+    "cache_in_ram": true,
+    "development_validation_splits": [
+      "val",
+      "test"
+    ],
+    "expected_ssl_images": 6305,
+    "final_ssl_images": 7901,
+    "metadata_csv": "/home/xwan0900/mae_review_smoke_20261027/pannuke19_metadata.csv",
+    "root": "/home/xwan0900/datasets/PanNuke/data",
+    "source_images": 7901,
+    "ssl_split": "train"
+  },
+  "downstream": {
+    "batch_size": 256,
+    "num_workers": 8,
+    "probe": {
+      "final_early_stopping_patience": 8,
+      "final_maximum_epochs": 50,
+      "learning_rates": [
+        0.001,
+        0.003,
+        0.01
+      ],
+      "search": "sequential_greedy",
+      "tuning_epochs": 5,
+      "weight_decays": [
+        0.0,
+        0.0001
+      ]
+    },
+    "test_count": 798,
+    "test_once": true,
+    "train_count": 6305,
+    "validation_count": 798
+  },
+  "early_stopping": {
+    "enabled": true,
+    "min_epochs": 60,
+    "minimum_delta": 0.005,
+    "patience_monitors": 5,
+    "restore_best": true
+  },
+  "manifests": {
+    "root": "/home/xwan0900/mae_review_smoke_20261027/manifests/ssl_standard"
+  },
+  "method": {
+    "augmentations": {
+      "min_crop_scale": 0.2
+    },
+    "decoder": {
+      "depth": 8,
+      "embed_dim": 512,
+      "num_heads": 16
+    },
+    "gradient_clip_norm": null,
+    "name": "mae",
+    "objective": {
+      "mask_ratio": 0.75,
+      "norm_pix_loss": true
+    },
+    "optimizer": {
+      "final_lr_ratio": 0.0,
+      "name": "AdamW",
+      "peak_lr": 0.00015,
+      "warmup_fraction": 0.05,
+      "weight_decay": 0.05
+    },
+    "source_metadata": {
+      "deliberate_adaptations": [
+        "fresh shared CLIP ViT-B/32 256px instead of official MAE ViT-B/16 224px",
+        "shared trainable CLIP positional embeddings and pre-layernorm instead of fixed encoder sincos positions",
+        "CLIP normalization of BOTH encoder inputs and pixel reconstruction targets for matched encoder architecture",
+        "full-patch mean readout for the shared downstream protocol",
+        "250 instead of 800 training epochs; matched to existing LeJEPA checkpoint budget",
+        "batch 128 instead of official 4096; base learning rate linearly scaled to effective batch",
+        "single GPU no distributed training; decoder architecture matched using native PyTorch blocks rather than official timm"
+      ],
+      "implementation": "facebookresearch/mae",
+      "official_decoder": "512 dimensional 8 blocks 16 heads",
+      "paper": "He et al. Masked Autoencoders Are Scalable Vision Learners CVPR 2022",
+      "reference": "https://github.com/facebookresearch/mae/blob/main/models_mae.py",
+      "source_adamw_betas": [
+        0.9,
+        0.95
+      ],
+      "source_augmentations": "random_resized_crop_0.2_to_1.0_plus_horizontal_flip",
+      "source_base_lr": 0.00015,
+      "source_mask_ratio": 0.75,
+      "source_normalized_pixel_target": true
+    }
+  },
+  "output": {
+    "root": "/home/xwan0900/mae_cvpr_20261027/ssl_standard"
+  },
+  "representation": {
+    "pooling": "mean_patch_tokens",
+    "source": "final_patch_tokens"
+  },
+  "runtime": {
+    "run_id": "ssl-mae-cvpr20261027",
+    "run_root": "/home/xwan0900/mae_cvpr_20261027/ssl_standard/runs/ssl-mae-cvpr20261027"
+  },
+  "seed": 20260903,
+  "training": {
+    "batch_size": 128,
+    "bf16": true,
+    "checkpoint_epochs": [
+      100,
+      150,
+      200,
+      250
+    ],
+    "max_epochs": 250,
+    "num_workers": 8,
+    "tf32": true
+  },
+  "validation": {
+    "batch_size": 256,
+    "interval_epochs": 10,
+    "knn_k": 20,
+    "knn_temperature": 0.07,
+    "linear_lbfgs_max_iter": 100,
+    "minimum_delta": 0.005,
+    "near_constant_std_threshold": 0.05,
+    "num_workers": 8,
+    "selection_metric": "linear_val_macro_f1"
+  }
+}

@@ -1,0 +1,12 @@
+method: mae
+selected:
+  learning_rate: 0.00015
+selection:
+  metric: linear_val_macro_f1
+  value: 0.21926581783716137
+  test_used: false
+  search_strategy: single_parameter
+source_reference:
+  learning_rate: 7.5e-05
+  included_in_candidates: true
+  citation: facebookresearch/mae PRETRAIN.md linear scaling of 1.5e-4 base LR

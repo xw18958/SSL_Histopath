@@ -1,0 +1,93 @@
+{
+  "class_names": [
+    "Normal",
+    "OSCC"
+  ],
+  "dataset": "oral_oscc",
+  "dataset_metadata": {
+    "balance_policy": "natural_imbalance",
+    "balancing": {
+      "magnifications": [
+        "100x",
+        "400x"
+      ],
+      "oversampling": false,
+      "per_class_split_counts": {
+        "Normal": {
+          "test": 29,
+          "train": 232,
+          "val": 29
+        },
+        "OSCC": {
+          "test": 93,
+          "train": 747,
+          "val": 94
+        }
+      },
+      "policy": "whole_dataset_natural_stratified_8_1_1",
+      "subsampling": false
+    },
+    "class_names": [
+      "Normal",
+      "OSCC"
+    ],
+    "dataset": "oral_oscc",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/OralOSCC",
+    "manifest_file": "/home/xwan0900/SSL_campaigns/simplex_k_ablation_20261007_code/manifests/ssl_standard/dataset_manifests/oral_oscc.json",
+    "manifest_sha256": "10a38bd91670008e921d552ccda9971994683cbf2895382d03565a31a78f79f8",
+    "num_classes": 2,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "Normal": 290,
+      "OSCC": 934
+    },
+    "selected_class_split_counts": {
+      "Normal": {
+        "test": 29,
+        "train": 232,
+        "val": 29
+      },
+      "OSCC": {
+        "test": 93,
+        "train": 747,
+        "val": 94
+      }
+    },
+    "source_class_counts": {
+      "Normal": 290,
+      "OSCC": 934
+    },
+    "source_image_count": 1224,
+    "split_counts": {
+      "test": 122,
+      "train": 979,
+      "val": 123
+    },
+    "split_policy": "whole_dataset_100x_400x_combined_natural_stratified_8_1_1",
+    "tier": "main"
+  },
+  "encoder_epoch": 100,
+  "encoder_metadata": {
+    "checkpoint_sha256": "59d3382945b755ddb8beef37c2b1f0b26e5548a3da7ff0bc5abb2e2c552915f1",
+    "k": 8,
+    "schedule_epochs": 250
+  },
+  "feature_dim": 768,
+  "method": "simplex_sigreg_lejepa",
+  "num_classes": 2,
+  "probe_validation_macro_f1": 0.7711120957022597,
+  "test": {
+    "accuracy": 0.8114754098360656,
+    "balanced_accuracy": 0.7458286985539488,
+    "macro_f1": 0.7429225836005497,
+    "weighted_f1": 0.8125635499350421
+  },
+  "test_evaluated_once": true,
+  "test_images": 122,
+  "test_loss": 0.46708881855010986
+}

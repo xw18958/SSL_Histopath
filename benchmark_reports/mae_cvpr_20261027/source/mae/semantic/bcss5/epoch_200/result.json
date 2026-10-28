@@ -1,0 +1,182 @@
+{
+  "dataset": "bcss5",
+  "manifest_sha256": "ce312d7f824ed0264dfb8da26c926137ee374e1c2e3f0eba42cfd471ba2dc14c",
+  "ckpt_sha256": "e1d01718b07ae545fd72d8fbbd8caa64ff158dde7e5b6f5386f1951949e3d9ff",
+  "method": "mae",
+  "epoch": 200,
+  "smoke": false,
+  "representation": "frozen 64 final patch tokens post-layernorm, pre-projector",
+  "preprocessing": "RGB bicubic short-side-256 center-crop-256; mask nearest",
+  "head": "1x1 linear conv 768->5 then bilinear upsampling; pixel CE",
+  "protocol": "official 5 BCSS tissue groups, institute-held-out test; train/val sequential greedy LR then WD; test once",
+  "train_only_class_weights": [
+    0.4516526665161221,
+    0.48420506737216834,
+    0.8251530959439002,
+    1.0321051682224034,
+    2.206884001945406
+  ],
+  "lr": 0.01,
+  "weight_decay": 0.0001,
+  "best_epoch": 5,
+  "val_miou": 0.402569440347893,
+  "tuning": [
+    {
+      "stage": "lr",
+      "lr": 0.001,
+      "wd": 0.0,
+      "miou": 0.3846794379124495
+    },
+    {
+      "stage": "lr",
+      "lr": 0.01,
+      "wd": 0.0,
+      "miou": 0.40255292806234433
+    },
+    {
+      "stage": "wd",
+      "lr": 0.01,
+      "wd": 0.0,
+      "miou": 0.4025528132657109
+    },
+    {
+      "stage": "wd",
+      "lr": 0.01,
+      "wd": 0.0001,
+      "miou": 0.40256983660384593
+    }
+  ],
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.2828703648165654,
+      "val_miou": 0.36825602474152747
+    },
+    {
+      "epoch": 2,
+      "train_loss": 1.0803893977089931,
+      "val_miou": 0.3631048756331232
+    },
+    {
+      "epoch": 3,
+      "train_loss": 1.0128565869833295,
+      "val_miou": 0.32184972216656405
+    },
+    {
+      "epoch": 4,
+      "train_loss": 1.023024403735211,
+      "val_miou": 0.36958367297889205
+    },
+    {
+      "epoch": 5,
+      "train_loss": 1.0065710779867674,
+      "val_miou": 0.402569440347893
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.9681806564331055,
+      "val_miou": 0.35779071355697595
+    },
+    {
+      "epoch": 7,
+      "train_loss": 1.0524223164508217,
+      "val_miou": 0.3609544857077056
+    },
+    {
+      "epoch": 8,
+      "train_loss": 1.007832020521164,
+      "val_miou": 0.3830012367051034
+    },
+    {
+      "epoch": 9,
+      "train_loss": 1.008646287416157,
+      "val_miou": 0.367273034201519
+    },
+    {
+      "epoch": 10,
+      "train_loss": 1.0649988008172888,
+      "val_miou": 0.37850211919331767
+    }
+  ],
+  "train_images": 1216,
+  "val_images": 480,
+  "test_images": 720,
+  "test": {
+    "miou": 0.38247562271789814,
+    "mean_dice": 0.5132661052001672,
+    "per_class_iou": [
+      0.5972629428107754,
+      0.5253705514080329,
+      0.512718427571392,
+      0.025611226467024687,
+      0.25141496533226565
+    ],
+    "per_class_dice": [
+      0.7478580098524604,
+      0.6888431809871719,
+      0.6778768847214224,
+      0.04994334267429772,
+      0.4018091077654836
+    ],
+    "class_gt_pixels": [
+      10811567,
+      13436881,
+      4331472,
+      1258067,
+      743305
+    ],
+    "class_pred_pixels": [
+      14900386,
+      10137939,
+      4566660,
+      131868,
+      844439
+    ],
+    "evaluated_classes": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "confusion_matrix": [
+      [
+        9614445,
+        822282,
+        300581,
+        20486,
+        53773
+      ],
+      [
+        3781639,
+        8119677,
+        1115148,
+        61511,
+        358906
+      ],
+      [
+        913001,
+        339799,
+        3015919,
+        2579,
+        60174
+      ],
+      [
+        437209,
+        646905,
+        86643,
+        34709,
+        52601
+      ],
+      [
+        154092,
+        209276,
+        48369,
+        12583,
+        318985
+      ]
+    ],
+    "valid_pixels": 30581292
+  },
+  "test_used_for_tuning": false
+}

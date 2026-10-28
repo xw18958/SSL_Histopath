@@ -1,0 +1,50 @@
+{
+  "best_epoch": null,
+  "best_validation_linear_macro_f1": null,
+  "epochs_completed": 250,
+  "epochs_planned": 250,
+  "full_pretraining_data": true,
+  "initial_encoder_sha256": "eccdcfba016917e36667d3cf4288f41869b1a3593345729e3115b638d4a8d372",
+  "labels_loaded_for_ssl": false,
+  "mae_decoder": "512d 8 blocks 16 heads; discarded for downstream",
+  "mae_mask_ratio": 0.75,
+  "mae_matched_backbone": "fresh CLIP ViT-B/32, 256px, learned CLIP positions",
+  "mae_norm_pix_loss": true,
+  "method": "mae",
+  "saved_checkpoint_epochs": [
+    100,
+    150,
+    200,
+    250
+  ],
+  "schedule_epochs": 250,
+  "schedule_total_steps": 15500,
+  "seconds": 2388.72992186388,
+  "source_metadata": {
+    "deliberate_adaptations": [
+      "fresh shared CLIP ViT-B/32 256px instead of official MAE ViT-B/16 224px",
+      "shared trainable CLIP positional embeddings and pre-layernorm instead of fixed encoder sincos positions",
+      "CLIP normalization of BOTH encoder inputs and pixel reconstruction targets for matched encoder architecture",
+      "full-patch mean readout for the shared downstream protocol",
+      "250 instead of 800 training epochs; matched to existing LeJEPA checkpoint budget",
+      "batch 128 instead of official 4096; base learning rate linearly scaled to effective batch",
+      "single GPU no distributed training; decoder architecture matched using native PyTorch blocks rather than official timm"
+    ],
+    "implementation": "facebookresearch/mae",
+    "official_decoder": "512 dimensional 8 blocks 16 heads",
+    "paper": "He et al. Masked Autoencoders Are Scalable Vision Learners CVPR 2022",
+    "reference": "https://github.com/facebookresearch/mae/blob/main/models_mae.py",
+    "source_adamw_betas": [
+      0.9,
+      0.95
+    ],
+    "source_augmentations": "random_resized_crop_0.2_to_1.0_plus_horizontal_flip",
+    "source_base_lr": 0.00015,
+    "source_mask_ratio": 0.75,
+    "source_normalized_pixel_target": true
+  },
+  "ssl_images_per_epoch": 7901,
+  "stop_reason": "max_epochs",
+  "test_used_for_ssl_selection": false,
+  "validation_used_for_ssl_selection": false
+}

@@ -1,0 +1,96 @@
+{
+  "class_names": [
+    "EA",
+    "EP",
+    "EH",
+    "NE"
+  ],
+  "dataset": "endometrial_4class",
+  "dataset_metadata": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "groups": 1508,
+      "per_class_quota": 535,
+      "per_class_split_counts": {
+        "test": 53,
+        "train": 428,
+        "val": 54
+      },
+      "policy": "min1000_case_grouped_8_1_1",
+      "split_unit": "case_id"
+    },
+    "class_names": [
+      "EA",
+      "EP",
+      "EH",
+      "NE"
+    ],
+    "dataset": "endometrial_4class",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/Endometrial/extracted/histopathological image dataset for ET",
+    "manifest_file": "/raid1/xwan0900/SSL_proj/manifests/ssl_standard/dataset_manifests/endometrial_4class.json",
+    "manifest_sha256": "d228063b6cd21fe19d90a2ea0db5eb708515a4c9c81eb64005fe9cba138b918c",
+    "num_classes": 4,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "EA": 535,
+      "EH": 535,
+      "EP": 535,
+      "NE": 535
+    },
+    "selected_class_split_counts": {
+      "EA": {
+        "test": 53,
+        "train": 428,
+        "val": 54
+      },
+      "EH": {
+        "test": 53,
+        "train": 428,
+        "val": 54
+      },
+      "EP": {
+        "test": 53,
+        "train": 428,
+        "val": 54
+      },
+      "NE": {
+        "test": 53,
+        "train": 428,
+        "val": 54
+      }
+    },
+    "source_class_counts": {
+      "EA": 535,
+      "EH": 798,
+      "EP": 636,
+      "NE": 1333
+    },
+    "source_image_count": 3302,
+    "split_counts": {
+      "test": 212,
+      "train": 1712,
+      "val": 216
+    },
+    "split_policy": "balanced_min1000_smallest535_case_grouped_8_1_1_428_54_53",
+    "tier": "main"
+  },
+  "encoder_epoch": 100,
+  "feature_dim": 768,
+  "method": "lejepa",
+  "num_classes": 4,
+  "probe_validation_macro_f1": 0.5609459370283527,
+  "test": {
+    "accuracy": 0.5377358490566038,
+    "balanced_accuracy": 0.5377358490566038,
+    "macro_f1": 0.5390392035619069,
+    "weighted_f1": 0.5390392035619069
+  },
+  "test_evaluated_once": true,
+  "test_images": 212,
+  "test_loss": 1.2122102975845337
+}

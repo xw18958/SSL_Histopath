@@ -1,0 +1,132 @@
+{
+  "class_names": [
+    "colon_aca",
+    "colon_n",
+    "lung_aca",
+    "lung_n",
+    "lung_scc"
+  ],
+  "dataset": "lc25000_5class",
+  "dataset_metadata": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "family_reconstruction": "250 families/class via deterministic dihedral-invariant perceptual-hash MiniBatchKMeans; release provides no original-family IDs",
+      "family_stats": {
+        "colon_aca": {
+          "families": 250,
+          "max_size": 76,
+          "min_size": 1
+        },
+        "colon_n": {
+          "families": 250,
+          "max_size": 75,
+          "min_size": 1
+        },
+        "lung_aca": {
+          "families": 250,
+          "max_size": 68,
+          "min_size": 1
+        },
+        "lung_n": {
+          "families": 250,
+          "max_size": 83,
+          "min_size": 1
+        },
+        "lung_scc": {
+          "families": 250,
+          "max_size": 76,
+          "min_size": 1
+        }
+      },
+      "per_class_quota": 1000,
+      "per_class_split_counts": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "policy": "min1000_reconstructed_augmentation_family_grouped_8_1_1",
+      "split_unit": "reconstructed_augmentation_family"
+    },
+    "class_names": [
+      "colon_aca",
+      "colon_n",
+      "lung_aca",
+      "lung_n",
+      "lung_scc"
+    ],
+    "dataset": "lc25000_5class",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/LC25000",
+    "manifest_file": "/home/xwan0900/mae_review_smoke_20261027/manifests/ssl_standard/dataset_manifests/lc25000_5class.json",
+    "manifest_sha256": "1ddc93e6a53fb93a659da0e30c79c8e095167512e08e036cb4b9a3b6c446fd2e",
+    "num_classes": 5,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "colon_aca": 1000,
+      "colon_n": 1000,
+      "lung_aca": 1000,
+      "lung_n": 1000,
+      "lung_scc": 1000
+    },
+    "selected_class_split_counts": {
+      "colon_aca": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "colon_n": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "lung_aca": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "lung_n": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "lung_scc": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      }
+    },
+    "source_class_counts": {
+      "colon_aca": 5000,
+      "colon_n": 5000,
+      "lung_aca": 5000,
+      "lung_n": 5000,
+      "lung_scc": 5000
+    },
+    "source_image_count": 25000,
+    "split_counts": {
+      "test": 500,
+      "train": 4000,
+      "val": 500
+    },
+    "split_policy": "balanced1000_reconstructed_augmentation_family_grouped_800_100_100",
+    "tier": "main"
+  },
+  "encoder_epoch": 100,
+  "feature_dim": 768,
+  "method": "mae",
+  "num_classes": 5,
+  "probe_validation_macro_f1": 0.9418336878233987,
+  "test": {
+    "accuracy": 0.932,
+    "balanced_accuracy": 0.932,
+    "macro_f1": 0.9319682804452849,
+    "weighted_f1": 0.931968280445285
+  },
+  "test_evaluated_once": true,
+  "test_images": 500,
+  "test_loss": 0.1679389625787735
+}

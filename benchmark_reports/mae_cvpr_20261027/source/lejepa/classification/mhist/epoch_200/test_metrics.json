@@ -1,0 +1,78 @@
+{
+  "class_names": [
+    "HP",
+    "SSA"
+  ],
+  "dataset": "mhist",
+  "dataset_metadata": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "oversampling": false,
+      "per_class_quota": 990,
+      "per_class_split_counts": {
+        "test": 99,
+        "train": 792,
+        "val": 99
+      },
+      "policy": "min_1000_smallest_class_then_deterministic_8_1_1",
+      "seed": 20260903
+    },
+    "class_names": [
+      "HP",
+      "SSA"
+    ],
+    "dataset": "mhist",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/MHIST/extracted/full/MHIST",
+    "manifest_file": "/raid1/xwan0900/SSL_proj/manifests/ssl_standard/dataset_manifests/mhist.json",
+    "manifest_sha256": "c3697411b1a0296b0902c40a9c92ec39a41b495184057047683dc6a40c4f5482",
+    "num_classes": 2,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "HP": 990,
+      "SSA": 990
+    },
+    "selected_class_split_counts": {
+      "HP": {
+        "test": 99,
+        "train": 792,
+        "val": 99
+      },
+      "SSA": {
+        "test": 99,
+        "train": 792,
+        "val": 99
+      }
+    },
+    "source_class_counts": {
+      "HP": 2162,
+      "SSA": 990
+    },
+    "source_image_count": 3152,
+    "split_counts": {
+      "test": 198,
+      "train": 1584,
+      "val": 198
+    },
+    "split_policy": "deterministic_balanced_min1000_then_8_1_1_792_99_99",
+    "tier": "main"
+  },
+  "encoder_epoch": 200,
+  "feature_dim": 768,
+  "method": "lejepa",
+  "num_classes": 2,
+  "probe_validation_macro_f1": 0.7769585253456222,
+  "test": {
+    "accuracy": 0.7878787878787878,
+    "balanced_accuracy": 0.7878787878787878,
+    "macro_f1": 0.7876838235294117,
+    "weighted_f1": 0.7876838235294118
+  },
+  "test_evaluated_once": true,
+  "test_images": 198,
+  "test_loss": 0.42803964018821716
+}

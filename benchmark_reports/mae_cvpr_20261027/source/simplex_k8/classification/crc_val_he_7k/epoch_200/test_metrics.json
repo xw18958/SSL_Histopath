@@ -1,0 +1,145 @@
+{
+  "class_names": [
+    "ADI",
+    "BACK",
+    "DEB",
+    "LYM",
+    "MUC",
+    "MUS",
+    "NORM",
+    "STR",
+    "TUM"
+  ],
+  "dataset": "crc_val_he_7k",
+  "dataset_metadata": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "per_class_quota": 339,
+      "per_class_split_counts": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "policy": "deterministic_equal_class_sample_before_split",
+      "seed": 20260903
+    },
+    "class_names": [
+      "ADI",
+      "BACK",
+      "DEB",
+      "LYM",
+      "MUC",
+      "MUS",
+      "NORM",
+      "STR",
+      "TUM"
+    ],
+    "dataset": "crc_val_he_7k",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/CRC-VAL-HE-7K",
+    "manifest_file": "/home/xwan0900/SSL_campaigns/simplex_k_ablation_20261007_code/manifests/ssl_standard/dataset_manifests/crc_val_he_7k.json",
+    "manifest_sha256": "b6e4699ab8f3d5797b32eba507c2af17b9e36583dfa3a89263ba38ec74c62ee9",
+    "num_classes": 9,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "ADI": 339,
+      "BACK": 339,
+      "DEB": 339,
+      "LYM": 339,
+      "MUC": 339,
+      "MUS": 339,
+      "NORM": 339,
+      "STR": 339,
+      "TUM": 339
+    },
+    "selected_class_split_counts": {
+      "ADI": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "BACK": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "DEB": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "LYM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "MUC": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "MUS": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "NORM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "STR": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      },
+      "TUM": {
+        "test": 34,
+        "train": 271,
+        "val": 34
+      }
+    },
+    "source_class_counts": {
+      "ADI": 1338,
+      "BACK": 847,
+      "DEB": 339,
+      "LYM": 634,
+      "MUC": 1035,
+      "MUS": 592,
+      "NORM": 741,
+      "STR": 421,
+      "TUM": 1233
+    },
+    "source_image_count": 7180,
+    "split_counts": {
+      "test": 306,
+      "train": 2439,
+      "val": 306
+    },
+    "split_policy": "deterministic_equal_class_339_then_stratified_271_34_34",
+    "tier": "main"
+  },
+  "encoder_epoch": 200,
+  "encoder_metadata": {
+    "checkpoint_sha256": "8297e61095a41ac210b9c328b5bd6d2410f5de5d3cdbd41e58e35d08ea05c3aa",
+    "k": 8,
+    "schedule_epochs": 250
+  },
+  "feature_dim": 768,
+  "method": "simplex_sigreg_lejepa",
+  "num_classes": 9,
+  "probe_validation_macro_f1": 0.9802350940572874,
+  "test": {
+    "accuracy": 0.9803921568627451,
+    "balanced_accuracy": 0.9803921568627452,
+    "macro_f1": 0.9803893292842409,
+    "weighted_f1": 0.980389329284241
+  },
+  "test_evaluated_once": true,
+  "test_images": 306,
+  "test_loss": 0.060778986662626266
+}

@@ -1,0 +1,95 @@
+{
+  "class_names": [
+    "Normal",
+    "Benign",
+    "InSitu",
+    "Invasive"
+  ],
+  "dataset": "bach",
+  "dataset_metadata": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "per_class_quota": 100,
+      "per_class_split_counts": {
+        "test": 10,
+        "train": 80,
+        "val": 10
+      },
+      "policy": "labeled_400_only_min_1000_then_8_1_1",
+      "unlabeled_public_test_excluded": true
+    },
+    "class_names": [
+      "Normal",
+      "Benign",
+      "InSitu",
+      "Invasive"
+    ],
+    "dataset": "bach",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/BACH/raw/data",
+    "manifest_file": "/home/xwan0900/mae_review_smoke_20261027/manifests/ssl_standard/dataset_manifests/bach.json",
+    "manifest_sha256": "494020d0f28274eef5ce448648128e87faee4af5c067273e7fad48d95065c92c",
+    "num_classes": 4,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "Benign": 100,
+      "InSitu": 100,
+      "Invasive": 100,
+      "Normal": 100
+    },
+    "selected_class_split_counts": {
+      "Benign": {
+        "test": 10,
+        "train": 80,
+        "val": 10
+      },
+      "InSitu": {
+        "test": 10,
+        "train": 80,
+        "val": 10
+      },
+      "Invasive": {
+        "test": 10,
+        "train": 80,
+        "val": 10
+      },
+      "Normal": {
+        "test": 10,
+        "train": 80,
+        "val": 10
+      }
+    },
+    "source_class_counts": {
+      "Benign": 100,
+      "InSitu": 100,
+      "Invasive": 100,
+      "Normal": 100
+    },
+    "source_image_count": 400,
+    "split_counts": {
+      "test": 40,
+      "train": 320,
+      "val": 40
+    },
+    "split_policy": "balanced_min1000_smallest100_then_8_1_1_80_10_10_labeled400_only",
+    "tier": "main"
+  },
+  "encoder_epoch": 200,
+  "feature_dim": 768,
+  "method": "mae",
+  "num_classes": 4,
+  "probe_validation_macro_f1": 0.6740967365967366,
+  "test": {
+    "accuracy": 0.6,
+    "balanced_accuracy": 0.6,
+    "macro_f1": 0.5877694235588973,
+    "weighted_f1": 0.5877694235588973
+  },
+  "test_evaluated_once": true,
+  "test_images": 40,
+  "test_loss": 1.1777379512786865
+}

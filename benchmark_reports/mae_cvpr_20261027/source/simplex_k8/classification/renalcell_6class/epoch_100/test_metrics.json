@@ -1,0 +1,120 @@
+{
+  "class_names": [
+    "blood",
+    "cancer",
+    "empty",
+    "normal",
+    "other",
+    "stroma"
+  ],
+  "dataset": "renalcell_6class",
+  "dataset_metadata": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "groups": 502,
+      "pannuke_source_overlap": "PanNuke contains 134 Kidney patches but exposes no TCGA case IDs; exact case overlap cannot be identified from released PanNuke metadata.",
+      "per_class_quota": 544,
+      "per_class_split_counts": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "policy": "min1000_TCGA_case_grouped_8_1_1",
+      "split_unit": "TCGA_case"
+    },
+    "class_names": [
+      "blood",
+      "cancer",
+      "empty",
+      "normal",
+      "other",
+      "stroma"
+    ],
+    "dataset": "renalcell_6class",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/RenalCell/extracted/tissue_classfication",
+    "manifest_file": "/home/xwan0900/SSL_campaigns/simplex_k_ablation_20261007_code/manifests/ssl_standard/dataset_manifests/renalcell_6class.json",
+    "manifest_sha256": "7989857bffbdcc9eb2fc3429c40f9184e67e9963ea3ad3962b3cc83168fd387b",
+    "num_classes": 6,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "blood": 544,
+      "cancer": 544,
+      "empty": 544,
+      "normal": 544,
+      "other": 544,
+      "stroma": 544
+    },
+    "selected_class_split_counts": {
+      "blood": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "cancer": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "empty": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "normal": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "other": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      },
+      "stroma": {
+        "test": 54,
+        "train": 435,
+        "val": 55
+      }
+    },
+    "source_class_counts": {
+      "blood": 544,
+      "cancer": 11755,
+      "empty": 11609,
+      "normal": 6313,
+      "other": 6210,
+      "stroma": 3027
+    },
+    "source_image_count": 39458,
+    "split_counts": {
+      "test": 324,
+      "train": 2610,
+      "val": 330
+    },
+    "split_policy": "balanced_min1000_smallest544_TCGA_case_grouped_8_1_1_435_55_54",
+    "tier": "main"
+  },
+  "encoder_epoch": 100,
+  "encoder_metadata": {
+    "checkpoint_sha256": "59d3382945b755ddb8beef37c2b1f0b26e5548a3da7ff0bc5abb2e2c552915f1",
+    "k": 8,
+    "schedule_epochs": 250
+  },
+  "feature_dim": 768,
+  "method": "simplex_sigreg_lejepa",
+  "num_classes": 6,
+  "probe_validation_macro_f1": 0.8182568216233483,
+  "test": {
+    "accuracy": 0.6358024691358025,
+    "balanced_accuracy": 0.6358024691358025,
+    "macro_f1": 0.6279849826391047,
+    "weighted_f1": 0.6279849826391047
+  },
+  "test_evaluated_once": true,
+  "test_images": 324,
+  "test_loss": 1.3555998802185059
+}

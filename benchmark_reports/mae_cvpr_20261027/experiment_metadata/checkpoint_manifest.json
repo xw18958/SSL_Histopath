@@ -1,0 +1,36 @@
+{
+  "method": "mae",
+  "run_id": "ssl-mae-cvpr20261027",
+  "storage": "retained on gpu1-358-0.research.sydney.edu.au; not committed to GitHub",
+  "checkpoint_count": 4,
+  "checkpoints": [
+    {
+      "epoch": 100,
+      "filename": "epoch_100.pt",
+      "bytes": 458866955,
+      "sha256": "ddd955294a43e06f3a9c4027c140a22ae47f352ba1f8bfb33433d788ac58bcd6",
+      "server_path": "/home/xwan0900/mae_cvpr_20261027/ssl_standard/runs/ssl-mae-cvpr20261027/pretrain_full/checkpoints/epoch_100.pt"
+    },
+    {
+      "epoch": 150,
+      "filename": "epoch_150.pt",
+      "bytes": 458866955,
+      "sha256": "c38159e83dfa3e1b3df0a8702269a69c810d8c6593e604da22dc7444bb19c958",
+      "server_path": "/home/xwan0900/mae_cvpr_20261027/ssl_standard/runs/ssl-mae-cvpr20261027/pretrain_full/checkpoints/epoch_150.pt"
+    },
+    {
+      "epoch": 200,
+      "filename": "epoch_200.pt",
+      "bytes": 458866955,
+      "sha256": "e1d01718b07ae545fd72d8fbbd8caa64ff158dde7e5b6f5386f1951949e3d9ff",
+      "server_path": "/home/xwan0900/mae_cvpr_20261027/ssl_standard/runs/ssl-mae-cvpr20261027/pretrain_full/checkpoints/epoch_200.pt"
+    },
+    {
+      "epoch": 250,
+      "filename": "epoch_250.pt",
+      "bytes": 458866955,
+      "sha256": "0c156f131be6944deac50d6860b8f3a64fec8c15243b62e5bf05702a85e5844f",
+      "server_path": "/home/xwan0900/mae_cvpr_20261027/ssl_standard/runs/ssl-mae-cvpr20261027/pretrain_full/checkpoints/epoch_250.pt"
+    }
+  ]
+}
