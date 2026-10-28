@@ -41,6 +41,8 @@ method:
     weight_decay: 0.04
     final_weight_decay: 0.4
     freeze_last_layer_epochs: 1
+    layerwise_decay: 0.9
+    patch_embed_lr_multiplier: 0.2
   gradient_clip_norm: 3.0
   source_metadata:
     implementation: facebookresearch/dinov3 official SSL recipe
@@ -75,5 +77,5 @@ method:
       - use the shared benchmark mean final patch-token downstream readout
       - omit Gram anchoring because this experiment evaluates the DINOv3 base pretraining objective, before the separate Gram-anchoring stage
       - tune the actual single-GPU peak LR directly under the benchmark instead of applying DINOv3's distributed sqrt_wrt_1024 LR scaling rule
-      - express the source 10/100 LR warmup and 30/100 teacher-temperature warmup as 0.10 and 0.30 fractions so the same schedules scale consistently in 20-epoch tuning and 250-epoch training
-      - use a single-GPU AdamW parameter grouping without DINOv3's native layerwise LR decay or patch-embedding LR multiplier because those controls are tied to the native DINOv3 ViT optimization recipe
+      - scale the source warmup fractions to the matched 20-epoch tuning and 250-epoch final pretraining schedule
+      - adapt the source layerwise LR decay 0.9 and patch-embedding LR multiplier 0.2 to CLIP encoder.layers and patch_embedding

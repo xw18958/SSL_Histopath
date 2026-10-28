@@ -27,7 +27,7 @@ import torch.nn.functional as F
 SHOTS = (1, 5, 10)
 REPEATS = 100
 SEED = 20260903
-METHODS = ("lejepa", "simplex_k8", "mae")
+METHODS = ("lejepa", "simplex_k8", "mae", "dinov3")
 EPOCHS = (100, 200)
 MIN_FREE_MIB = 8192
 

@@ -37,8 +37,11 @@ def load_checkpoint(method,path:Path,device):
 def _set_schedule(method,optimizer,step,total):
     vals=method.schedule(step,max(1,total))
     for g in optimizer.param_groups:
-        g['lr']=float(vals['lr'])
-        if not g.get('_no_weight_decay',False): g['weight_decay']=float(vals['weight_decay'])
+        # Preserve optional source-recipe layer-wise learning rates. Existing
+        # LeJEPA, Simplex, and MAE groups default to multiplier=1 (unchanged).
+        g['lr'] = float(vals['lr']) * float(g.get('lr_multiplier', 1.0))
+        if not g.get('_no_weight_decay', False):
+            g['weight_decay'] = float(vals['weight_decay']) * float(g.get('wd_multiplier', 1.0))
     return vals
 
 def training_horizon(c, n_epochs, override=None):

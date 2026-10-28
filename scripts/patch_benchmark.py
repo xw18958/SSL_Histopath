@@ -479,7 +479,7 @@ def extract_one(out, method_name, epoch, dataset, *, device_name="cuda:0",
     ck_cpu = torch.load(checkpoint, map_location="cpu", weights_only=False)
     if ck_cpu["framework"] != "ssl_standard_v1" or ck_cpu["epoch"] != epoch:
         raise RuntimeError("Checkpoint framework/epoch mismatch")
-    expect = {"lejepa":"lejepa", "simplex_k64":"simplex_sigreg_lejepa", "mae":"mae"}[method_name]
+    expect = {"lejepa":"lejepa", "simplex_k64":"simplex_sigreg_lejepa", "mae":"mae", "dinov3":"dinov3"}[method_name]
     if ck_cpu["method_name"] != expect:
         raise RuntimeError("Checkpoint method mismatch")
     config = ck_cpu["config"]

@@ -3,6 +3,8 @@ from __future__ import annotations
 import copy
 import math
 import random
+import re
+from collections import defaultdict
 from typing import Any
 
 import torch
@@ -188,22 +190,62 @@ class StandardDINOv3(nn.Module):
         )
 
     def build_optimizer(self) -> torch.optim.Optimizer:
-        decay: list[nn.Parameter] = []
-        no_decay: list[nn.Parameter] = []
-        for module in (self.student, self.student_dino_head, self.student_ibot_head):
-            for name, p in module.named_parameters():
-                if not p.requires_grad:
-                    continue
-                if p.ndim == 1 or name.endswith("bias") or "mask_token" in name:
-                    no_decay.append(p)
-                else:
-                    decay.append(p)
+        # DINOv3's official optimizer applies 0.9 layer-wise LR decay and
+        # a 0.2 patch-embedding multiplier. These must survive every schedule
+        # update in trainer._set_schedule (and must not affect other SSL).
+        # Map Meta's blocks to the shared CLIP model's encoder.layers.{i}.
         optim = self.config["method"]["optimizer"]
+        depth = int(self.student.base.model.config.num_hidden_layers)
+        layerwise = float(optim["layerwise_decay"])
+        patch_mult = float(optim["patch_embed_lr_multiplier"])
+        if not 0 < layerwise <= 1 or not 0 < patch_mult <= 1:
+            raise ValueError("Invalid DINOv3 layer-wise / patch-embedding LR factors")
+        groups: dict[tuple[float, bool], list[nn.Parameter]] = defaultdict(list)
+        for prefix, module in (
+            ("student", self.student),
+            ("dino_head", self.student_dino_head),
+            ("ibot_head", self.student_ibot_head),
+        ):
+            for name, param in module.named_parameters():
+                if not param.requires_grad:
+                    continue
+                # Layers 0..depth-1 have ranks 1..depth, final norm/head
+                # uses rank depth+1 as in the official DINOv3 grouping.
+                rank = depth + 1
+                if prefix == "student":
+                    found = re.search(r"(?:^|\.)encoder\.layers\.(\d+)\.", name)
+                    if found:
+                        rank = int(found.group(1)) + 1
+                    elif (
+                        "embeddings." in name
+                        or name.endswith("mask_token")
+                        or "class_embedding" in name
+                    ):
+                        rank = 0
+                multiplier = layerwise ** (depth + 1 - rank)
+                if prefix == "student" and "patch_embedding" in name:
+                    multiplier *= patch_mult
+                norm_or_token = (
+                    param.ndim <= 1 or name.endswith("bias")
+                    or "norm" in name.lower()
+                    or "position_embedding" in name.lower()
+                    or "mask_token" in name.lower()
+                    or "class_embedding" in name.lower()
+                )
+                groups[(float(multiplier), bool(norm_or_token))].append(param)
+        param_groups = [
+            {
+                "params": params,
+                "lr_multiplier": multiplier,
+                "weight_decay": 0.0 if no_decay else float(optim["weight_decay"]),
+                "_no_weight_decay": no_decay,
+                # Traceable to official code param_groups.py's wd_multiplier.
+                "wd_multiplier": 0.0 if no_decay else 1.0,
+            }
+            for (multiplier, no_decay), params in sorted(groups.items())
+        ]
         return torch.optim.AdamW(
-            [
-                {"params": decay, "weight_decay": float(optim["weight_decay"])},
-                {"params": no_decay, "weight_decay": 0.0, "_no_weight_decay": True},
-            ],
+            param_groups,
             lr=float(optim["peak_lr"]),
             betas=(0.9, 0.999),
         )
