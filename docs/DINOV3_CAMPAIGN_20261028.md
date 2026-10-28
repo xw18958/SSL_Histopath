@@ -6,6 +6,35 @@
 tested source commit `a4397fc2def68b900697422bc7beb45691ccb09a`;
 main merge commit `79fb19c5a69e3ddc71b7028a95e7bec55fb314ca`.
 
+## Completed outcome and verification
+
+- Sequential 3x20-epoch LR trials completed, selected **0.0001** using PanNuke
+  validation Macro-F1 only (29.12% at the best evaluation epoch).
+- Full 250-epoch pretraining completed on 7,901 unlabeled PanNuke images.
+  Source checkpoints are retained at epochs 100/150/200/250.
+- The post-training pipeline finished all **22/22 classification**, **4/4
+  ARCH/PathCap image-text retrieval**, **22/22 patch retrieval**, **22/22
+  1/5/10-shot few-shot runs**, **6/6 semantic segmentation**, and **2/2 GlaS
+  instance segmentation** outputs for the fixed 100/200 checkpoints.
+- First downstream launch hit Linux file descriptor / CUDA pinned memory
+  resource errors and a missing BreakHis patch manifest. Recovery used the
+  same frozen checkpoints and original benchmark manifests, raised the
+  file-descriptor limit, disabled pin-memory transfers, and skipped completed
+  tests. The interrupted epoch-200 GaHISSDB classification was finished using
+  the *previously frozen probe* without retraining or test-based selection
+  ([PR #12](https://github.com/xw18958/SSL_Histopath/pull/12)).
+- Final cross-method source audit: **PASS 124/124 metric rows**, including
+  baseline MAE result SHA, dataset manifests, exact retrieval protocol/split
+  hashes, few-shot support subset and row identifiers, segmentation manifest
+  hashes, test-isolation flags and GlaS official Test A/B aggregation.
+- The full four-method tables, per-task summary, 124-row comparison CSV, source
+  SHA-256 audit and aggregation script are committed in
+  [benchmark_reports/dinov3_cvpr_20261028](../benchmark_reports/dinov3_cvpr_20261028/README.md)
+  by [PR #13](https://github.com/xw18958/SSL_Histopath/pull/13).
+
+The following sections are an **immutable launch-time record**, not the
+current run status.
+
 ## Validation before launch
 
 - `gpu1-358-0`: 44 DINOv3/MAE/LeJEPA/standard SSL regression tests passed.
