@@ -123,7 +123,7 @@ for ep in EPOCHS:
     [(x["testA"]["object_f1"]+x["testB"]["object_f1"])/2 for x in docs],src)
 assert len(rows)==124,len(rows)
 with (OUT/"comparison_all_metrics.csv").open("w",newline="") as f:
- w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
+ w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator="\n");w.writeheader();w.writerows(rows)
 (OUT/"comparison_audit.json").write_text(json.dumps({
  "methods":METHODS,"epochs":EPOCHS,"metric_rows":len(rows),"entries":provenance},indent=2)+"\n")
 groups=[("classification","Accuracy"),("retrieval","Mean Recall"),
@@ -140,7 +140,7 @@ for task,metric in groups:
    k8_wins_over_lejepa=sum(r["simplex_k8"]>r["lejepa"] for r in selected),
    mae_wins_over_lejepa=sum(r["mae"]>r["lejepa"] for r in selected)))
 with (OUT/"comparison_summary.csv").open("w",newline="") as f:
- w=csv.DictWriter(f,fieldnames=list(summary[0]));w.writeheader();w.writerows(summary)
+ w=csv.DictWriter(f,fieldnames=list(summary[0]),lineterminator="\n");w.writeheader();w.writerows(summary)
 
 def table(task,metric):
  chosen=[x for x in rows if x["task"]==task and x["metric"]==metric]
