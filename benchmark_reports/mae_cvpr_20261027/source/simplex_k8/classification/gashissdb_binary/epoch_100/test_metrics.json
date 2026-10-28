@@ -1,0 +1,83 @@
+{
+  "class_names": [
+    "Normal",
+    "Abnormal"
+  ],
+  "dataset": "gashissdb_binary",
+  "dataset_metadata": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "per_class_quota": 1000,
+      "per_class_split_counts": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "policy": "160px_subdatabase_min1000_then_8_1_1",
+      "resolution": 160,
+      "split_unit": "image_WSI_ids_not_released"
+    },
+    "class_names": [
+      "Normal",
+      "Abnormal"
+    ],
+    "dataset": "gashissdb_binary",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/GasHisSDB/extracted/GasHisSDB",
+    "manifest_file": "/home/xwan0900/SSL_campaigns/simplex_k_ablation_20261007_code/manifests/ssl_standard/dataset_manifests/gashissdb_binary.json",
+    "manifest_sha256": "e4beb5a0a5f0b3261d49fa0f734fc497e2cc6ce796384e5b4990a87f74c58709",
+    "num_classes": 2,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "Abnormal": 1000,
+      "Normal": 1000
+    },
+    "selected_class_split_counts": {
+      "Abnormal": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "Normal": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      }
+    },
+    "source_class_counts": {
+      "Abnormal": 13124,
+      "Normal": 20160
+    },
+    "source_image_count": 33284,
+    "split_counts": {
+      "test": 200,
+      "train": 1600,
+      "val": 200
+    },
+    "split_policy": "160px_balanced1000_per_class_800_100_100",
+    "tier": "main"
+  },
+  "encoder_epoch": 100,
+  "encoder_metadata": {
+    "checkpoint_sha256": "59d3382945b755ddb8beef37c2b1f0b26e5548a3da7ff0bc5abb2e2c552915f1",
+    "k": 8,
+    "schedule_epochs": 250
+  },
+  "feature_dim": 768,
+  "method": "simplex_sigreg_lejepa",
+  "num_classes": 2,
+  "probe_validation_macro_f1": 0.934998374959374,
+  "test": {
+    "accuracy": 0.885,
+    "balanced_accuracy": 0.885,
+    "macro_f1": 0.8849741191768148,
+    "weighted_f1": 0.8849741191768148
+  },
+  "test_evaluated_once": true,
+  "test_images": 200,
+  "test_loss": 0.279899001121521
+}

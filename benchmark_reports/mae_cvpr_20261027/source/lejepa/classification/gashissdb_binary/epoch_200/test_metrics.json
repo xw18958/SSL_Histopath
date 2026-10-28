@@ -1,0 +1,78 @@
+{
+  "class_names": [
+    "Normal",
+    "Abnormal"
+  ],
+  "dataset": "gashissdb_binary",
+  "dataset_metadata": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "per_class_quota": 1000,
+      "per_class_split_counts": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "policy": "160px_subdatabase_min1000_then_8_1_1",
+      "resolution": 160,
+      "split_unit": "image_WSI_ids_not_released"
+    },
+    "class_names": [
+      "Normal",
+      "Abnormal"
+    ],
+    "dataset": "gashissdb_binary",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/GasHisSDB/extracted/GasHisSDB",
+    "manifest_file": "/raid1/xwan0900/SSL_proj/manifests/ssl_standard/dataset_manifests/gashissdb_binary.json",
+    "manifest_sha256": "e4beb5a0a5f0b3261d49fa0f734fc497e2cc6ce796384e5b4990a87f74c58709",
+    "num_classes": 2,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "Abnormal": 1000,
+      "Normal": 1000
+    },
+    "selected_class_split_counts": {
+      "Abnormal": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      },
+      "Normal": {
+        "test": 100,
+        "train": 800,
+        "val": 100
+      }
+    },
+    "source_class_counts": {
+      "Abnormal": 13124,
+      "Normal": 20160
+    },
+    "source_image_count": 33284,
+    "split_counts": {
+      "test": 200,
+      "train": 1600,
+      "val": 200
+    },
+    "split_policy": "160px_balanced1000_per_class_800_100_100",
+    "tier": "main"
+  },
+  "encoder_epoch": 200,
+  "feature_dim": 768,
+  "method": "lejepa",
+  "num_classes": 2,
+  "probe_validation_macro_f1": 0.9549898727213624,
+  "test": {
+    "accuracy": 0.915,
+    "balanced_accuracy": 0.915,
+    "macro_f1": 0.9149468417761101,
+    "weighted_f1": 0.9149468417761102
+  },
+  "test_evaluated_once": true,
+  "test_images": 200,
+  "test_loss": 0.22328594326972961
+}

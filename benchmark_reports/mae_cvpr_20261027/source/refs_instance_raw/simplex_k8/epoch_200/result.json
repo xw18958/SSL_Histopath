@@ -1,0 +1,836 @@
+{
+  "dataset": "glas_instance_v1",
+  "method": "simplex_k8",
+  "epoch": 200,
+  "ssl_checkpoint_sha256": "8297e61095a41ac210b9c328b5bd6d2410f5de5d3cdbd41e58e35d08ea05c3aa",
+  "source_manifest_sha256": "c944423a89cc67df0c55b003381a69b689ce52be2f421d0caabd9319de62f724",
+  "source_splits": {
+    "train": 70,
+    "val": 15,
+    "test": 80
+  },
+  "representation": "frozen ViT-B/32 8x8x768 last patch tokens, pre-projector",
+  "training": "native 256x256 fixed RGB crops; supervised 2-channel fg/distance linear probe; only head trained",
+  "postprocess": "validation-selected watershed markers from predicted instance distance map; native-resolution TestA/TestB",
+  "eval": "mean per-image object F1, symmetric area-weighted object Dice, symmetric area-weighted object Hausdorff",
+  "test_used_for_tuning": false,
+  "smoke": false,
+  "lr": 0.001,
+  "wd": 0.0,
+  "best_epoch": 4,
+  "hp_trace": {
+    "lr": 0.001,
+    "wd": 0.0,
+    "selection": [
+      {
+        "stage": "lr",
+        "lr": 0.001,
+        "wd": 0.0,
+        "val_object_dice": 0.2983711224102601
+      },
+      {
+        "stage": "lr",
+        "lr": 0.01,
+        "wd": 0.0,
+        "val_object_dice": 0.29753002054646704
+      },
+      {
+        "stage": "wd",
+        "lr": 0.001,
+        "wd": 0.0,
+        "val_object_dice": 0.2983866130881262
+      },
+      {
+        "stage": "wd",
+        "lr": 0.001,
+        "wd": 0.0001,
+        "val_object_dice": 0.29834802833969687
+      }
+    ],
+    "post_selection": [
+      {
+        "stage": "peak_threshold",
+        "value": 0.25,
+        "object_dice": 0.3171472516117773,
+        "object_f1": 0.1008899870082746
+      },
+      {
+        "stage": "peak_threshold",
+        "value": 0.35,
+        "object_dice": 0.31727040231879017,
+        "object_f1": 0.1020264469548032
+      },
+      {
+        "stage": "peak_threshold",
+        "value": 0.5,
+        "object_dice": 0.3077720397797797,
+        "object_f1": 0.10203555741081095
+      },
+      {
+        "stage": "min_area",
+        "value": 100,
+        "object_dice": 0.3166733891880566,
+        "object_f1": 0.08687376300408012
+      },
+      {
+        "stage": "min_area",
+        "value": 200,
+        "object_dice": 0.31727040231879017,
+        "object_f1": 0.1020264469548032
+      },
+      {
+        "stage": "min_area",
+        "value": 500,
+        "object_dice": 0.317823242199547,
+        "object_f1": 0.11775267024694942
+      }
+    ],
+    "final_val": {
+      "object_f1": 0.11775267024694942,
+      "object_dice": 0.317823242199547
+    }
+  },
+  "post_cfg": {
+    "peak_threshold": 0.35,
+    "min_area": 500
+  },
+  "testA": {
+    "object_f1": 0.18558115904245645,
+    "object_dice": 0.3480795114413982,
+    "object_hausdorff": 472.29376425233596,
+    "images": 60
+  },
+  "testB": {
+    "object_f1": 0.2921067821067821,
+    "object_dice": 0.548088318954903,
+    "object_hausdorff": 344.5856044375961,
+    "images": 20
+  },
+  "combined": {
+    "object_f1": 0.21221256480853787,
+    "object_dice": 0.39808171331977443,
+    "object_hausdorff": 440.36672429865104
+  },
+  "per_image": [
+    {
+      "object_f1": 0.16666666666666666,
+      "object_dice": 0.49078618069544466,
+      "predicted_glands": 3,
+      "gt_glands": 9,
+      "object_hausdorff": 363.42825912799753,
+      "image": "GlaS/Warwick_QU_Dataset/testA_1.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.09302325581395349,
+      "object_dice": 0.1434105279284805,
+      "predicted_glands": 12,
+      "gt_glands": 31,
+      "object_hausdorff": 653.7394222273209,
+      "image": "GlaS/Warwick_QU_Dataset/testA_10.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2857142857142857,
+      "object_dice": 0.39863598610570716,
+      "predicted_glands": 3,
+      "gt_glands": 4,
+      "object_hausdorff": 343.20164800112184,
+      "image": "GlaS/Warwick_QU_Dataset/testA_11.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.16666666666666666,
+      "object_dice": 0.34272184826942126,
+      "predicted_glands": 4,
+      "gt_glands": 8,
+      "object_hausdorff": 603.4316947210491,
+      "image": "GlaS/Warwick_QU_Dataset/testA_12.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.0,
+      "object_dice": 0.328472723286533,
+      "predicted_glands": 2,
+      "gt_glands": 8,
+      "object_hausdorff": 543.1240319845253,
+      "image": "GlaS/Warwick_QU_Dataset/testA_13.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.3333333333333333,
+      "object_dice": 0.23495418635073145,
+      "predicted_glands": 1,
+      "gt_glands": 5,
+      "object_hausdorff": 603.4450906415564,
+      "image": "GlaS/Warwick_QU_Dataset/testA_14.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.25,
+      "object_dice": 0.2593849271058013,
+      "predicted_glands": 2,
+      "gt_glands": 6,
+      "object_hausdorff": 604.9297865294386,
+      "image": "GlaS/Warwick_QU_Dataset/testA_15.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2,
+      "object_dice": 0.388198152633755,
+      "predicted_glands": 5,
+      "gt_glands": 5,
+      "object_hausdorff": 412.6107449956031,
+      "image": "GlaS/Warwick_QU_Dataset/testA_16.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.0,
+      "object_dice": 0.2126860011889507,
+      "predicted_glands": 2,
+      "gt_glands": 7,
+      "object_hausdorff": 507.2951563678272,
+      "image": "GlaS/Warwick_QU_Dataset/testA_17.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.12903225806451613,
+      "object_dice": 0.3071275641558311,
+      "predicted_glands": 11,
+      "gt_glands": 20,
+      "object_hausdorff": 346.02665728193807,
+      "image": "GlaS/Warwick_QU_Dataset/testA_18.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.0392156862745098,
+      "object_dice": 0.161737402153027,
+      "predicted_glands": 19,
+      "gt_glands": 32,
+      "object_hausdorff": 529.1692367637863,
+      "image": "GlaS/Warwick_QU_Dataset/testA_19.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.4,
+      "object_dice": 0.41584441489895174,
+      "predicted_glands": 3,
+      "gt_glands": 2,
+      "object_hausdorff": 333.96300565220827,
+      "image": "GlaS/Warwick_QU_Dataset/testA_2.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.25,
+      "object_dice": 0.2834231082820996,
+      "predicted_glands": 3,
+      "gt_glands": 5,
+      "object_hausdorff": 474.6927035077267,
+      "image": "GlaS/Warwick_QU_Dataset/testA_20.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.0,
+      "object_dice": 0.21603474476892107,
+      "predicted_glands": 8,
+      "gt_glands": 14,
+      "object_hausdorff": 452.81941153364505,
+      "image": "GlaS/Warwick_QU_Dataset/testA_21.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.15384615384615385,
+      "object_dice": 0.3660227640970417,
+      "predicted_glands": 6,
+      "gt_glands": 7,
+      "object_hausdorff": 528.0531712124866,
+      "image": "GlaS/Warwick_QU_Dataset/testA_22.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.16666666666666666,
+      "object_dice": 0.515750099832649,
+      "predicted_glands": 4,
+      "gt_glands": 8,
+      "object_hausdorff": 578.6551523844084,
+      "image": "GlaS/Warwick_QU_Dataset/testA_23.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.0,
+      "object_dice": 0.24583706350459944,
+      "predicted_glands": 2,
+      "gt_glands": 11,
+      "object_hausdorff": 539.426459095157,
+      "image": "GlaS/Warwick_QU_Dataset/testA_24.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.25,
+      "object_dice": 0.4057376454363781,
+      "predicted_glands": 13,
+      "gt_glands": 19,
+      "object_hausdorff": 395.5599239564881,
+      "image": "GlaS/Warwick_QU_Dataset/testA_25.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.4,
+      "object_dice": 0.5601119292945412,
+      "predicted_glands": 2,
+      "gt_glands": 3,
+      "object_hausdorff": 491.4745223781813,
+      "image": "GlaS/Warwick_QU_Dataset/testA_26.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.04,
+      "object_dice": 0.17035471556269044,
+      "predicted_glands": 19,
+      "gt_glands": 31,
+      "object_hausdorff": 507.2805884121648,
+      "image": "GlaS/Warwick_QU_Dataset/testA_27.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.047619047619047616,
+      "object_dice": 0.1826290465049112,
+      "predicted_glands": 14,
+      "gt_glands": 28,
+      "object_hausdorff": 620.339582392623,
+      "image": "GlaS/Warwick_QU_Dataset/testA_28.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2222222222222222,
+      "object_dice": 0.3470032049146151,
+      "predicted_glands": 2,
+      "gt_glands": 7,
+      "object_hausdorff": 500.04696457153807,
+      "image": "GlaS/Warwick_QU_Dataset/testA_29.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.4,
+      "object_dice": 0.777673069390855,
+      "predicted_glands": 2,
+      "gt_glands": 3,
+      "object_hausdorff": 203.92354488093008,
+      "image": "GlaS/Warwick_QU_Dataset/testA_3.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.125,
+      "object_dice": 0.29621101802481753,
+      "predicted_glands": 6,
+      "gt_glands": 10,
+      "object_hausdorff": 450.6540723276665,
+      "image": "GlaS/Warwick_QU_Dataset/testA_30.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2222222222222222,
+      "object_dice": 0.3980001215922455,
+      "predicted_glands": 4,
+      "gt_glands": 5,
+      "object_hausdorff": 402.12020671672417,
+      "image": "GlaS/Warwick_QU_Dataset/testA_31.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.16666666666666666,
+      "object_dice": 0.30315950226355975,
+      "predicted_glands": 3,
+      "gt_glands": 9,
+      "object_hausdorff": 530.9503131441991,
+      "image": "GlaS/Warwick_QU_Dataset/testA_32.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.11764705882352941,
+      "object_dice": 0.2348322195992094,
+      "predicted_glands": 5,
+      "gt_glands": 12,
+      "object_hausdorff": 456.70805966624687,
+      "image": "GlaS/Warwick_QU_Dataset/testA_33.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2,
+      "object_dice": 0.4323729950596984,
+      "predicted_glands": 2,
+      "gt_glands": 8,
+      "object_hausdorff": 557.9384353811272,
+      "image": "GlaS/Warwick_QU_Dataset/testA_34.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.14814814814814814,
+      "object_dice": 0.19828118962244196,
+      "predicted_glands": 10,
+      "gt_glands": 17,
+      "object_hausdorff": 407.3190430202651,
+      "image": "GlaS/Warwick_QU_Dataset/testA_35.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.06451612903225806,
+      "object_dice": 0.2378840588489552,
+      "predicted_glands": 13,
+      "gt_glands": 18,
+      "object_hausdorff": 512.476886831157,
+      "image": "GlaS/Warwick_QU_Dataset/testA_36.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.16666666666666666,
+      "object_dice": 0.5925464107599624,
+      "predicted_glands": 5,
+      "gt_glands": 7,
+      "object_hausdorff": 396.7296413539213,
+      "image": "GlaS/Warwick_QU_Dataset/testA_37.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 1.0,
+      "object_dice": 0.888074702684504,
+      "predicted_glands": 1,
+      "gt_glands": 1,
+      "object_hausdorff": 476.68123520860354,
+      "image": "GlaS/Warwick_QU_Dataset/testA_38.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2857142857142857,
+      "object_dice": 0.5109718972412848,
+      "predicted_glands": 4,
+      "gt_glands": 3,
+      "object_hausdorff": 361.04413633091974,
+      "image": "GlaS/Warwick_QU_Dataset/testA_39.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.0,
+      "object_dice": 0.34629770471805,
+      "predicted_glands": 3,
+      "gt_glands": 5,
+      "object_hausdorff": 509.0179766481766,
+      "image": "GlaS/Warwick_QU_Dataset/testA_4.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.05128205128205128,
+      "object_dice": 0.1314529677491535,
+      "predicted_glands": 14,
+      "gt_glands": 25,
+      "object_hausdorff": 591.5343152845035,
+      "image": "GlaS/Warwick_QU_Dataset/testA_40.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2222222222222222,
+      "object_dice": 0.28532284829738364,
+      "predicted_glands": 3,
+      "gt_glands": 6,
+      "object_hausdorff": 539.5259467591228,
+      "image": "GlaS/Warwick_QU_Dataset/testA_41.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.4,
+      "object_dice": 0.4072702329379552,
+      "predicted_glands": 2,
+      "gt_glands": 3,
+      "object_hausdorff": 550.3397988812535,
+      "image": "GlaS/Warwick_QU_Dataset/testA_42.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.05405405405405406,
+      "object_dice": 0.11253678553461888,
+      "predicted_glands": 15,
+      "gt_glands": 22,
+      "object_hausdorff": 466.3948113812878,
+      "image": "GlaS/Warwick_QU_Dataset/testA_43.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.14285714285714285,
+      "object_dice": 0.2857076943239373,
+      "predicted_glands": 6,
+      "gt_glands": 8,
+      "object_hausdorff": 389.36058077501514,
+      "image": "GlaS/Warwick_QU_Dataset/testA_44.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2222222222222222,
+      "object_dice": 0.35198638697643575,
+      "predicted_glands": 3,
+      "gt_glands": 6,
+      "object_hausdorff": 324.7928179519743,
+      "image": "GlaS/Warwick_QU_Dataset/testA_45.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.07407407407407407,
+      "object_dice": 0.3290603662472076,
+      "predicted_glands": 10,
+      "gt_glands": 17,
+      "object_hausdorff": 468.65051855320144,
+      "image": "GlaS/Warwick_QU_Dataset/testA_46.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.18181818181818182,
+      "object_dice": 0.41660926769271717,
+      "predicted_glands": 4,
+      "gt_glands": 7,
+      "object_hausdorff": 434.6525150430624,
+      "image": "GlaS/Warwick_QU_Dataset/testA_47.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.11764705882352941,
+      "object_dice": 0.41592494234807514,
+      "predicted_glands": 7,
+      "gt_glands": 10,
+      "object_hausdorff": 491.68636336553334,
+      "image": "GlaS/Warwick_QU_Dataset/testA_48.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2857142857142857,
+      "object_dice": 0.28500770486151317,
+      "predicted_glands": 6,
+      "gt_glands": 8,
+      "object_hausdorff": 324.3448528218857,
+      "image": "GlaS/Warwick_QU_Dataset/testA_49.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.12903225806451613,
+      "object_dice": 0.13095904696180458,
+      "predicted_glands": 9,
+      "gt_glands": 22,
+      "object_hausdorff": 605.8533669557715,
+      "image": "GlaS/Warwick_QU_Dataset/testA_5.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.10526315789473684,
+      "object_dice": 0.23118381103072472,
+      "predicted_glands": 7,
+      "gt_glands": 12,
+      "object_hausdorff": 369.38676662899053,
+      "image": "GlaS/Warwick_QU_Dataset/testA_50.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2857142857142857,
+      "object_dice": 0.4681784416115953,
+      "predicted_glands": 4,
+      "gt_glands": 3,
+      "object_hausdorff": 412.8761590204455,
+      "image": "GlaS/Warwick_QU_Dataset/testA_51.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.21052631578947367,
+      "object_dice": 0.3176936756538203,
+      "predicted_glands": 7,
+      "gt_glands": 12,
+      "object_hausdorff": 416.1747342910028,
+      "image": "GlaS/Warwick_QU_Dataset/testA_52.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2857142857142857,
+      "object_dice": 0.4655392506434029,
+      "predicted_glands": 2,
+      "gt_glands": 5,
+      "object_hausdorff": 387.4483449238072,
+      "image": "GlaS/Warwick_QU_Dataset/testA_53.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.05714285714285714,
+      "object_dice": 0.20862409412797167,
+      "predicted_glands": 11,
+      "gt_glands": 24,
+      "object_hausdorff": 489.32285809703444,
+      "image": "GlaS/Warwick_QU_Dataset/testA_54.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.08333333333333333,
+      "object_dice": 0.5456561487548184,
+      "predicted_glands": 10,
+      "gt_glands": 14,
+      "object_hausdorff": 427.5850412311472,
+      "image": "GlaS/Warwick_QU_Dataset/testA_55.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.16666666666666666,
+      "object_dice": 0.3595337169086714,
+      "predicted_glands": 3,
+      "gt_glands": 9,
+      "object_hausdorff": 484.7124956961644,
+      "image": "GlaS/Warwick_QU_Dataset/testA_56.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.18181818181818182,
+      "object_dice": 0.4449753546790469,
+      "predicted_glands": 3,
+      "gt_glands": 8,
+      "object_hausdorff": 500.2942557021968,
+      "image": "GlaS/Warwick_QU_Dataset/testA_57.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.06666666666666667,
+      "object_dice": 0.4689898502778892,
+      "predicted_glands": 11,
+      "gt_glands": 19,
+      "object_hausdorff": 470.81863052675,
+      "image": "GlaS/Warwick_QU_Dataset/testA_58.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.16666666666666666,
+      "object_dice": 0.3493102180513251,
+      "predicted_glands": 3,
+      "gt_glands": 9,
+      "object_hausdorff": 490.48250756176174,
+      "image": "GlaS/Warwick_QU_Dataset/testA_59.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2222222222222222,
+      "object_dice": 0.3446092835734266,
+      "predicted_glands": 3,
+      "gt_glands": 6,
+      "object_hausdorff": 559.7877689340254,
+      "image": "GlaS/Warwick_QU_Dataset/testA_6.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.1111111111111111,
+      "object_dice": 0.2701001320972667,
+      "predicted_glands": 5,
+      "gt_glands": 13,
+      "object_hausdorff": 536.2833602096603,
+      "image": "GlaS/Warwick_QU_Dataset/testA_60.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.2857142857142857,
+      "object_dice": 0.42242596000516885,
+      "predicted_glands": 2,
+      "gt_glands": 5,
+      "object_hausdorff": 400.2056778963204,
+      "image": "GlaS/Warwick_QU_Dataset/testA_7.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.15384615384615385,
+      "object_dice": 0.32911502024925765,
+      "predicted_glands": 2,
+      "gt_glands": 11,
+      "object_hausdorff": 471.25458335586984,
+      "image": "GlaS/Warwick_QU_Dataset/testA_8.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.38095238095238093,
+      "object_dice": 0.3138283581120417,
+      "predicted_glands": 7,
+      "gt_glands": 14,
+      "object_hausdorff": 535.5800180436459,
+      "image": "GlaS/Warwick_QU_Dataset/testA_9.bmp",
+      "category": "testa"
+    },
+    {
+      "object_f1": 0.5,
+      "object_dice": 0.5053717423454229,
+      "predicted_glands": 1,
+      "gt_glands": 3,
+      "object_hausdorff": 307.0818455525109,
+      "image": "GlaS/Warwick_QU_Dataset/testB_1.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.14285714285714285,
+      "object_dice": 0.26082195329633456,
+      "predicted_glands": 5,
+      "gt_glands": 9,
+      "object_hausdorff": 429.94759399218657,
+      "image": "GlaS/Warwick_QU_Dataset/testB_10.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.5,
+      "object_dice": 0.8274224834382033,
+      "predicted_glands": 3,
+      "gt_glands": 1,
+      "object_hausdorff": 104.38648781033454,
+      "image": "GlaS/Warwick_QU_Dataset/testB_11.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.2,
+      "object_dice": 0.5078715599428749,
+      "predicted_glands": 4,
+      "gt_glands": 6,
+      "object_hausdorff": 353.76366490440194,
+      "image": "GlaS/Warwick_QU_Dataset/testB_12.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.16666666666666666,
+      "object_dice": 0.2671038518362039,
+      "predicted_glands": 4,
+      "gt_glands": 8,
+      "object_hausdorff": 569.1487178637535,
+      "image": "GlaS/Warwick_QU_Dataset/testB_13.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.5,
+      "object_dice": 0.4702520770588895,
+      "predicted_glands": 2,
+      "gt_glands": 2,
+      "object_hausdorff": 354.5884944737249,
+      "image": "GlaS/Warwick_QU_Dataset/testB_14.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.2,
+      "object_dice": 0.3141240353673881,
+      "predicted_glands": 3,
+      "gt_glands": 7,
+      "object_hausdorff": 567.1554843510129,
+      "image": "GlaS/Warwick_QU_Dataset/testB_15.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.18181818181818182,
+      "object_dice": 0.3317104467492318,
+      "predicted_glands": 4,
+      "gt_glands": 7,
+      "object_hausdorff": 542.1185904223595,
+      "image": "GlaS/Warwick_QU_Dataset/testB_16.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.3333333333333333,
+      "object_dice": 0.6560389521368664,
+      "predicted_glands": 3,
+      "gt_glands": 3,
+      "object_hausdorff": 452.20496680703445,
+      "image": "GlaS/Warwick_QU_Dataset/testB_17.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.4,
+      "object_dice": 0.8449483869087605,
+      "predicted_glands": 4,
+      "gt_glands": 1,
+      "object_hausdorff": 67.37053349106732,
+      "image": "GlaS/Warwick_QU_Dataset/testB_18.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.2857142857142857,
+      "object_dice": 0.8215658472604758,
+      "predicted_glands": 6,
+      "gt_glands": 1,
+      "object_hausdorff": 114.42126214173297,
+      "image": "GlaS/Warwick_QU_Dataset/testB_19.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.2222222222222222,
+      "object_dice": 0.45096079794364935,
+      "predicted_glands": 2,
+      "gt_glands": 7,
+      "object_hausdorff": 454.04153827597185,
+      "image": "GlaS/Warwick_QU_Dataset/testB_2.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.14285714285714285,
+      "object_dice": 0.7740470299169573,
+      "predicted_glands": 8,
+      "gt_glands": 6,
+      "object_hausdorff": 286.1447724175939,
+      "image": "GlaS/Warwick_QU_Dataset/testB_20.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.3333333333333333,
+      "object_dice": 0.7428980005770501,
+      "predicted_glands": 5,
+      "gt_glands": 1,
+      "object_hausdorff": 103.7739496333106,
+      "image": "GlaS/Warwick_QU_Dataset/testB_3.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.3333333333333333,
+      "object_dice": 0.8324254737157436,
+      "predicted_glands": 2,
+      "gt_glands": 4,
+      "object_hausdorff": 287.4606095570325,
+      "image": "GlaS/Warwick_QU_Dataset/testB_4.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.2,
+      "object_dice": 0.4579462718810912,
+      "predicted_glands": 4,
+      "gt_glands": 6,
+      "object_hausdorff": 413.01164392125156,
+      "image": "GlaS/Warwick_QU_Dataset/testB_5.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.5,
+      "object_dice": 0.5132422395212571,
+      "predicted_glands": 1,
+      "gt_glands": 3,
+      "object_hausdorff": 295.5778982903212,
+      "image": "GlaS/Warwick_QU_Dataset/testB_6.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.3333333333333333,
+      "object_dice": 0.49683984926548797,
+      "predicted_glands": 1,
+      "gt_glands": 5,
+      "object_hausdorff": 347.0748790622542,
+      "image": "GlaS/Warwick_QU_Dataset/testB_7.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.2,
+      "object_dice": 0.47527365674297295,
+      "predicted_glands": 4,
+      "gt_glands": 6,
+      "object_hausdorff": 445.17681302820483,
+      "image": "GlaS/Warwick_QU_Dataset/testB_8.bmp",
+      "category": "testb"
+    },
+    {
+      "object_f1": 0.16666666666666666,
+      "object_dice": 0.4109017231931974,
+      "predicted_glands": 3,
+      "gt_glands": 9,
+      "object_hausdorff": 397.2623427558608,
+      "image": "GlaS/Warwick_QU_Dataset/testB_9.bmp",
+      "category": "testb"
+    }
+  ]
+}

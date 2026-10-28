@@ -1,0 +1,183 @@
+{
+  "dataset": "ebhi",
+  "manifest_sha256": "2317fe6e89c54ca92b0477ecac480addc2b07a9a1dd6b01c4fc68e94465faa90",
+  "ckpt_sha256": "8297e61095a41ac210b9c328b5bd6d2410f5de5d3cdbd41e58e35d08ea05c3aa",
+  "method": "simplex_k8",
+  "epoch": 200,
+  "smoke": false,
+  "representation": "frozen 64 final patch tokens post-layernorm, pre-projector",
+  "preprocessing": "RGB bicubic short-side-256 center-crop-256; mask nearest",
+  "head": "1x1 linear conv 768->2 then bilinear upsampling; pixel CE",
+  "protocol": "train/val sequential greedy LR then WD; test once after selection",
+  "lr": 0.01,
+  "weight_decay": 0.0,
+  "best_epoch": 18,
+  "val_miou": 0.6476873050592931,
+  "tuning": [
+    {
+      "stage": "lr",
+      "lr": 0.001,
+      "wd": 0.0,
+      "miou": 0.63200787367372
+    },
+    {
+      "stage": "lr",
+      "lr": 0.01,
+      "wd": 0.0,
+      "miou": 0.6416815218516785
+    },
+    {
+      "stage": "wd",
+      "lr": 0.01,
+      "wd": 0.0,
+      "miou": 0.6416929387549591
+    },
+    {
+      "stage": "wd",
+      "lr": 0.01,
+      "wd": 0.0001,
+      "miou": 0.6416809528709998
+    }
+  ],
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.6090075768854307,
+      "val_miou": 0.6148005682637053
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.4707959838535475,
+      "val_miou": 0.6116146218104928
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.46308785676956177,
+      "val_miou": 0.6342857201668278
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.4657695014839587,
+      "val_miou": 0.6385707339974713
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.4554753031419671,
+      "val_miou": 0.6416903307461856
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.4675446405358937,
+      "val_miou": 0.618807578368748
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.46769255010978034,
+      "val_miou": 0.6268169082600812
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.45898777376050537,
+      "val_miou": 0.5687731209712401
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.46352971312792407,
+      "val_miou": 0.642143084304334
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.46067056707713916,
+      "val_miou": 0.6383161009486222
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.4413544943799143,
+      "val_miou": 0.6382713616856885
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.44035536633885425,
+      "val_miou": 0.6427354077264551
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.4449437053307243,
+      "val_miou": 0.6475924929435188
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.43803799605887866,
+      "val_miou": 0.6408016838348154
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.4495983421802521,
+      "val_miou": 0.6102140425958018
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.4537993779648905,
+      "val_miou": 0.6234420112849137
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.4518018682365832,
+      "val_miou": 0.6393159122384114
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.4428884710954583,
+      "val_miou": 0.6476873050592931
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.4454378284837889,
+      "val_miou": 0.6340826118544679
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.4478580770285233,
+      "val_miou": 0.6414013546976642
+    },
+    {
+      "epoch": 21,
+      "train_loss": 0.4413858820562777,
+      "val_miou": 0.6394441366477186
+    },
+    {
+      "epoch": 22,
+      "train_loss": 0.4504725803499636,
+      "val_miou": 0.6397751721179575
+    },
+    {
+      "epoch": 23,
+      "train_loss": 0.45133966142716614,
+      "val_miou": 0.6364624028736915
+    }
+  ],
+  "train_images": 1461,
+  "val_images": 365,
+  "test_images": 400,
+  "test": {
+    "miou": 0.6432600810684008,
+    "foreground_iou": 0.7300927385231374,
+    "foreground_dice": 0.84399260486622,
+    "per_class_iou": [
+      0.5564274236136642,
+      0.7300927385231374
+    ],
+    "confusion_matrix": [
+      [
+        6630629,
+        2756863
+      ],
+      [
+        2528939,
+        14297969
+      ]
+    ],
+    "valid_pixels": 26214400
+  },
+  "test_used_for_tuning": false
+}

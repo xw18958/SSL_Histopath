@@ -1,0 +1,202 @@
+{
+  "dataset": "bcss5",
+  "manifest_sha256": "ce312d7f824ed0264dfb8da26c926137ee374e1c2e3f0eba42cfd471ba2dc14c",
+  "ckpt_sha256": "8297e61095a41ac210b9c328b5bd6d2410f5de5d3cdbd41e58e35d08ea05c3aa",
+  "method": "simplex_k8",
+  "epoch": 200,
+  "smoke": false,
+  "representation": "frozen 64 final patch tokens post-layernorm, pre-projector",
+  "preprocessing": "RGB bicubic short-side-256 center-crop-256; mask nearest",
+  "head": "1x1 linear conv 768->5 then bilinear upsampling; pixel CE",
+  "protocol": "official 5 BCSS tissue groups, institute-held-out test; train/val sequential greedy LR then WD; test once",
+  "train_only_class_weights": [
+    0.4516526665161221,
+    0.48420506737216834,
+    0.8251530959439002,
+    1.0321051682224034,
+    2.206884001945406
+  ],
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "best_epoch": 9,
+  "val_miou": 0.4444514098853703,
+  "tuning": [
+    {
+      "stage": "lr",
+      "lr": 0.001,
+      "wd": 0.0,
+      "miou": 0.44076518020675265
+    },
+    {
+      "stage": "lr",
+      "lr": 0.01,
+      "wd": 0.0,
+      "miou": 0.42084401688732925
+    },
+    {
+      "stage": "wd",
+      "lr": 0.001,
+      "wd": 0.0,
+      "miou": 0.44076588473548695
+    },
+    {
+      "stage": "wd",
+      "lr": 0.001,
+      "wd": 0.0001,
+      "miou": 0.4407673745591434
+    }
+  ],
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.2091635544049113,
+      "val_miou": 0.42339443973688534
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.911686089478041,
+      "val_miou": 0.4392002849812413
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.8513869141277514,
+      "val_miou": 0.43838915065526923
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.8236583643837979,
+      "val_miou": 0.4370373046425581
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.8033004842306438,
+      "val_miou": 0.44076828598300144
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.7869692978106047,
+      "val_miou": 0.42974966801079795
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.7793449367347517,
+      "val_miou": 0.44224296920530337
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.7693315101297278,
+      "val_miou": 0.4432994373637502
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.7637890859654075,
+      "val_miou": 0.4444514098853703
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.758274959890466,
+      "val_miou": 0.42940278444524643
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.7499096095561981,
+      "val_miou": 0.44009423124096747
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.7437291913910916,
+      "val_miou": 0.41847705873503704
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.7358041248823467,
+      "val_miou": 0.431040700226592
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.7284692070986095,
+      "val_miou": 0.4161760759434535
+    }
+  ],
+  "train_images": 1216,
+  "val_images": 480,
+  "test_images": 720,
+  "test": {
+    "miou": 0.46838587514485736,
+    "mean_dice": 0.6204371445389508,
+    "per_class_iou": [
+      0.6441351779937435,
+      0.5993008021671312,
+      0.5518732648592188,
+      0.2914699732856324,
+      0.25515015741856073
+    ],
+    "per_class_dice": [
+      0.7835550100932086,
+      0.7494535128789396,
+      0.7112349666121519,
+      0.45137708086871403,
+      0.40656515224174034
+    ],
+    "class_gt_pixels": [
+      10811567,
+      13436881,
+      4331472,
+      1258067,
+      743305
+    ],
+    "class_pred_pixels": [
+      12336176,
+      11678075,
+      4475924,
+      1162016,
+      929101
+    ],
+    "evaluated_classes": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "confusion_matrix": [
+      [
+        9068765,
+        1154495,
+        272578,
+        145361,
+        170368
+      ],
+      [
+        2335829,
+        9411246,
+        950582,
+        388768,
+        350456
+      ],
+      [
+        577644,
+        550393,
+        3132064,
+        27255,
+        44116
+      ],
+      [
+        201770,
+        407637,
+        78285,
+        546185,
+        24190
+      ],
+      [
+        152168,
+        154304,
+        42415,
+        54447,
+        339971
+      ]
+    ],
+    "valid_pixels": 30581292
+  },
+  "test_used_for_tuning": false
+}

@@ -1,0 +1,202 @@
+{
+  "dataset": "bcss5",
+  "manifest_sha256": "ce312d7f824ed0264dfb8da26c926137ee374e1c2e3f0eba42cfd471ba2dc14c",
+  "ckpt_sha256": "f80076dfaecf17367bd802a07bb1d1d370ef6eaeb8d27c6753b34ea3e1b01c29",
+  "method": "lejepa",
+  "epoch": 100,
+  "smoke": false,
+  "representation": "frozen 64 final patch tokens post-layernorm, pre-projector",
+  "preprocessing": "RGB bicubic short-side-256 center-crop-256; mask nearest",
+  "head": "1x1 linear conv 768->5 then bilinear upsampling; pixel CE",
+  "protocol": "official 5 BCSS tissue groups, institute-held-out test; train/val sequential greedy LR then WD; test once",
+  "train_only_class_weights": [
+    0.4516526665161221,
+    0.48420506737216834,
+    0.8251530959439002,
+    1.0321051682224034,
+    2.206884001945406
+  ],
+  "lr": 0.001,
+  "weight_decay": 0.0,
+  "best_epoch": 9,
+  "val_miou": 0.4279882272824369,
+  "tuning": [
+    {
+      "stage": "lr",
+      "lr": 0.001,
+      "wd": 0.0,
+      "miou": 0.41617189319595055
+    },
+    {
+      "stage": "lr",
+      "lr": 0.01,
+      "wd": 0.0,
+      "miou": 0.39232262708803733
+    },
+    {
+      "stage": "wd",
+      "lr": 0.001,
+      "wd": 0.0,
+      "miou": 0.4161714662146789
+    },
+    {
+      "stage": "wd",
+      "lr": 0.001,
+      "wd": 0.0001,
+      "miou": 0.41616899156254294
+    }
+  ],
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.183494116130628,
+      "val_miou": 0.4124957965070674
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.9637421495036075,
+      "val_miou": 0.4074470257154389
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.9205612383390728,
+      "val_miou": 0.40757413033675505
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.899629964640266,
+      "val_miou": 0.4161720508889431
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.8837504277103826,
+      "val_miou": 0.41440962943205556
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.874854702698557,
+      "val_miou": 0.396842277471421
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.8678545371482247,
+      "val_miou": 0.42093725779770413
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.8569403306434029,
+      "val_miou": 0.42645322564080423
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.8542546676962,
+      "val_miou": 0.4279882272824369
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.8485100222261328,
+      "val_miou": 0.41908734698949884
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.8430599852612144,
+      "val_miou": 0.4223693106700098
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.8343779711346877,
+      "val_miou": 0.39224924087350116
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.8277906210798966,
+      "val_miou": 0.4115708149448093
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.8237492285276714,
+      "val_miou": 0.3998321516640424
+    }
+  ],
+  "train_images": 1216,
+  "val_images": 480,
+  "test_images": 720,
+  "test": {
+    "miou": 0.4282431729489365,
+    "mean_dice": 0.5757954921480437,
+    "per_class_iou": [
+      0.6110130190250193,
+      0.5642886733550353,
+      0.5279932539017468,
+      0.1496611456942258,
+      0.288259772768655
+    ],
+    "per_class_dice": [
+      0.7585451039927694,
+      0.7214636057483781,
+      0.6910936976370943,
+      0.2603569691030178,
+      0.4475180842589588
+    ],
+    "class_gt_pixels": [
+      10811567,
+      13436881,
+      4331472,
+      1258067,
+      743305
+    ],
+    "class_pred_pixels": [
+      12314512,
+      12021013,
+      4074407,
+      1457182,
+      714178
+    ],
+    "evaluated_classes": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "confusion_matrix": [
+      [
+        8771087,
+        1465024,
+        261962,
+        255411,
+        58083
+      ],
+      [
+        2430244,
+        9183472,
+        818498,
+        736303,
+        268364
+      ],
+      [
+        729105,
+        607543,
+        2904625,
+        68647,
+        21552
+      ],
+      [
+        242917,
+        575298,
+        46331,
+        353467,
+        40054
+      ],
+      [
+        141159,
+        189676,
+        42991,
+        43354,
+        326125
+      ]
+    ],
+    "valid_pixels": 30581292
+  },
+  "test_used_for_tuning": false
+}

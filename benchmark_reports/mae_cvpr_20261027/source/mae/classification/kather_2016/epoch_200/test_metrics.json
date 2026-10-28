@@ -1,0 +1,131 @@
+{
+  "class_names": [
+    "ADIPOSE",
+    "COMPLEX",
+    "DEBRIS",
+    "EMPTY",
+    "LYMPHO",
+    "MUCOSA",
+    "STROMA",
+    "TUMOR"
+  ],
+  "dataset": "kather_2016",
+  "dataset_metadata": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "oversampling": false,
+      "per_class_quota": 625,
+      "per_class_split_counts": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "policy": "min_1000_smallest_class_then_8_1_1"
+    },
+    "class_names": [
+      "ADIPOSE",
+      "COMPLEX",
+      "DEBRIS",
+      "EMPTY",
+      "LYMPHO",
+      "MUCOSA",
+      "STROMA",
+      "TUMOR"
+    ],
+    "dataset": "kather_2016",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/Kather2016/raw/data",
+    "manifest_file": "/home/xwan0900/mae_review_smoke_20261027/manifests/ssl_standard/dataset_manifests/kather_2016.json",
+    "manifest_sha256": "40b022892592b23cfd2b401452f22ded835fd61975062a5f1f751e2ebe595e88",
+    "num_classes": 8,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "ADIPOSE": 625,
+      "COMPLEX": 625,
+      "DEBRIS": 625,
+      "EMPTY": 625,
+      "LYMPHO": 625,
+      "MUCOSA": 625,
+      "STROMA": 625,
+      "TUMOR": 625
+    },
+    "selected_class_split_counts": {
+      "ADIPOSE": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "COMPLEX": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "DEBRIS": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "EMPTY": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "LYMPHO": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "MUCOSA": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "STROMA": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      },
+      "TUMOR": {
+        "test": 62,
+        "train": 500,
+        "val": 63
+      }
+    },
+    "source_class_counts": {
+      "ADIPOSE": 625,
+      "COMPLEX": 625,
+      "DEBRIS": 625,
+      "EMPTY": 625,
+      "LYMPHO": 625,
+      "MUCOSA": 625,
+      "STROMA": 625,
+      "TUMOR": 625
+    },
+    "source_image_count": 5000,
+    "split_counts": {
+      "test": 496,
+      "train": 4000,
+      "val": 504
+    },
+    "split_policy": "balanced_min1000_smallest625_then_8_1_1_500_63_62",
+    "tier": "main"
+  },
+  "encoder_epoch": 200,
+  "feature_dim": 768,
+  "method": "mae",
+  "num_classes": 8,
+  "probe_validation_macro_f1": 0.9169354455600937,
+  "test": {
+    "accuracy": 0.9092741935483871,
+    "balanced_accuracy": 0.9092741935483871,
+    "macro_f1": 0.9097129243267479,
+    "weighted_f1": 0.909712924326748
+  },
+  "test_evaluated_once": true,
+  "test_images": 496,
+  "test_loss": 0.2716938257217407
+}

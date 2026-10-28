@@ -1,0 +1,70 @@
+{
+  "budget": {
+    "epochs": 20,
+    "hard_nonfinite_stop": true,
+    "plateau_early_stopping": false,
+    "validation_interval_epochs": 5
+  },
+  "executed_trial_count": 3,
+  "method": "mae",
+  "rows": [
+    {
+      "best_epoch": 5,
+      "best_validation_linear_macro_f1": 0.19307327579340156,
+      "candidate_parameter": "learning_rate",
+      "candidate_value": 3.75e-05,
+      "error": null,
+      "learning_rate": 3.75e-05,
+      "ppc_lambda": null,
+      "simplex_components": null,
+      "simplex_sigma": null,
+      "stage": "learning_rate",
+      "status": "completed"
+    },
+    {
+      "best_epoch": 20,
+      "best_validation_linear_macro_f1": 0.1763052612861118,
+      "candidate_parameter": "learning_rate",
+      "candidate_value": 7.5e-05,
+      "error": null,
+      "learning_rate": 7.5e-05,
+      "ppc_lambda": null,
+      "simplex_components": null,
+      "simplex_sigma": null,
+      "stage": "learning_rate",
+      "status": "completed"
+    },
+    {
+      "best_epoch": 15,
+      "best_validation_linear_macro_f1": 0.21926581783716137,
+      "candidate_parameter": "learning_rate",
+      "candidate_value": 0.00015,
+      "error": null,
+      "learning_rate": 0.00015,
+      "ppc_lambda": null,
+      "simplex_components": null,
+      "simplex_sigma": null,
+      "stage": "learning_rate",
+      "status": "completed"
+    }
+  ],
+  "search_strategy": "single_parameter",
+  "selected_parameter": "learning_rate",
+  "selected_parameters": {
+    "learning_rate": 0.00015
+  },
+  "selected_validation_linear_macro_f1": 0.21926581783716137,
+  "selected_value": 0.00015,
+  "source_reference": "facebookresearch/mae PRETRAIN.md linear scaling of 1.5e-4 base LR",
+  "source_value": 7.5e-05,
+  "source_value_included": true,
+  "stages": [
+    {
+      "fixed": {},
+      "name": "learning_rate",
+      "selected_learning_rate": 0.00015,
+      "selected_validation_linear_macro_f1": 0.21926581783716137
+    }
+  ],
+  "test_used": false
+}
