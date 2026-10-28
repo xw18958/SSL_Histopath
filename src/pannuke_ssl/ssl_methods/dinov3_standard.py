@@ -70,6 +70,7 @@ class StandardDINOv3(nn.Module):
         self.mask_generator = MaskingGenerator((8, 8), min_num_patches=4, min_aspect=0.3)
         self._teacher_temp = float(method["teacher"]["temperature_start"])
         self._freeze_last_layer = False
+        self._steps_per_epoch: int | None = None
 
     @property
     def encoder(self) -> nn.Module:
@@ -250,6 +251,12 @@ class StandardDINOv3(nn.Module):
             betas=(0.9, 0.999),
         )
 
+    def set_steps_per_epoch(self, steps: int) -> None:
+        """Bind the actual training loader length (development and full-data differ)."""
+        if int(steps) <= 0:
+            raise ValueError("DINOv3 steps per epoch must be positive")
+        self._steps_per_epoch = int(steps)
+
     def schedule(self, step: int, total: int) -> dict[str, float]:
         optim = self.config["method"]["optimizer"]
         teacher = self.config["method"]["teacher"]
@@ -274,8 +281,9 @@ class StandardDINOv3(nn.Module):
         self._teacher_temp = t0 + (t1 - t0) * min(p / max(temp_warm, 1e-12), 1.0)
 
         # DINOv3 freezes projection-head last layers briefly at the start.
-        steps_per_epoch = math.ceil(int(self.config["data"]["expected_ssl_images"]) / int(self.config["training"]["batch_size"]))
-        freeze_steps = int(optim["freeze_last_layer_epochs"]) * steps_per_epoch
+        if self._steps_per_epoch is None:
+            raise RuntimeError("Bind actual DINOv3 training-loader steps before scheduling")
+        freeze_steps = int(optim["freeze_last_layer_epochs"]) * self._steps_per_epoch
         freeze = step < freeze_steps
         if freeze != self._freeze_last_layer:
             self.student_dino_head.last_layer.requires_grad_(not freeze)

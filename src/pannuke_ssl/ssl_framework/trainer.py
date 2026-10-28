@@ -81,6 +81,11 @@ def train_ssl(
     method = build_method(c, device)
     initial = module_sha(method.encoder)
     loader = build_ssl_loader(c, method, use_all_data=use_all_data)
+    # DINOv3's last-layer freeze is defined in *epochs*, not in steps
+    # estimated from the development set. No change to other SSL methods.
+    steps_hook = getattr(method, "set_steps_per_epoch", None)
+    if callable(steps_hook):
+        steps_hook(len(loader))
     optimizer = method.build_optimizer()
     params = method.optimizer_parameters()
     validator = Validator(c, out, device) if validate else None

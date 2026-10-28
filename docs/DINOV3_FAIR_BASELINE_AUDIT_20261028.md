@@ -111,3 +111,20 @@ The new scripts follow the same immutable MAE workflow:
   scripts/patch_benchmark_dinov3.py reuse existing task code.
 - These are not running, and existing DINOv3, MAE, LeJEPA,
   Simplex outputs and checkpoints are not overwritten.
+
+
+## Follow-up source-parity correction (28 October 2026)
+
+- DINOv3 last-layer projection-head freeze is now measured using the actual
+  loader step count, **50 development steps** (6,305 / 128) and **62 final-data
+  steps** (7,901 / 128). The training loop passes `len(loader)` to DINOv3;
+  MAE, LeJEPA and Simplex are not modified.
+- Gaussian blur now matches the **literal released Meta DINOv3 code**:
+  `dinov3/data/transforms.py::GaussianBlur`, using a **9-pixel kernel** and
+  torchvision `RandomApply(p=1-nominal_p)`. Although unusual, this official
+  code means global1=0%, global2=90%, local=50% actual blur rates, rather
+  than the nominal 100%/10%/50%. This interpretation is explicitly pinned
+  by regression tests. It is not being presented as DINOv2 augmentation.
+- These changes should be validated on CUDA (full batch 128) before tuning,
+  followed by the same three 20-epoch LR trials, 250-epoch full-data training,
+  100/200 checkpoints and MAE-identical external downstream protocols.
