@@ -2,23 +2,30 @@
 """One synthetic GPU optimizer step; never reads PanNuke labels or test images."""
 from __future__ import annotations
 import json
+import argparse
 import torch
 from pannuke_ssl.ssl_framework import load_standard_config
 from pannuke_ssl.ssl_framework.trainer import _set_schedule
 from pannuke_ssl.ssl_methods.dinov3_standard import StandardDINOv3
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--batch-size", type=int, default=2)
+    args = parser.parse_args()
+    if not 1 <= args.batch_size <= 128:
+        parser.error("Batch size must be 1..128")
     if not torch.cuda.is_available():raise RuntimeError("CUDA required")
     torch.manual_seed(20260903)
     config=load_standard_config("dinov3")
     assert config["training"]["batch_size"]==128
     device=torch.device("cuda")
     model=StandardDINOv3(config,device)
+    model.set_steps_per_epoch(62)  # full-data epoch at batch 128
     optimizer=model.build_optimizer()
     model.train_mode()
     batch={
-        "global_views":torch.rand(2,2,3,256,256),
-        "local_views":torch.rand(2,8,3,96,96),
+        "global_views":torch.rand(args.batch_size,2,3,256,256),
+        "local_views":torch.rand(args.batch_size,8,3,96,96),
     }
     stats=_set_schedule(model,optimizer,0,250*62)
     assert len(optimizer.param_groups)>2
@@ -44,7 +51,7 @@ def main():
     assert model.student_dino_head.last_layer.weight.requires_grad is True
     assert model.student_ibot_head.last_layer.weight.requires_grad is True
     print(json.dumps({
-        "smoke":"PASS","synthetic_image_batch":2,
+        "smoke":"PASS","synthetic_image_batch":args.batch_size,
         "training_epochs_started":0,"total_epochs_configured":250,
         "loss":round(float(step.loss.detach()),6),
         "gradient_norm":round(float(norm),6),
