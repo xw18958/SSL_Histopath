@@ -47,7 +47,7 @@ def test_source_blur_matches_released_meta_implementation():
         assert transform.p == applied
         blur = transform.transforms[0]
         assert isinstance(blur, v2.GaussianBlur)
-        assert blur.kernel_size == [9, 9]
+        assert tuple(blur.kernel_size) == (9, 9)
     with __import__("pytest").raises(ValueError):
         source_dinov3_blur(1.1)
 
