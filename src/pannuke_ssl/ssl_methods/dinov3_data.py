@@ -6,6 +6,21 @@ import torch
 from torch.utils.data import Dataset
 from torchvision.transforms import v2
 
+def source_dinov3_blur(p: float) -> v2.RandomApply:
+    """Match facebookresearch/dinov3/data/transforms.py GaussianBlur literally.
+
+    The released Meta helper constructs RandomApply with ``p=1-p``. Therefore
+    its *actual* blur rates for nominal p=(1.0, 0.1, 0.5) are (0, 0.9, 0.5).
+    Retain these source semantics, including its 9-pixel kernel, rather than
+    silently substituting the more usual DINOv2 blur probabilities.
+    """
+    if not 0.0 <= p <= 1.0:
+        raise ValueError("Blur probability must be between zero and one")
+    return v2.RandomApply(
+        [v2.GaussianBlur(kernel_size=9, sigma=(0.1, 2.0))], p=1.0 - p
+    )
+
+
 class DINOv3Views(Dataset):
     """Unlabelled PanNuke samples with DINOv3's 2-global/8-local augmentation layout."""
 
@@ -51,7 +66,7 @@ class DINOv3Views(Dataset):
             [
                 jitter(),
                 gray(),
-                v2.RandomApply([v2.GaussianBlur(kernel_size=23, sigma=(0.1, 2.0))], p=float(aug["global1_blur_p"])),
+                source_dinov3_blur(float(aug["global1_blur_p"])),
                 v2.ToDtype(torch.float32, scale=True),
             ]
         )
@@ -59,7 +74,7 @@ class DINOv3Views(Dataset):
             [
                 jitter(),
                 gray(),
-                v2.RandomApply([v2.GaussianBlur(kernel_size=23, sigma=(0.1, 2.0))], p=float(aug["global2_blur_p"])),
+                source_dinov3_blur(float(aug["global2_blur_p"])),
                 v2.RandomSolarize(threshold=128, p=float(aug["global2_solarize_p"])),
                 v2.ToDtype(torch.float32, scale=True),
             ]
@@ -68,7 +83,7 @@ class DINOv3Views(Dataset):
             [
                 jitter(),
                 gray(),
-                v2.RandomApply([v2.GaussianBlur(kernel_size=23, sigma=(0.1, 2.0))], p=float(aug["local_blur_p"])),
+                source_dinov3_blur(float(aug["local_blur_p"])),
                 v2.ToDtype(torch.float32, scale=True),
             ]
         )
