@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# Raise only the OS descriptor limit; preserve all evaluation hyperparameters.
+ulimit -n 65535
 S="$IJEPA_CODE_ROOT"
 RUN="$IJEPA_RUN_ROOT"
 PY="$IJEPA_PYTHON"
