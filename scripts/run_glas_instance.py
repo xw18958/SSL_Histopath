@@ -352,7 +352,7 @@ def main():
     p=argparse.ArgumentParser()
     for arg in ("data-root","manifest","checkpoint","model-root","out-dir"):
         p.add_argument("--"+arg,type=Path,required=True)
-    p.add_argument("--method",choices=["lejepa","simplex_k8","mae","dinov3"],required=True)
+    p.add_argument("--method",choices=["lejepa","simplex_k8","mae","dinov3","ijepa"],required=True)
     p.add_argument("--epoch",type=int,choices=(100,200),required=True)
     p.add_argument("--gpu",type=int,default=0)
     p.add_argument("--smoke",action="store_true")
@@ -366,7 +366,7 @@ def main():
     ckpt=args.checkpoint.resolve()
     digest=hashfile(ckpt)
     raw=torch.load(ckpt,map_location="cpu",weights_only=False)
-    expected={"lejepa":"lejepa", "simplex_k8":"simplex_sigreg_lejepa", "mae":"mae", "dinov3":"dinov3"}[args.method]
+    expected={"lejepa":"lejepa", "simplex_k8":"simplex_sigreg_lejepa", "mae":"mae", "dinov3":"dinov3", "ijepa":"ijepa"}[args.method]
     if raw.get("framework")!="ssl_standard_v1" or raw["method_name"]!=expected or int(raw["epoch"])!=args.epoch:
         raise ValueError("Checkpoint method/epoch/framework do not match request")
     cfg=copy.deepcopy(raw["config"])
