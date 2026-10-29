@@ -1,0 +1,133 @@
+{
+  "class_names": [
+    "adenosis",
+    "ductal_carcinoma",
+    "fibroadenoma",
+    "lobular_carcinoma",
+    "mucinous_carcinoma",
+    "papillary_carcinoma",
+    "phyllodes_tumor",
+    "tubular_adenoma"
+  ],
+  "dataset": "breakhis_8subtype",
+  "dataset_metadata": {
+    "balance_policy": "balanced",
+    "balancing": {
+      "patient_isolation_enforced": false,
+      "per_class_quota": 444,
+      "per_class_split_counts": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "policy": "deterministic_equal_subtype_image_sample_before_split",
+      "seed": 20260903,
+      "split_unit": "image"
+    },
+    "class_names": [
+      "adenosis",
+      "ductal_carcinoma",
+      "fibroadenoma",
+      "lobular_carcinoma",
+      "mucinous_carcinoma",
+      "papillary_carcinoma",
+      "phyllodes_tumor",
+      "tubular_adenoma"
+    ],
+    "dataset": "breakhis_8subtype",
+    "dataset_root_spec": "${SSL_DATA_ROOT}/BreakHis/BreaKHis_v1/histology_slides/breast",
+    "manifest_file": "/home/xwan0900/ijepa_cvpr_20261029_code/manifests/ssl_standard/dataset_manifests/breakhis_8subtype.json",
+    "manifest_sha256": "350eb74afd1a26e6a1fb65b5668cf9225ff692e39213de3a5375bd592de2fd81",
+    "num_classes": 8,
+    "preprocessing": {
+      "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+      "crop": "center_crop_256x256",
+      "input": "raw_rgb_uint8",
+      "resize": "resize_short_side_to_256_bicubic"
+    },
+    "selected_class_counts": {
+      "adenosis": 444,
+      "ductal_carcinoma": 444,
+      "fibroadenoma": 444,
+      "lobular_carcinoma": 444,
+      "mucinous_carcinoma": 444,
+      "papillary_carcinoma": 444,
+      "phyllodes_tumor": 444,
+      "tubular_adenoma": 444
+    },
+    "selected_class_split_counts": {
+      "adenosis": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "ductal_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "fibroadenoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "lobular_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "mucinous_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "papillary_carcinoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "phyllodes_tumor": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      },
+      "tubular_adenoma": {
+        "test": 44,
+        "train": 356,
+        "val": 44
+      }
+    },
+    "source_class_counts": {
+      "adenosis": 444,
+      "ductal_carcinoma": 3451,
+      "fibroadenoma": 1014,
+      "lobular_carcinoma": 626,
+      "mucinous_carcinoma": 792,
+      "papillary_carcinoma": 560,
+      "phyllodes_tumor": 453,
+      "tubular_adenoma": 569
+    },
+    "source_image_count": 7909,
+    "split_counts": {
+      "test": 352,
+      "train": 2848,
+      "val": 352
+    },
+    "split_policy": "deterministic_equal_subtype_sample_444_then_image_stratified_356_44_44",
+    "tier": "main"
+  },
+  "encoder_epoch": 100,
+  "feature_dim": 768,
+  "method": "ijepa",
+  "num_classes": 8,
+  "probe_validation_macro_f1": 0.6173214111892448,
+  "test": {
+    "accuracy": 0.5710227272727273,
+    "balanced_accuracy": 0.5710227272727273,
+    "macro_f1": 0.566919874055399,
+    "weighted_f1": 0.566919874055399
+  },
+  "test_evaluated_once": true,
+  "test_images": 352,
+  "test_loss": 1.1452778577804565
+}

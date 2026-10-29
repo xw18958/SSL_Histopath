@@ -1,0 +1,14 @@
+{
+  "recovery": "finish_interrupted_first_test_only",
+  "reason": "OSError [Errno 24] before test features/predictions were produced",
+  "original_marker_sha256": "9a1d5dd6c5bf692b8ff9e9120e691c74a7a015376b6937593d15ae2035644f26",
+  "selected_probe_sha256": "e330dabc54ac6c5736ef454185c9d9c3442078c0e150b7201c84a6862033e94f",
+  "selection_sha256": "e22d1354129d63a70d1815f4d33efb76b542c83cc0d908f6cd8d2832201bfa66",
+  "manifest_sha256": "e4beb5a0a5f0b3261d49fa0f734fc497e2cc6ce796384e5b4990a87f74c58709",
+  "checkpoint_sha256": "b76575658f601ea217bf6fac3b7dd8cb7be1a37abd33f160f587330923802684",
+  "dataset": "gashissdb_binary",
+  "epoch": 200,
+  "probe_refitted": false,
+  "hyperparameters_changed": false,
+  "any_prior_test_outputs": false
+}

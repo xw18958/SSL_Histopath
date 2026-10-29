@@ -1,0 +1,3004 @@
+{
+  "methods": [
+    "lejepa",
+    "simplex_k8",
+    "mae",
+    "ijepa"
+  ],
+  "epochs": [
+    100,
+    200
+  ],
+  "metric_rows": 124,
+  "primary_ijepa_results": 78,
+  "parity_validated": {
+    "classification": 22,
+    "patch": 22,
+    "fewshot": 66,
+    "retrieval": 4,
+    "semantic": 6,
+    "instance": 2
+  },
+  "sources_and_sha256": [
+    {
+      "task": "classification",
+      "dataset": "mhist",
+      "epoch": 100,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/mhist/epoch_100/test_metrics.json",
+          "sha256": "73582fb966c99b51f2c275e8e239f79bde767561ad134d523a0dae8950b33ba5"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/mhist/epoch_100/test_metrics.json",
+          "sha256": "8a7e80ec8b2df554e4809f02510eeebf05d2220127ff2a1a4cfe96dd8bd1d41c"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/mhist/epoch_100/test_metrics.json",
+          "sha256": "f91dda2feb23644ef342cd8641eab5c628285fc4ed8a059b0312a656ad2ad80d"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/mhist/epoch_100/test_metrics.json",
+          "sha256": "e9b867e9be64a2e5a877452c4104f4249343d2a26e8dd825008ec0678c3174dd"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "mhist",
+      "epoch": 100,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_100/mhist.json",
+          "sha256": "9f67c0e66ed0eb0b22825b6d39c4d12cb4f34a31338ec525be6bd5823613bba1"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_100/mhist.json",
+          "sha256": "ea928d85b0854c7d7391f631a963d8d981d4f027f46621d88938b9b5cc8071b8"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_100/mhist.json",
+          "sha256": "f849f5adbb0dc554cf54da6b411511af3978e4b43eb14909ba54ae8d37391f7d"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_100/mhist.json",
+          "sha256": "d844de50d2a9f9b0587fa65468d95f250e0421484e5ec72b3642d7eeef35b957"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "mhist",
+      "epoch": 100,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/mhist.json",
+          "sha256": "15d667e6a3e8439656396ea2cbbb8e74f38cdf30915a92cf9b6dc440fa80363f"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/mhist.json",
+          "sha256": "0d2656194dd2c240ec396c5ad1ca9f4f42959b3c3207e960b093a1d1f16b1bad"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/mhist.json",
+          "sha256": "319d399572a0b64e7336300ea094c11ae463485c7dca60bd4d28affae7a4b1bf"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/mhist.json",
+          "sha256": "9e24b1c8c8d2411f1a24d059f9b54dfa06ae41ad5a961b7eb263a9e71d309fe2"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "mhist",
+      "epoch": 100,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/mhist.json",
+          "sha256": "15d667e6a3e8439656396ea2cbbb8e74f38cdf30915a92cf9b6dc440fa80363f"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/mhist.json",
+          "sha256": "0d2656194dd2c240ec396c5ad1ca9f4f42959b3c3207e960b093a1d1f16b1bad"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/mhist.json",
+          "sha256": "319d399572a0b64e7336300ea094c11ae463485c7dca60bd4d28affae7a4b1bf"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/mhist.json",
+          "sha256": "9e24b1c8c8d2411f1a24d059f9b54dfa06ae41ad5a961b7eb263a9e71d309fe2"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "mhist",
+      "epoch": 100,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/mhist.json",
+          "sha256": "15d667e6a3e8439656396ea2cbbb8e74f38cdf30915a92cf9b6dc440fa80363f"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/mhist.json",
+          "sha256": "0d2656194dd2c240ec396c5ad1ca9f4f42959b3c3207e960b093a1d1f16b1bad"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/mhist.json",
+          "sha256": "319d399572a0b64e7336300ea094c11ae463485c7dca60bd4d28affae7a4b1bf"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/mhist.json",
+          "sha256": "9e24b1c8c8d2411f1a24d059f9b54dfa06ae41ad5a961b7eb263a9e71d309fe2"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "crc_val_he_7k",
+      "epoch": 100,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/crc_val_he_7k/epoch_100/test_metrics.json",
+          "sha256": "4b543b9b6a77d61fc6c3eced204397c2bde9ef7732102d8d0a691d7b974fc159"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/crc_val_he_7k/epoch_100/test_metrics.json",
+          "sha256": "951ba2f196dafb29cc927bb4f49073ea424426b3a1f5cff3f056245a1aca40e9"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/crc_val_he_7k/epoch_100/test_metrics.json",
+          "sha256": "8e016ed68b71e8dca099ce2c632d2147909d7d59ab8ce43badcde167d6f4d1b2"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/crc_val_he_7k/epoch_100/test_metrics.json",
+          "sha256": "a3cd5495c20d6ab84d6e3a060de61a290c8db0af2acdf50efaff890a40da0a15"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "crc_val_he_7k",
+      "epoch": 100,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_100/crc_val_he_7k.json",
+          "sha256": "4cfbcc1f5dc9ee72b8cc0512ad0dc9eec27029d0c2a2f5f4e32be39bde394489"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_100/crc_val_he_7k.json",
+          "sha256": "0b9dcb6ee37ae58174494744d4ccc89fe5c3aa3617520126d677b4a804ef1c4c"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_100/crc_val_he_7k.json",
+          "sha256": "3930e641e82a2111fb6b3f83512ddae921e28853dbea5fa141a1bebb4077678c"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_100/crc_val_he_7k.json",
+          "sha256": "d1f5bd90c9fb37dfe10f34546a248f6fa338d203c4cdb05ebc0fa082b9aa556b"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "crc_val_he_7k",
+      "epoch": 100,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "60057155858f40f5dfd808fb7f98f8423757a98d70f88ccd9541b6c7fa37b505"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "e3db0846b4f5a492dd2be6f386386660274ebc5fc6f6acb5181ddf8199784eae"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "c8366194a2131d5fc379763439c6b6c93cd65816a8077c990f04185783bab47d"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "c4c52f9036ea764a6ce856c8e7b9aa51b3bfc710b9b14c2ee7e3924e676c7144"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "crc_val_he_7k",
+      "epoch": 100,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "60057155858f40f5dfd808fb7f98f8423757a98d70f88ccd9541b6c7fa37b505"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "e3db0846b4f5a492dd2be6f386386660274ebc5fc6f6acb5181ddf8199784eae"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "c8366194a2131d5fc379763439c6b6c93cd65816a8077c990f04185783bab47d"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "c4c52f9036ea764a6ce856c8e7b9aa51b3bfc710b9b14c2ee7e3924e676c7144"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "crc_val_he_7k",
+      "epoch": 100,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "60057155858f40f5dfd808fb7f98f8423757a98d70f88ccd9541b6c7fa37b505"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "e3db0846b4f5a492dd2be6f386386660274ebc5fc6f6acb5181ddf8199784eae"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "c8366194a2131d5fc379763439c6b6c93cd65816a8077c990f04185783bab47d"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/crc_val_he_7k.json",
+          "sha256": "c4c52f9036ea764a6ce856c8e7b9aa51b3bfc710b9b14c2ee7e3924e676c7144"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "breakhis_8subtype",
+      "epoch": 100,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/breakhis_8subtype/epoch_100/test_metrics.json",
+          "sha256": "3b19a17b491c2275e7629fea59630f96de0c8ad51872c28540e1c5902688964d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/breakhis_8subtype/epoch_100/test_metrics.json",
+          "sha256": "a995455334e3e16394164a7c24182cd5ce1e2bf88c12d313cf3a3e30ba55183a"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/breakhis_8subtype/epoch_100/test_metrics.json",
+          "sha256": "ee673e80db70fd8af19aef5a533a0c79f357c8c12518295f105c720524dd101b"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/breakhis_8subtype/epoch_100/test_metrics.json",
+          "sha256": "08ad01dcee0cedb02aa8839a79e13900b6803e05d3f2ca4498538c84478c74ed"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "breakhis_8subtype",
+      "epoch": 100,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_100/breakhis_8subtype.json",
+          "sha256": "bbbf417978e1fb461e2ff0f86544a2e4dc510e44e9f0867052a54d1022d0c37b"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_100/breakhis_8subtype.json",
+          "sha256": "a1996d8cafcbc22a2bb69bdab29b6dfd60f2397b82c93d52ae596c146d52d1db"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_100/breakhis_8subtype.json",
+          "sha256": "df9da807f7013a756899b306ff1e5d91a2e39a9af8e32ae7473f64743bbad64e"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_100/breakhis_8subtype.json",
+          "sha256": "cb8d83043dbd7d8c9deee1e294a0869d4da36e7c0665ecca739f503cbb39438f"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "breakhis_8subtype",
+      "epoch": 100,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "ec96748073afb711d363ac356e02d93d081529059995b1a5264551b967064853"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "54e1513aec0a9baeace83f2ea4fe37728ea9e7be9b59c19fe111e3e17e25f48d"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "f843ce554da6523ee4210e75b0f2a157fd86eaecd687db7fd8ca0a90724d0ffa"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "76c9938fa5bd6520beae6819b3cbb94c6e10f8387a3eeccce28dc2db2893e777"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "breakhis_8subtype",
+      "epoch": 100,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "ec96748073afb711d363ac356e02d93d081529059995b1a5264551b967064853"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "54e1513aec0a9baeace83f2ea4fe37728ea9e7be9b59c19fe111e3e17e25f48d"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "f843ce554da6523ee4210e75b0f2a157fd86eaecd687db7fd8ca0a90724d0ffa"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "76c9938fa5bd6520beae6819b3cbb94c6e10f8387a3eeccce28dc2db2893e777"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "breakhis_8subtype",
+      "epoch": 100,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "ec96748073afb711d363ac356e02d93d081529059995b1a5264551b967064853"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "54e1513aec0a9baeace83f2ea4fe37728ea9e7be9b59c19fe111e3e17e25f48d"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "f843ce554da6523ee4210e75b0f2a157fd86eaecd687db7fd8ca0a90724d0ffa"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/breakhis_8subtype.json",
+          "sha256": "76c9938fa5bd6520beae6819b3cbb94c6e10f8387a3eeccce28dc2db2893e777"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "kather_2016",
+      "epoch": 100,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/kather_2016/epoch_100/test_metrics.json",
+          "sha256": "f1f761164b5de10cceb484b03b7b0ad2f00d65fd3189b4ccf5e8fe9b5c5c1b3d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/kather_2016/epoch_100/test_metrics.json",
+          "sha256": "1c4e3322faa00fcc6e414f86ac5afc1edaa93204a3d097d7ce59f368d099d4b6"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/kather_2016/epoch_100/test_metrics.json",
+          "sha256": "45a1a0bb768c8e9ada2b0494a51fe5d4e65c1175019191a7644cdf03f673fc8b"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/kather_2016/epoch_100/test_metrics.json",
+          "sha256": "2faa63aeb3a538657c33a96d7ceb88427dffc22631b08ff7e8d0a88bf879b4de"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "kather_2016",
+      "epoch": 100,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_100/kather_2016.json",
+          "sha256": "0f92c5c4edb2d59c77a6f38dd9ea6906dad3105dc7b2151a56e70c51bdbb34de"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_100/kather_2016.json",
+          "sha256": "f0844f6362313f9574e73d9ea9741266c1e9bcb1f5c36b45b35080cc83d17dfe"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_100/kather_2016.json",
+          "sha256": "205a2ec60d6cbf834ac6eedfaa64c0127a6be2b53546b61cbbfc2576623cbdba"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_100/kather_2016.json",
+          "sha256": "12d1b211cfebcb7835cf1a1df9a75569110301dad200a6e59236d6c884db6d5f"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "kather_2016",
+      "epoch": 100,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/kather_2016.json",
+          "sha256": "1942c62fa2ef83d6c99b201625f6e32b39d98d8f7c56498dab28152ef299cfdc"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/kather_2016.json",
+          "sha256": "865bbd2875cea0de85da9dc49c292f75f96a4b34d3a1eef1bed1bc67c0f75e2d"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/kather_2016.json",
+          "sha256": "833b7a06f2f47562520f4d67fc540414b96de89d0efba24dd0f5465fc17fb006"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/kather_2016.json",
+          "sha256": "a067057522b2e995100d101b76427fef67efa47490a064c24fd47b5f38ef31d1"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "kather_2016",
+      "epoch": 100,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/kather_2016.json",
+          "sha256": "1942c62fa2ef83d6c99b201625f6e32b39d98d8f7c56498dab28152ef299cfdc"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/kather_2016.json",
+          "sha256": "865bbd2875cea0de85da9dc49c292f75f96a4b34d3a1eef1bed1bc67c0f75e2d"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/kather_2016.json",
+          "sha256": "833b7a06f2f47562520f4d67fc540414b96de89d0efba24dd0f5465fc17fb006"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/kather_2016.json",
+          "sha256": "a067057522b2e995100d101b76427fef67efa47490a064c24fd47b5f38ef31d1"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "kather_2016",
+      "epoch": 100,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/kather_2016.json",
+          "sha256": "1942c62fa2ef83d6c99b201625f6e32b39d98d8f7c56498dab28152ef299cfdc"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/kather_2016.json",
+          "sha256": "865bbd2875cea0de85da9dc49c292f75f96a4b34d3a1eef1bed1bc67c0f75e2d"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/kather_2016.json",
+          "sha256": "833b7a06f2f47562520f4d67fc540414b96de89d0efba24dd0f5465fc17fb006"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/kather_2016.json",
+          "sha256": "a067057522b2e995100d101b76427fef67efa47490a064c24fd47b5f38ef31d1"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "bach",
+      "epoch": 100,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/bach/epoch_100/test_metrics.json",
+          "sha256": "c7f80604ca489c33353547a9d449e159db4832248750dc3470b6bc398cb60d37"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/bach/epoch_100/test_metrics.json",
+          "sha256": "c4f2aff8f852485586461032c580c2262dd208547866463ff42687fe7dc81861"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/bach/epoch_100/test_metrics.json",
+          "sha256": "8b5aa4d942bce843efdd2301872986edc6e1040b1b239df1f7cffe7a5bfcbac5"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/bach/epoch_100/test_metrics.json",
+          "sha256": "d7998b565b854ce8bf706c707d2e8b772d828b65faee86ec4790d4f2389992c6"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "bach",
+      "epoch": 100,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_100/bach.json",
+          "sha256": "333b53cbeede9d1c2a4aea7df4280f108039bec6faa7746b67c485b0ccab4dc4"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_100/bach.json",
+          "sha256": "f9831a7807a9dce51c42922b931c1a21df463c2b65f3703e79fb55ba70c568de"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_100/bach.json",
+          "sha256": "865f70f17b3e41f7e92afb7a910dcf059bae038ea141682c79fe8671a5ea14df"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_100/bach.json",
+          "sha256": "b5d13d8f9d8fc86ff067440657735fab1677eb6e0fbe3a653c7440e5a95308b0"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "bach",
+      "epoch": 100,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/bach.json",
+          "sha256": "c6611a2d82b2de65719e90fbe78d5ecd1d0dfb2fc1db8abac2e15446cad1105f"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/bach.json",
+          "sha256": "8c8ed7172df2a04ab4efe742ceff55af9ebe7a430ed98b5dc7cae1d9ceda9050"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/bach.json",
+          "sha256": "6cd6f47679deba5879f6a4e5f3d828a28243f49552eb90b990ae9f6754090522"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/bach.json",
+          "sha256": "416f7944fb54407fbcc7361e1f635f74d7adee09f89c2fad4a51a024eec9f3d8"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "bach",
+      "epoch": 100,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/bach.json",
+          "sha256": "c6611a2d82b2de65719e90fbe78d5ecd1d0dfb2fc1db8abac2e15446cad1105f"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/bach.json",
+          "sha256": "8c8ed7172df2a04ab4efe742ceff55af9ebe7a430ed98b5dc7cae1d9ceda9050"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/bach.json",
+          "sha256": "6cd6f47679deba5879f6a4e5f3d828a28243f49552eb90b990ae9f6754090522"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/bach.json",
+          "sha256": "416f7944fb54407fbcc7361e1f635f74d7adee09f89c2fad4a51a024eec9f3d8"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "bach",
+      "epoch": 100,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/bach.json",
+          "sha256": "c6611a2d82b2de65719e90fbe78d5ecd1d0dfb2fc1db8abac2e15446cad1105f"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/bach.json",
+          "sha256": "8c8ed7172df2a04ab4efe742ceff55af9ebe7a430ed98b5dc7cae1d9ceda9050"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/bach.json",
+          "sha256": "6cd6f47679deba5879f6a4e5f3d828a28243f49552eb90b990ae9f6754090522"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/bach.json",
+          "sha256": "416f7944fb54407fbcc7361e1f635f74d7adee09f89c2fad4a51a024eec9f3d8"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "sicapv2_4class",
+      "epoch": 100,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/sicapv2_4class/epoch_100/test_metrics.json",
+          "sha256": "d5c3b2825385623bf76e4547b399fb85be29be30ad2c28f2a21169631499dd48"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/sicapv2_4class/epoch_100/test_metrics.json",
+          "sha256": "72927a454d2653967a63311bd15f634275fe7159aa7e9fb053187b8bb9abef2b"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/sicapv2_4class/epoch_100/test_metrics.json",
+          "sha256": "391a51af635c64e9a4bcb2b83323a12764832464447f46980729062b711953b0"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/sicapv2_4class/epoch_100/test_metrics.json",
+          "sha256": "60eb5f677e6151278c489f4ab70caa6a8d94180aa6f1824febccdb556678b458"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "sicapv2_4class",
+      "epoch": 100,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_100/sicapv2_4class.json",
+          "sha256": "824aa1a75becc7bbd11219ffae2b0bf63acaac28fa58561807667a7fef200f60"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_100/sicapv2_4class.json",
+          "sha256": "bf17e7d3b750fb35318eed1b43ebcc4ff72e6e5b9c0849367c3750c20d11fb37"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_100/sicapv2_4class.json",
+          "sha256": "1c2f4af54f31a2df94f4b59f42fe5c01025436100202abeb9d6fcb3d20594afd"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_100/sicapv2_4class.json",
+          "sha256": "ada733968c45b0505c47bb88d5130feb69b0c3f236fef3c4898d0c04b7ae7d3d"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "sicapv2_4class",
+      "epoch": 100,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "f3ae867a548eed5b555eba215454c6a721e1670160df4c4598d2ee82167baa05"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "bcf03fbf8c8af30ae33774fe1a602cc86de97843c338ea84ab2cf317ce6fe60f"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "16df5c8200945103380afc055924eb72b442fbcf18a52077a2ad946b3f333980"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "24b9b7c8e7c241693230d2585c1e8ed11893f1f17014bc64d55e594dffb3e991"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "sicapv2_4class",
+      "epoch": 100,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "f3ae867a548eed5b555eba215454c6a721e1670160df4c4598d2ee82167baa05"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "bcf03fbf8c8af30ae33774fe1a602cc86de97843c338ea84ab2cf317ce6fe60f"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "16df5c8200945103380afc055924eb72b442fbcf18a52077a2ad946b3f333980"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "24b9b7c8e7c241693230d2585c1e8ed11893f1f17014bc64d55e594dffb3e991"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "sicapv2_4class",
+      "epoch": 100,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "f3ae867a548eed5b555eba215454c6a721e1670160df4c4598d2ee82167baa05"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "bcf03fbf8c8af30ae33774fe1a602cc86de97843c338ea84ab2cf317ce6fe60f"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "16df5c8200945103380afc055924eb72b442fbcf18a52077a2ad946b3f333980"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/sicapv2_4class.json",
+          "sha256": "24b9b7c8e7c241693230d2585c1e8ed11893f1f17014bc64d55e594dffb3e991"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "oral_oscc",
+      "epoch": 100,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/oral_oscc/epoch_100/test_metrics.json",
+          "sha256": "ac3d8c12aaffa06f44fbb6a80dceeace6f5bb6f4bd0e206fccee586c9fe9797b"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/oral_oscc/epoch_100/test_metrics.json",
+          "sha256": "cdd6e5714ba1743b3787f91d0a156382ffee05be4e21db3c9be03da10ee1df50"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/oral_oscc/epoch_100/test_metrics.json",
+          "sha256": "91bfd09623dfdec5895c4d8f7a0a1262fbf63edd7b9abb3823eb302d84828ada"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/oral_oscc/epoch_100/test_metrics.json",
+          "sha256": "acc2dde63710ed9b6512d3694a0d0d821d1f5d88e8a500a5dabb377ec99c72b8"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "oral_oscc",
+      "epoch": 100,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_100/oral_oscc.json",
+          "sha256": "4c5d814a74a3221cb659631acc197e79978b8431116a251929af95caae8d37a8"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_100/oral_oscc.json",
+          "sha256": "94b9187022916cd2886a30ae37d6dbf2ccaa570f9b90aec7725ef834cdf03b39"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_100/oral_oscc.json",
+          "sha256": "71ae370aa92fe9d9650eb74443dd1cfd98b932a7d9e29d38933447cc2db0c76d"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_100/oral_oscc.json",
+          "sha256": "201ca0bd36f79fcac621b0cbb747c0d488cc8bda236d7c1ffeaca110b75f57cd"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "oral_oscc",
+      "epoch": 100,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "07516848bfb7afcfca714ac536359780ae9eb5e6d5ee5ff8076edaad56cd1550"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "3f3eab62e4a815d6eb8d96a85857ec5275c176c660ae2f7c81018e64cde49f67"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "02db2ea7c554fb1f51886772a2d60ee869caab231198a2694b58932ae0259dff"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "1ad26e16ec4c3a7b3161c89b2714983b06d1c744a44a79f038c71c899e099189"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "oral_oscc",
+      "epoch": 100,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "07516848bfb7afcfca714ac536359780ae9eb5e6d5ee5ff8076edaad56cd1550"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "3f3eab62e4a815d6eb8d96a85857ec5275c176c660ae2f7c81018e64cde49f67"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "02db2ea7c554fb1f51886772a2d60ee869caab231198a2694b58932ae0259dff"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "1ad26e16ec4c3a7b3161c89b2714983b06d1c744a44a79f038c71c899e099189"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "oral_oscc",
+      "epoch": 100,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "07516848bfb7afcfca714ac536359780ae9eb5e6d5ee5ff8076edaad56cd1550"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "3f3eab62e4a815d6eb8d96a85857ec5275c176c660ae2f7c81018e64cde49f67"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "02db2ea7c554fb1f51886772a2d60ee869caab231198a2694b58932ae0259dff"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/oral_oscc.json",
+          "sha256": "1ad26e16ec4c3a7b3161c89b2714983b06d1c744a44a79f038c71c899e099189"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "endometrial_4class",
+      "epoch": 100,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/endometrial_4class/epoch_100/test_metrics.json",
+          "sha256": "aa44805bca862d6ee7248337a714f5a5ff55ba590aa57e5be8845fe18c83eb83"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/endometrial_4class/epoch_100/test_metrics.json",
+          "sha256": "c1487cc468b80c4bd5f08dc163ace8bc133588d6cb67d839d89c1029d5e0cd05"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/endometrial_4class/epoch_100/test_metrics.json",
+          "sha256": "48b5983edc905840cb16bc4a62416a8584095a582870c961380d0f84efbe7420"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/endometrial_4class/epoch_100/test_metrics.json",
+          "sha256": "f7bbf2a3711571bce4507aa91888f12e0930841f06962d31e1e536e7ecac501b"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "endometrial_4class",
+      "epoch": 100,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_100/endometrial_4class.json",
+          "sha256": "d2ee976280359bdf4e35881026cb28906b1f590a58dc95641418102778de05be"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_100/endometrial_4class.json",
+          "sha256": "356f5008ba05c5c553c1e6107e8f596992fe46d2530993e5b3edf8165312a792"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_100/endometrial_4class.json",
+          "sha256": "ac5c472b93e41b0b18a02efa5e5d472732fde2295cb0ce26aaad47dec28db037"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_100/endometrial_4class.json",
+          "sha256": "5741200e9d68af413810a7f9f2e80e8f450d3bad90061663d7f742acc81aad79"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "endometrial_4class",
+      "epoch": 100,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "50ed6100ec980248baa8134bdff32cf066fed2b739a4ee7527614fd55f1f8c75"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "9bab70440bd787ddc33a5ffc0f13f6bc372245745b2a34a16788d142fba46094"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "0d4645dd7da967a8a4093f626a639aff05c74704a8a7f882ff9f884cf47b1b7d"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "c6a091d436389860d4b2d342d8d06ccb29708ddf55127862ac333f9fe4de0cc6"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "endometrial_4class",
+      "epoch": 100,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "50ed6100ec980248baa8134bdff32cf066fed2b739a4ee7527614fd55f1f8c75"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "9bab70440bd787ddc33a5ffc0f13f6bc372245745b2a34a16788d142fba46094"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "0d4645dd7da967a8a4093f626a639aff05c74704a8a7f882ff9f884cf47b1b7d"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "c6a091d436389860d4b2d342d8d06ccb29708ddf55127862ac333f9fe4de0cc6"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "endometrial_4class",
+      "epoch": 100,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "50ed6100ec980248baa8134bdff32cf066fed2b739a4ee7527614fd55f1f8c75"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "9bab70440bd787ddc33a5ffc0f13f6bc372245745b2a34a16788d142fba46094"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "0d4645dd7da967a8a4093f626a639aff05c74704a8a7f882ff9f884cf47b1b7d"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/endometrial_4class.json",
+          "sha256": "c6a091d436389860d4b2d342d8d06ccb29708ddf55127862ac333f9fe4de0cc6"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "gashissdb_binary",
+      "epoch": 100,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/gashissdb_binary/epoch_100/test_metrics.json",
+          "sha256": "e51db38e396787eb8f8b426d38e23570c34eed6cdef496136ce8df0eef092562"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/gashissdb_binary/epoch_100/test_metrics.json",
+          "sha256": "9a121ef0aec1c9944112ea320d5e84a8019bd423fb474fb21a46e32a610376da"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/gashissdb_binary/epoch_100/test_metrics.json",
+          "sha256": "736e85056a14d6e4966b11cf71173b223cb5e1419b9955f34581414f5ce40faf"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/gashissdb_binary/epoch_100/test_metrics.json",
+          "sha256": "b77182cb8ddae709db9d255b653c104e38caf5dfb958028bc6242014a8631bda"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "gashissdb_binary",
+      "epoch": 100,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_100/gashissdb_binary.json",
+          "sha256": "7fc6f693e29fe036ec1a1038fd513d525ecf969620b92bc240d587b3f2d62785"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_100/gashissdb_binary.json",
+          "sha256": "b41723aac49cf85b9a5118e3bb43cf1957d72d6031e38498c87f856cf67fa212"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_100/gashissdb_binary.json",
+          "sha256": "46901873382c29df163c91cbfd6ed33589396177252fda31a9ece1c44065e1cf"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_100/gashissdb_binary.json",
+          "sha256": "5dcc259c6b372176c266cdb0e562fc4619871daab06d79c9b41efb6683d81b4c"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "gashissdb_binary",
+      "epoch": 100,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "2f79f731133a667a5fdaadd62a0321f4f1a05daea40e0b0dc130cc3dd04abc7d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "870b540d0c0fe19c0ca62618962e4b9f7a7bab3df2569c00c221440f2022c89e"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "58922a098720dcd7f31c45b900bc185adcb55b957107b1448aff9a167b0bfea1"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "52d0df301a8abdec5ec369d3753835451cecd8c68c20c47fe3f40ea1e7f90533"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "gashissdb_binary",
+      "epoch": 100,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "2f79f731133a667a5fdaadd62a0321f4f1a05daea40e0b0dc130cc3dd04abc7d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "870b540d0c0fe19c0ca62618962e4b9f7a7bab3df2569c00c221440f2022c89e"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "58922a098720dcd7f31c45b900bc185adcb55b957107b1448aff9a167b0bfea1"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "52d0df301a8abdec5ec369d3753835451cecd8c68c20c47fe3f40ea1e7f90533"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "gashissdb_binary",
+      "epoch": 100,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "2f79f731133a667a5fdaadd62a0321f4f1a05daea40e0b0dc130cc3dd04abc7d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "870b540d0c0fe19c0ca62618962e4b9f7a7bab3df2569c00c221440f2022c89e"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "58922a098720dcd7f31c45b900bc185adcb55b957107b1448aff9a167b0bfea1"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/gashissdb_binary.json",
+          "sha256": "52d0df301a8abdec5ec369d3753835451cecd8c68c20c47fe3f40ea1e7f90533"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "renalcell_6class",
+      "epoch": 100,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/renalcell_6class/epoch_100/test_metrics.json",
+          "sha256": "35883370010506fae2fa20b4378f3ca3f6cf0a527b8b022da994db51230cf3f4"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/renalcell_6class/epoch_100/test_metrics.json",
+          "sha256": "f235236abb34099db152dff6636fe2059ba687a73551dd2058247ec4912d8a68"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/renalcell_6class/epoch_100/test_metrics.json",
+          "sha256": "f86e5ff6ddb36e0769da1462e7c8de1e540f6d6f960f1c6b4c1ff1a8698abb81"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/renalcell_6class/epoch_100/test_metrics.json",
+          "sha256": "111bf6a54e7e1bd72cbb48d1d6f5f07df30639512ed4f72b386ba508594aedbc"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "renalcell_6class",
+      "epoch": 100,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_100/renalcell_6class.json",
+          "sha256": "53c0b1cdeeeecbdb9dcbfd5993fb6b663595bd376fce56fbae1e4a233902e945"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_100/renalcell_6class.json",
+          "sha256": "5a53a301c6c05ba1ddfe6ddd4795f86dc84f67f21ce31bd918bba5e1de43eb59"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_100/renalcell_6class.json",
+          "sha256": "9ab359257195407de16392121cd59c2cc24bea3fbc96a892698dcabb5cdad92b"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_100/renalcell_6class.json",
+          "sha256": "b717dc3389fe2852474dd17ce587ba2dfb381285117099c4f9ce4cb60a585d44"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "renalcell_6class",
+      "epoch": 100,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "5ebbe95728d124a48a04ab3491e10bc9fde1519d01a8aeec010eecc6ada26ac7"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "e18a4a6b7ab71aa4059fcc5f582629abdc23d5c003fc5fe758333274efe7e201"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "60b0477f22658c628807dffdda2df117d3955be4bf114224cd50dda226aaef74"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "aa30f51db1ad8a9e8bb25762f8c0c72896f6516e2da45513d3b68e028050a72e"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "renalcell_6class",
+      "epoch": 100,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "5ebbe95728d124a48a04ab3491e10bc9fde1519d01a8aeec010eecc6ada26ac7"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "e18a4a6b7ab71aa4059fcc5f582629abdc23d5c003fc5fe758333274efe7e201"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "60b0477f22658c628807dffdda2df117d3955be4bf114224cd50dda226aaef74"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "aa30f51db1ad8a9e8bb25762f8c0c72896f6516e2da45513d3b68e028050a72e"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "renalcell_6class",
+      "epoch": 100,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "5ebbe95728d124a48a04ab3491e10bc9fde1519d01a8aeec010eecc6ada26ac7"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "e18a4a6b7ab71aa4059fcc5f582629abdc23d5c003fc5fe758333274efe7e201"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "60b0477f22658c628807dffdda2df117d3955be4bf114224cd50dda226aaef74"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/renalcell_6class.json",
+          "sha256": "aa30f51db1ad8a9e8bb25762f8c0c72896f6516e2da45513d3b68e028050a72e"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "lc25000_5class",
+      "epoch": 100,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/lc25000_5class/epoch_100/test_metrics.json",
+          "sha256": "766b9032821308ad3f235ec69a1e3de954814a0f7fece9c2ff90e4a2c340e228"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/lc25000_5class/epoch_100/test_metrics.json",
+          "sha256": "59a9e62235005dedcc02d065196aec4c618595c231018864078f103b5be578cc"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/lc25000_5class/epoch_100/test_metrics.json",
+          "sha256": "e280ec2d0cf1d0a3abc199c47775de87cc4a85719d10e350eaea0eb9f7305176"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/lc25000_5class/epoch_100/test_metrics.json",
+          "sha256": "8d8320cb0fa695be1355a635a7220bb363217e2359fe2e15178a2d746c7a3768"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "lc25000_5class",
+      "epoch": 100,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_100/lc25000_5class.json",
+          "sha256": "305c34e856000c227c79f2b70536ab5fc4999d779e2e6831be06a881e011a626"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_100/lc25000_5class.json",
+          "sha256": "537461ead3d74b9e35e8fbebc1141c0a1edd23d709eb7e4d53dcef588b8a5ab5"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_100/lc25000_5class.json",
+          "sha256": "ec4a20d946b14d8f80b635b7572f432280f485a5971df5672e30c0e696cdf166"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_100/lc25000_5class.json",
+          "sha256": "f4d44ae000dff45f88562a7a7bb83e1b71286f993dd24bd830fb860146d8870e"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "lc25000_5class",
+      "epoch": 100,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "fc5ce6a6cb59255a998c6e63929e938b8691bfec80db9de22c7d25f775d117af"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "5f1b65d1f165f52db082c474701553c5d5f4ed71b9144e45f450f29a3503fde0"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "f39358a9147f7e1f0a77fa2c0d50e07d86638df12d1de8ab88112e8fc16ff446"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "b0bd87635341896a22fa575803d2869ffa011c09f01f0acd4c9fa4d63d0228ef"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "lc25000_5class",
+      "epoch": 100,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "fc5ce6a6cb59255a998c6e63929e938b8691bfec80db9de22c7d25f775d117af"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "5f1b65d1f165f52db082c474701553c5d5f4ed71b9144e45f450f29a3503fde0"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "f39358a9147f7e1f0a77fa2c0d50e07d86638df12d1de8ab88112e8fc16ff446"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "b0bd87635341896a22fa575803d2869ffa011c09f01f0acd4c9fa4d63d0228ef"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "lc25000_5class",
+      "epoch": 100,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "fc5ce6a6cb59255a998c6e63929e938b8691bfec80db9de22c7d25f775d117af"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "5f1b65d1f165f52db082c474701553c5d5f4ed71b9144e45f450f29a3503fde0"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "f39358a9147f7e1f0a77fa2c0d50e07d86638df12d1de8ab88112e8fc16ff446"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_100/lc25000_5class.json",
+          "sha256": "b0bd87635341896a22fa575803d2869ffa011c09f01f0acd4c9fa4d63d0228ef"
+        }
+      }
+    },
+    {
+      "task": "retrieval",
+      "dataset": "arch",
+      "epoch": 100,
+      "metric": "Mean Recall",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/retrieval/arch/epoch_100/test_retrieval_metrics.json",
+          "sha256": "b1f0fcf8ef00ad8c0387da0eaff6471221bdbff8b13f48c5b21d31356605a22d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/retrieval/arch/epoch_100/test_retrieval_metrics.json",
+          "sha256": "bfc3f17af090199499299b1550ea8d29c250b825dbf0a9bec8b33c8e9f10d745"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/retrieval/arch/epoch_100/test_retrieval_metrics.json",
+          "sha256": "6daa5645b5530987df44428362602afeec277302f3e8bf133c3b40145c30e156"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/retrieval/arch/epoch_100/test_retrieval_metrics.json",
+          "sha256": "71a1f456e014dd5d47deffcfaafcb268465fa2d3e985ee7b44d656869d16d194"
+        }
+      }
+    },
+    {
+      "task": "retrieval",
+      "dataset": "pathcap",
+      "epoch": 100,
+      "metric": "Mean Recall",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/retrieval/pathcap/epoch_100/test_retrieval_metrics.json",
+          "sha256": "df1dbd428f99b401413cbbed1a1f7efc6ad1f56c3567b7009f8b3e644e3151fd"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/retrieval/pathcap/epoch_100/test_retrieval_metrics.json",
+          "sha256": "a9cc0cef700916da81dfcbfc807c35081bdcc206cf64e375fdb7c4063f9731d8"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/retrieval/pathcap/epoch_100/test_retrieval_metrics.json",
+          "sha256": "933c72b3be9e1af536b8c0374a825b8f114a3d3d3aea75f9e5a2c2aa468a5a0f"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/retrieval/pathcap/epoch_100/test_retrieval_metrics.json",
+          "sha256": "b385a43694b116aae5cad18d70393310d8552e8c5170cf0d397e2106f02f7477"
+        }
+      }
+    },
+    {
+      "task": "semantic",
+      "dataset": "glas",
+      "epoch": 100,
+      "metric": "mIoU",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_semantic_raw/glas/lejepa/epoch_100/result.json",
+          "sha256": "2ddf73ebb700233685a2af118174f09d743842b2086a62549a43c30b235ea30c"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_semantic_raw/glas/simplex_k8/epoch_100/result.json",
+          "sha256": "1891eb4978c9cd3c1f33a166ba2bf1edd2eff7046e3dcce1462e36c9cea92a34"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/semantic/glas/epoch_100/result.json",
+          "sha256": "62aa1bb7f543ae27b66c63658b53f9ccbcc03d23aa7e2c958b905e2c4e6cfb7d"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/semantic/glas/epoch_100/result.json",
+          "sha256": "f0d5467e7696b623d984dd03d7bd641479046911dac95ff7627646e684928251"
+        }
+      }
+    },
+    {
+      "task": "semantic",
+      "dataset": "ebhi",
+      "epoch": 100,
+      "metric": "mIoU",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_semantic_raw/ebhi/lejepa/epoch_100/result.json",
+          "sha256": "573856a10649d1311ed64fe44ebdb7396bc1b86a2aedb0c48a80fbb6db29ccc6"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_semantic_raw/ebhi/simplex_k8/epoch_100/result.json",
+          "sha256": "c5f4f74ae0401f8f85e096d74149a3416373e428dff5c948bd60be807b5d015a"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/semantic/ebhi/epoch_100/result.json",
+          "sha256": "ce3ca62a8bab5afe95beccaf3bb9b794c1029af58eae3fb3b9df3fc2fb3041f0"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/semantic/ebhi/epoch_100/result.json",
+          "sha256": "d67e83d73f89fece7b253b9670a812ce458aa42dd2a69d3013bed1d5c1bb76c7"
+        }
+      }
+    },
+    {
+      "task": "semantic",
+      "dataset": "bcss5",
+      "epoch": 100,
+      "metric": "mIoU",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_bcss5_raw/lejepa/epoch_100/result.json",
+          "sha256": "1cdd5275801e1da13464bfd7eb9d6460fcb41c49f76a0652f7155da96124ecd7"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_bcss5_raw/simplex_k8/epoch_100/result.json",
+          "sha256": "3e13fca0761ef9f368904c3c59ac21fe0cdb27a615ce7c67da7299ddb347d0d6"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/semantic/bcss5/epoch_100/result.json",
+          "sha256": "d4ddbe1e735833850c852f702b63932fa0a4cf8012e164fb7e9dfc5713a766e1"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/semantic/bcss5/epoch_100/result.json",
+          "sha256": "9f7204f53cc127df52ef8278057c1b2b6d5eda70fa5297ba14ceeadf9777e2fc"
+        }
+      }
+    },
+    {
+      "task": "instance",
+      "dataset": "glas_instance",
+      "epoch": 100,
+      "metric": "Object Dice",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_instance_raw/lejepa/epoch_100/result.json",
+          "sha256": "94069792976c5fc4f080c3ef92f9e4d1cd952969cfa7068079d8f76f1045d458"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_instance_raw/simplex_k8/epoch_100/result.json",
+          "sha256": "456a23bc53cd937905bf76f48014ddd5eaf420477d87715f2a6766c561447d5c"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/instance/epoch_100/result.json",
+          "sha256": "c939cc1047fb8d8f074129f3f766b4c4d38b921779a0cac85969b88d14be6a5e"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/instance/epoch_100/result.json",
+          "sha256": "3c12b854baf75954e9c1547cc3e9b3ee9c684503fadc5da308042ee5b166d753"
+        }
+      }
+    },
+    {
+      "task": "instance_f1",
+      "dataset": "glas_instance",
+      "epoch": 100,
+      "metric": "Object F1",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_instance_raw/lejepa/epoch_100/result.json",
+          "sha256": "94069792976c5fc4f080c3ef92f9e4d1cd952969cfa7068079d8f76f1045d458"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_instance_raw/simplex_k8/epoch_100/result.json",
+          "sha256": "456a23bc53cd937905bf76f48014ddd5eaf420477d87715f2a6766c561447d5c"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/instance/epoch_100/result.json",
+          "sha256": "c939cc1047fb8d8f074129f3f766b4c4d38b921779a0cac85969b88d14be6a5e"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/instance/epoch_100/result.json",
+          "sha256": "3c12b854baf75954e9c1547cc3e9b3ee9c684503fadc5da308042ee5b166d753"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "mhist",
+      "epoch": 200,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/mhist/epoch_200/test_metrics.json",
+          "sha256": "e2516bdb4061df23987d38c052aea740b55d2a468c88cc4d073f4269c3e9794d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/mhist/epoch_200/test_metrics.json",
+          "sha256": "f0d018ce1f769ef7b18b8705340b46798178fbe1a9904851dcc11cc12ed9b911"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/mhist/epoch_200/test_metrics.json",
+          "sha256": "b4b79e825941efe2df3ad0c404d1c02270591d2f5470e430d7730ee36dc4a955"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/mhist/epoch_200/test_metrics.json",
+          "sha256": "d2a382b02188d4d70b0186b1ceed8eea87068781db315432d278a849ecce699d"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "mhist",
+      "epoch": 200,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_200/mhist.json",
+          "sha256": "021e38e31d7da721f440d3eabcbfa999580bff8aabddc016138ddff8ec443b34"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_200/mhist.json",
+          "sha256": "a573d53c410763bb8cc3e845c61f7877a1ffdaa71fa1c920a0c374a6bf88b374"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_200/mhist.json",
+          "sha256": "5a0b7e5ce3345bbcb6863c1ec12304e3ed15a55e970f27af0a2361f7cbc12ee1"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_200/mhist.json",
+          "sha256": "2d1fd137d322d88ce1d849e0a2056db680a3163c79dab0eae41cacfaa43c1163"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "mhist",
+      "epoch": 200,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/mhist.json",
+          "sha256": "b944fa4969d2c672e780f19ce1c2d4841727fbd76dd6450f4a2644ee1bd9cf5d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/mhist.json",
+          "sha256": "00a8bf7893cb445cdab2bc77a4406b2d354a00de8507ed93195f0b79f12dd358"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/mhist.json",
+          "sha256": "80db23e615ac7df3031a120d15a1bab79227c1868706eff6c53806d72a6c50de"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/mhist.json",
+          "sha256": "620218692846eeb33e5813e32f2d78d56a609259574faee8cb95d34fbf05d1d4"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "mhist",
+      "epoch": 200,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/mhist.json",
+          "sha256": "b944fa4969d2c672e780f19ce1c2d4841727fbd76dd6450f4a2644ee1bd9cf5d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/mhist.json",
+          "sha256": "00a8bf7893cb445cdab2bc77a4406b2d354a00de8507ed93195f0b79f12dd358"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/mhist.json",
+          "sha256": "80db23e615ac7df3031a120d15a1bab79227c1868706eff6c53806d72a6c50de"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/mhist.json",
+          "sha256": "620218692846eeb33e5813e32f2d78d56a609259574faee8cb95d34fbf05d1d4"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "mhist",
+      "epoch": 200,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/mhist.json",
+          "sha256": "b944fa4969d2c672e780f19ce1c2d4841727fbd76dd6450f4a2644ee1bd9cf5d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/mhist.json",
+          "sha256": "00a8bf7893cb445cdab2bc77a4406b2d354a00de8507ed93195f0b79f12dd358"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/mhist.json",
+          "sha256": "80db23e615ac7df3031a120d15a1bab79227c1868706eff6c53806d72a6c50de"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/mhist.json",
+          "sha256": "620218692846eeb33e5813e32f2d78d56a609259574faee8cb95d34fbf05d1d4"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "crc_val_he_7k",
+      "epoch": 200,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/crc_val_he_7k/epoch_200/test_metrics.json",
+          "sha256": "eacf117efc95ca0bcfb9a78cd97653f451cc4e92d8491668ef1cbdbb2f6a2805"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/crc_val_he_7k/epoch_200/test_metrics.json",
+          "sha256": "06e8f31e3f86e314c5645fae6b0d5c99ccff4483f01c1f917724765325708ed5"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/crc_val_he_7k/epoch_200/test_metrics.json",
+          "sha256": "9665676bb606da8026777dc2f7450f7e38fffe2273a8e68d1dd5fdd9cf135dbb"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/crc_val_he_7k/epoch_200/test_metrics.json",
+          "sha256": "e1f5b40fb98639f46241cc12b02493ce5ccfbd597fa97c94ee9e964750ca48a1"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "crc_val_he_7k",
+      "epoch": 200,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_200/crc_val_he_7k.json",
+          "sha256": "4465528a847d8206a57da654cc57afc08a2430b4c1713eebdd3aee98fd78e53e"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_200/crc_val_he_7k.json",
+          "sha256": "9b415e427583b5b5f49533964d30185540215f4088f234d6c051f44caea3ca57"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_200/crc_val_he_7k.json",
+          "sha256": "c317f477d9a8eac87e7b343b44f2b1a2776d2fdd04a10685e443d4e9c9dca9b4"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_200/crc_val_he_7k.json",
+          "sha256": "98239036dedc8abf57ff17375c3b940dadbb3240290bc402bc6c36b74c37c6c9"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "crc_val_he_7k",
+      "epoch": 200,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "f03e38ef54454643f2e80bf2c44240805d2fdde3fc5d2a9afd6660831c5cf18a"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "a29b57a0780a2d92328552aa4b2fc3a4edf75b2ee288d585beb3f9f0ed642b02"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "f8a1adc1e6afe9d343d09c189d01becdf949f259d27c3cc158f5c6fc4b74fc9b"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "9f6829fec43f38371a292d3c2d93d12082be801a83bb1bf9f7086433bedb7bf6"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "crc_val_he_7k",
+      "epoch": 200,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "f03e38ef54454643f2e80bf2c44240805d2fdde3fc5d2a9afd6660831c5cf18a"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "a29b57a0780a2d92328552aa4b2fc3a4edf75b2ee288d585beb3f9f0ed642b02"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "f8a1adc1e6afe9d343d09c189d01becdf949f259d27c3cc158f5c6fc4b74fc9b"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "9f6829fec43f38371a292d3c2d93d12082be801a83bb1bf9f7086433bedb7bf6"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "crc_val_he_7k",
+      "epoch": 200,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "f03e38ef54454643f2e80bf2c44240805d2fdde3fc5d2a9afd6660831c5cf18a"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "a29b57a0780a2d92328552aa4b2fc3a4edf75b2ee288d585beb3f9f0ed642b02"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "f8a1adc1e6afe9d343d09c189d01becdf949f259d27c3cc158f5c6fc4b74fc9b"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/crc_val_he_7k.json",
+          "sha256": "9f6829fec43f38371a292d3c2d93d12082be801a83bb1bf9f7086433bedb7bf6"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "breakhis_8subtype",
+      "epoch": 200,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/breakhis_8subtype/epoch_200/test_metrics.json",
+          "sha256": "a0d50d441bdebbc18c2b5ea569058489204d2661d17afe09ec79cc3e2e150a7f"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/breakhis_8subtype/epoch_200/test_metrics.json",
+          "sha256": "1e410d3373d3b08c835448dcea18d46900a7b8a170039dce1b42d4d8cf9f81eb"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/breakhis_8subtype/epoch_200/test_metrics.json",
+          "sha256": "bbf15980a96ae1842dd3602b429d1db14a35cc278a4ed858b781ba0443e0f86e"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/breakhis_8subtype/epoch_200/test_metrics.json",
+          "sha256": "a797a01f1c915e7ab6e5e1beb1eea20477daea1bafa8ea840f5c97522059d202"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "breakhis_8subtype",
+      "epoch": 200,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_200/breakhis_8subtype.json",
+          "sha256": "016d2c09f4cca2bb463a6478e7c0fcbe0f9291f9751034e1fe9d5ca8743503bf"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_200/breakhis_8subtype.json",
+          "sha256": "e49c75ecbac637079efc550766c4926753af63c0bf80bc8bd35481a440f9a034"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_200/breakhis_8subtype.json",
+          "sha256": "92daa340fe8f86e28bc34cacdeaa2b483d110d47a5ca0d0828c20738644f4499"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_200/breakhis_8subtype.json",
+          "sha256": "3550ffdbc9beb43e41dd2201115892970d20acf32e5d074e75e49a74ac31e222"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "breakhis_8subtype",
+      "epoch": 200,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "855ab27143ad77feff1ce6f6534213244aeeeb232b13189fb9e9db7d86bf5aba"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "77596774e3778f6168ad8ce3613aba1f89f611fce972fa3d9d09c064a338c7a3"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "6b464e7d1074d116870697bc59001c1c28dffadffda8af7d6c9bd38fdf71c51f"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "ed03d959b3b13fe12b769173ae886a6b4b8228aea725982941b17212bf5c9d27"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "breakhis_8subtype",
+      "epoch": 200,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "855ab27143ad77feff1ce6f6534213244aeeeb232b13189fb9e9db7d86bf5aba"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "77596774e3778f6168ad8ce3613aba1f89f611fce972fa3d9d09c064a338c7a3"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "6b464e7d1074d116870697bc59001c1c28dffadffda8af7d6c9bd38fdf71c51f"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "ed03d959b3b13fe12b769173ae886a6b4b8228aea725982941b17212bf5c9d27"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "breakhis_8subtype",
+      "epoch": 200,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "855ab27143ad77feff1ce6f6534213244aeeeb232b13189fb9e9db7d86bf5aba"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "77596774e3778f6168ad8ce3613aba1f89f611fce972fa3d9d09c064a338c7a3"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "6b464e7d1074d116870697bc59001c1c28dffadffda8af7d6c9bd38fdf71c51f"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/breakhis_8subtype.json",
+          "sha256": "ed03d959b3b13fe12b769173ae886a6b4b8228aea725982941b17212bf5c9d27"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "kather_2016",
+      "epoch": 200,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/kather_2016/epoch_200/test_metrics.json",
+          "sha256": "cc5f5ea53a9cc110e4aeae03b8db812f569b8f8e5e1f0a8ac9e68923a23a701e"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/kather_2016/epoch_200/test_metrics.json",
+          "sha256": "f809ec71d60acf66c4f012f7db1f440cf76dd5afc1795588d153997d58e3561d"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/kather_2016/epoch_200/test_metrics.json",
+          "sha256": "71f737305157911adc307bf218c229ef88be53c3225a915b8a7f065cca2d8c50"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/kather_2016/epoch_200/test_metrics.json",
+          "sha256": "5d48dd3153ee5cb6a12a1cce2e507140abb37c06855b4ff9bbfaec040a8259e3"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "kather_2016",
+      "epoch": 200,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_200/kather_2016.json",
+          "sha256": "eb886586d0dc0c076b669609fbbf1f2defe49ce7fbc599a9e8643eb9ac8c4f0d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_200/kather_2016.json",
+          "sha256": "02238a7ab54438dfb3c6f0ff59505bd0c7825467f396a578c57e1b37962dbbcd"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_200/kather_2016.json",
+          "sha256": "02b4da741407f29db0c261a2af9a16cc0e8c9a415301368704fe036ca3c820a5"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_200/kather_2016.json",
+          "sha256": "d06399ca958b97a485920abe27691a776570a005d86097f6f5abf3db8a4a9429"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "kather_2016",
+      "epoch": 200,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/kather_2016.json",
+          "sha256": "ffde91bd99cf7f4b4bd051dd60af94cd40868eb61406be0aaff0a1194ce2a717"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/kather_2016.json",
+          "sha256": "9a7c936a199f178a87d6d4dc81e754ffbd3e5004d933b01ac08f59dc3eb3c7bc"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/kather_2016.json",
+          "sha256": "c56f14db0372e4e013c58f5a74f4e00695fa916c71f40fcf8dd05621a8d48524"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/kather_2016.json",
+          "sha256": "5c9bfab6fa846b5d62caf01e7479e7ed0a0f273fea5b43e514314446efc45364"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "kather_2016",
+      "epoch": 200,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/kather_2016.json",
+          "sha256": "ffde91bd99cf7f4b4bd051dd60af94cd40868eb61406be0aaff0a1194ce2a717"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/kather_2016.json",
+          "sha256": "9a7c936a199f178a87d6d4dc81e754ffbd3e5004d933b01ac08f59dc3eb3c7bc"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/kather_2016.json",
+          "sha256": "c56f14db0372e4e013c58f5a74f4e00695fa916c71f40fcf8dd05621a8d48524"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/kather_2016.json",
+          "sha256": "5c9bfab6fa846b5d62caf01e7479e7ed0a0f273fea5b43e514314446efc45364"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "kather_2016",
+      "epoch": 200,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/kather_2016.json",
+          "sha256": "ffde91bd99cf7f4b4bd051dd60af94cd40868eb61406be0aaff0a1194ce2a717"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/kather_2016.json",
+          "sha256": "9a7c936a199f178a87d6d4dc81e754ffbd3e5004d933b01ac08f59dc3eb3c7bc"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/kather_2016.json",
+          "sha256": "c56f14db0372e4e013c58f5a74f4e00695fa916c71f40fcf8dd05621a8d48524"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/kather_2016.json",
+          "sha256": "5c9bfab6fa846b5d62caf01e7479e7ed0a0f273fea5b43e514314446efc45364"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "bach",
+      "epoch": 200,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/bach/epoch_200/test_metrics.json",
+          "sha256": "3f42f8e4fd1dade81e19d266e437d8b477b346c014fd949706597842309a3b99"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/bach/epoch_200/test_metrics.json",
+          "sha256": "32aa917c1b67c24f8dd1488a2671a291226ffa59ec05007733103eecd8b6ef99"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/bach/epoch_200/test_metrics.json",
+          "sha256": "a56b065f344bd66efa32d3f35b480b78e069cedc29e465cbe4d9aa642e97f60e"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/bach/epoch_200/test_metrics.json",
+          "sha256": "179e07c0ef7c08b2b8b38629078485f8833c97b7a12e42ed491d2d96fd2006cc"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "bach",
+      "epoch": 200,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_200/bach.json",
+          "sha256": "e369ed014f640b7f81689cae06d4e0881212e204206bff3f2da8d87d4ce5453e"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_200/bach.json",
+          "sha256": "57f4aed6f1cbccd923b6e1bf618e703cd3d1a1c021603617f4d83065f297c375"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_200/bach.json",
+          "sha256": "813c06693ea027ff6638f23ba146736e57af4a15f0d3041baf04d65e29bb51af"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_200/bach.json",
+          "sha256": "5657ebcce747e0c97ffd141e33dc8c568ae3b62f7f83500a72e049b4ad78b5aa"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "bach",
+      "epoch": 200,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/bach.json",
+          "sha256": "4b558426d968c8a22ad43eee8b1a8bce275f82c29a1e627e697d099d168c9766"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/bach.json",
+          "sha256": "e894516b0a5fe11b783ff11c767dd3ede35a74e967d4861dd83e75a5202342b2"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/bach.json",
+          "sha256": "2318709baaac59bb90b2ffbf6fd8afb66948c52dbb71484978aa128618b28afb"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/bach.json",
+          "sha256": "a3d7acf3de2a21b72f20e6dcee19446dadfe52d083a44fadd61dc069326de634"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "bach",
+      "epoch": 200,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/bach.json",
+          "sha256": "4b558426d968c8a22ad43eee8b1a8bce275f82c29a1e627e697d099d168c9766"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/bach.json",
+          "sha256": "e894516b0a5fe11b783ff11c767dd3ede35a74e967d4861dd83e75a5202342b2"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/bach.json",
+          "sha256": "2318709baaac59bb90b2ffbf6fd8afb66948c52dbb71484978aa128618b28afb"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/bach.json",
+          "sha256": "a3d7acf3de2a21b72f20e6dcee19446dadfe52d083a44fadd61dc069326de634"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "bach",
+      "epoch": 200,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/bach.json",
+          "sha256": "4b558426d968c8a22ad43eee8b1a8bce275f82c29a1e627e697d099d168c9766"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/bach.json",
+          "sha256": "e894516b0a5fe11b783ff11c767dd3ede35a74e967d4861dd83e75a5202342b2"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/bach.json",
+          "sha256": "2318709baaac59bb90b2ffbf6fd8afb66948c52dbb71484978aa128618b28afb"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/bach.json",
+          "sha256": "a3d7acf3de2a21b72f20e6dcee19446dadfe52d083a44fadd61dc069326de634"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "sicapv2_4class",
+      "epoch": 200,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/sicapv2_4class/epoch_200/test_metrics.json",
+          "sha256": "5aba5e57a3b0b7f9886ebfd34e55cfb6e5ec862ed9a5338b932a4a4358a5fe5f"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/sicapv2_4class/epoch_200/test_metrics.json",
+          "sha256": "9a6e12396c428df29a352b9d1c12b85ae292d86bb116900a6fd35c0258d76208"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/sicapv2_4class/epoch_200/test_metrics.json",
+          "sha256": "f3dc795f23ef0e861818a3b340b7b5199aa6d197caba413938e62281c359da8b"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/sicapv2_4class/epoch_200/test_metrics.json",
+          "sha256": "04d5975bc0e33e55539169ee461b1a6e5d4ee2a107a9b5b5c6d1cf93ac73aeae"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "sicapv2_4class",
+      "epoch": 200,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_200/sicapv2_4class.json",
+          "sha256": "17cd6587cc8ce9fa31354a653147dffd76d1f51caf7d194e4a4133724b61dc48"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_200/sicapv2_4class.json",
+          "sha256": "66193475cf36c6a47121b1cbbec8f2bf811bf1cf859cdb3dbca9833f14bdde72"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_200/sicapv2_4class.json",
+          "sha256": "2dce15d6843b951ee67f1989cc810b9548b7d380cfb3d66780bb3a0d139f0ab6"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_200/sicapv2_4class.json",
+          "sha256": "f727b32497dd416bc10f07f239770614411a0ea3f91fc46affd8b6497190082b"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "sicapv2_4class",
+      "epoch": 200,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "a5c908ed1bc74c0b6d945824c32655f69d7604f17584e9b0619b868bbcdb126d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "f18904a4c9400afe78f6e9894550a4be89069873018511a50b27bf4a1429c8c2"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "5e39b86f80973b0a8a8b8e1bda9a8f641ebeac5702384f38fe9e939dc3b0f7d8"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "d23858f47d998e04d28272a7a455f1cf53581aec87a28fdd6491f4fea160a4bb"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "sicapv2_4class",
+      "epoch": 200,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "a5c908ed1bc74c0b6d945824c32655f69d7604f17584e9b0619b868bbcdb126d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "f18904a4c9400afe78f6e9894550a4be89069873018511a50b27bf4a1429c8c2"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "5e39b86f80973b0a8a8b8e1bda9a8f641ebeac5702384f38fe9e939dc3b0f7d8"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "d23858f47d998e04d28272a7a455f1cf53581aec87a28fdd6491f4fea160a4bb"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "sicapv2_4class",
+      "epoch": 200,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "a5c908ed1bc74c0b6d945824c32655f69d7604f17584e9b0619b868bbcdb126d"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "f18904a4c9400afe78f6e9894550a4be89069873018511a50b27bf4a1429c8c2"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "5e39b86f80973b0a8a8b8e1bda9a8f641ebeac5702384f38fe9e939dc3b0f7d8"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/sicapv2_4class.json",
+          "sha256": "d23858f47d998e04d28272a7a455f1cf53581aec87a28fdd6491f4fea160a4bb"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "oral_oscc",
+      "epoch": 200,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/oral_oscc/epoch_200/test_metrics.json",
+          "sha256": "920698c96338184fff3dcb8acb9803fc636b21ef3f4c1863164e7549b4e834f5"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/oral_oscc/epoch_200/test_metrics.json",
+          "sha256": "30acaefa9e953d08369d6ebb892bf26ebaeb41d56c291f563e10e3ca50a1ff16"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/oral_oscc/epoch_200/test_metrics.json",
+          "sha256": "68584becd00c26bdda664d528fdc29ca2d65ead440d0c1432f567cfaf99db73d"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/oral_oscc/epoch_200/test_metrics.json",
+          "sha256": "946d201913d1465ad99b980c9023bf9631f6cbb25c50f718b9acec6710e223f4"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "oral_oscc",
+      "epoch": 200,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_200/oral_oscc.json",
+          "sha256": "5c14de2477206ab5f6b518923e635eb045e5c1f5105cd2e8ea34d313c57ece8e"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_200/oral_oscc.json",
+          "sha256": "f695d16ea8fc240f932719f6fb8369e1b0cd146ace10fc181d4cc8b3b1310695"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_200/oral_oscc.json",
+          "sha256": "47cde19748b87f6ab692d3941aec756b33fe981ee5ae4e56bf72630aa1f6a3e7"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_200/oral_oscc.json",
+          "sha256": "56cf1a6e9a85b330da2367552cd84f287a1b3fe523a40dfc4ee201563ef684bf"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "oral_oscc",
+      "epoch": 200,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "87f474f23a28d09d8adf8b6468f9397ea2c1e85551124b4016aceb3e9ab6741e"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "07a43f13c24f426332f0567dc7b589e50833dbc11d1b58a12f42f8c1e9e6f182"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "9d5d06837333a681287adf429b728291f1958d317082705e95bb1ac6ad6b7963"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "0d6b18e78f0dfa565aa4c34d750fc2f053247f0acc5eea78b46c6f2fe4f6c1bb"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "oral_oscc",
+      "epoch": 200,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "87f474f23a28d09d8adf8b6468f9397ea2c1e85551124b4016aceb3e9ab6741e"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "07a43f13c24f426332f0567dc7b589e50833dbc11d1b58a12f42f8c1e9e6f182"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "9d5d06837333a681287adf429b728291f1958d317082705e95bb1ac6ad6b7963"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "0d6b18e78f0dfa565aa4c34d750fc2f053247f0acc5eea78b46c6f2fe4f6c1bb"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "oral_oscc",
+      "epoch": 200,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "87f474f23a28d09d8adf8b6468f9397ea2c1e85551124b4016aceb3e9ab6741e"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "07a43f13c24f426332f0567dc7b589e50833dbc11d1b58a12f42f8c1e9e6f182"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "9d5d06837333a681287adf429b728291f1958d317082705e95bb1ac6ad6b7963"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/oral_oscc.json",
+          "sha256": "0d6b18e78f0dfa565aa4c34d750fc2f053247f0acc5eea78b46c6f2fe4f6c1bb"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "endometrial_4class",
+      "epoch": 200,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/endometrial_4class/epoch_200/test_metrics.json",
+          "sha256": "edbb3289eae08f963c8d18da57c0a8fe095c4faab4660d4ff78a407068ac1eed"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/endometrial_4class/epoch_200/test_metrics.json",
+          "sha256": "2b58e22f7291a52a60a3702d070821411d4f6adc84a6727ddb2b6e334609e63f"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/endometrial_4class/epoch_200/test_metrics.json",
+          "sha256": "a43a7f43b17ad5cf92dd2cdf273f5ffbb27401df8e7caa9663cc7a325866cfd8"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/endometrial_4class/epoch_200/test_metrics.json",
+          "sha256": "2819d2176b72781230481951009e04cc831dcc3fba220f785f40323de40dc039"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "endometrial_4class",
+      "epoch": 200,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_200/endometrial_4class.json",
+          "sha256": "a3d29276b8838efdcec5dbb6f1442385e79bbff5c3cf74cce75e68f830393f32"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_200/endometrial_4class.json",
+          "sha256": "d06b1ab441130050f35e633cae3103fbb2df930f909e9dd2a2c19dc4ce24fea0"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_200/endometrial_4class.json",
+          "sha256": "380a640153470bdd6ed1a1feaed37605c656420e38180f48e568939cf172d0a4"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_200/endometrial_4class.json",
+          "sha256": "824a1a5d8ddec36963fc16997815b508147a7e722a854166dd0d8606ff459395"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "endometrial_4class",
+      "epoch": 200,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "2da5f5164ee87e214951a680fe072409381a868708a29ba9e28659da552a838b"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "67d874fa8ad978e5e4c6638fd3d2ecc63285f0365090bd2f3f45a111d38ced57"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "51c64360b9b05180a7721c2e012d62bf735ccd442e78e13721e03515475d02ba"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "6e9b1fd1d3bb6549d66b91ebd8afa9c11b0930305d62c61c9dbce316a2923883"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "endometrial_4class",
+      "epoch": 200,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "2da5f5164ee87e214951a680fe072409381a868708a29ba9e28659da552a838b"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "67d874fa8ad978e5e4c6638fd3d2ecc63285f0365090bd2f3f45a111d38ced57"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "51c64360b9b05180a7721c2e012d62bf735ccd442e78e13721e03515475d02ba"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "6e9b1fd1d3bb6549d66b91ebd8afa9c11b0930305d62c61c9dbce316a2923883"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "endometrial_4class",
+      "epoch": 200,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "2da5f5164ee87e214951a680fe072409381a868708a29ba9e28659da552a838b"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "67d874fa8ad978e5e4c6638fd3d2ecc63285f0365090bd2f3f45a111d38ced57"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "51c64360b9b05180a7721c2e012d62bf735ccd442e78e13721e03515475d02ba"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/endometrial_4class.json",
+          "sha256": "6e9b1fd1d3bb6549d66b91ebd8afa9c11b0930305d62c61c9dbce316a2923883"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "gashissdb_binary",
+      "epoch": 200,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/gashissdb_binary/epoch_200/test_metrics.json",
+          "sha256": "4133eb41c9512d19ef5b57341251d0eae0f2edfb1f6e066ecbeff1694c061f2b"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/gashissdb_binary/epoch_200/test_metrics.json",
+          "sha256": "273ae355b8d1700d1161651cfd80a9622ac76c562b4ec1b196c50731a6fd63ac"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/gashissdb_binary/epoch_200/test_metrics.json",
+          "sha256": "2fa08b4591f851f2deab1487ea561a8e8244a04b4edcddd27824dde71441faff"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/gashissdb_binary/epoch_200/test_metrics.json",
+          "sha256": "e8f821284f9e062d0766bddf5dd4ed43de70552d04f3192cf2b77e3dd725283b"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "gashissdb_binary",
+      "epoch": 200,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_200/gashissdb_binary.json",
+          "sha256": "a9e5b4031b0b4bbfba3b8d5a1e0e6505a32b6f5d684dde2e15974748e970a800"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_200/gashissdb_binary.json",
+          "sha256": "f3496a57bcce30e17fcc7145e8f9c9741a46dd45b35ab7cd8144cbff7cd7c276"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_200/gashissdb_binary.json",
+          "sha256": "3a94e91c9f37966cc9dac495f6990b983e526c463c5121973b6fd5bdd555910c"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_200/gashissdb_binary.json",
+          "sha256": "d6f1b32df541cfe88b9747dec49a5c26a22ac598f9ef421a19d6da9cf5c4018e"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "gashissdb_binary",
+      "epoch": 200,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "217efb081cd38198bff7dcb9e50da0a9de9e97043db90d8147bdbb20b8c22880"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "471f3a906c143f0a6a94dc5560b444b48617bc1e9c031fe68e923866b6a922b3"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "8a3bdfdac12425671ecbee22d98431652293d79636169ff1cedd6a6842dee348"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "292f094b0f11049d350aa77a61893291ffb1b561ae099a69184a8af8e6bc7d2f"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "gashissdb_binary",
+      "epoch": 200,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "217efb081cd38198bff7dcb9e50da0a9de9e97043db90d8147bdbb20b8c22880"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "471f3a906c143f0a6a94dc5560b444b48617bc1e9c031fe68e923866b6a922b3"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "8a3bdfdac12425671ecbee22d98431652293d79636169ff1cedd6a6842dee348"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "292f094b0f11049d350aa77a61893291ffb1b561ae099a69184a8af8e6bc7d2f"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "gashissdb_binary",
+      "epoch": 200,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "217efb081cd38198bff7dcb9e50da0a9de9e97043db90d8147bdbb20b8c22880"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "471f3a906c143f0a6a94dc5560b444b48617bc1e9c031fe68e923866b6a922b3"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "8a3bdfdac12425671ecbee22d98431652293d79636169ff1cedd6a6842dee348"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/gashissdb_binary.json",
+          "sha256": "292f094b0f11049d350aa77a61893291ffb1b561ae099a69184a8af8e6bc7d2f"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "renalcell_6class",
+      "epoch": 200,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/renalcell_6class/epoch_200/test_metrics.json",
+          "sha256": "6abdbfd5ddfc253c8ff94d86a96b89e435e655894be8caf37afbf84835468efd"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/renalcell_6class/epoch_200/test_metrics.json",
+          "sha256": "aa8e71d2e90e8860b4a45c0247ec22b8b77d3d245d3a67094970461539fba16e"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/renalcell_6class/epoch_200/test_metrics.json",
+          "sha256": "b3ac55f509be06242f2361f467e57168aac285dcf8245f9610bab81ec4991d23"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/renalcell_6class/epoch_200/test_metrics.json",
+          "sha256": "ca2e347e02ef7ae06a35dc52dfc88d00a5a96a8947cd6d94a4a0ede01b1c9c7a"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "renalcell_6class",
+      "epoch": 200,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_200/renalcell_6class.json",
+          "sha256": "a6f60b0dab31c2b14184901a2c071b06f6fb0aeabba4d9f6230a74db376d72bd"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_200/renalcell_6class.json",
+          "sha256": "1cf28fde6892a6d756910a977cacf1d891ab6a96b1b7b8ae7c09884c310764ca"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_200/renalcell_6class.json",
+          "sha256": "6aa2908c76255e6404fd5a95fe604dc54f70f9652c915ff7509c84e3bd0c5246"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_200/renalcell_6class.json",
+          "sha256": "ea5537cf5322f435487a097d3d2469776dff99c0aaabe448cb5c7288d398c71c"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "renalcell_6class",
+      "epoch": 200,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "3e5b994bf7e857308e855e08cf3334944670c2430ab159c3922b53ca3fec7f0a"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "2591ab5eb761383e9db36d37d7df43ca5bb90dd6396c744945a44ca50f19f9f8"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "378f7c6ac6189d03826ab55e57415108abe8805bd64b5c76eb41782c721a6475"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "bbd93d261adf8ce411f1fefb73a77d1d53f50999cbcd854666c451e9b27087fc"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "renalcell_6class",
+      "epoch": 200,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "3e5b994bf7e857308e855e08cf3334944670c2430ab159c3922b53ca3fec7f0a"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "2591ab5eb761383e9db36d37d7df43ca5bb90dd6396c744945a44ca50f19f9f8"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "378f7c6ac6189d03826ab55e57415108abe8805bd64b5c76eb41782c721a6475"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "bbd93d261adf8ce411f1fefb73a77d1d53f50999cbcd854666c451e9b27087fc"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "renalcell_6class",
+      "epoch": 200,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "3e5b994bf7e857308e855e08cf3334944670c2430ab159c3922b53ca3fec7f0a"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "2591ab5eb761383e9db36d37d7df43ca5bb90dd6396c744945a44ca50f19f9f8"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "378f7c6ac6189d03826ab55e57415108abe8805bd64b5c76eb41782c721a6475"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/renalcell_6class.json",
+          "sha256": "bbd93d261adf8ce411f1fefb73a77d1d53f50999cbcd854666c451e9b27087fc"
+        }
+      }
+    },
+    {
+      "task": "classification",
+      "dataset": "lc25000_5class",
+      "epoch": 200,
+      "metric": "Accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/classification/lc25000_5class/epoch_200/test_metrics.json",
+          "sha256": "f7798d05b8f5e0a4717163e050b5dccc3f95afefde0a536b493a07501de33510"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/classification/lc25000_5class/epoch_200/test_metrics.json",
+          "sha256": "da6fa8a04f15007d048cdcb6913e2870616d39c13c36e5f3480b35eebbc2776a"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/classification/lc25000_5class/epoch_200/test_metrics.json",
+          "sha256": "f8f3619d0da4499abc9ff8bad8b9e6e2151d336e597dd42a4a0f87a1a2172e2e"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/classification/lc25000_5class/epoch_200/test_metrics.json",
+          "sha256": "fa08d7b4e1221ed108949ddf7b49bb8bcbd0f27727b09426cc15d56f34e1aaa4"
+        }
+      }
+    },
+    {
+      "task": "patch",
+      "dataset": "lc25000_5class",
+      "epoch": 200,
+      "metric": "mAP",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/patch/epoch_200/lc25000_5class.json",
+          "sha256": "ee443db5dd36abc403e10edf30421e0a298721896beadc3a5d2a7aa6955d2675"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/patch/epoch_200/lc25000_5class.json",
+          "sha256": "58fe053d8cc86bd4f954eb80db9a9319280bb15d6273e5a2e34264c33a2769d6"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/patch/epoch_200/lc25000_5class.json",
+          "sha256": "ea76a31e743151e0faa3e0f18a1de314c31d1c93013939c59f54dab8948b5a0f"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/patch/epoch_200/lc25000_5class.json",
+          "sha256": "56bf495a173b30197ab0061a303718e6f9a210a707cee673383c8b6072387d6e"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "lc25000_5class",
+      "epoch": 200,
+      "metric": "1-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "edd8d3bae1f6d303163b6dd37a2a1862a93953fa5221e7be052726053b2f28e5"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "a04d9e9743218f7ca114c7c3ec808c60b4f241c639f0393704c261195d1e758f"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "230214717aa58e8ca344b909c88b37c10c7d18fe0d6d51a2a81c01d37c602287"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "3e0ae4b8fdaacdb4a8636f60874febf24f6a7f42657ced535007cdecc8288d56"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "lc25000_5class",
+      "epoch": 200,
+      "metric": "5-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "edd8d3bae1f6d303163b6dd37a2a1862a93953fa5221e7be052726053b2f28e5"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "a04d9e9743218f7ca114c7c3ec808c60b4f241c639f0393704c261195d1e758f"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "230214717aa58e8ca344b909c88b37c10c7d18fe0d6d51a2a81c01d37c602287"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "3e0ae4b8fdaacdb4a8636f60874febf24f6a7f42657ced535007cdecc8288d56"
+        }
+      }
+    },
+    {
+      "task": "fewshot",
+      "dataset": "lc25000_5class",
+      "epoch": 200,
+      "metric": "10-shot accuracy",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "edd8d3bae1f6d303163b6dd37a2a1862a93953fa5221e7be052726053b2f28e5"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "a04d9e9743218f7ca114c7c3ec808c60b4f241c639f0393704c261195d1e758f"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "230214717aa58e8ca344b909c88b37c10c7d18fe0d6d51a2a81c01d37c602287"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/fewshot/epoch_200/lc25000_5class.json",
+          "sha256": "3e0ae4b8fdaacdb4a8636f60874febf24f6a7f42657ced535007cdecc8288d56"
+        }
+      }
+    },
+    {
+      "task": "retrieval",
+      "dataset": "arch",
+      "epoch": 200,
+      "metric": "Mean Recall",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/retrieval/arch/epoch_200/test_retrieval_metrics.json",
+          "sha256": "01d811be3d7142a287191472ef132fe6614e2df772f9fe7e51642bbfe57fe0e5"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/retrieval/arch/epoch_200/test_retrieval_metrics.json",
+          "sha256": "ea513f149711fc5e143b6c2efc0b6a5292a16e4588f4e143e1007e034503a15c"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/retrieval/arch/epoch_200/test_retrieval_metrics.json",
+          "sha256": "0700523080f84c463f8e8b5efff6eb8fa7bb53f3db08a219372d6d7a9d9830d8"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/retrieval/arch/epoch_200/test_retrieval_metrics.json",
+          "sha256": "d7a02add11ab4618b88564b8411396496cad20de6dc5483384754ef40081a294"
+        }
+      }
+    },
+    {
+      "task": "retrieval",
+      "dataset": "pathcap",
+      "epoch": 200,
+      "metric": "Mean Recall",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/lejepa/retrieval/pathcap/epoch_200/test_retrieval_metrics.json",
+          "sha256": "d6bc85945dad3b13f0917220f9366a0e8d923f6ec84be3cfa8e1fb20b0372aa7"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/simplex_k8/retrieval/pathcap/epoch_200/test_retrieval_metrics.json",
+          "sha256": "a1c92cadeb1dcae0207e4907ac65bdf17b287b11159e2f00f0468a66d223aa35"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/retrieval/pathcap/epoch_200/test_retrieval_metrics.json",
+          "sha256": "47b6a642f40672ebc3fad015f5f0fd69c05ce34bce23811551b360c1f95b962f"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/retrieval/pathcap/epoch_200/test_retrieval_metrics.json",
+          "sha256": "d7213b06858e0d8dfc3d626360e83e19155fabc6fe74641f5473d2858644bb68"
+        }
+      }
+    },
+    {
+      "task": "semantic",
+      "dataset": "glas",
+      "epoch": 200,
+      "metric": "mIoU",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_semantic_raw/glas/lejepa/epoch_200/result.json",
+          "sha256": "0e29b9cd0ff94e43c592dffe0e889fc2d620b0d7a1be14bce64d31dd9ced12c7"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_semantic_raw/glas/simplex_k8/epoch_200/result.json",
+          "sha256": "966aa91d382a8896e677b743b333bedb576a8917da48e94ae3320e010554b979"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/semantic/glas/epoch_200/result.json",
+          "sha256": "46c5257675700927c46646c5fbfd50b3dd7f59aa2a1b3bffa3a119ba8f15e760"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/semantic/glas/epoch_200/result.json",
+          "sha256": "586f5bf8df313254a8cd4bf259e4012dee0d21fcc7c0362f9214bcdfbad72156"
+        }
+      }
+    },
+    {
+      "task": "semantic",
+      "dataset": "ebhi",
+      "epoch": 200,
+      "metric": "mIoU",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_semantic_raw/ebhi/lejepa/epoch_200/result.json",
+          "sha256": "eea2a20b378eda52dee28d3f1ecbce14821c1f9cbdb1e3a5fcd85e1ce3d9b940"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_semantic_raw/ebhi/simplex_k8/epoch_200/result.json",
+          "sha256": "ff6bca9f4683e908c90ca8956415d22b8d53b56670b1fd3c126838ccce2729a9"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/semantic/ebhi/epoch_200/result.json",
+          "sha256": "62dcced8fd00fe2df7fb80006c29a088e5392d2709920295d68c5760d44d8b1f"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/semantic/ebhi/epoch_200/result.json",
+          "sha256": "e16d64298fee1c9423808bd497b4e40b6a6c4ea1b0e10df7f5805d5ddaaa543e"
+        }
+      }
+    },
+    {
+      "task": "semantic",
+      "dataset": "bcss5",
+      "epoch": 200,
+      "metric": "mIoU",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_bcss5_raw/lejepa/epoch_200/result.json",
+          "sha256": "4cd72019e9a61e8b20e55670304d48ce6ab90fdb70e2101998809e11c5e0253b"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_bcss5_raw/simplex_k8/epoch_200/result.json",
+          "sha256": "f6acf07c2166a90c728389b7ff96bb153f4d502628df9b163aafd6e363682e09"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/semantic/bcss5/epoch_200/result.json",
+          "sha256": "44f7083b180cac49b958290c0df9ad073c0d719a70acc3dbabdab9e8a4f3146e"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/semantic/bcss5/epoch_200/result.json",
+          "sha256": "9107bc28dded19c6954449c57dc3620d98799a5310eab6cb2d1150bfd1aed30a"
+        }
+      }
+    },
+    {
+      "task": "instance",
+      "dataset": "glas_instance",
+      "epoch": 200,
+      "metric": "Object Dice",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_instance_raw/lejepa/epoch_200/result.json",
+          "sha256": "b7aee008942c9c452f0e4b36313eea1873c6bd3a95d408a0454913fd83bd498b"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_instance_raw/simplex_k8/epoch_200/result.json",
+          "sha256": "9f9242d4a08a81a12fd06aef4bbd145d8b8231ea31b4a2e2fe2d075123475cce"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/instance/epoch_200/result.json",
+          "sha256": "e0364d204d186ddc1523c3ccc72a91b8fb37a82aafbf5b05c98db080829349bd"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/instance/epoch_200/result.json",
+          "sha256": "3b6976efe948f88811f64daa2f247b93006431c77bff83edae608220f01f1cb8"
+        }
+      }
+    },
+    {
+      "task": "instance_f1",
+      "dataset": "glas_instance",
+      "epoch": 200,
+      "metric": "Object F1",
+      "sources": {
+        "lejepa": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_instance_raw/lejepa/epoch_200/result.json",
+          "sha256": "b7aee008942c9c452f0e4b36313eea1873c6bd3a95d408a0454913fd83bd498b"
+        },
+        "simplex_k8": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/refs_instance_raw/simplex_k8/epoch_200/result.json",
+          "sha256": "9f9242d4a08a81a12fd06aef4bbd145d8b8231ea31b4a2e2fe2d075123475cce"
+        },
+        "mae": {
+          "path": "benchmark_reports/mae_cvpr_20261027/source/mae/instance/epoch_200/result.json",
+          "sha256": "e0364d204d186ddc1523c3ccc72a91b8fb37a82aafbf5b05c98db080829349bd"
+        },
+        "ijepa": {
+          "path": "benchmark_reports/ijepa_cvpr_20261029/source/ijepa/instance/epoch_200/result.json",
+          "sha256": "3b6976efe948f88811f64daa2f247b93006431c77bff83edae608220f01f1cb8"
+        }
+      }
+    }
+  ],
+  "pretrain_epochs": 250,
+  "pretraining_no_labels": true,
+  "pretrain_summary_sha256": "2f0f93e9a55e16e9072dc94fcdeb1c7e1f3e9e6f6817fa50e2fe12054bd0514e",
+  "tuning_summary_sha256": "f6302538dffe24611381bb6878ed2a5ca33d3e4d454d7b44b13cdd7d1896e778"
+}

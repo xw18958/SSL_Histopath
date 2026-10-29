@@ -1,0 +1,74 @@
+{
+  "balance_policy": "balanced",
+  "balancing": {
+    "g4c_used_as_separate_class": false,
+    "groups": 95,
+    "per_class_quota": 948,
+    "per_class_split_counts": {
+      "test": 95,
+      "train": 758,
+      "val": 95
+    },
+    "policy": "min1000_patient_grouped_8_1_1",
+    "split_unit": "patient"
+  },
+  "class_names": [
+    "NC",
+    "G3",
+    "G4",
+    "G5"
+  ],
+  "dataset": "sicapv2_4class",
+  "dataset_root_spec": "${SSL_DATA_ROOT}/SICAPv2/extracted/SICAPv2",
+  "manifest_file": "/home/xwan0900/ijepa_cvpr_20261029_code/manifests/ssl_standard/dataset_manifests/sicapv2_4class.json",
+  "manifest_sha256": "eea6f07f39cf05c70e41ef360afa5d5aae59264a060653e81e962f44a7da5cdc",
+  "num_classes": 4,
+  "preprocessing": {
+    "adapter_input": "raw_rgb_float_0_1_before_adapter_normalization",
+    "crop": "center_crop_256x256",
+    "input": "raw_rgb_uint8",
+    "resize": "resize_short_side_to_256_bicubic"
+  },
+  "selected_class_counts": {
+    "G3": 948,
+    "G4": 948,
+    "G5": 948,
+    "NC": 948
+  },
+  "selected_class_split_counts": {
+    "G3": {
+      "test": 95,
+      "train": 758,
+      "val": 95
+    },
+    "G4": {
+      "test": 95,
+      "train": 758,
+      "val": 95
+    },
+    "G5": {
+      "test": 95,
+      "train": 758,
+      "val": 95
+    },
+    "NC": {
+      "test": 95,
+      "train": 758,
+      "val": 95
+    }
+  },
+  "source_class_counts": {
+    "G3": 2222,
+    "G4": 4494,
+    "G5": 948,
+    "NC": 4417
+  },
+  "source_image_count": 12081,
+  "split_counts": {
+    "test": 380,
+    "train": 3032,
+    "val": 380
+  },
+  "split_policy": "balanced_min1000_smallest948_patient_grouped_8_1_1_758_95_95",
+  "tier": "main"
+}

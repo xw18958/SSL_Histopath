@@ -1,0 +1,13 @@
+{
+  "best_epoch": 22,
+  "learning_rate": 0.003,
+  "lr_trials": 3,
+  "num_classes": 4,
+  "search": "sequential_greedy",
+  "test_used": false,
+  "tuning_epochs_per_trial": 5,
+  "tuning_validation_macro_f1": 0.4344444444444444,
+  "validation_macro_f1": 0.4875532080767132,
+  "weight_decay": 0.0,
+  "weight_decay_trials": 2
+}

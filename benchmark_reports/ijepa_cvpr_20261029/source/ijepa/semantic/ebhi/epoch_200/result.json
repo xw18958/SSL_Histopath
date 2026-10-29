@@ -1,0 +1,193 @@
+{
+  "dataset": "ebhi",
+  "manifest_sha256": "2317fe6e89c54ca92b0477ecac480addc2b07a9a1dd6b01c4fc68e94465faa90",
+  "ckpt_sha256": "b76575658f601ea217bf6fac3b7dd8cb7be1a37abd33f160f587330923802684",
+  "method": "ijepa",
+  "epoch": 200,
+  "smoke": false,
+  "representation": "frozen 64 final patch tokens post-layernorm, pre-projector",
+  "preprocessing": "RGB bicubic short-side-256 center-crop-256; mask nearest",
+  "head": "1x1 linear conv 768->2 then bilinear upsampling; pixel CE",
+  "protocol": "train/val sequential greedy LR then WD; test once after selection",
+  "lr": 0.01,
+  "weight_decay": 0.0,
+  "best_epoch": 24,
+  "val_miou": 0.5089465012947286,
+  "tuning": [
+    {
+      "stage": "lr",
+      "lr": 0.001,
+      "wd": 0.0,
+      "miou": 0.49117129831991024
+    },
+    {
+      "stage": "lr",
+      "lr": 0.01,
+      "wd": 0.0,
+      "miou": 0.4920991078834248
+    },
+    {
+      "stage": "wd",
+      "lr": 0.01,
+      "wd": 0.0,
+      "miou": 0.4921096296182462
+    },
+    {
+      "stage": "wd",
+      "lr": 0.01,
+      "wd": 0.0001,
+      "miou": 0.49199362699214766
+    }
+  ],
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.8278947744680487,
+      "val_miou": 0.4820510604716166
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.6052067538966304,
+      "val_miou": 0.4879948638244064
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.6053167905496515,
+      "val_miou": 0.488247423968213
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.5990347460560177,
+      "val_miou": 0.49210727334375426
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.6074092129002446,
+      "val_miou": 0.44064632634021444
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.5955363252888555,
+      "val_miou": 0.4653299974525371
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.5910673063734303,
+      "val_miou": 0.4914673937218166
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.6097737732140914,
+      "val_miou": 0.4480329858576044
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.6205219341361005,
+      "val_miou": 0.4966204430716611
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.6132563430330028,
+      "val_miou": 0.4930720277529941
+    },
+    {
+      "epoch": 11,
+      "train_loss": 0.585483185623003,
+      "val_miou": 0.46785519735141956
+    },
+    {
+      "epoch": 12,
+      "train_loss": 0.5913542729357014,
+      "val_miou": 0.45109517666128796
+    },
+    {
+      "epoch": 13,
+      "train_loss": 0.5829740542432537,
+      "val_miou": 0.5004888364495818
+    },
+    {
+      "epoch": 14,
+      "train_loss": 0.5819349794284158,
+      "val_miou": 0.49070961270377733
+    },
+    {
+      "epoch": 15,
+      "train_loss": 0.5870499261047529,
+      "val_miou": 0.5036290873061099
+    },
+    {
+      "epoch": 16,
+      "train_loss": 0.6005995753018752,
+      "val_miou": 0.47630924469922015
+    },
+    {
+      "epoch": 17,
+      "train_loss": 0.6030259171257848,
+      "val_miou": 0.5004051940622065
+    },
+    {
+      "epoch": 18,
+      "train_loss": 0.5878486918366473,
+      "val_miou": 0.4824488613880138
+    },
+    {
+      "epoch": 19,
+      "train_loss": 0.5792205644690472,
+      "val_miou": 0.5074914215739688
+    },
+    {
+      "epoch": 20,
+      "train_loss": 0.586093509974687,
+      "val_miou": 0.4819798093910465
+    },
+    {
+      "epoch": 21,
+      "train_loss": 0.5749071486618208,
+      "val_miou": 0.46616693242606444
+    },
+    {
+      "epoch": 22,
+      "train_loss": 0.5963605668233789,
+      "val_miou": 0.4827298436577626
+    },
+    {
+      "epoch": 23,
+      "train_loss": 0.5813709989837978,
+      "val_miou": 0.5079353450348624
+    },
+    {
+      "epoch": 24,
+      "train_loss": 0.5749970622684645,
+      "val_miou": 0.5089465012947286
+    },
+    {
+      "epoch": 25,
+      "train_loss": 0.5728197603122048,
+      "val_miou": 0.42153605249334325
+    }
+  ],
+  "train_images": 1461,
+  "val_images": 365,
+  "test_images": 400,
+  "test": {
+    "miou": 0.5053016385630553,
+    "foreground_iou": 0.6405113531905724,
+    "foreground_dice": 0.7808679311421582,
+    "per_class_iou": [
+      0.37009192393553814,
+      0.6405113531905724
+    ],
+    "confusion_matrix": [
+      [
+        4571277,
+        4816215
+      ],
+      [
+        2964242,
+        13862666
+      ]
+    ],
+    "valid_pixels": 26214400
+  },
+  "test_used_for_tuning": false
+}

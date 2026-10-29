@@ -1,0 +1,1 @@
+{"encoder_epoch": 200, "probe_selected": true, "dataset": "gashissdb_binary", "num_classes": 2}

@@ -1,0 +1,97 @@
+{
+  "dataset": "glas_instance_v1",
+  "method": "ijepa",
+  "epoch": 200,
+  "ssl_checkpoint_sha256": "b76575658f601ea217bf6fac3b7dd8cb7be1a37abd33f160f587330923802684",
+  "source_manifest_sha256": "c944423a89cc67df0c55b003381a69b689ce52be2f421d0caabd9319de62f724",
+  "source_splits": {
+    "train": 70,
+    "val": 15,
+    "test": 80
+  },
+  "representation": "frozen ViT-B/32 8x8x768 last patch tokens, pre-projector",
+  "training": "native 256x256 fixed RGB crops; supervised 2-channel fg/distance linear probe; only head trained",
+  "postprocess": "validation-selected watershed markers from predicted instance distance map; native-resolution TestA/TestB",
+  "eval": "mean per-image object F1, symmetric area-weighted object Dice, symmetric area-weighted object Hausdorff",
+  "test_used_for_tuning": false,
+  "smoke": false,
+  "lr": 0.01,
+  "wd": 0.0,
+  "best_epoch": 1,
+  "hp_trace": {
+    "lr": 0.01,
+    "wd": 0.0,
+    "selection": [
+      {
+        "stage": "lr",
+        "lr": 0.001,
+        "wd": 0.0,
+        "val_object_dice": 0.22290831039492087
+      },
+      {
+        "stage": "lr",
+        "lr": 0.01,
+        "wd": 0.0,
+        "val_object_dice": 0.2464525628459954
+      },
+      {
+        "stage": "wd",
+        "lr": 0.01,
+        "wd": 0.0,
+        "val_object_dice": 0.24645230276416083
+      },
+      {
+        "stage": "wd",
+        "lr": 0.01,
+        "wd": 0.0001,
+        "val_object_dice": 0.2464415737203885
+      }
+    ],
+    "post_selection": [
+      {
+        "stage": "peak_threshold",
+        "value": 0.25,
+        "object_dice": 0.2462026116924155,
+        "object_f1": 0.09792462439521263
+      },
+      {
+        "stage": "peak_threshold",
+        "value": 0.35,
+        "object_dice": 0.24645316332773065,
+        "object_f1": 0.09893472540531364
+      },
+      {
+        "stage": "peak_threshold",
+        "value": 0.5,
+        "object_dice": 0.24645316332773065,
+        "object_f1": 0.09893472540531364
+      },
+      {
+        "stage": "min_area",
+        "value": 100,
+        "object_dice": 0.2456566400705996,
+        "object_f1": 0.09755955545429229
+      },
+      {
+        "stage": "min_area",
+        "value": 200,
+        "object_dice": 0.24645316332773065,
+        "object_f1": 0.09893472540531364
+      },
+      {
+        "stage": "min_area",
+        "value": 500,
+        "object_dice": 0.250622394014643,
+        "object_f1": 0.10616594516594516
+      }
+    ],
+    "final_val": {
+      "object_f1": 0.10616594516594516,
+      "object_dice": 0.250622394014643
+    }
+  },
+  "post_cfg": {
+    "peak_threshold": 0.35,
+    "min_area": 500
+  }
+}
