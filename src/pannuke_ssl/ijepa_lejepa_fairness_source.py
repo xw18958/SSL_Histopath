@@ -333,22 +333,25 @@ def _init_predictor_module(module: nn.Module) -> None:
 class IJEPAFairPredictor(nn.Module):
     """Official predictor layout with experiment-specific depth=4 and shared-encoder heads."""
 
-    def __init__(self, num_heads: int = 12) -> None:
+    def __init__(self, num_heads: int = 12, *, predictor_dim: int = 384,
+                 predictor_depth: int = 4, mlp_ratio: float = 4.0) -> None:
         super().__init__()
-        self.input_projection = nn.Linear(768, 384)
-        self.mask_token = nn.Parameter(torch.zeros(1, 1, 384))
-        self.register_buffer("position", positional_grid(384))
+        dim = int(predictor_dim)
+        self.predictor_dim = dim
+        self.input_projection = nn.Linear(768, dim)
+        self.mask_token = nn.Parameter(torch.zeros(1, 1, dim))
+        self.register_buffer("position", positional_grid(dim))
         layer = nn.TransformerEncoderLayer(
-            d_model=384,
+            d_model=dim,
             nhead=int(num_heads),
-            dim_feedforward=1536,
+            dim_feedforward=int(dim * mlp_ratio),
             dropout=0.0,
             activation="gelu",
             batch_first=True,
             norm_first=True,
         )
-        self.transformer = nn.TransformerEncoder(layer, 4, enable_nested_tensor=False)
-        self.final_norm = nn.LayerNorm(384)
+        self.transformer = nn.TransformerEncoder(layer, int(predictor_depth), enable_nested_tensor=False)
+        self.final_norm = nn.LayerNorm(dim)
         self.output_projection = nn.Linear(384, 768)
         self.apply(_init_predictor_module)
         for layer_id, block in enumerate(self.transformer.layers, start=1):
@@ -364,7 +367,7 @@ class IJEPAFairPredictor(nn.Module):
         positions = self.position.expand(b, -1, -1)
         context = self.input_projection(tokens) + gather_tokens(positions, context_indices)
         context = context[:, None].expand(-1, blocks, -1, -1).reshape(
-            b * blocks, tokens.shape[1], 384
+            b * blocks, tokens.shape[1], self.predictor_dim
         )
         target_pos = gather_tokens(positions, target_indices.flatten(1)).reshape(
             b * blocks, target_length, 384

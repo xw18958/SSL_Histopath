@@ -68,6 +68,41 @@ class IJEPAOfficialMaskSampler(_source.IJEPAOfficialMaskSampler):
                 timeout = original_timeout
 
 
+    def sample(self, batch_size: int, device: torch.device | None = None):
+        """Keep official target blocks, but reject relaxed contexts overlapping any target.
+
+        Official fallback may drop exclusion constraints after repeated failures.
+        On a coarse 8x8 grid that can leak prediction targets into student context.
+        Resample per image, preserving common block dimensions within each batch.
+        """
+        p_size = self._block_size(self.pred_scale, self.aspect)
+        e_size = self._block_size(self.enc_scale, (1.0, 1.0))
+        all_context, all_targets = [], []
+        for _ in range(batch_size):
+            for attempt in range(64):
+                targets, complements = [], []
+                for _ in range(self.npred):
+                    target, complement = self._sample_mask(p_size, None, self.block_min)
+                    targets.append(target)
+                    complements.append(complement)
+                context, _ = self._sample_mask(e_size, complements, self.context_min)
+                target_set = set(torch.cat(targets).tolist())
+                if target_set.isdisjoint(context.tolist()):
+                    all_context.append(context)
+                    all_targets.append(targets)
+                    break
+            else:
+                raise RuntimeError("Unable to obtain leak-free I-JEPA mask after 64 retries")
+        min_context = min(len(context) for context in all_context)
+        min_target = min(len(target) for targets in all_targets for target in targets)
+        contexts = torch.stack([x[:min_context] for x in all_context]).to(device=device, dtype=torch.long)
+        targets = torch.stack([
+            torch.stack([x[:min_target] for x in blocks]) for blocks in all_targets
+        ]).to(device=device, dtype=torch.long)
+        assert not (contexts[:, None, :, None] == targets[:, :, None, :]).any().item()
+        return contexts, targets
+
+
 # Patch the module-level symbol used by BenchmarkStepper and smoke(). No existing
 # training pipeline is modified; only this isolated fairness module is affected.
 _source.IJEPAOfficialMaskSampler = IJEPAOfficialMaskSampler

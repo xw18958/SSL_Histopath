@@ -14,10 +14,32 @@ class Step:
 class StandardIJEPA(torch.nn.Module):
     def __init__(self,c:dict[str,Any],device:torch.device):
         super().__init__(); self.config,self.device=c,device; m=c["method"]
-        self.compat={"seed":c["seed"],"ijepa":{"image_size":256,"patch_size":32,"hidden_size":768,"crop_scale":list(m["views"]["crop_scale"]),"predictor_dim":384,"predictor_depth":4,"predictor_heads":12,"predictor_mlp_ratio":4,"target_count":4,"context_scale":list(m["mask"]["context_scale"]),"target_scale":list(m["mask"]["target_scale"]),"target_aspect":list(m["mask"]["target_aspect"]),"minimum_context_tokens":10,"minimum_block_tokens":4,"target_target_overlap":True,"context_target_overlap":False,"ema_momentum":0.996}}
-        self.student=FreshPLIPVisionEncoder(c["backbone"]["config_dir"],256).to(device); heads=int(self.student.model.config.num_attention_heads)
-        if (self.student.num_patches,self.student.hidden_size,self.student.patch_size,heads)!=(64,768,32,12): raise RuntimeError("Unexpected shared encoder")
-        self.teacher=make_teacher(self.student); self.predictor=IJEPAFairPredictor(num_heads=12).to(device); self.masker=IJEPAOfficialMaskSampler(self.compat,int(c["seed"]))
+        mask, pred, backbone = m["mask"], m["predictor"], c["backbone"]
+        self.compat = {"seed": c["seed"], "ijepa": {
+            "image_size": int(backbone["image_size"]), "patch_size": int(backbone["patch_size"]),
+            "hidden_size": int(backbone["hidden_size"]), "crop_scale": list(m["views"]["crop_scale"]),
+            "predictor_dim": int(pred["dim"]), "predictor_depth": int(pred["depth"]),
+            "predictor_heads": int(pred["heads"]), "predictor_mlp_ratio": float(pred["mlp_ratio"]),
+            "target_count": int(mask["target_count"]), "context_scale": list(mask["context_scale"]),
+            "target_scale": list(mask["target_scale"]), "target_aspect": list(mask["target_aspect"]),
+            "minimum_context_tokens": int(mask["minimum_context_tokens"]),
+            "minimum_block_tokens": int(mask["minimum_block_tokens"]),
+            "target_target_overlap": bool(mask["target_target_overlap"]),
+            "context_target_overlap": bool(mask["context_target_overlap"]),
+            "ema_momentum": float(m["ema"]["start"]),
+        }}
+        self.student = FreshPLIPVisionEncoder(backbone["config_dir"], int(backbone["image_size"])).to(device)
+        heads = int(self.student.model.config.num_attention_heads)
+        if (self.student.num_patches, self.student.hidden_size, self.student.patch_size, heads) != (64, 768, 32, 12):
+            raise RuntimeError("Unexpected shared encoder")
+        if int(pred["heads"]) != heads or int(mask["context_count"]) != 1 or not mask["target_target_overlap"] or mask["context_target_overlap"]:
+            raise ValueError("Unsupported I-JEPA mask or predictor architecture for the approved comparison")
+        self.teacher = make_teacher(self.student)
+        self.predictor = IJEPAFairPredictor(
+            num_heads=int(pred["heads"]), predictor_dim=int(pred["dim"]),
+            predictor_depth=int(pred["depth"]), mlp_ratio=float(pred["mlp_ratio"]),
+        ).to(device)
+        self.masker = IJEPAOfficialMaskSampler(self.compat, int(c["seed"]))
     @property
     def encoder(self): return self.teacher
     def wrap_dataset(self,base:Dataset): return FairnessDataset(base,"ijepa_4layer",self.compat)
@@ -26,8 +48,10 @@ class StandardIJEPA(torch.nn.Module):
     def batch_size(self,batch): return int(batch["image"].shape[0])
     def training_step(self,batch,*,bf16:bool):
         images=batch["image"].to(self.device,dtype=torch.float32,non_blocking=True).div_(255.); context,targets=self.masker.sample(images.shape[0],self.device)
+        if (context[:, None, :, None] == targets[:, :, None, :]).any().item():
+            raise RuntimeError("I-JEPA context/target overlap would leak masked target pixels")
         with torch.autocast("cuda",dtype=torch.bfloat16,enabled=bf16): loss,_,_=objective(self.student,self.teacher,self.predictor,images,context,targets)
-        return Step(loss,{"context_tokens":float(context.shape[1]),"target_tokens_per_block":float(targets.shape[2])})
+        return Step(loss,{"context_tokens":float(context.shape[1]),"target_tokens_per_block":float(targets.shape[2]),"context_target_overlap":0.0})
     def build_optimizer(self):
         decay,no=[] ,[]
         for mod in (self.student,self.predictor):
